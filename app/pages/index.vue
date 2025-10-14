@@ -26,7 +26,7 @@ const projects = [
 
 <template>
   <!-- HERO -->
-  <section id="home" class="relative">
+  <section id="home" class="relative transition-colors duration-300">
     <UContainer class="py-28 md:py-36">
       <div
         class="grid md:grid-cols-2 gap-10 items-center"
@@ -35,24 +35,35 @@ const projects = [
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.6 } }"
       >
         <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+          <div
+            class="inline-flex items-center gap-2 rounded-full px-3 py-1 transition-colors duration-300
+                   border bg-black/5 border-black/10
+                   dark:bg-white/5 dark:border-white/10"
+          >
             <span class="h-2 w-2 rounded-full bg-cyber-green animate-pulse"></span>
-            <span class="text-xs text-white/70">Available for freelance</span>
+            <span class="text-xs text-zinc-700 dark:text-white/70 transition-colors duration-300">Available for freelance</span>
           </div>
-          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white">
+
+          <h1
+            class="text-4xl md:text-6xl font-extrabold leading-tight
+                   text-zinc-900 dark:text-white transition-colors duration-300"
+          >
             Building elegant interfaces with a <span class="text-cyber-purple">cyber-femme</span> vibe.
           </h1>
-          <p class="text-white/70 max-w-prose">
+
+          <p class="max-w-prose text-zinc-600 dark:text-white/70 transition-colors duration-300">
             I’m a web developer specializing in Nuxt, Vue, and delightful motion. Let’s craft
             fast, accessible, and stylish experiences.
           </p>
+
           <div class="flex flex-wrap gap-3">
             <UButton size="lg" icon="i-heroicons-bolt-20-solid" to="#projects">See Projects</UButton>
             <UButton size="lg" variant="soft" to="#contact" icon="i-heroicons-envelope-20-solid">Contact</UButton>
           </div>
         </div>
+
         <UCard
-          class="rounded-3xl"
+          class="rounded-3xl transition-colors duration-300"
           v-motion
           :initial="{ opacity: 0, scale: .95 }"
           :enter="{ opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 16 } }"
@@ -70,23 +81,24 @@ const projects = [
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="relative">
+  <section id="about" class="relative transition-colors duration-300">
     <UContainer class="py-24">
       <div class="grid md:grid-cols-5 gap-10 items-center">
         <div class="md:col-span-3 space-y-4" v-motion-fade-visible-once>
-          <h2 class="text-2xl md:text-3xl font-bold text-white">About</h2>
-          <p class="text-white/70">
+          <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">About</h2>
+          <p class="text-zinc-600 dark:text-white/70 transition-colors duration-300">
             I love crafting performant UIs with gorgeous micro-interactions. My toolkit revolves
             around Nuxt, Vue, and TypeScript, with a sprinkle of design systems and accessibility.
           </p>
           <div class="flex gap-2">
-            <UBadge class="border border-white/10" variant="soft">Nuxt</UBadge>
-            <UBadge class="border border-white/10" variant="soft">Vue</UBadge>
-            <UBadge class="border border-white/10" variant="soft">Tailwind</UBadge>
-            <UBadge class="border border-white/10" variant="soft">Motion</UBadge>
+            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Nuxt</UBadge>
+            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Vue</UBadge>
+            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Tailwind</UBadge>
+            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Motion</UBadge>
           </div>
         </div>
-        <UCard class="md:col-span-2 rounded-3xl" v-motion-pop-visible-once>
+
+        <UCard class="md:col-span-2 rounded-3xl transition-colors duration-300" v-motion-pop-visible-once>
           <div class="p-6">
             <img
               src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop"
@@ -100,15 +112,17 @@ const projects = [
   </section>
 
   <!-- EDUCATION -->
-  <section id="education" class="relative">
+  <section id="education" class="relative transition-colors duration-300">
     <UContainer class="py-24">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8">Education</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300 mb-8">Education</h2>
       <div class="grid md:grid-cols-3 gap-6">
-        <UCard v-for="i in 3" :key="i" class="rounded-2xl" v-motion-fade-visible-once>
+        <UCard v-for="i in 3" :key="i" class="rounded-2xl transition-colors duration-300" v-motion-fade-visible-once>
           <div class="p-5 space-y-2">
-            <h3 class="font-semibold text-white">Program / School</h3>
-            <p class="text-white/70 text-sm">YYYY – YYYY</p>
-            <p class="text-white/70 text-sm">A highlight or two about the coursework, focus, or accolades.</p>
+            <h3 class="font-semibold text-zinc-900 dark:text-white transition-colors duration-300">Program / School</h3>
+            <p class="text-sm text-zinc-600 dark:text-white/70 transition-colors duration-300">YYYY – YYYY</p>
+            <p class="text-sm text-zinc-600 dark:text-white/70 transition-colors duration-300">
+              A highlight or two about the coursework, focus, or accolades.
+            </p>
           </div>
         </UCard>
       </div>
@@ -116,14 +130,18 @@ const projects = [
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="relative">
+  <section id="skills" class="relative transition-colors duration-300">
     <UContainer class="py-24">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8">Skills</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300 mb-8">Skills</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <UCard v-for="s in ['Nuxt / Vue', 'TypeScript', 'Tailwind / UI', 'Animations', 'A11y', 'Testing']" :key="s"
-               class="rounded-2xl" v-motion-slide-visible-once-left>
+        <UCard
+          v-for="s in ['Nuxt / Vue', 'TypeScript', 'Tailwind / UI', 'Animations', 'A11y', 'Testing']"
+          :key="s"
+          class="rounded-2xl transition-colors duration-300"
+          v-motion-slide-visible-once-left
+        >
           <div class="p-5 flex items-center justify-between">
-            <span class="text-white">{{ s }}</span>
+            <span class="text-zinc-900 dark:text-white transition-colors duration-300">{{ s }}</span>
             <UIcon name="i-heroicons-sparkles-20-solid" class="h-5 w-5 text-cyber-green" />
           </div>
         </UCard>
@@ -132,10 +150,10 @@ const projects = [
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="relative">
+  <section id="projects" class="relative border-t transition-colors duration-300 border-black/10 dark:border-white/10">
     <UContainer class="py-24">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">Projects</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">Projects</h2>
         <UButton variant="soft" icon="i-heroicons-arrow-down-tray-20-solid" to="/resume.pdf" download>Resume</UButton>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -145,13 +163,15 @@ const projects = [
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="relative">
+  <section id="contact" class="relative transition-colors duration-300">
     <UContainer class="py-24">
-      <UCard class="rounded-3xl" v-motion-fade-visible-once>
+      <UCard class="rounded-3xl transition-colors duration-300" v-motion-fade-visible-once>
         <div class="p-6 grid md:grid-cols-2 gap-6">
           <div class="space-y-3">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">Let’s work together</h2>
-            <p class="text-white/70">
+            <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">
+              Let’s work together
+            </h2>
+            <p class="text-zinc-600 dark:text-white/70 transition-colors duration-300">
               Looking for a developer for your next project? Drop a message and I’ll get back to you.
             </p>
             <div class="flex gap-3 pt-2">
@@ -174,8 +194,8 @@ const projects = [
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-cyber-line py-10">
-    <UContainer class="text-center text-white/60 text-sm">
+  <footer class="border-t transition-colors duration-300 border-black/10 dark:border-white/10 py-10">
+    <UContainer class="text-center text-zinc-600 dark:text-white/60 transition-colors duration-300 text-sm">
       © {{ new Date().getFullYear() }} Your Name — Built with Nuxt, Vue, and Nuxt UI.
     </UContainer>
   </footer>

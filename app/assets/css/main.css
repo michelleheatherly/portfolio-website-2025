@@ -2,6 +2,30 @@
 @import "@nuxt/ui";
 
 html, body, #__nuxt { height: 100%; }
-body { background: #0c0a10; }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#9b5cff,#2BF5A0); border-radius: 8px; }
+
+:root {
+  --bg-grid-stroke: rgba(98, 0, 255, 0.15);         /* light grid */
+  --glow-purple: rgba(155, 92, 255, 0.30);
+  --glow-green: rgba(43, 245, 160, 0.25);
+  --conic-a: rgba(155, 92, 255, 0.25);
+  --conic-b: rgba(43, 245, 160, 0.18);
+}
+
+.dark:root {
+  --bg-grid-stroke: rgba(155, 92, 255, 0.25);       /* darker grid, brighter stroke */
+  --glow-purple: rgba(155, 92, 255, 0.45);
+  --glow-green: rgba(43, 245, 160, 0.35);
+  --conic-a: rgba(155, 92, 255, 0.35);
+  --conic-b: rgba(43, 245, 160, 0.20);
+}
+
+/* Page background variables — used by Parallax container as a fallback */
+:root {
+  --page-bg: #f8fafc;     /* light: zinc-50-ish */
+}
+
+.dark:root {
+  --page-bg: #0c0a10;     /* dark: your cyber.bg */
+}
