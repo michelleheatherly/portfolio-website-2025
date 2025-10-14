@@ -34,10 +34,11 @@ if (import.meta.client) {
   useIntersectionObserver(
     footerRef,
     ([entry]) => {
-      footerVisible.value = entry?.isIntersecting ?? false
+      const ratio = entry?.intersectionRatio ?? 0
+      footerVisible.value = ratio >= 0.98
     },
     {
-      threshold: 0.15
+      threshold: [0, 0.5, 0.98]
     }
   )
 }
