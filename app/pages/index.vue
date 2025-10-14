@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { usePreferredReducedMotion, useIntersectionObserver } from '@vueuse/core'
+
 const projects = [
   {
     title: 'Neon Nodes',
@@ -22,6 +24,50 @@ const projects = [
     link: 'https://example.com/greentrace'
   }
 ]
+
+const prefersReduced = usePreferredReducedMotion()
+
+const footerRef = ref<HTMLElement | null>(null)
+const footerVisible = useState<boolean>('footer-visible', () => false)
+
+if (import.meta.client) {
+  useIntersectionObserver(
+    footerRef,
+    ([entry]) => {
+      footerVisible.value = entry?.isIntersecting ?? false
+    },
+    {
+      threshold: 0.15
+    }
+  )
+}
+
+const heroIndicatorEnter = computed(() =>
+  prefersReduced.value === 'reduce'
+    ? { opacity: 1, scale: 1, transition: { duration: 0.4 } }
+    : {
+        opacity: 1,
+        scale: [0.98, 1.05, 0.98],
+        boxShadow: [
+          '0 18px 40px -32px rgba(139,92,246,0.45)',
+          '0 24px 50px -28px rgba(99,102,241,0.55)',
+          '0 18px 40px -32px rgba(139,92,246,0.45)'
+        ],
+        transition: {
+          delay: 0.6,
+          duration: 2.6,
+          repeat: Infinity,
+          repeatType: 'loop',
+          ease: 'easeInOut'
+        }
+      }
+)
+
+const heroIndicatorInitial = computed(() =>
+  prefersReduced.value === 'reduce'
+    ? { opacity: 1, scale: 1 }
+    : { opacity: 0.7, scale: 0.94 }
+)
 </script>
 
 <template>
@@ -39,6 +85,9 @@ const projects = [
             class="inline-flex items-center gap-2 rounded-full px-3 py-1 transition-colors duration-300
                    border bg-black/5 border-black/10
                    dark:bg-white/5 dark:border-white/10"
+            v-motion
+            :initial="{ opacity: 0, y: -8 }"
+            :enter="{ opacity: 1, y: 0, transition: { delay: 0.15, type: 'spring', stiffness: 150, damping: 18 } }"
           >
             <span class="h-2 w-2 rounded-full bg-cyber-green animate-pulse"></span>
             <span class="text-xs text-zinc-700 dark:text-white/70 transition-colors duration-300">Available for freelance</span>
@@ -59,6 +108,25 @@ const projects = [
           <div class="flex flex-wrap gap-3">
             <UButton size="lg" icon="i-heroicons-bolt-20-solid" to="#projects">See Projects</UButton>
             <UButton size="lg" variant="soft" to="#contact" icon="i-heroicons-envelope-20-solid">Contact</UButton>
+          </div>
+
+          <div
+            class="hidden md:flex items-center gap-3 text-sm text-zinc-500 dark:text-white/60 transition-colors duration-300"
+            v-motion
+            :initial="{ opacity: 0, y: 8 }"
+            :enter="{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.5 } }"
+          >
+            <span
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cyber-purple/30
+                     bg-white/70 dark:bg-white/5
+                     text-cyber-purple transition-colors duration-300"
+              v-motion
+              :initial="heroIndicatorInitial"
+              :enter="heroIndicatorEnter"
+            >
+              <UIcon name="i-heroicons-arrow-down-20-solid" class="h-4 w-4" />
+            </span>
+            <span>Scroll to explore</span>
           </div>
         </div>
 
@@ -137,12 +205,16 @@ const projects = [
         <UCard
           v-for="s in ['Nuxt / Vue', 'TypeScript', 'Tailwind / UI', 'Animations', 'A11y', 'Testing']"
           :key="s"
-          class="rounded-2xl transition-colors duration-300"
+          class="group rounded-2xl transition-all duration-300
+                 hover:-translate-y-1 hover:border-cyber-purple/30 hover:shadow-[0_20px_45px_-28px_rgba(165,180,252,0.55)]"
           v-motion-slide-visible-once-left
         >
           <div class="p-5 flex items-center justify-between">
             <span class="text-zinc-900 dark:text-white transition-colors duration-300">{{ s }}</span>
-            <UIcon name="i-heroicons-sparkles-20-solid" class="h-5 w-5 text-cyber-green" />
+            <UIcon
+              name="i-heroicons-sparkles-20-solid"
+              class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:rotate-12"
+            />
           </div>
         </UCard>
       </div>
@@ -194,7 +266,10 @@ const projects = [
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t transition-colors duration-300 border-black/10 dark:border-white/10 py-10">
+  <footer
+    ref="footerRef"
+    class="border-t transition-colors duration-300 border-black/10 dark:border-white/10 py-10"
+  >
     <UContainer class="text-center text-zinc-600 dark:text-white/60 transition-colors duration-300 text-sm">
       © {{ new Date().getFullYear() }} Your Name — Built with Nuxt, Vue, and Nuxt UI.
     </UContainer>
