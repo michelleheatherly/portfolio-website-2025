@@ -17,7 +17,7 @@ const props = withDefaults(
     :initial="{ opacity: 0, y: 24 }"
     :enter="{ opacity: 1, y: 0, transition: { delay: 0.05, duration: 0.6, ease: 'easeOut' } }"
     :hovered="{ scale: 1.01, transition: { duration: 0.4 } }"
-    class="relative space-y-6 group"
+    class="relative space-y-6"
   >
     <span
       v-if="props.badge"
@@ -38,11 +38,33 @@ const props = withDefaults(
 
     <div class="grid gap-3 pt-2 sm:grid-cols-2">
       <slot name="actions">
-        <UButton to="mailto:you@example.com" icon="i-heroicons-envelope-20-solid" variant="soft">Email</UButton>
-        <UButton to="https://github.com/yourname" target="_blank" icon="i-simple-icons-github" variant="soft">GitHub</UButton>
-        <UButton to="https://www.linkedin.com/in/yourname" target="_blank" icon="i-simple-icons-linkedin" variant="soft">LinkedIn</UButton>
-        <UButton to="#projects" variant="soft" icon="i-heroicons-bolt-20-solid" class="justify-start">
-          View latest builds
+        <UButton to="mailto:you@example.com" variant="soft" class="group">
+          <UIcon
+            name="i-heroicons-envelope-20-solid"
+            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>Email</span>
+        </UButton>
+        <UButton to="https://github.com/yourname" target="_blank" variant="soft" class="group">
+          <UIcon
+            name="i-simple-icons-github"
+            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>GitHub</span>
+        </UButton>
+        <UButton to="https://www.linkedin.com/in/yourname" target="_blank" variant="soft" class="group">
+          <UIcon
+            name="i-simple-icons-linkedin"
+            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>LinkedIn</span>
+        </UButton>
+        <UButton to="#projects" variant="soft" class="group justify-start">
+          <UIcon
+            name="i-heroicons-bolt-20-solid"
+            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>View latest builds</span>
         </UButton>
       </slot>
     </div>

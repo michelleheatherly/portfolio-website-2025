@@ -115,13 +115,16 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
         <UButton
           type="submit"
           size="lg"
-          icon="i-heroicons-sparkles-20-solid"
           class="group overflow-hidden"
           v-motion
           :initial="{ y: 12, opacity: 0 }"
           :enter="{ y: 0, opacity: 1, transition: { delay: 0.3, duration: 0.5, ease: 'easeOut' } }"
         >
-          Send the vision
+          <UIcon
+            name="i-heroicons-sparkles-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>Send the vision</span>
           <span class="relative ml-2 flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
