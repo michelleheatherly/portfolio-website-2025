@@ -6,8 +6,10 @@ const prefersReduced = usePreferredReducedMotion()
 const k = computed(() => (prefersReduced.value === 'reduce' ? 0 : 1))
 
 const layer1 = computed(() => `translateY(${(y.value * 0.10 * k.value).toFixed(2)}px)`)
+const layer1BgPos = computed(() => `center calc(50% + ${(y.value * 0.08 * k.value).toFixed(2)}px)`)
 const layer2 = computed(() => `translateY(${(y.value * 0.20 * k.value).toFixed(2)}px)`)
 const layer3 = computed(() => `translateY(${(y.value * 0.35 * k.value).toFixed(2)}px)`)
+const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2)}px)`)
 </script>
 
 <template>
@@ -28,20 +30,90 @@ const layer3 = computed(() => `translateY(${(y.value * 0.35 * k.value).toFixed(2
       }"
     />
 
-    <!-- Cyber grid -->
+    <!-- Nebula starfield -->
+    <div
+      class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-85 dark:opacity-70
+             transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen"
+      :style="{
+        backgroundPosition: layer1BgPos,
+        backgroundImage: [
+          'linear-gradient(to bottom, rgba(15,23,42,0.20) 0%, rgba(15,23,42,0.12) 24%, transparent 58%, rgba(15,23,42,0.28) 100%)',
+          'radial-gradient(circle at 12% 16%, rgba(99,102,241,0.42) 0, transparent 46%)',
+          'radial-gradient(circle at 84% 18%, rgba(129,140,248,0.36) 0, transparent 48%)',
+          'radial-gradient(circle at 66% 78%, rgba(56,189,248,0.32) 0, transparent 58%)',
+          'radial-gradient(circle at 20% 80%, rgba(96,165,250,0.30) 0, transparent 62%)',
+          'radial-gradient(circle at 52% 54%, rgba(236,254,255,0.25) 0, transparent 48%)',
+          'radial-gradient(circle at 36% 38%, rgba(226,232,240,0.22) 0, transparent 44%)'
+        ].join(', '),
+        backgroundSize: '150% 190%',
+        backgroundRepeat: 'no-repeat',
+        filter: 'saturate(1.05) contrast(1.05)'
+      }"
+    />
+
+    <!-- Orbit arcs -->
     <svg
-      class="absolute inset-0 opacity-25 dark:opacity-30 transition-opacity duration-500 will-change-transform"
+      class="absolute inset-0 opacity-55 dark:opacity-45 transition-opacity duration-500 will-change-transform
+             mix-blend-screen dark:mix-blend-luminosity"
       :style="{ transform: layer2 }"
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 800 600"
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-          <path d="M 48 0 L 0 0 0 48" fill="none" :stroke="`var(--bg-grid-stroke)`" stroke-width="1" />
-        </pattern>
+        <linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+          <stop offset="45%" stop-color="rgba(180,206,255,0.24)" />
+          <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+        </linearGradient>
+        <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(147,197,253,0.9)" />
+          <stop offset="100%" stop-color="rgba(147,197,253,0)" />
+        </radialGradient>
+        <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="12" result="blurred" />
+          <feMerge>
+            <feMergeNode in="blurred" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
+      <g filter="url(#softGlow)" stroke="url(#orbitStroke)" stroke-width="1.6" fill="none" stroke-linecap="round">
+        <path d="M -120 190 Q 320 40 860 200" opacity="0.55" />
+        <path d="M -100 330 Q 340 270 840 360" opacity="0.65" stroke-dasharray="8 14" />
+        <path d="M -80 480 Q 420 560 820 400" opacity="0.45" />
+      </g>
+      <g fill="url(#nodeGlow)" opacity="0.85">
+        <circle cx="140" cy="180" r="16" />
+        <circle cx="520" cy="120" r="20" />
+        <circle cx="680" cy="340" r="14" />
+        <circle cx="320" cy="420" r="18" />
+      </g>
     </svg>
+
+    <!-- Floating facets -->
+    <div
+      class="absolute left-[58%] top-[16%] w-[30vw] max-w-[420px] aspect-[4/3] rounded-[35%]
+             opacity-35 dark:opacity-45 transition-opacity duration-500 will-change-transform
+             mix-blend-screen dark:mix-blend-luminosity"
+      :style="{
+        transform: `${layer3} rotate(12deg)`,
+        background: 'linear-gradient(140deg, rgba(99,102,241,0.35), transparent 70%)',
+        border: '1px solid rgba(255,255,255,0.05)',
+        boxShadow: '0 0 120px rgba(99,102,241,0.35)'
+      }"
+    />
+    <div
+      class="absolute right-[62%] bottom-[12%] w-[36vw] max-w-[460px] aspect-square rounded-[40%]
+             opacity-30 dark:opacity-40 transition-opacity duration-500 will-change-transform
+             mix-blend-screen dark:mix-blend-luminosity"
+      :style="{
+        transform: `${layer4} rotate(-18deg)`,
+        background: 'linear-gradient(200deg, rgba(16,185,129,0.30), transparent 60%)',
+        border: '1px solid rgba(255,255,255,0.04)',
+        boxShadow: '0 0 140px rgba(16,185,129,0.32)'
+      }"
+    />
 
     <!-- Glow blobs -->
     <div
