@@ -196,14 +196,18 @@ onBeforeUnmount(() => {
       <div class="flex items-center gap-2">
         <ThemeToggle />
         <UButton
-          class="md:hidden"
+          class="group/menu md:hidden transition-colors duration-300"
           variant="soft"
-          :icon="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
           :aria-expanded="isMenuOpen"
           :aria-controls="menuId"
           aria-label="Menu"
           @click="toggleMenu"
-        />
+        >
+          <UIcon
+            :name="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
+            class="h-5 w-5 transition-transform duration-500 group-hover/menu:-translate-y-0.5 group-hover/menu:rotate-12"
+          />
+        </UButton>
       </div>
     </UContainer>
 

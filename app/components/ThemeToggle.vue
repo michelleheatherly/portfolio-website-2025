@@ -59,23 +59,31 @@ function startViewTransition(event: MouseEvent) {
   <ClientOnly>
     <UButton
       :aria-label="`Switch to ${nextTheme} mode`"
-      :icon="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
       color="neutral"
       variant="ghost"
       size="sm"
-      class="rounded-full"
+      class="group/theme-toggle rounded-full transition-colors duration-300"
       @click="startViewTransition"
-    />
+    >
+      <UIcon
+        :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
+        class="h-5 w-5 transition-transform duration-500 group-hover/theme-toggle:-translate-y-0.5 group-hover/theme-toggle:rotate-12"
+      />
+    </UButton>
     <template #fallback>
       <UButton
         :aria-label="`Switch to ${nextTheme} mode`"
-        :icon="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
         color="neutral"
         variant="ghost"
         size="sm"
-        class="rounded-full"
+        class="group/theme-toggle rounded-full transition-colors duration-300"
         @click="switchTheme"
-      />
+      >
+        <UIcon
+          :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
+          class="h-5 w-5 transition-transform duration-500 group-hover/theme-toggle:-translate-y-0.5 group-hover/theme-toggle:rotate-12"
+        />
+      </UButton>
     </template>
   </ClientOnly>
 </template>

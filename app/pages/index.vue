@@ -60,8 +60,20 @@ const projects = [
           </p>
 
           <div class="flex flex-wrap gap-3">
-            <UButton size="lg" icon="i-heroicons-bolt-20-solid" to="#projects">See Projects</UButton>
-            <UButton size="lg" variant="soft" to="#contact" icon="i-heroicons-envelope-20-solid">Contact</UButton>
+            <UButton size="lg" to="#projects" class="group">
+              <UIcon
+                name="i-heroicons-bolt-20-solid"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+              />
+              <span>See Projects</span>
+            </UButton>
+            <UButton size="lg" variant="soft" to="#contact" class="group">
+              <UIcon
+                name="i-heroicons-envelope-20-solid"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+              />
+              <span>Contact</span>
+            </UButton>
           </div>
 
           <HeroScrollIndicator />
@@ -163,7 +175,13 @@ const projects = [
     <UContainer class="py-24">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">Projects</h2>
-        <UButton variant="soft" icon="i-heroicons-arrow-down-tray-20-solid" to="/resume.pdf" download>Resume</UButton>
+        <UButton variant="soft" to="/resume.pdf" download class="group">
+          <UIcon
+            name="i-heroicons-arrow-down-tray-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+          />
+          <span>Resume</span>
+        </UButton>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <ProjectCard v-for="p in projects" :key="p.title" :project="p" />

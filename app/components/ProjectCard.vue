@@ -125,10 +125,13 @@ function resetSpotlight() {
         <UButton
           :to="project.link"
           target="_blank"
-          icon="i-heroicons-arrow-top-right-on-square-20-solid"
-          class="transition-colors duration-300"
+          class="group/button transition-colors duration-300"
         >
-          View Project
+          <UIcon
+            name="i-heroicons-arrow-top-right-on-square-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
+          />
+          <span>View Project</span>
         </UButton>
       </div>
     </div>
