@@ -12,10 +12,16 @@ const props = withDefaults(
 </script>
 
 <template>
-  <div class="space-y-6">
+  <div
+    v-motion
+    :initial="{ opacity: 0, y: 24 }"
+    :enter="{ opacity: 1, y: 0, transition: { delay: 0.05, duration: 0.6, ease: 'easeOut' } }"
+    :hovered="{ scale: 1.01, transition: { duration: 0.4 } }"
+    class="relative space-y-6 group"
+  >
     <span
       v-if="props.badge"
-      class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-600 transition-colors duration-300 dark:border-white/10 dark:bg-white/10 dark:text-white/60"
+      class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-600 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)] dark:border-white/10 dark:bg-white/10 dark:text-white/60"
     >
       <span class="h-1.5 w-1.5 rounded-full bg-cyber-green animate-pulse"></span>
       {{ props.badge }}
