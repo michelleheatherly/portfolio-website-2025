@@ -222,31 +222,21 @@ const heroIndicatorInitial = computed(() =>
   <!-- CONTACT -->
   <section id="contact" class="relative transition-colors duration-300">
     <UContainer class="py-24">
-      <UCard class="rounded-3xl transition-colors duration-300" v-motion-fade-visible-once>
-        <div class="p-6 grid md:grid-cols-2 gap-6">
-          <div class="space-y-3">
-            <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">
-              Let’s work together
-            </h2>
-            <p class="text-zinc-600 dark:text-white/70 transition-colors duration-300">
-              Looking for a developer for your next project? Drop a message and I’ll get back to you.
-            </p>
-            <div class="flex gap-3 pt-2">
-              <UButton to="mailto:you@example.com" icon="i-heroicons-envelope-20-solid" variant="soft">Email</UButton>
-              <UButton to="https://github.com/yourname" target="_blank" icon="i-simple-icons-github" variant="soft">GitHub</UButton>
-              <UButton to="https://www.linkedin.com/in/yourname" target="_blank" icon="i-simple-icons-linkedin" variant="soft">LinkedIn</UButton>
-            </div>
-          </div>
-          <form class="space-y-4">
-            <UInput placeholder="Your name" />
-            <UInput placeholder="Your email" type="email" />
-            <UTextarea :rows="5" placeholder="Tell me about your project..." />
-            <div class="flex justify-end">
-              <UButton icon="i-heroicons-paper-airplane-20-solid">Send</UButton>
-            </div>
-          </form>
+      <div
+        class="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-white/70 shadow-[0_35px_60px_-30px_rgba(15,23,42,0.35)] transition-colors duration-500 dark:border-white/10 dark:bg-white/5"
+        v-motion-fade-visible-once
+      >
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10"></div>
+        <div class="pointer-events-none absolute -top-28 left-10 h-56 w-56 rounded-full bg-cyber-purple/15 blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-36 right-6 h-64 w-64 rounded-full bg-cyber-green/15 blur-[120px]"></div>
+        <div class="relative grid gap-10 p-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:p-12">
+          <ContactCollabPanel
+            headline="Let's build a futuristic web experience"
+            description="I partner with founders and creative teams to ship immersive products, bold interfaces, and smooth flows. If the brief needs motion, storytelling, or thoughtful UX, I am in."
+          />
+          <ContactForm />
         </div>
-      </UCard>
+      </div>
     </UContainer>
   </section>
 </template>
