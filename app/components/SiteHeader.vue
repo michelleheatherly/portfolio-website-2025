@@ -157,8 +157,8 @@ onBeforeUnmount(() => {
               {{ l.label }}
               <!-- subtle underline accent -->
               <span
-                class="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-cyber-purple to-cyber-green
-                       transition-all duration-300 group-hover:w-full group-focus-visible:w-full"
+                class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black dark:bg-white/90 opacity-0 transition-all duration-300 ease-out
+                       group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
               />
             </ULink>
           </li>
@@ -184,15 +184,14 @@ onBeforeUnmount(() => {
       <Transition name="menu-overlay">
         <div
           v-if="isMenuOpen"
-          class="fixed inset-0 z-[70] flex flex-col md:hidden"
+          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col md:hidden"
           role="dialog"
           aria-modal="true"
           :aria-labelledby="`${menuId}-title`"
           @click.self="closeMenu"
         >
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/80 via-cyber-green/30 to-black/90 backdrop-blur-[38px]" />
           <UButton
-            class="absolute right-4 top-4 z-20 text-cyber-green transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40"
+            class="absolute right-4 top-4 z-20 text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
             color="neutral"
             variant="ghost"
             size="lg"
@@ -226,9 +225,8 @@ onBeforeUnmount(() => {
                   <ULink
                     :to="l.to"
                     class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-white/90 transition-all duration-300 ease-out
-                           hover:text-cyber-green hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
-                           focus-visible:text-cyber-green focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none
-                           dark:hover:text-cyber-green"
+                           hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
+                           focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
                     @click="handleMobileNavigate"
                   >
                     <span
@@ -237,14 +235,9 @@ onBeforeUnmount(() => {
                     />
                     {{ l.label }}
                     <span
-                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full overflow-hidden rounded-full bg-white/10 opacity-30 transition-opacity duration-200 ease-out
-                             group-hover:opacity-100 group-focus-visible:opacity-100"
-                    >
-                      <span
-                        class="line-draw block h-full w-full origin-left scale-x-0 bg-gradient-to-r from-cyber-green via-cyber-purple to-cyber-green transition-transform duration-500 ease-out
-                               group-hover:scale-x-100 group-focus-visible:scale-x-100"
-                      />
-                    </span>
+                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-white opacity-0 transition-all duration-500 ease-out
+                             group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
+                    />
                   </ULink>
                 </li>
               </ul>
@@ -263,6 +256,10 @@ onBeforeUnmount(() => {
 .menu-overlay-enter-active,
 .menu-overlay-leave-active {
   transition: opacity 0.32s ease;
+}
+
+.menu-overlay-surface {
+  background-color: #159561;
 }
 
 .menu-overlay-enter-from,
