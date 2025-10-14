@@ -6,7 +6,7 @@ const prefersReduced = usePreferredReducedMotion()
 
 <template>
   <div
-    class="hidden md:flex text-sm text-zinc-500 dark:text-white/60 transition-colors duration-300"
+    class="flex text-sm text-zinc-500 dark:text-white/60 transition-colors duration-300"
     v-motion
     :initial="{ opacity: 0, y: 8 }"
     :enter="{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.5 } }"

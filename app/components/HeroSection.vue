@@ -2,7 +2,7 @@
   <section id="home" class="hero-section relative transition-colors duration-300">
     <UContainer class="py-28 md:py-36">
       <div
-        class="grid md:grid-cols-2 gap-10 items-center"
+        class="grid lg:grid-cols-2 gap-10 items-center"
         v-motion
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.6 } }"
