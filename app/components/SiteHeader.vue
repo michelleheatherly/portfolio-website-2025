@@ -18,7 +18,39 @@ const isMenuOpen = ref(false)
 const rippleOrigin = ref({ x: 0, y: 0 })
 const menuId = 'site-navigation'
 
-const showElevation = computed(() => y.value > 24 && !footerVisible.value && !isMenuOpen.value)
+const glassProgress = computed(() => {
+  if (isMenuOpen.value) {
+    return 1
+  }
+
+  const start = 70
+  const range = 110
+  const progress = (y.value - start) / range
+
+  return Math.min(Math.max(progress, 0), 1)
+})
+
+const showElevation = computed(() => y.value > 150 && !footerVisible.value && !isMenuOpen.value)
+const headerSurfaceClasses = computed(() =>
+  showElevation.value ? 'shadow-[0_18px_34px_-28px_rgba(124,58,237,0.55)]' : ''
+)
+const headerSurfaceStyles = computed(() => {
+  const eased = glassProgress.value === 0 ? 0 : Math.pow(glassProgress.value, 1.12)
+  const lightBgOpacity = (0.38 * eased).toFixed(3)
+  const darkBgOpacity = (0.14 * eased).toFixed(3)
+  const lightBorderOpacity = (0.035 * eased).toFixed(3)
+  const darkBorderOpacity = (0.035 * eased).toFixed(3)
+  const blurStrength = (eased * 12).toFixed(1)
+
+  return {
+    '--header-bg-opacity-light': lightBgOpacity,
+    '--header-bg-opacity-dark': darkBgOpacity,
+    '--header-border-opacity-light': lightBorderOpacity,
+    '--header-border-opacity-dark': darkBorderOpacity,
+    backdropFilter: `blur(${blurStrength}px)`,
+    WebkitBackdropFilter: `blur(${blurStrength}px)`
+  }
+})
 const shouldHideHeader = computed(() => footerVisible.value && !isMenuOpen.value)
 const allowMenuRipple = computed(() => prefersReduced.value !== 'reduce')
 const rippleStyle = computed(() => ({
@@ -111,17 +143,12 @@ onBeforeUnmount(() => {
 
 <template>
   <header
-    class="sticky top-0 z-40 border-b transition-all duration-300
-           bg-white/90 dark:bg-black/30
-           border-black/10 dark:border-white/10
-           supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-black/20
-           supports-[backdrop-filter]:backdrop-blur-xl transform-gpu"
+    class="sticky top-0 z-40 border-b transition-all duration-500 transform-gpu header-surface"
     :class="[
-      showElevation
-        ? 'shadow-[0_18px_34px_-28px_rgba(124,58,237,0.55)] border-black/5 dark:border-white/5 bg-white/95 dark:bg-black/40'
-        : '',
+      headerSurfaceClasses,
       shouldHideHeader ? '-translate-y-full opacity-0 pointer-events-none' : 'opacity-100'
     ]"
+    :style="headerSurfaceStyles"
   >
     <UContainer class="flex items-center justify-between py-3">
       <!-- Brand -->
@@ -253,6 +280,20 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.header-surface {
+  --header-bg-opacity-light: 0;
+  --header-bg-opacity-dark: 0;
+  --header-border-opacity-light: 0;
+  --header-border-opacity-dark: 0;
+  background-color: rgba(255, 255, 255, var(--header-bg-opacity-light));
+  border-color: rgba(24, 24, 27, var(--header-border-opacity-light));
+}
+
+:global(.dark) .header-surface {
+  background-color: rgba(10, 10, 12, var(--header-bg-opacity-dark));
+  border-color: rgba(250, 250, 255, var(--header-border-opacity-dark));
+}
+
 .menu-overlay-enter-active,
 .menu-overlay-leave-active {
   transition: opacity 0.32s ease;
