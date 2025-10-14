@@ -7,11 +7,8 @@
            bg-zinc-50 text-zinc-900
            dark:bg-cyber-bg dark:text-zinc-100"
   >
-    <ClientOnly>
-      <ParallaxBackground />
-    </ClientOnly>
-
-    <SiteHeader />
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePreferredReducedMotion, useIntersectionObserver } from '@vueuse/core'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 const projects = [
   {
@@ -26,22 +26,6 @@ const projects = [
 ]
 
 const prefersReduced = usePreferredReducedMotion()
-
-const footerRef = ref<HTMLElement | null>(null)
-const footerVisible = useState<boolean>('footer-visible', () => false)
-
-if (import.meta.client) {
-  useIntersectionObserver(
-    footerRef,
-    ([entry]) => {
-      const ratio = entry?.intersectionRatio ?? 0
-      footerVisible.value = ratio >= 0.98
-    },
-    {
-      threshold: [0, 0.5, 0.98]
-    }
-  )
-}
 
 const heroIndicatorEnter = computed(() =>
   prefersReduced.value === 'reduce'
@@ -265,14 +249,4 @@ const heroIndicatorInitial = computed(() =>
       </UCard>
     </UContainer>
   </section>
-
-  <!-- FOOTER -->
-  <footer
-    ref="footerRef"
-    class="border-t transition-colors duration-300 border-black/10 dark:border-white/10 py-10"
-  >
-    <UContainer class="text-center text-zinc-600 dark:text-white/60 transition-colors duration-300 text-sm">
-      © {{ new Date().getFullYear() }} Your Name — Built with Nuxt, Vue, and Nuxt UI.
-    </UContainer>
-  </footer>
 </template>
