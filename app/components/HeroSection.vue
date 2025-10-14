@@ -21,10 +21,10 @@
           </div>
 
           <h1
-            class="text-4xl md:text-6xl font-extrabold leading-tight
+            class="hero-headline text-4xl md:text-6xl font-extrabold leading-tight
                    text-zinc-900 dark:text-white transition-colors duration-300"
           >
-            Building elegant interfaces with a <span class="text-cyber-purple">cyber-femme</span> vibe.
+            Building elegant interfaces with a <span class="hero-headline__accent">cyber-femme</span> vibe.
           </h1>
 
           <p class="max-w-prose text-zinc-600 dark:text-white/70 transition-colors duration-300">
@@ -70,3 +70,38 @@
     </UContainer>
   </section>
 </template>
+
+<style scoped>
+.hero-headline {
+  position: relative;
+  text-shadow:
+    1px 1px 0 rgba(124, 58, 237, 0.28),
+    2px 2px 0 rgba(91, 33, 182, 0.22),
+    6px 10px 24px rgba(16, 185, 129, 0.2);
+}
+
+:global(.dark) .hero-headline {
+  text-shadow:
+    1px 1px 0 rgba(196, 181, 253, 0.32),
+    2px 2px 0 rgba(124, 58, 237, 0.28),
+    8px 14px 28px rgba(34, 197, 94, 0.35);
+}
+
+.hero-headline__accent {
+  display: inline-block;
+  background: linear-gradient(120deg, #c6a7ff, #8c5cf7 55%, #4ade80);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    1px 1px 0 rgba(76, 29, 149, 0.28),
+    3px 6px 18px rgba(74, 222, 128, 0.26);
+}
+
+:global(.dark) .hero-headline__accent {
+  background: linear-gradient(120deg, #b892ff, #7c3aed 55%, #22c55e);
+  text-shadow:
+    1px 1px 0 rgba(76, 29, 149, 0.38),
+    4px 8px 22px rgba(34, 197, 94, 0.32);
+}
+</style>
