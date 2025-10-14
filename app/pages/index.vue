@@ -224,7 +224,15 @@ const heroIndicatorInitial = computed(() =>
     <UContainer class="py-24">
       <div
         class="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-white/70 shadow-[0_35px_60px_-30px_rgba(15,23,42,0.35)] transition-colors duration-500 dark:border-white/10 dark:bg-white/5"
-        v-motion-fade-visible-once
+        v-motion
+        :initial="{ opacity: 0, y: 80, scale: 0.95 }"
+        :visibleOnce="{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.8, ease: 'easeOut' }
+        }"
+        :viewport="{ amount: 0.4 }"
       >
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10"></div>
         <div class="pointer-events-none absolute -top-28 left-10 h-56 w-56 rounded-full bg-cyber-purple/15 blur-3xl"></div>
