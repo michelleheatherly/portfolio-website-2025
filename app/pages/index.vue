@@ -39,10 +39,34 @@ const projects = [
             around Nuxt, Vue, and TypeScript, with a sprinkle of design systems and accessibility.
           </p>
           <div class="flex gap-2">
-            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Nuxt</UBadge>
-            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Vue</UBadge>
-            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Tailwind</UBadge>
-            <UBadge class="border border-black/10 dark:border-white/10 transition-colors duration-300" variant="soft">Motion</UBadge>
+            <UBadge
+              class="border border-cyber-green/20 bg-cyber-green/10 text-cyber-green transition-colors duration-300
+                     dark:border-cyber-green/30 dark:bg-cyber-green/25 dark:text-cyber-green/90"
+              variant="soft"
+            >
+              Nuxt
+            </UBadge>
+            <UBadge
+              class="border border-cyber-green/20 bg-cyber-green/10 text-cyber-green transition-colors duration-300
+                     dark:border-cyber-green/30 dark:bg-cyber-green/25 dark:text-cyber-green/90"
+              variant="soft"
+            >
+              Vue
+            </UBadge>
+            <UBadge
+              class="border border-cyber-green/20 bg-cyber-green/10 text-cyber-green transition-colors duration-300
+                     dark:border-cyber-green/30 dark:bg-cyber-green/25 dark:text-cyber-green/90"
+              variant="soft"
+            >
+              Tailwind
+            </UBadge>
+            <UBadge
+              class="border border-cyber-green/20 bg-cyber-green/10 text-cyber-green transition-colors duration-300
+                     dark:border-cyber-green/30 dark:bg-cyber-green/25 dark:text-cyber-green/90"
+              variant="soft"
+            >
+              Motion
+            </UBadge>
           </div>
         </div>
 
@@ -106,10 +130,17 @@ const projects = [
     <UContainer class="py-24">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">Projects</h2>
-        <UButton variant="soft" to="/resume.pdf" download class="group">
+        <UButton
+          variant="soft"
+          to="/resume.pdf"
+          download
+          class="group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
+                 hover:bg-cyber-green/20 hover:text-cyber-green
+                 dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+        >
           <UIcon
             name="i-heroicons-arrow-down-tray-20-solid"
-            class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+            class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
           <span>Resume</span>
         </UButton>

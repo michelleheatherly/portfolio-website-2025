@@ -40,10 +40,17 @@
               />
               <span>See Projects</span>
             </UButton>
-            <UButton size="lg" variant="soft" to="#contact" class="group">
+            <UButton
+              size="lg"
+              variant="soft"
+              to="#contact"
+              class="group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
+                     hover:bg-cyber-green/20 hover:text-cyber-green
+                     dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+            >
               <UIcon
                 name="i-heroicons-envelope-20-solid"
-                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+                class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
               <span>Contact</span>
             </UButton>

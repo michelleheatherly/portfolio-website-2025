@@ -13,7 +13,7 @@ export default <Partial<Config>>{
           glass: 'rgba(255,255,255,0.06)',
           line: 'rgba(255,255,255,0.08)',
           purple: '#9b5cff',
-          green: '#2BF5A0'
+          green: '#179D68'
         }
       },
       backdropBlur: {
