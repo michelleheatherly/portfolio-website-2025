@@ -45,6 +45,30 @@ const projects = [
     tags: ['Nuxt', 'AI', 'Maps'],
     link: 'https://example.com/greentrace',
     category: 'full-stack'
+  },
+  {
+    title: 'Immersive Atlas',
+    description: 'Story-driven microsite blending 3D scenes, scroll choreography, and reactive sound design.',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
+    link: 'https://example.com/immersive-atlas',
+    category: 'front-end'
+  },
+  {
+    title: 'Opsynk Control',
+    description: 'Operational analytics suite with live telemetry, incident notes, and SOC handoff automations.',
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
+    link: 'https://example.com/opsynk-control',
+    category: 'full-stack'
+  },
+  {
+    title: 'Signal Studio',
+    description: 'Design system playground featuring component deep-dives, motion guidelines, and theme toggles.',
+    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Design Systems', 'Nuxt UI', 'Docs'],
+    link: 'https://example.com/signal-studio',
+    category: 'design'
   }
 ] as const satisfies ReadonlyArray<Project>
 
