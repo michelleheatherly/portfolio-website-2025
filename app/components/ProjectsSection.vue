@@ -155,7 +155,7 @@ onClickOutside(tagMenuRef, (event) => {
 </script>
 
 <template>
-  <section id="projects" class="relative border-t transition-colors duration-300 border-black/10 dark:border-white/10">
+  <section id="projects" class="relative transition-colors duration-300">
     <UContainer class="py-24">
       <div class="space-y-10 mb-12">
         <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
