@@ -1,15 +1,65 @@
 <script setup lang="ts">
-import { useScroll, usePreferredReducedMotion } from '@vueuse/core'
+import { useScroll, usePreferredReducedMotion, useWindowSize } from '@vueuse/core'
 
 const { y } = useScroll(window)
 const prefersReduced = usePreferredReducedMotion()
+const { height: viewportHeight } = useWindowSize()
+
 const k = computed(() => (prefersReduced.value === 'reduce' ? 0 : 1))
 
-const layer1 = computed(() => `translateY(${(y.value * 0.10 * k.value).toFixed(2)}px)`)
-const layer1BgPos = computed(() => `center calc(50% + ${(y.value * 0.08 * k.value).toFixed(2)}px)`)
-const layer2 = computed(() => `translateY(${(y.value * 0.20 * k.value).toFixed(2)}px)`)
-const layer3 = computed(() => `translateY(${(y.value * 0.35 * k.value).toFixed(2)}px)`)
-const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2)}px)`)
+const NEBULA_FALLBACK_SPAN = 1200
+const loopSpan = computed(() => {
+  const view = viewportHeight.value || 0
+  if (!view) {
+    return NEBULA_FALLBACK_SPAN
+  }
+  return Math.max(view * 1.5, NEBULA_FALLBACK_SPAN)
+})
+
+type LoopState = {
+  raw: number
+  base: number
+  span: number
+  offsets: number[]
+}
+
+const makeLoopState = (factor: number) =>
+  computed<LoopState>(() => {
+    if (k.value === 0) {
+      return { raw: 0, base: 0, span: 0, offsets: [0] }
+    }
+    const span = loopSpan.value
+    const raw = y.value * factor * k.value
+    if (!span || !Number.isFinite(span)) {
+      return { raw, base: raw, span: span || 0, offsets: [raw] }
+    }
+    const base = ((raw % span) + span) % span
+    return {
+      raw,
+      base,
+      span,
+      offsets: [base - span, base, base + span],
+    }
+  })
+
+const layer1Loop = makeLoopState(0.10)
+const layer2Loop = makeLoopState(0.20)
+const layer3Loop = makeLoopState(0.35)
+const layer4Loop = makeLoopState(0.50)
+
+const layer1Transform = computed(() =>
+  k.value === 0 ? 'translateY(0px)' : `translateY(${layer1Loop.value.base.toFixed(2)}px)`
+)
+const layer1BgPos = computed(() => {
+  if (k.value === 0) {
+    return 'center 50%'
+  }
+  const shift = (y.value * 0.08 * k.value).toFixed(2)
+  return `center calc(50% + ${shift}px)`
+})
+const layer2Offsets = computed(() => layer2Loop.value.offsets)
+const layer3Offsets = computed(() => layer3Loop.value.offsets)
+const layer4Offsets = computed(() => layer4Loop.value.offsets)
 </script>
 
 <template>
@@ -22,21 +72,26 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
       class="absolute -inset-40 blur-3xl opacity-60 md:opacity-70
              transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-normal parallax-conic"
-      :style="{ transform: layer1 }"
+      :style="{ transform: layer1Transform }"
     />
 
     <!-- Nebula starfield -->
     <div
       class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-90 dark:opacity-10
              transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen parallax-nebula"
-      :style="{ backgroundPosition: layer1BgPos }"
+      :style="{
+        transform: layer1Transform,
+        backgroundPosition: layer1BgPos
+      }"
     />
 
     <!-- Orbit arcs -->
     <svg
+      v-for="(offset, idx) in layer2Offsets"
+      :key="`orbit-${idx}`"
       class="absolute inset-0 opacity-55 dark:opacity-45 transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-luminosity"
-      :style="{ transform: layer2 }"
+      :style="{ transform: `translateY(${offset.toFixed(2)}px)` }"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 800 600"
       preserveAspectRatio="xMidYMid slice"
@@ -74,30 +129,38 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
 
     <!-- Floating facets -->
     <div
+      v-for="(offset, idx) in layer3Offsets"
+      :key="`facet-primary-${idx}`"
       class="absolute left-[58%] top-[16%] w-[30vw] max-w-[420px] aspect-[4/3] rounded-[35%]
              opacity-35 dark:opacity-45 transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-luminosity parallax-facet-primary"
-      :style="{ transform: `${layer3} rotate(12deg)` }"
+      :style="{ transform: `translateY(${offset.toFixed(2)}px) rotate(12deg)` }"
     />
     <div
+      v-for="(offset, idx) in layer4Offsets"
+      :key="`facet-secondary-${idx}`"
       class="absolute right-[62%] bottom-[12%] w-[36vw] max-w-[460px] aspect-square rounded-[40%]
              opacity-30 dark:opacity-40 transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-luminosity parallax-facet-secondary"
-      :style="{ transform: `${layer4} rotate(-18deg)` }"
+      :style="{ transform: `translateY(${offset.toFixed(2)}px) rotate(-18deg)` }"
     />
 
     <!-- Glow blobs -->
     <div
+      v-for="(offset, idx) in layer3Offsets"
+      :key="`glow-primary-${idx}`"
       class="absolute top-[-20%] left-[10%] w-[50vw] h-[50vw] rounded-full blur-[100px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-normal parallax-glow-primary"
-      :style="{ transform: layer3 }"
+      :style="{ transform: `translateY(${offset.toFixed(2)}px)` }"
     />
     <div
+      v-for="(offset, idx) in layer2Offsets"
+      :key="`glow-secondary-${idx}`"
       class="absolute bottom-[-20%] right-[5%] w-[55vw] h-[55vw] rounded-full blur-[120px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
              mix-blend-multiply dark:mix-blend-normal parallax-glow-secondary"
-      :style="{ transform: layer2 }"
+      :style="{ transform: `translateY(${offset.toFixed(2)}px)` }"
     />
 
     <!-- Subtle vignette -->
@@ -139,7 +202,7 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     radial-gradient(circle at 52% 54%, rgba(236, 254, 255, 0.25) 0, transparent 48%),
     radial-gradient(circle at 36% 38%, rgba(226, 232, 240, 0.22) 0, transparent 44%);
   background-size: 150% 190%;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   filter: saturate(1.05) contrast(1.05);
 }
 
