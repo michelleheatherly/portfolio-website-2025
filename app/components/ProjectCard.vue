@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { usePreferredReducedMotion } from '@vueuse/core'
 
-defineProps<{
+const props = defineProps<{
   project: {
     title: string
     description: string
     image: string
     tags: string[]
     link: string
+    category: string
   }
 }>()
+
+const project = computed(() => props.project)
 
 const prefersReduced = usePreferredReducedMotion()
 const pointerX = ref(50)
@@ -48,6 +51,51 @@ const pressedMotion = computed(() =>
         }
       }
 )
+
+const categoryStyles: Record<
+  string,
+  {
+    label: string
+    badgeClass: string
+    dotClass: string
+  }
+> = {
+  'front-end': {
+    label: 'Front-end',
+    badgeClass:
+      'bg-violet-100/90 text-violet-700 border border-violet-200/80 dark:bg-violet-500/25 dark:text-violet-50 dark:border-violet-300/40',
+    dotClass: 'bg-violet-500 dark:bg-violet-300'
+  },
+  'full-stack': {
+    label: 'Full-stack',
+    badgeClass:
+      'bg-emerald-100/90 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-500/25 dark:text-emerald-50 dark:border-emerald-300/40',
+    dotClass: 'bg-emerald-500 dark:bg-emerald-300'
+  },
+  design: {
+    label: 'Design',
+    badgeClass:
+      'bg-amber-100/80 text-amber-700 border border-amber-200/70 dark:bg-amber-500/25 dark:text-amber-100 dark:border-amber-400/40',
+    dotClass: 'bg-amber-400 dark:bg-amber-300'
+  }
+}
+
+const categoryMeta = computed(() => {
+  const currentCategory = project.value.category
+  const fallbackLabel = currentCategory
+    .split('-')
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join(' ')
+
+  return (
+    categoryStyles[currentCategory] ?? {
+      label: fallbackLabel,
+      badgeClass:
+        'bg-zinc-100/90 text-zinc-700 border border-zinc-200/80 dark:bg-white/10 dark:text-white/80 dark:border-white/15',
+      dotClass: 'bg-zinc-400'
+    }
+  )
+})
 
 function handlePointerMove(event: PointerEvent) {
   if (prefersReduced.value === 'reduce')
@@ -94,11 +142,20 @@ function resetSpotlight() {
              opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-soft-light"
     />
 
-    <img
-      :src="project.image"
-      alt=""
-      class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
-    />
+    <div class="relative">
+      <img
+        :src="project.image"
+        alt=""
+        class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
+      />
+      <span
+        class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 shadow-sm"
+        :class="categoryMeta.badgeClass"
+      >
+        <span class="h-1.5 w-1.5 rounded-full" :class="categoryMeta.dotClass" />
+        {{ categoryMeta.label }}
+      </span>
+    </div>
 
     <div class="p-4 space-y-3">
       <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
