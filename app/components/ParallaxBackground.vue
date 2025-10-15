@@ -35,7 +35,7 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     <!-- Orbit arcs -->
     <svg
       class="absolute inset-0 opacity-55 dark:opacity-45 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-luminosity"
+             mix-blend-multiply dark:mix-blend-luminosity"
       :style="{ transform: layer2 }"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 800 600"
@@ -43,13 +43,13 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     >
       <defs>
         <linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
-          <stop offset="45%" stop-color="rgba(180,206,255,0.24)" />
-          <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+          <stop offset="0%" stop-color="var(--orbit-stroke-start)" />
+          <stop offset="45%" stop-color="var(--orbit-stroke-mid)" />
+          <stop offset="100%" stop-color="var(--orbit-stroke-end)" />
         </linearGradient>
         <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="rgba(147,197,253,0.9)" />
-          <stop offset="100%" stop-color="rgba(147,197,253,0)" />
+          <stop offset="0%" stop-color="var(--node-glow-inner)" />
+          <stop offset="100%" stop-color="var(--node-glow-outer)" />
         </radialGradient>
         <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="12" result="blurred" />
@@ -76,13 +76,13 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     <div
       class="absolute left-[58%] top-[16%] w-[30vw] max-w-[420px] aspect-[4/3] rounded-[35%]
              opacity-35 dark:opacity-45 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-luminosity parallax-facet-primary"
+             mix-blend-multiply dark:mix-blend-luminosity parallax-facet-primary"
       :style="{ transform: `${layer3} rotate(12deg)` }"
     />
     <div
       class="absolute right-[62%] bottom-[12%] w-[36vw] max-w-[460px] aspect-square rounded-[40%]
              opacity-30 dark:opacity-40 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-luminosity parallax-facet-secondary"
+             mix-blend-multiply dark:mix-blend-luminosity parallax-facet-secondary"
       :style="{ transform: `${layer4} rotate(-18deg)` }"
     />
 
@@ -90,13 +90,13 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     <div
       class="absolute top-[-20%] left-[10%] w-[50vw] h-[50vw] rounded-full blur-[100px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-normal parallax-glow-primary"
+             mix-blend-multiply dark:mix-blend-normal parallax-glow-primary"
       :style="{ transform: layer3 }"
     />
     <div
       class="absolute bottom-[-20%] right-[5%] w-[55vw] h-[55vw] rounded-full blur-[120px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-normal parallax-glow-secondary"
+             mix-blend-multiply dark:mix-blend-normal parallax-glow-secondary"
       :style="{ transform: layer2 }"
     />
 
@@ -144,15 +144,15 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
 }
 
 .parallax-facet-primary {
-  background: linear-gradient(140deg, rgba(99, 102, 241, 0.35), transparent 70%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 120px rgba(99, 102, 241, 0.35);
+  background: linear-gradient(140deg, var(--facet-primary), transparent 70%);
+  border: 1px solid var(--facet-primary-border);
+  box-shadow: 0 0 120px var(--facet-primary-shadow);
 }
 
 .parallax-facet-secondary {
-  background: linear-gradient(200deg, rgba(16, 185, 129, 0.3), transparent 60%);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 140px rgba(16, 185, 129, 0.32);
+  background: linear-gradient(200deg, var(--facet-secondary), transparent 60%);
+  border: 1px solid var(--facet-secondary-border);
+  box-shadow: 0 0 140px var(--facet-secondary-shadow);
 }
 
 .parallax-glow-primary {

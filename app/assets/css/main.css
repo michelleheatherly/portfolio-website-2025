@@ -8,10 +8,21 @@ html, body, #__nuxt { height: 100%; }
 :root {
   --page-bg: #f8fafc;               /* light */
   --bg-grid-stroke: rgba(98, 0, 255, 0.15);
-  --glow-purple: rgba(155, 92, 255, 0.30);
-  --glow-green: rgba(23, 157, 104, 0.25);
+  --glow-purple: rgba(155, 92, 255, 0.42);
+  --glow-green: rgba(23, 157, 104, 0.35);
   --conic-a: rgba(155, 92, 255, 0.25);
   --conic-b: rgba(23, 157, 104, 0.18);
+  --orbit-stroke-start: rgba(78, 70, 229, 0.38);
+  --orbit-stroke-mid: rgba(59, 130, 246, 0.55);
+  --orbit-stroke-end: rgba(14, 165, 233, 0.32);
+  --node-glow-inner: rgba(59, 130, 246, 0.85);
+  --node-glow-outer: rgba(59, 130, 246, 0);
+  --facet-primary: rgba(91, 72, 255, 0.45);
+  --facet-secondary: rgba(16, 185, 129, 0.5);
+  --facet-primary-border: rgba(91, 72, 255, 0.22);
+  --facet-secondary-border: rgba(16, 185, 129, 0.2);
+  --facet-primary-shadow: rgba(91, 72, 255, 0.42);
+  --facet-secondary-shadow: rgba(16, 185, 129, 0.4);
 }
 .dark:root {
   --page-bg: #0c0a10;               /* dark */
@@ -20,6 +31,17 @@ html, body, #__nuxt { height: 100%; }
   --glow-green: rgba(23, 157, 104, 0.35);
   --conic-a: rgba(155, 92, 255, 0.35);
   --conic-b: rgba(23, 157, 104, 0.20);
+  --orbit-stroke-start: rgba(255, 255, 255, 0.08);
+  --orbit-stroke-mid: rgba(180, 206, 255, 0.24);
+  --orbit-stroke-end: rgba(255, 255, 255, 0.05);
+  --node-glow-inner: rgba(147, 197, 253, 0.9);
+  --node-glow-outer: rgba(147, 197, 253, 0);
+  --facet-primary: rgba(99, 102, 241, 0.35);
+  --facet-secondary: rgba(16, 185, 129, 0.3);
+  --facet-primary-border: rgba(255, 255, 255, 0.05);
+  --facet-secondary-border: rgba(255, 255, 255, 0.04);
+  --facet-primary-shadow: rgba(99, 102, 241, 0.35);
+  --facet-secondary-shadow: rgba(16, 185, 129, 0.32);
 }
 
 
