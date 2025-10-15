@@ -182,16 +182,12 @@ const educationCategories = [
   bottom: 0.5rem;
   left: 1rem;
   width: 1px;
-  background: rgba(24, 24, 27, 0.12);
-}
-
-:global(.dark) .timeline::before {
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--timeline-rail);
 }
 
 .timeline-item {
   position: relative;
-  padding-left: 3rem;
+  padding-left: 2.5rem;
 }
 
 .timeline-bullet {
