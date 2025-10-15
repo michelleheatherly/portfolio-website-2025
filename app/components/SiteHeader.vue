@@ -36,10 +36,10 @@ const headerSurfaceClasses = computed(() =>
 )
 const headerSurfaceStyles = computed(() => {
   const eased = glassProgress.value === 0 ? 0 : Math.pow(glassProgress.value, 1.12)
-  const lightBgOpacity = (0.38 * eased).toFixed(3)
-  const darkBgOpacity = (0.14 * eased).toFixed(3)
-  const lightBorderOpacity = (0.035 * eased).toFixed(3)
-  const darkBorderOpacity = (0.035 * eased).toFixed(3)
+  const lightBgOpacity = (0.28 * eased).toFixed(3)
+  const darkBgOpacity = (0.1 * eased).toFixed(3)
+  const lightBorderOpacity = (0.028 * eased).toFixed(3)
+  const darkBorderOpacity = (0.028 * eased).toFixed(3)
   const blurStrength = (eased * 12).toFixed(1)
 
   return {
@@ -285,17 +285,23 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .header-surface {
+  --header-bg-rgb: 248, 248, 255;
+  --header-border-rgb: 113, 113, 122;
+  --header-bg-opacity: var(--header-bg-opacity-light);
+  --header-border-opacity: var(--header-border-opacity-light);
   --header-bg-opacity-light: 0;
   --header-bg-opacity-dark: 0;
   --header-border-opacity-light: 0;
   --header-border-opacity-dark: 0;
-  background-color: rgba(255, 255, 255, var(--header-bg-opacity-light));
-  border-color: rgba(24, 24, 27, var(--header-border-opacity-light));
+  border-color: rgba(var(--header-border-rgb), var(--header-border-opacity));
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 :global(.dark) .header-surface {
-  background-color: rgba(10, 10, 12, var(--header-bg-opacity-dark));
-  border-color: rgba(250, 250, 255, var(--header-border-opacity-dark));
+  --header-bg-rgb: 14, 14, 18;
+  --header-border-rgb: 226, 232, 240;
+  --header-bg-opacity: var(--header-bg-opacity-dark);
+  --header-border-opacity: var(--header-border-opacity-dark);
 }
 
 .menu-overlay-enter-active,
