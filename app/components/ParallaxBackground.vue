@@ -27,7 +27,7 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
 
     <!-- Nebula starfield -->
     <div
-      class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-85 dark:opacity-70
+      class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-90 dark:opacity-10
              transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen parallax-nebula"
       :style="{ backgroundPosition: layer1BgPos }"
     />
