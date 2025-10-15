@@ -195,7 +195,7 @@ onClickOutside(tagMenuRef, (event) => {
               v-for="category in categoryFilters"
               :key="category.value"
               type="button"
-              class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50"
+              class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
               :class="[
                 activeCategory === category.value
                   ? 'border-cyber-purple/60 bg-cyber-purple/15 text-cyber-purple dark:bg-cyber-purple/20'
@@ -212,7 +212,7 @@ onClickOutside(tagMenuRef, (event) => {
               <div class="relative" ref="tagButtonRef">
                 <UButton
                   variant="soft"
-                  class="group inline-flex items-center gap-3 rounded-full border border-zinc-200/70 bg-white/70 px-4 py-2 text-sm text-zinc-700 transition-colors duration-300 hover:border-cyber-green/50 hover:text-cyber-green dark:border-zinc-700/70 dark:bg-white/10 dark:text-zinc-200"
+                  class="group inline-flex items-center gap-3 rounded-full border border-zinc-200/70 bg-white/70 px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-green/50 hover:text-cyber-green hover:shadow-[0_18px_45px_-28px_rgba(34,197,94,0.45)] dark:border-zinc-700/70 dark:bg-white/10 dark:text-zinc-200"
                   @click="toggleTagMenu"
                 >
                   <UIcon name="i-heroicons-tag-20-solid" class="h-5 w-5 text-zinc-400 group-hover:text-cyber-green" />
@@ -248,14 +248,14 @@ onClickOutside(tagMenuRef, (event) => {
                           <button
                             v-if="activeTags.length"
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-colors duration-300 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
                             @click="clearTagFilters"
                           >
                             Clear
                           </button>
                           <button
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-colors duration-300 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
                             @click="closeTagMenu"
                           >
                             Done
@@ -275,7 +275,7 @@ onClickOutside(tagMenuRef, (event) => {
                           class="w-full rounded-2xl border border-zinc-200/60 bg-white/80 py-2 pl-10 pr-3 text-sm text-zinc-700 transition focus:border-cyber-purple/50 focus:outline-none focus:ring-2 focus:ring-cyber-purple/30 dark:border-zinc-600/60 dark:bg-white/10 dark:text-white"
                         />
                       </label>
-                      <div class="max-h-64 space-y-2 overflow-y-auto pr-1">
+                      <div class="max-h-64 space-y-2 overflow-y-auto pr-1 pt-2">
                         <p
                           v-if="filteredTagOptions.length === 0"
                           class="text-sm text-zinc-500 dark:text-zinc-400"
@@ -286,11 +286,11 @@ onClickOutside(tagMenuRef, (event) => {
                           v-for="tag in filteredTagOptions"
                           :key="tag"
                           type="button"
-                          class="flex w-full items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                          class="flex w-full items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 hover:-translate-y-0.5"
                           :class="[
                             activeTags.includes(tag)
-                              ? 'border-cyber-green/50 bg-cyber-green/15 text-cyber-green dark:bg-cyber-green/20'
-                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-green/40 hover:text-cyber-green dark:bg-white/5 dark:text-zinc-300'
+                              ? 'border-cyber-green/55 bg-cyber-green/15 text-cyber-green hover:border-cyber-green/70 hover:bg-cyber-green/25 dark:bg-cyber-green/20 dark:hover:bg-cyber-green/30'
+                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-green/55 hover:bg-cyber-green/15 hover:text-cyber-green dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-green/20'
                           ]"
                           @click="toggleTag(tag)"
                         >
@@ -309,7 +309,7 @@ onClickOutside(tagMenuRef, (event) => {
               <button
                 v-if="hasActiveFilters"
                 type="button"
-                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-colors duration-300 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
                 @click="clearFilters"
               >
                 <UIcon name="i-heroicons-arrow-path-20-solid" class="h-4 w-4" />
