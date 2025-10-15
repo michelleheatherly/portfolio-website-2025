@@ -29,10 +29,6 @@ const resetGlow = () => {
 
 <template>
   <section id="about" class="relative overflow-hidden transition-colors duration-300">
-    <div
-      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-green/15 via-transparent
-             to-sky-400/20 dark:from-cyber-green/20 dark:via-transparent dark:to-violet-400/20 blur-3xl"
-    />
     <UContainer class="relative py-24">
       <div class="grid items-start gap-12 lg:grid-cols-12">
         <div
