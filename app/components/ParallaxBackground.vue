@@ -14,41 +14,22 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
 
 <template>
   <div
-    class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none transition-colors duration-500"
-    :style="{ backgroundColor: 'var(--page-bg)' }"
+    class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none transition-colors duration-500 parallax-root"
     aria-hidden="true"
   >
     <!-- Conic gradient wash -->
     <div
       class="absolute -inset-40 blur-3xl opacity-60 md:opacity-70
              transition-opacity duration-500 will-change-transform
-             mix-blend-multiply dark:mix-blend-normal"
-      :style="{
-        transform: layer1,
-        background:
-          'conic-gradient(from 220deg at 50% 50%, var(--conic-a), transparent 25%, var(--conic-b), transparent 60%)'
-      }"
+             mix-blend-multiply dark:mix-blend-normal parallax-conic"
+      :style="{ transform: layer1 }"
     />
 
     <!-- Nebula starfield -->
     <div
       class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-85 dark:opacity-70
-             transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen"
-      :style="{
-        backgroundPosition: layer1BgPos,
-        backgroundImage: [
-          'linear-gradient(to bottom, rgba(15,23,42,0.20) 0%, rgba(15,23,42,0.12) 24%, transparent 58%, rgba(15,23,42,0.28) 100%)',
-          'radial-gradient(circle at 12% 16%, rgba(99,102,241,0.42) 0, transparent 46%)',
-          'radial-gradient(circle at 84% 18%, rgba(129,140,248,0.36) 0, transparent 48%)',
-          'radial-gradient(circle at 66% 78%, rgba(56,189,248,0.32) 0, transparent 58%)',
-          'radial-gradient(circle at 20% 80%, rgba(96,165,250,0.30) 0, transparent 62%)',
-          'radial-gradient(circle at 52% 54%, rgba(236,254,255,0.25) 0, transparent 48%)',
-          'radial-gradient(circle at 36% 38%, rgba(226,232,240,0.22) 0, transparent 44%)'
-        ].join(', '),
-        backgroundSize: '150% 190%',
-        backgroundRepeat: 'no-repeat',
-        filter: 'saturate(1.05) contrast(1.05)'
-      }"
+             transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen parallax-nebula"
+      :style="{ backgroundPosition: layer1BgPos }"
     />
 
     <!-- Orbit arcs -->
@@ -95,51 +76,94 @@ const layer4 = computed(() => `translateY(${(y.value * 0.50 * k.value).toFixed(2
     <div
       class="absolute left-[58%] top-[16%] w-[30vw] max-w-[420px] aspect-[4/3] rounded-[35%]
              opacity-35 dark:opacity-45 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-luminosity"
-      :style="{
-        transform: `${layer3} rotate(12deg)`,
-        background: 'linear-gradient(140deg, rgba(99,102,241,0.35), transparent 70%)',
-        border: '1px solid rgba(255,255,255,0.05)',
-        boxShadow: '0 0 120px rgba(99,102,241,0.35)'
-      }"
+             mix-blend-screen dark:mix-blend-luminosity parallax-facet-primary"
+      :style="{ transform: `${layer3} rotate(12deg)` }"
     />
     <div
       class="absolute right-[62%] bottom-[12%] w-[36vw] max-w-[460px] aspect-square rounded-[40%]
              opacity-30 dark:opacity-40 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-luminosity"
-      :style="{
-        transform: `${layer4} rotate(-18deg)`,
-        background: 'linear-gradient(200deg, rgba(16,185,129,0.30), transparent 60%)',
-        border: '1px solid rgba(255,255,255,0.04)',
-        boxShadow: '0 0 140px rgba(16,185,129,0.32)'
-      }"
+             mix-blend-screen dark:mix-blend-luminosity parallax-facet-secondary"
+      :style="{ transform: `${layer4} rotate(-18deg)` }"
     />
 
     <!-- Glow blobs -->
     <div
       class="absolute top-[-20%] left-[10%] w-[50vw] h-[50vw] rounded-full blur-[100px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-normal"
-      :style="{
-        transform: layer3,
-        background: 'radial-gradient(circle at 30% 30%, var(--glow-purple), transparent 60%)'
-      }"
+             mix-blend-screen dark:mix-blend-normal parallax-glow-primary"
+      :style="{ transform: layer3 }"
     />
     <div
       class="absolute bottom-[-20%] right-[5%] w-[55vw] h-[55vw] rounded-full blur-[120px]
              opacity-45 dark:opacity-55 transition-opacity duration-500 will-change-transform
-             mix-blend-screen dark:mix-blend-normal"
-      :style="{
-        transform: layer2,
-        background: 'radial-gradient(circle at 60% 60%, var(--glow-green), transparent 60%)'
-      }"
+             mix-blend-screen dark:mix-blend-normal parallax-glow-secondary"
+      :style="{ transform: layer2 }"
     />
 
     <!-- Subtle vignette -->
     <div
       class="absolute inset-0 pointer-events-none transition-opacity duration-500
-             opacity-20 dark:opacity-10"
-      style="background: radial-gradient(120% 120% at 50% 10%, transparent 35%, rgba(0,0,0,0.35) 100%);"
+             opacity-20 dark:opacity-10 parallax-vignette"
     />
   </div>
 </template>
+
+<style scoped>
+.parallax-root {
+  background-color: var(--page-bg);
+}
+
+.parallax-conic {
+  background: conic-gradient(
+    from 220deg at 50% 50%,
+    var(--conic-a),
+    transparent 25%,
+    var(--conic-b),
+    transparent 60%
+  );
+}
+
+.parallax-nebula {
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.2) 0%,
+      rgba(15, 23, 42, 0.12) 24%,
+      transparent 58%,
+      rgba(15, 23, 42, 0.28) 100%
+    ),
+    radial-gradient(circle at 12% 16%, rgba(99, 102, 241, 0.42) 0, transparent 46%),
+    radial-gradient(circle at 84% 18%, rgba(129, 140, 248, 0.36) 0, transparent 48%),
+    radial-gradient(circle at 66% 78%, rgba(56, 189, 248, 0.32) 0, transparent 58%),
+    radial-gradient(circle at 20% 80%, rgba(96, 165, 250, 0.3) 0, transparent 62%),
+    radial-gradient(circle at 52% 54%, rgba(236, 254, 255, 0.25) 0, transparent 48%),
+    radial-gradient(circle at 36% 38%, rgba(226, 232, 240, 0.22) 0, transparent 44%);
+  background-size: 150% 190%;
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.parallax-facet-primary {
+  background: linear-gradient(140deg, rgba(99, 102, 241, 0.35), transparent 70%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 120px rgba(99, 102, 241, 0.35);
+}
+
+.parallax-facet-secondary {
+  background: linear-gradient(200deg, rgba(16, 185, 129, 0.3), transparent 60%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 140px rgba(16, 185, 129, 0.32);
+}
+
+.parallax-glow-primary {
+  background: radial-gradient(circle at 30% 30%, var(--glow-purple), transparent 60%);
+}
+
+.parallax-glow-secondary {
+  background: radial-gradient(circle at 60% 60%, var(--glow-green), transparent 60%);
+}
+
+.parallax-vignette {
+  background: radial-gradient(120% 120% at 50% 10%, transparent 35%, rgba(0, 0, 0, 0.35) 100%);
+}
+</style>
