@@ -2,17 +2,27 @@
 import { computed, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
-const categoryFilters = [
-  { label: 'All', value: 'all' },
-  { label: 'Front-end', value: 'front-end' },
-  { label: 'Full-stack', value: 'full-stack' },
-  { label: 'Design', value: 'design' }
+const categoryFilterMeta = [
+  { key: 'all', value: 'all' },
+  { key: 'front-end', value: 'front-end' },
+  { key: 'full-stack', value: 'full-stack' },
+  { key: 'design', value: 'design' }
 ] as const
 
-type CategoryFilter = typeof categoryFilters[number]['value']
+type CategoryFilter = (typeof categoryFilterMeta)[number]['value']
 type ProjectCategory = Exclude<CategoryFilter, 'all'>
 
+const projectContentKeys = {
+  neonNodes: 'projects.list.neonNodes.description',
+  pulseUi: 'projects.list.pulseUi.description',
+  greenTrace: 'projects.list.greenTrace.description',
+  immersiveAtlas: 'projects.list.immersiveAtlas.description',
+  opsynkControl: 'projects.list.opsynkControl.description',
+  signalStudio: 'projects.list.signalStudio.description'
+} as const
+
 type Project = {
+  id: keyof typeof projectContentKeys
   title: string
   description: string
   image: string
@@ -21,56 +31,72 @@ type Project = {
   category: ProjectCategory
 }
 
-const projects = [
+const projectMeta = [
   {
+    id: 'neonNodes',
     title: 'Neon Nodes',
-    description: 'Real-time graph editor with collaborative cursors and a reactive plugin system.',
     image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
     tags: ['Vue 3', 'WebRTC', 'Pinia'],
     link: 'https://example.com/neon-nodes',
     category: 'front-end'
   },
   {
+    id: 'pulseUi',
     title: 'Pulse UI',
-    description: 'Design system built on Nuxt UI with token-driven theming and charts.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
     tags: ['Nuxt UI', 'Design Tokens', 'D3'],
     link: 'https://example.com/pulse-ui',
     category: 'design'
   },
   {
+    id: 'greenTrace',
     title: 'GreenTrace',
-    description: 'Sustainability insights dashboard with AI summaries and map layers.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
     tags: ['Nuxt', 'AI', 'Maps'],
     link: 'https://example.com/greentrace',
     category: 'full-stack'
   },
   {
+    id: 'immersiveAtlas',
     title: 'Immersive Atlas',
-    description: 'Story-driven microsite blending 3D scenes, scroll choreography, and reactive sound design.',
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
     tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
     link: 'https://example.com/immersive-atlas',
     category: 'front-end'
   },
   {
+    id: 'opsynkControl',
     title: 'Opsynk Control',
-    description: 'Operational analytics suite with live telemetry, incident notes, and SOC handoff automations.',
     image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
     tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
     link: 'https://example.com/opsynk-control',
     category: 'full-stack'
   },
   {
+    id: 'signalStudio',
     title: 'Signal Studio',
-    description: 'Design system playground featuring component deep-dives, motion guidelines, and theme toggles.',
     image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
     tags: ['Design Systems', 'Nuxt UI', 'Docs'],
     link: 'https://example.com/signal-studio',
     category: 'design'
   }
-] as const satisfies ReadonlyArray<Project>
+] as const satisfies ReadonlyArray<Omit<Project, 'description'>>
+
+const { t } = useI18n()
+
+const categoryFilters = computed(() =>
+  categoryFilterMeta.map((filter) => ({
+    ...filter,
+    label: t(`projects.filters.categories.${filter.key}`)
+  }))
+)
+
+const projects = computed<Project[]>(() =>
+  projectMeta.map((project) => ({
+    ...project,
+    description: t(projectContentKeys[project.id])
+  }))
+)
 
 const searchQuery = ref('')
 const activeCategory = ref<CategoryFilter>('all')
@@ -83,7 +109,7 @@ const tagMenuRef = ref<HTMLElement | null>(null)
 
 const availableTags = computed(() => {
   const tags = new Set<string>()
-  projects.forEach((project) => {
+  projects.value.forEach((project) => {
     project.tags.forEach((tag) => tags.add(tag))
   })
   return Array.from(tags).sort((a, b) => a.localeCompare(b))
@@ -104,7 +130,7 @@ const hasActiveFilters = computed(
 const filteredProjects = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
 
-  return projects.filter((project) => {
+  return projects.value.filter((project) => {
     const matchesCategory = activeCategory.value === 'all' || project.category === activeCategory.value
     const matchesTags =
       activeTags.value.length === 0 || activeTags.value.every((tag) => project.tags.includes(tag))
@@ -162,14 +188,14 @@ onClickOutside(tagMenuRef, (event) => {
           <div class="max-w-2xl space-y-4">
             <span class="inline-flex items-center gap-2 rounded-full border border-cyber-purple/30 bg-cyber-purple/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-purple">
               <UIcon name="i-heroicons-beaker-20-solid" class="h-4 w-4" />
-              Selected Work
+              {{ t('projects.badge') }}
             </span>
             <div class="space-y-3">
               <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">
-                Projects
+                {{ t('projects.title') }}
               </h2>
               <p class="text-base text-zinc-600 dark:text-zinc-300 transition-colors duration-300">
-                Interfaces and digital systems built end-to-end — from exploratory prototyping to polished handoff — with a focus on realtime collaboration, design systems, and measurable product impact.
+                {{ t('projects.description') }}
               </p>
             </div>
           </div>
@@ -185,7 +211,7 @@ onClickOutside(tagMenuRef, (event) => {
               name="i-heroicons-arrow-down-tray-20-solid"
               class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
             />
-            <span>Resume</span>
+            <span>{{ t('projects.resume') }}</span>
           </UButton>
         </div>
 
@@ -216,7 +242,7 @@ onClickOutside(tagMenuRef, (event) => {
                   @click="toggleTagMenu"
                 >
                   <UIcon name="i-heroicons-tag-20-solid" class="h-5 w-5 text-zinc-400 group-hover:text-cyber-green" />
-                  <span class="font-medium">Tag filters</span>
+                  <span class="font-medium">{{ t('projects.filters.tags.button') }}</span>
                   <span
                     v-if="activeTags.length"
                     class="inline-flex items-center justify-center rounded-full bg-cyber-green/15 px-2 text-xs font-semibold text-cyber-green transition-colors duration-300 dark:bg-cyber-green/20"
@@ -243,7 +269,9 @@ onClickOutside(tagMenuRef, (event) => {
                   >
                     <div class="space-y-4 p-4">
                       <div class="flex items-center justify-between gap-3">
-                        <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">Filter by tags</p>
+                        <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">
+                          {{ t('projects.filters.tags.title') }}
+                        </p>
                         <div class="flex items-center gap-3">
                           <button
                             v-if="activeTags.length"
@@ -251,14 +279,14 @@ onClickOutside(tagMenuRef, (event) => {
                             class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
                             @click="clearTagFilters"
                           >
-                            Clear
+                            {{ t('projects.filters.tags.clear') }}
                           </button>
                           <button
                             type="button"
                             class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
                             @click="closeTagMenu"
                           >
-                            Done
+                            {{ t('projects.filters.tags.done') }}
                           </button>
                         </div>
                       </div>
@@ -271,7 +299,7 @@ onClickOutside(tagMenuRef, (event) => {
                         <input
                           v-model="tagSearchQuery"
                           type="search"
-                          placeholder="Search tags"
+                          :placeholder="t('projects.filters.tags.searchPlaceholder')"
                           class="w-full rounded-2xl border border-zinc-200/60 bg-white/80 py-2 pl-10 pr-3 text-sm text-zinc-700 transition focus:border-cyber-purple/50 focus:outline-none focus:ring-2 focus:ring-cyber-purple/30 dark:border-zinc-600/60 dark:bg-white/10 dark:text-white"
                         />
                       </label>
@@ -280,7 +308,7 @@ onClickOutside(tagMenuRef, (event) => {
                           v-if="filteredTagOptions.length === 0"
                           class="text-sm text-zinc-500 dark:text-zinc-400"
                         >
-                          No tags found. Try a different search.
+                          {{ t('projects.filters.tags.empty') }}
                         </p>
                         <button
                           v-for="tag in filteredTagOptions"
@@ -313,7 +341,7 @@ onClickOutside(tagMenuRef, (event) => {
                 @click="clearFilters"
               >
                 <UIcon name="i-heroicons-arrow-path-20-solid" class="h-4 w-4" />
-                Reset
+                {{ t('projects.filters.reset') }}
               </button>
             </div>
 
@@ -325,7 +353,7 @@ onClickOutside(tagMenuRef, (event) => {
                 <input
                   v-model="searchQuery"
                   type="search"
-                  placeholder="Search projects"
+                  :placeholder="t('projects.filters.searchPlaceholder')"
                   class="w-full rounded-2xl border border-zinc-200/60 bg-white/80 py-2.5 pl-12 pr-4 text-sm text-zinc-700 shadow-sm transition focus:border-cyber-purple/50 focus:outline-none focus:ring-2 focus:ring-cyber-purple/30 dark:border-zinc-700/60 dark:bg-white/10 dark:text-white"
                 />
               </label>
@@ -343,13 +371,15 @@ onClickOutside(tagMenuRef, (event) => {
       >
         <div class="mx-auto max-w-md space-y-4 px-6">
           <UIcon name="i-heroicons-face-frown-20-solid" class="mx-auto h-10 w-10 text-cyber-purple/70" />
-          <p class="text-lg font-semibold text-zinc-900 dark:text-white">No projects matched your filters</p>
+          <p class="text-lg font-semibold text-zinc-900 dark:text-white">
+            {{ t('projects.empty.title') }}
+          </p>
           <p class="text-sm text-zinc-600 dark:text-zinc-300">
-            Try adjusting the category, removing a tag, or clearing your search to discover more of the work.
+            {{ t('projects.empty.description') }}
           </p>
           <UButton variant="soft" class="mt-2" @click="clearFilters">
             <UIcon name="i-heroicons-sparkles-20-solid" class="h-5 w-5" />
-            <span>Clear filters</span>
+            <span>{{ t('projects.empty.action') }}</span>
           </UButton>
         </div>
       </div>

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="home" class="hero-section relative transition-colors duration-300">
     <UContainer class="py-28 md:py-36">
@@ -17,19 +21,22 @@
             :enter="{ opacity: 1, y: 0, transition: { delay: 0.15, type: 'spring', stiffness: 150, damping: 18 } }"
           >
             <span class="h-2 w-2 rounded-full bg-cyber-green animate-pulse"></span>
-            <span class="text-xs text-zinc-700 dark:text-white/70 transition-colors duration-300">Available for freelance</span>
+            <span class="text-xs text-zinc-700 dark:text-white/70 transition-colors duration-300">{{ t('hero.availability') }}</span>
           </div>
 
           <h1
             class="hero-headline text-4xl md:text-6xl font-extrabold leading-tight
                    text-zinc-900 dark:text-white transition-colors duration-300"
           >
-            Building elegant interfaces with a <span class="hero-headline__accent">cyber-femme</span> vibe.
+            {{ t('hero.headline.start') }}
+            <span class="hero-headline__accent">
+              {{ t('hero.accent') }}
+            </span>
+            {{ t('hero.headline.end') }}
           </h1>
 
           <p class="max-w-prose text-zinc-600 dark:text-white/70 transition-colors duration-300">
-            I’m a web developer specializing in Nuxt, Vue, and delightful motion. Let’s craft
-            fast, accessible, and stylish experiences.
+            {{ t('hero.description') }}
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -38,7 +45,7 @@
                 name="i-heroicons-bolt-20-solid"
                 class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
-              <span>See Projects</span>
+              <span>{{ t('hero.cta.projects') }}</span>
             </UButton>
             <UButton
               size="lg"
@@ -52,7 +59,7 @@
                 name="i-heroicons-envelope-20-solid"
                 class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
-              <span>Contact</span>
+              <span>{{ t('hero.cta.contact') }}</span>
             </UButton>
           </div>
 
@@ -68,7 +75,7 @@
           <div class="p-6">
             <img
               src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
-              alt="Developer portrait"
+              :alt="t('hero.portraitAlt')"
               class="rounded-2xl w-full aspect-[4/3] object-cover"
             />
           </div>

@@ -13,6 +13,7 @@ const props = defineProps<{
 }>()
 
 const project = computed(() => props.project)
+const { t } = useI18n()
 
 const prefersReduced = usePreferredReducedMotion()
 const pointerX = ref(50)
@@ -52,32 +53,34 @@ const pressedMotion = computed(() =>
       }
 )
 
-const categoryStyles: Record<
+const categoryStyleMap: Record<
   string,
   {
-    label: string
     badgeClass: string
     dotClass: string
   }
 > = {
   'front-end': {
-    label: 'Front-end',
     badgeClass:
       'bg-violet-100/90 text-violet-700 border border-violet-200/80 dark:bg-violet-500/25 dark:text-violet-50 dark:border-violet-300/40',
     dotClass: 'bg-violet-500 dark:bg-violet-300'
   },
   'full-stack': {
-    label: 'Full-stack',
     badgeClass:
       'bg-emerald-100/90 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-500/25 dark:text-emerald-50 dark:border-emerald-300/40',
     dotClass: 'bg-emerald-500 dark:bg-emerald-300'
   },
   design: {
-    label: 'Design',
     badgeClass:
       'bg-amber-100/80 text-amber-700 border border-amber-200/70 dark:bg-amber-500/25 dark:text-amber-100 dark:border-amber-400/40',
     dotClass: 'bg-amber-400 dark:bg-amber-300'
   }
+}
+
+const fallbackCategoryStyle = {
+  badgeClass:
+    'bg-zinc-100/90 text-zinc-700 border border-zinc-200/80 dark:bg-white/10 dark:text-white/80 dark:border-white/15',
+  dotClass: 'bg-zinc-400'
 }
 
 const categoryMeta = computed(() => {
@@ -87,14 +90,21 @@ const categoryMeta = computed(() => {
     .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
     .join(' ')
 
-  return (
-    categoryStyles[currentCategory] ?? {
-      label: fallbackLabel,
-      badgeClass:
-        'bg-zinc-100/90 text-zinc-700 border border-zinc-200/80 dark:bg-white/10 dark:text-white/80 dark:border-white/15',
-      dotClass: 'bg-zinc-400'
+  const style = categoryStyleMap[currentCategory]
+
+  if (style) {
+    return {
+      label: t(`projects.card.categoryLabel.${currentCategory}`),
+      badgeClass: style.badgeClass,
+      dotClass: style.dotClass
     }
-  )
+  }
+
+  return {
+    label: fallbackLabel,
+    badgeClass: fallbackCategoryStyle.badgeClass,
+    dotClass: fallbackCategoryStyle.dotClass
+  }
 })
 
 function handlePointerMove(event: PointerEvent) {
@@ -188,7 +198,7 @@ function resetSpotlight() {
             name="i-heroicons-arrow-top-right-on-square-20-solid"
             class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
           />
-          <span>View Project</span>
+          <span>{{ t('projects.card.view') }}</span>
         </UButton>
       </div>
     </div>

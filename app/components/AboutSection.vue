@@ -8,6 +8,16 @@ const glow = reactive({
   active: false
 })
 
+const { t, tm, rt, locale } = useI18n()
+
+const aboutBadges = computed(() => {
+  const raw = tm('about.badges')
+  if (!Array.isArray(raw))
+    return []
+
+  return raw.map((badge) => (typeof badge === 'string' ? badge : rt(badge)))
+})
+
 const updateGlow = (event: PointerEvent) => {
   if (!focusPanelRef.value) {
     return
@@ -51,13 +61,13 @@ const resetGlow = () => {
 
           <div class="relative space-y-8">
             <div
-              class="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/70 px-4 py-1
-                     text-sm font-medium text-zinc-700 shadow-sm backdrop-blur transition-all duration-500
-                     hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)]
-                     dark:border-white/10 dark:bg-white/10 dark:text-white/70"
+            class="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/70 px-4 py-1
+                   text-sm font-medium text-zinc-700 shadow-sm backdrop-blur transition-all duration-500
+                   hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)]
+                   dark:border-white/10 dark:bg-white/10 dark:text-white/70"
             >
               <span class="inline-flex h-2 w-2 rounded-full bg-cyber-green animate-pulse" />
-              Crafting digital narratives
+              {{ t('about.badge') }}
             </div>
 
             <div class="space-y-4">
@@ -65,12 +75,10 @@ const resetGlow = () => {
                 class="text-3xl font-semibold leading-tight text-zinc-900 transition-colors duration-300
                        md:text-4xl dark:text-white"
               >
-                Designer-engineer blending aesthetics with systems thinking.
+                {{ t('about.heading') }}
               </h2>
               <p class="text-lg text-zinc-600 transition-colors duration-300 dark:text-white/70">
-                I translate ambitious ideas into immersive digital experiences, obsessing over the synergy
-                between interaction design, accessibility, and performance. Every project is a space to
-                choreograph meaningful moments that feel effortless to the people using them.
+                {{ t('about.description') }}
               </p>
             </div>
 
@@ -89,9 +97,11 @@ const resetGlow = () => {
                   style="background: radial-gradient(120% 120% at 0% 0%, rgba(34,197,94,0.18), transparent 55%)"
                 ></div>
                 <div class="relative">
-                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">Superpower</p>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    {{ t('about.cards.superpower.title') }}
+                  </p>
                   <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
-                    Designing component systems that scale while keeping their soul.
+                    {{ t('about.cards.superpower.body') }}
                   </p>
                 </div>
               </div>
@@ -109,9 +119,11 @@ const resetGlow = () => {
                   style="background: radial-gradient(120% 120% at 90% 10%, rgba(59,130,246,0.2), transparent 55%)"
                 ></div>
                 <div class="relative">
-                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">Approach</p>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    {{ t('about.cards.approach.title') }}
+                  </p>
                   <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
-                    Motion-first storytelling, rapid prototyping, and shipping with measurable impact.
+                    {{ t('about.cards.approach.body') }}
                   </p>
                 </div>
               </div>
@@ -129,9 +141,11 @@ const resetGlow = () => {
                   style="background: radial-gradient(120% 120% at 10% 90%, rgba(168,85,247,0.2), transparent 55%)"
                 ></div>
                 <div class="relative">
-                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">Toolkit</p>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    {{ t('about.cards.toolkit.title') }}
+                  </p>
                   <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
-                    Nuxt · Vue · TypeScript · Tailwind · Framer Motion · Accessibility audits.
+                    {{ t('about.cards.toolkit.body') }}
                   </p>
                 </div>
               </div>
@@ -149,9 +163,11 @@ const resetGlow = () => {
                   style="background: radial-gradient(120% 120% at 90% 90%, rgba(236,72,153,0.18), transparent 55%)"
                 ></div>
                 <div class="relative">
-                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">Focus</p>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    {{ t('about.cards.focus.title') }}
+                  </p>
                   <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
-                    Zero to one product launches, design system curation, and micro-interactions.
+                    {{ t('about.cards.focus.body') }}
                   </p>
                 </div>
               </div>
@@ -164,36 +180,14 @@ const resetGlow = () => {
               :enter="{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.45, ease: 'easeOut' } }"
             >
               <UBadge
+                v-for="badge in aboutBadges"
+                :key="badge"
                 class="border border-cyber-green/30 bg-cyber-green/15 text-cyber-green transition-all duration-500
                        hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)]
                        dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90"
                 variant="soft"
               >
-                Systems Thinking
-              </UBadge>
-              <UBadge
-                class="border border-cyber-green/30 bg-cyber-green/15 text-cyber-green transition-all duration-500
-                       hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)]
-                       dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90"
-                variant="soft"
-              >
-                Immersive UI
-              </UBadge>
-              <UBadge
-                class="border border-cyber-green/30 bg-cyber-green/15 text-cyber-green transition-all duration-500
-                       hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)]
-                       dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90"
-                variant="soft"
-              >
-                Accessibility
-              </UBadge>
-              <UBadge
-                class="border border-cyber-green/30 bg-cyber-green/15 text-cyber-green transition-all duration-500
-                       hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)]
-                       dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90"
-                variant="soft"
-              >
-                Performance
+                {{ badge }}
               </UBadge>
             </div>
           </div>
@@ -208,7 +202,7 @@ const resetGlow = () => {
             <div class="relative overflow-hidden rounded-[2.75rem]">
               <img
                 src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?q=80&w=1200&auto=format&fit=crop"
-                alt="Portrait in a creative workspace"
+                :alt="t('about.portraitAlt')"
                 class="block h-auto w-full rounded-[2.75rem] object-cover transition-transform duration-700 group-hover:scale-105 lg:h-[34rem] lg:max-h-[34rem]"
               />
             </div>

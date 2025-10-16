@@ -4,19 +4,52 @@ import { useIntersectionObserver } from '@vueuse/core'
 const footerRef = ref<HTMLElement | null>(null)
 const footerVisible = useState<boolean>('footer-visible', () => false)
 const FOOTER_VISIBILITY_RATIO = 0.6
-const siteName = 'CyberFemme Studio'
-const siteDescription =
-  'Designing luminous, motion-rich interfaces that feel alive and thoughtful.'
+const currentYear = new Date().getFullYear()
 
-const primarySections = [
-  { label: 'Home', href: '#home' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' }
-]
+const navItemsMeta = [
+  { key: 'home', href: '#home' },
+  { key: 'projects', href: '#projects' },
+  { key: 'services', href: '#services' },
+  { key: 'about', href: '#about' },
+  { key: 'contact', href: '#contact' }
+] as const
 
-const studioHighlights = ['UI/UX Strategy', 'Nuxt Engineering', 'Motion Design', 'Accessibility']
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const footerMessages = computed(() => resolveLocaleValue(tm('footer')))
+
+const siteName = computed(() => t('footer.siteName'))
+const siteDescription = computed(() => t('footer.description'))
+
+const primarySections = computed(() =>
+  navItemsMeta.map((item) => ({
+    label: t(`footer.columns.navigate.items.${item.key}`),
+    href: item.href
+  }))
+)
+
+const studioHighlights = computed(() => {
+  const highlights = footerMessages.value?.columns?.expertise?.items
+  return Array.isArray(highlights) ? highlights.map((item: unknown) => String(item)) : []
+})
 
 const socialLinks = [
   {
@@ -41,10 +74,18 @@ const socialLinks = [
   }
 ]
 
-const footerColumns = [
-  { title: 'Navigate', links: primarySections, type: 'links' as const },
-  { title: 'Expertise', highlights: studioHighlights, type: 'highlights' as const }
-]
+const footerColumns = computed(() => [
+  {
+    title: t('footer.columns.navigate.title'),
+    links: primarySections.value,
+    type: 'links' as const
+  },
+  {
+    title: t('footer.columns.expertise.title'),
+    highlights: studioHighlights.value,
+    type: 'highlights' as const
+  }
+])
 
 if (import.meta.client) {
   useIntersectionObserver(
@@ -79,12 +120,14 @@ if (import.meta.client) {
         <section class="flex flex-col gap-6">
           <div class="inline-flex items-center gap-3">
             <span class="h-3 w-3 animate-ping-slow rounded-full bg-[#4ade80] shadow-[0_0_18px_rgba(34,197,94,0.85)]" />
-            <span class="text-xs uppercase tracking-[0.4em] text-zinc-500 dark:text-white/40">Future-forward studio</span>
+            <span class="text-xs uppercase tracking-[0.4em] text-zinc-500 dark:text-white/40">
+              {{ t('footer.badge') }}
+            </span>
           </div>
           <div class="space-y-2">
             <p class="text-lg font-semibold uppercase tracking-widest text-zinc-500 dark:text-white/50"> {{ siteName }} </p>
             <h2 class="text-3xl font-bold text-zinc-900 transition-colors duration-300 dark:text-white">
-              Crafting experiences that shimmer with micro-interactions.
+              {{ t('footer.headline') }}
             </h2>
             <p class="max-w-xl text-sm leading-relaxed text-zinc-600 transition-colors duration-300 dark:text-white/60">
               {{ siteDescription }}
@@ -95,7 +138,7 @@ if (import.meta.client) {
             <NuxtLink
               v-for="link in socialLinks"
               :key="link.label"
-              :aria-label="`Visit ${link.label}`"
+              :aria-label="t('footer.social.visit', { label: link.label })"
               class="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-black/10 bg-white/50 text-zinc-500 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-cyber-green/60 hover:bg-cyber-green/10 hover:text-cyber-green/90 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:border-cyber-green/60 dark:hover:bg-cyber-green/15 dark:hover:text-cyber-green"
               :href="link.href"
               target="_blank"
@@ -158,11 +201,15 @@ if (import.meta.client) {
           <span class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-white/40 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 dark:bg-white/10 dark:text-white/40">
             {{ siteName.charAt(0) }}
           </span>
-          <span>© {{ new Date().getFullYear() }} {{ siteName }}. Crafted with Nuxt, Vue, and plenty of shimmer.</span>
+          <span>{{ t('footer.bottom.crafted', { year: currentYear, site: siteName }) }}</span>
         </span>
         <span class="flex gap-2">
-          <NuxtLink href="#privacy" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">Privacy</NuxtLink>
-          <NuxtLink href="#terms" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">Terms</NuxtLink>
+          <NuxtLink href="#privacy" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">
+            {{ t('footer.bottom.privacy') }}
+          </NuxtLink>
+          <NuxtLink href="#terms" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">
+            {{ t('footer.bottom.terms') }}
+          </NuxtLink>
         </span>
       </div>
     </UContainer>

@@ -1,66 +1,84 @@
 <script setup lang="ts">
-const skillSections = [
+type SkillSectionContent = {
+  title: string
+  blurb: string
+  highlights: string[]
+  peek: string
+}
+
+const skillSectionMeta = [
   {
-    title: 'Product-Focused Frontend',
-    blurb: 'Nuxt-powered experiences that stay fast, inclusive, and easy to iterate on.',
-    highlights: ['Nuxt 3', 'Vue', 'TypeScript'],
-    peek: 'Led a commerce redesign that shaved 38% off page weight while lifting conversions.',
+    id: 'frontend',
     icon: 'i-heroicons-rocket-launch-20-solid',
     accentGradient: 'from-cyber-purple/0 via-cyber-purple/20 to-cyber-purple/35',
     accentGlow: 'bg-cyber-purple/30',
-    motif: 'bg-[radial-gradient(circle_at_top,rgba(165,180,252,0.22),transparent_60%)]',
+    motif: 'bg-[radial-gradient(circle_at_top,rgba(165,180,252,0.22),transparent_60%)]'
   },
   {
-    title: 'Design Systems & UI Kits',
-    blurb: 'Reusable UI that feels cohesive across devices without sacrificing personality.',
-    highlights: ['Design tokens', 'Storybook', 'Responsive layouts'],
-    peek: 'Shipped a token-driven kit that powered 3 product squads with zero divergence.',
+    id: 'designSystems',
     icon: 'i-heroicons-swatch-20-solid',
     accentGradient: 'from-cyan-400/0 via-cyan-400/20 to-cyan-400/35',
     accentGlow: 'bg-cyan-400/30',
-    motif: 'bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.22),transparent_58%)]',
+    motif: 'bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.22),transparent_58%)]'
   },
   {
-    title: 'Motion & Micro-Interactions',
-    blurb: 'Thoughtful transitions that guide attention and make interfaces feel alive.',
-    highlights: ['VueUse Motion', 'GSAP basics', 'CSS timelines'],
-    peek: 'Elevated onboarding completion to 92% with contextual nudges and micro-animations.',
+    id: 'motion',
     icon: 'i-heroicons-sparkles-20-solid',
     accentGradient: 'from-emerald-400/0 via-emerald-400/20 to-emerald-400/35',
     accentGlow: 'bg-emerald-400/30',
-    motif: 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.24),transparent_55%)]',
+    motif: 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.24),transparent_55%)]'
   },
   {
-    title: 'Accessibility & Quality',
-    blurb: 'Ship features that work for everyone with a tight feedback loop.',
-    highlights: ['Semantic HTML', 'Keyboard flows', 'Vitest + Playwright'],
-    peek: 'Audited core flows to WCAG AA and automated a11y checks inside CI.',
+    id: 'quality',
     icon: 'i-heroicons-eye-dropper-20-solid',
     accentGradient: 'from-amber-400/0 via-amber-400/20 to-amber-400/35',
     accentGlow: 'bg-amber-400/30',
-    motif: 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.24),transparent_60%)]',
+    motif: 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.24),transparent_60%)]'
   },
   {
-    title: 'Collaboration',
-    blurb: 'Partner with designers and product teams to launch user-facing outcomes.',
-    highlights: ['Design handoff', 'Docs & RFCs', 'Mentorship'],
-    peek: 'Facilitated weekly design crits and sprint alignment across three squads.',
+    id: 'collaboration',
     icon: 'i-heroicons-users-20-solid',
     accentGradient: 'from-rose-400/0 via-rose-400/20 to-rose-400/35',
     accentGlow: 'bg-rose-400/30',
-    motif: 'bg-[radial-gradient(circle_at_bottom_left,rgba(251,113,133,0.22),transparent_60%)]',
+    motif: 'bg-[radial-gradient(circle_at_bottom_left,rgba(251,113,133,0.22),transparent_60%)]'
   },
   {
-    title: 'Engineering Habits',
-    blurb: 'Maintainable codebases with modern tooling and DevOps awareness.',
-    highlights: ['CI/CD', 'GitHub Actions', 'Edge deployments'],
-    peek: 'Automated release gates saved the team ~4 hours each week on regression checks.',
+    id: 'engineering',
     icon: 'i-heroicons-cog-8-tooth-20-solid',
     accentGradient: 'from-indigo-400/0 via-indigo-400/20 to-indigo-400/35',
     accentGlow: 'bg-indigo-400/30',
-    motif: 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.22),transparent_58%)]',
-  },
-]
+    motif: 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.22),transparent_58%)]'
+  }
+] as const
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const skillSections = computed(() => {
+  const localized = resolveLocaleValue(tm('skills.sections')) as Record<string, SkillSectionContent> | undefined
+
+  return skillSectionMeta.map((meta) => ({
+    ...meta,
+    ...(localized?.[meta.id] ?? { title: '', blurb: '', highlights: [], peek: '' })
+  }))
+})
 </script>
 
 <template>
@@ -68,14 +86,13 @@ const skillSections = [
     <UContainer class="py-24">
       <div class="max-w-2xl space-y-4 mb-10">
         <p class="text-sm uppercase tracking-widest text-cyber-purple/70 font-medium">
-          Capabilities
+          {{ t('skills.badge') }}
         </p>
         <h2 class="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
-          Crafting interfaces that balance polish, performance, and accessibility
+          {{ t('skills.title') }}
         </h2>
         <p class="text-zinc-600 dark:text-zinc-300 transition-colors duration-300">
-          Here’s what I lean on day-to-day to ship resilient products. The mix covers technical depth,
-          interaction design, and the collaborative habits that keep teams shipping.
+          {{ t('skills.description') }}
         </p>
       </div>
 

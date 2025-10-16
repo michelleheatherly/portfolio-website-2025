@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <!-- HERO -->
   <HeroSection />
@@ -34,8 +38,8 @@
         <div class="pointer-events-none absolute -bottom-36 right-6 h-64 w-64 rounded-full bg-cyber-green/15 blur-[120px]"></div>
         <div class="relative grid gap-10 p-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:p-12">
           <ContactCollabPanel
-            headline="Let's build a futuristic web experience"
-            description="I partner with founders and creative teams to ship immersive products, bold interfaces, and smooth flows. If the brief needs motion, storytelling, or thoughtful UX, I am in."
+            :headline="t('contact.headline')"
+            :description="t('contact.description')"
           />
           <ContactForm />
         </div>

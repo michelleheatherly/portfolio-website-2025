@@ -1,79 +1,71 @@
 <script setup lang="ts">
-const educationCategories = [
+type EducationEntry = {
+  title: string
+  org: string
+  period: string
+  highlight: string
+}
+
+type EducationCategoryContent = {
+  label: string
+  description: string
+  entries: EducationEntry[]
+}
+
+const educationCategoryMeta = [
   {
     id: 'college',
-    label: 'College',
     icon: 'i-heroicons-academic-cap-20-solid',
-    description: 'Formal study that grounded my approach to product thinking, research, and storytelling.',
     accent: 'bg-cyber-purple/30',
-    gradient: 'from-cyber-purple/40 via-cyber-purple/20 to-cyber-green/20',
-    entries: [
-      {
-        title: 'B.S. Interactive Media & UX',
-        org: 'Futurewave University',
-        period: '2014-2018',
-        highlight:
-          'Studio-led program blending interface design, creative coding, and motion graphics with a capstone in immersive web.'
-      },
-      {
-        title: 'Global Design Residency',
-        org: 'HyperIsland Stockholm',
-        period: 'Summer 2017',
-        highlight: 'Selected for a four-week residency exploring speculative futures, design sprints, and service prototyping.'
-      }
-    ]
+    gradient: 'from-cyber-purple/40 via-cyber-purple/20 to-cyber-green/20'
   },
   {
     id: 'certifications',
-    label: 'Certifications',
     icon: 'i-heroicons-check-badge-20-solid',
-    description: 'Focused credentials that keep my practice accountable and standards driven.',
     accent: 'bg-cyber-green/30',
-    gradient: 'from-cyber-green/40 via-cyber-green/25 to-cyber-purple/20',
-    entries: [
-      {
-        title: 'Certified Web Accessibility Specialist (CPACC)',
-        org: 'IAAP',
-        period: '2023',
-        highlight: 'Validated inclusive design practices and accessibility audits for complex web ecosystems.'
-      },
-      {
-        title: 'Design Systems Professional',
-        org: 'Figma Academy',
-        period: '2022',
-        highlight: 'Advanced component governance, token orchestration, and multi-brand theming workflows.'
-      }
-    ]
+    gradient: 'from-cyber-green/40 via-cyber-green/25 to-cyber-purple/20'
   },
   {
     id: 'trainings',
-    label: 'Additional Trainings',
     icon: 'i-heroicons-light-bulb-20-solid',
-    description: 'Short-form labs, workshops, and experiments that keep the toolbox inventive.',
     accent: 'bg-cyber-purple/20',
-    gradient: 'from-cyber-purple/35 via-cyber-green/25 to-cyber-purple/15',
-    entries: [
-      {
-        title: 'AI Storytelling for Product Teams',
-        org: 'Runway Research Lab',
-        period: '2024',
-        highlight: 'Explored multi-modal narrative prototyping and prompt choreography for interactive experiences.'
-      },
-      {
-        title: 'Design Sprint Facilitator',
-        org: 'AJ&Smart',
-        period: '2021',
-        highlight: 'Certified to lead compressed discovery-to-prototype cycles with cross-functional startup teams.'
-      },
-      {
-        title: 'Creative Coding Meetups',
-        org: 'SF Generative Collective',
-        period: '2019-2020',
-        highlight: 'Monthly workshops on shaders, motion design, and WebGL art installations.'
-      }
-    ]
+    gradient: 'from-cyber-purple/35 via-cyber-green/25 to-cyber-purple/15'
   }
 ] as const
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const educationCategories = computed(() => {
+  const localized = resolveLocaleValue(tm('education.categories')) as Record<string, EducationCategoryContent> | undefined
+  return educationCategoryMeta.map((meta) => {
+    const content = localized?.[meta.id]
+
+    return {
+      ...meta,
+      label: content?.label ?? '',
+      description: content?.description ?? '',
+      entries: Array.isArray(content?.entries) ? content.entries : []
+    }
+  })
+})
 </script>
 
 <template>
@@ -92,14 +84,13 @@ const educationCategories = [
         <div class="space-y-5 max-w-2xl">
           <span class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-green">
             <UIcon name="i-heroicons-sparkles-20-solid" class="h-4 w-4" />
-            Learning Journey
+            {{ t('education.badge') }}
           </span>
           <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">
-            Education & Continuous Growth
+            {{ t('education.title') }}
           </h2>
           <p class="text-base text-zinc-600 dark:text-white/70 transition-colors duration-300">
-            A curated mix of formal study, industry certifications, and experimental labs that keep design,
-            development, and storytelling aligned with the future of the web.
+            {{ t('education.description') }}
           </p>
         </div>
 

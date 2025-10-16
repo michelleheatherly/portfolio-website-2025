@@ -8,6 +8,8 @@ const spotlight = reactive({
   active: false
 })
 
+const { t } = useI18n()
+
 const updateSpotlight = (event: PointerEvent) => {
   if (!formRef.value) {
     return
@@ -62,12 +64,14 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
     <div class="relative z-[1] space-y-6">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div class="space-y-2">
-          <span class="text-xs font-semibold uppercase tracking-[0.45em] text-zinc-500 dark:text-white/40">Contact</span>
+          <span class="text-xs font-semibold uppercase tracking-[0.45em] text-zinc-500 dark:text-white/40">
+            {{ t('contact.form.badge') }}
+          </span>
           <h3 class="text-2xl font-semibold text-zinc-900 transition-colors duration-300 dark:text-white">
-            Start something bold
+            {{ t('contact.form.title') }}
           </h3>
           <p class="text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
-            Share the vibe, timeline, and what you dream of building. I will reply with ideas and next steps.
+            {{ t('contact.form.description') }}
           </p>
         </div>
         <div class="hidden sm:flex">
@@ -85,23 +89,35 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
       <div class="grid gap-4 sm:grid-cols-2">
         <label class="space-y-2 sm:col-span-1">
           <span class="text-xs font-medium uppercase tracking-wide text-zinc-500 transition-colors duration-300 dark:text-white/50">
-            Name
+            {{ t('contact.form.fields.name.label') }}
           </span>
-          <input type="text" name="name" autocomplete="name" placeholder="Ashley Cyber" :class="fieldClasses" />
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            :placeholder="t('contact.form.fields.name.placeholder')"
+            :class="fieldClasses"
+          />
         </label>
         <label class="space-y-2 sm:col-span-1">
           <span class="text-xs font-medium uppercase tracking-wide text-zinc-500 transition-colors duration-300 dark:text-white/50">
-            Email
+            {{ t('contact.form.fields.email.label') }}
           </span>
-          <input type="email" name="email" autocomplete="email" placeholder="hello@youremail.com" :class="fieldClasses" />
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            :placeholder="t('contact.form.fields.email.placeholder', { symbol: '@' })"
+            :class="fieldClasses"
+          />
         </label>
         <label class="space-y-2 sm:col-span-2">
           <span class="text-xs font-medium uppercase tracking-wide text-zinc-500 transition-colors duration-300 dark:text-white/50">
-            Project notes
+            {{ t('contact.form.fields.notes.label') }}
           </span>
           <textarea
             name="message"
-            placeholder="Drop a quick brief, moodboard, or wild idea..."
+            :placeholder="t('contact.form.fields.notes.placeholder')"
             :class="textareaClasses"
           ></textarea>
         </label>
@@ -109,7 +125,7 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
 
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <span class="text-xs font-medium uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 dark:text-white/40">
-          Response within 2 days
+          {{ t('contact.form.response') }}
         </span>
         <UButton
           type="submit"
@@ -123,7 +139,7 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
             name="i-heroicons-sparkles-20-solid"
             class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
-          <span>Send the vision</span>
+          <span>{{ t('contact.form.submit') }}</span>
           <span class="relative ml-2 flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-white"></span>

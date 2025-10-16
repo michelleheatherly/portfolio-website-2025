@@ -1,22 +1,34 @@
 <script setup lang="ts">
 import { useWindowScroll, usePreferredReducedMotion, useEventListener } from '@vueuse/core'
 
-const links = [
-  { label: 'Home', to: '#home' },
-  { label: 'About', to: '#about' },
-  { label: 'Education', to: '#education' },
-  { label: 'Skills', to: '#skills' },
-  { label: 'Projects', to: '#projects' },
-  { label: 'Contact', to: '#contact' }
-]
+const navLinkDefs = [
+  { key: 'home', to: '#home' },
+  { key: 'about', to: '#about' },
+  { key: 'education', to: '#education' },
+  { key: 'skills', to: '#skills' },
+  { key: 'projects', to: '#projects' },
+  { key: 'contact', to: '#contact' }
+] as const
 
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()
+const { t } = useI18n()
 
 const footerVisible = useState<boolean>('footer-visible', () => false)
 const isMenuOpen = ref(false)
 const rippleOrigin = ref({ x: 0, y: 0 })
 const menuId = 'site-navigation'
+
+const navLinks = computed(() =>
+  navLinkDefs.map((link) => ({
+    ...link,
+    label: t(`nav.links.${link.key}`)
+  }))
+)
+const brandLabel = computed(() => t('nav.brand'))
+const menuButtonLabel = computed(() => (isMenuOpen.value ? t('nav.menu.close') : t('nav.menu.open')))
+const menuTitle = computed(() => t('nav.menu.title'))
+const menuTagline = computed(() => t('nav.menu.tagline'))
 
 const glassProgress = computed(() => {
   if (isMenuOpen.value) {
@@ -160,7 +172,7 @@ onBeforeUnmount(() => {
       >
         <UIcon name="i-ph-code-bold" class="h-6 w-6 text-cyber-green" />
         <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
-          Your Name
+          {{ brandLabel }}
         </span>
       </div>
 
@@ -168,7 +180,7 @@ onBeforeUnmount(() => {
       <nav class="hidden md:block">
         <ul class="flex gap-6 items-center">
           <li
-            v-for="(l, index) in links"
+            v-for="(l, index) in navLinks"
             :key="l.to"
             v-motion
             :initial="{ opacity: prefersReduced === 'reduce' ? 1 : 0, y: prefersReduced === 'reduce' ? 0 : -6 }"
@@ -194,13 +206,14 @@ onBeforeUnmount(() => {
 
       <!-- Actions -->
       <div class="flex items-center gap-2">
+        <LanguageToggle />
         <ThemeToggle />
         <UButton
           class="group/menu md:hidden transition-colors duration-300"
           variant="soft"
           :aria-expanded="isMenuOpen"
           :aria-controls="menuId"
-          aria-label="Menu"
+          :aria-label="menuButtonLabel"
           @click="toggleMenu"
         >
           <UIcon
@@ -228,7 +241,7 @@ onBeforeUnmount(() => {
             size="lg"
             square
             icon="i-heroicons-x-mark-20-solid"
-            aria-label="Close menu"
+            :aria-label="t('nav.menu.close')"
             type="button"
             @click.stop="closeMenu"
           />
@@ -242,12 +255,16 @@ onBeforeUnmount(() => {
               :id="`${menuId}-title`"
               class="text-xs uppercase tracking-[0.5em] text-white/70"
             >
-              Navigate
+              {{ menuTitle }}
             </span>
+            <div class="flex items-center justify-center gap-3">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
             <nav :id="menuId">
               <ul class="space-y-6">
                 <li
-                  v-for="(l, index) in links"
+                  v-for="(l, index) in navLinks"
                   :key="l.to"
                   v-motion
                   :initial="prefersReduced === 'reduce' ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.96 }"
@@ -274,7 +291,7 @@ onBeforeUnmount(() => {
               </ul>
             </nav>
             <p class="text-sm text-white/60 max-w-xs">
-              Curated projects, thoughtful motion, and a touch of neon romance.
+              {{ menuTagline }}
             </p>
           </div>
         </div>

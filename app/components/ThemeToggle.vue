@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
 const nextTheme = computed(() => (colorMode.value === 'dark' ? 'light' : 'dark'))
+const { t } = useI18n()
+const modeLabel = computed(() => t(`common.modes.${nextTheme.value}`))
+const ariaLabel = computed(() => t('theme.switch', { mode: modeLabel.value }))
 
 function switchTheme() {
   colorMode.preference = nextTheme.value
@@ -58,7 +61,7 @@ function startViewTransition(event: MouseEvent) {
 <template>
   <ClientOnly>
     <UButton
-      :aria-label="`Switch to ${nextTheme} mode`"
+      :aria-label="ariaLabel"
       color="neutral"
       variant="ghost"
       size="sm"
@@ -72,7 +75,7 @@ function startViewTransition(event: MouseEvent) {
     </UButton>
     <template #fallback>
       <UButton
-        :aria-label="`Switch to ${nextTheme} mode`"
+        :aria-label="ariaLabel"
         color="neutral"
         variant="ghost"
         size="sm"

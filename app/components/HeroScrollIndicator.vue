@@ -2,6 +2,7 @@
 import { usePreferredReducedMotion } from '@vueuse/core'
 
 const prefersReduced = usePreferredReducedMotion()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -25,8 +26,8 @@ const prefersReduced = usePreferredReducedMotion()
       </span>
 
       <div class="flex flex-col">
-        <span class="font-medium text-zinc-700 dark:text-white/80">Scroll to explore</span>
-        <span class="text-xs text-zinc-500 dark:text-white/60">There's more magic below</span>
+        <span class="font-medium text-zinc-700 dark:text-white/80">{{ t('scrollIndicator.title') }}</span>
+        <span class="text-xs text-zinc-500 dark:text-white/60">{{ t('scrollIndicator.subtitle') }}</span>
       </div>
     </div>
   </div>

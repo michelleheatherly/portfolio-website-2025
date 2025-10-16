@@ -1,24 +1,23 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    badge?: string
-    headline: string
-    description: string
-  }>(),
-  {
-    badge: 'Collaborations'
-  }
-)
+const props = defineProps<{
+  badge?: string
+  headline: string
+  description: string
+}>()
+
+const { t } = useI18n()
+
+const badgeText = computed(() => props.badge ?? t('contact.badge'))
 </script>
 
 <template>
   <div v-motion v-motion-pop-visible-once :hovered="{ scale: 1.01, transition: { duration: 0.35 } }" class="relative space-y-6">
     <span
-      v-if="props.badge"
+      v-if="badgeText"
       class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-600 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)] dark:border-white/10 dark:bg-white/10 dark:text-white/60"
     >
       <span class="h-1.5 w-1.5 rounded-full bg-cyber-green animate-pulse"></span>
-      {{ props.badge }}
+      {{ badgeText }}
     </span>
 
     <div class="space-y-4">
@@ -37,28 +36,28 @@ const props = withDefaults(
             name="i-heroicons-envelope-20-solid"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
-          <span>Email</span>
+          <span>{{ t('contact.actions.email') }}</span>
         </UButton>
         <UButton to="https://github.com/yourname" target="_blank" variant="soft" class="group">
           <UIcon
             name="i-simple-icons-github"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
-          <span>GitHub</span>
+          <span>{{ t('contact.actions.github') }}</span>
         </UButton>
         <UButton to="https://www.linkedin.com/in/yourname" target="_blank" variant="soft" class="group">
           <UIcon
             name="i-simple-icons-linkedin"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
-          <span>LinkedIn</span>
+          <span>{{ t('contact.actions.linkedin') }}</span>
         </UButton>
         <UButton to="#projects" variant="soft" class="group justify-start">
           <UIcon
             name="i-heroicons-bolt-20-solid"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
-          <span>View latest builds</span>
+          <span>{{ t('contact.actions.projects') }}</span>
         </UButton>
       </slot>
     </div>

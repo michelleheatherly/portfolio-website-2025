@@ -1,0 +1,317 @@
+{
+  "common": {
+    "languages": {
+      "en": "English",
+      "de": "German"
+    },
+    "localeLabel": {
+      "en": "EN",
+      "de": "DE"
+    },
+    "modes": {
+      "dark": "dark",
+      "light": "light"
+    }
+  },
+  "language": {
+    "switch": "Switch language to {language}"
+  },
+  "theme": {
+    "switch": "Switch to {mode} mode"
+  },
+  "nav": {
+    "brand": "Your Name",
+    "menu": {
+      "open": "Menu",
+      "close": "Close menu",
+      "title": "Navigate",
+      "tagline": "Curated projects, thoughtful motion, and a touch of neon romance."
+    },
+    "links": {
+      "home": "Home",
+      "about": "About",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "availability": "Available for freelance",
+    "headline": {
+      "start": "Building elegant interfaces with a ",
+      "end": " vibe."
+    },
+    "accent": "cyber-femme",
+    "description": "I’m a web developer specializing in Nuxt, Vue, and delightful motion. Let’s craft fast, accessible, and stylish experiences.",
+    "cta": {
+      "projects": "See Projects",
+      "contact": "Contact"
+    },
+    "portraitAlt": "Developer portrait"
+  },
+  "scrollIndicator": {
+    "title": "Scroll to explore",
+    "subtitle": "There's more magic below"
+  },
+  "about": {
+    "badge": "Crafting digital narratives",
+    "heading": "Designer-engineer blending aesthetics with systems thinking.",
+    "description": "I translate ambitious ideas into immersive digital experiences, obsessing over the synergy between interaction design, accessibility, and performance. Every project is a space to choreograph meaningful moments that feel effortless to the people using them.",
+    "cards": {
+      "superpower": {
+        "title": "Superpower",
+        "body": "Designing component systems that scale while keeping their soul."
+      },
+      "approach": {
+        "title": "Approach",
+        "body": "Motion-first storytelling, rapid prototyping, and shipping with measurable impact."
+      },
+      "toolkit": {
+        "title": "Toolkit",
+        "body": "Nuxt · Vue · TypeScript · Tailwind · Framer Motion · Accessibility audits."
+      },
+      "focus": {
+        "title": "Focus",
+        "body": "Zero to one product launches, design system curation, and micro-interactions."
+      }
+    },
+    "badges": [
+      "Systems Thinking",
+      "Immersive UI",
+      "Accessibility",
+      "Performance"
+    ],
+    "portraitAlt": "Portrait in a creative workspace"
+  },
+  "education": {
+    "badge": "Learning Journey",
+    "title": "Education & Continuous Growth",
+    "description": "A curated mix of formal study, industry certifications, and experimental labs that keep design, development, and storytelling aligned with the future of the web.",
+    "categories": {
+      "college": {
+        "label": "College",
+        "description": "Formal study that grounded my approach to product thinking, research, and storytelling.",
+        "entries": [
+          {
+            "title": "B.S. Interactive Media & UX",
+            "org": "Futurewave University",
+            "period": "2014-2018",
+            "highlight": "Studio-led program blending interface design, creative coding, and motion graphics with a capstone in immersive web."
+          },
+          {
+            "title": "Global Design Residency",
+            "org": "HyperIsland Stockholm",
+            "period": "Summer 2017",
+            "highlight": "Selected for a four-week residency exploring speculative futures, design sprints, and service prototyping."
+          }
+        ]
+      },
+      "certifications": {
+        "label": "Certifications",
+        "description": "Focused credentials that keep my practice accountable and standards driven.",
+        "entries": [
+          {
+            "title": "Certified Web Accessibility Specialist (CPACC)",
+            "org": "IAAP",
+            "period": "2023",
+            "highlight": "Validated inclusive design practices and accessibility audits for complex web ecosystems."
+          },
+          {
+            "title": "Design Systems Professional",
+            "org": "Figma Academy",
+            "period": "2022",
+            "highlight": "Advanced component governance, token orchestration, and multi-brand theming workflows."
+          }
+        ]
+      },
+      "trainings": {
+        "label": "Additional Trainings",
+        "description": "Short-form labs, workshops, and experiments that keep the toolbox inventive.",
+        "entries": [
+          {
+            "title": "AI Storytelling for Product Teams",
+            "org": "Runway Research Lab",
+            "period": "2024",
+            "highlight": "Explored multi-modal narrative prototyping and prompt choreography for interactive experiences."
+          },
+          {
+            "title": "Design Sprint Facilitator",
+            "org": "AJ&Smart",
+            "period": "2021",
+            "highlight": "Certified to lead compressed discovery-to-prototype cycles with cross-functional startup teams."
+          },
+          {
+            "title": "Creative Coding Meetups",
+            "org": "SF Generative Collective",
+            "period": "2019-2020",
+            "highlight": "Monthly workshops on shaders, motion design, and WebGL art installations."
+          }
+        ]
+      }
+    }
+  },
+  "skills": {
+    "badge": "Capabilities",
+    "title": "Crafting interfaces that balance polish, performance, and accessibility",
+    "description": "Here’s what I lean on day-to-day to ship resilient products. The mix covers technical depth, interaction design, and the collaborative habits that keep teams shipping.",
+    "sections": {
+      "frontend": {
+        "title": "Product-Focused Frontend",
+        "blurb": "Nuxt-powered experiences that stay fast, inclusive, and easy to iterate on.",
+        "highlights": ["Nuxt 3", "Vue", "TypeScript"],
+        "peek": "Led a commerce redesign that shaved 38% off page weight while lifting conversions."
+      },
+      "designSystems": {
+        "title": "Design Systems & UI Kits",
+        "blurb": "Reusable UI that feels cohesive across devices without sacrificing personality.",
+        "highlights": ["Design tokens", "Storybook", "Responsive layouts"],
+        "peek": "Shipped a token-driven kit that powered 3 product squads with zero divergence."
+      },
+      "motion": {
+        "title": "Motion & Micro-Interactions",
+        "blurb": "Thoughtful transitions that guide attention and make interfaces feel alive.",
+        "highlights": ["VueUse Motion", "GSAP basics", "CSS timelines"],
+        "peek": "Elevated onboarding completion to 92% with contextual nudges and micro-animations."
+      },
+      "quality": {
+        "title": "Accessibility & Quality",
+        "blurb": "Ship features that work for everyone with a tight feedback loop.",
+        "highlights": ["Semantic HTML", "Keyboard flows", "Vitest + Playwright"],
+        "peek": "Audited core flows to WCAG AA and automated a11y checks inside CI."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "blurb": "Partner with designers and product teams to launch user-facing outcomes.",
+        "highlights": ["Design handoff", "Docs & RFCs", "Mentorship"],
+        "peek": "Facilitated weekly design crits and sprint alignment across three squads."
+      },
+      "engineering": {
+        "title": "Engineering Habits",
+        "blurb": "Maintainable codebases with modern tooling and DevOps awareness.",
+        "highlights": ["CI/CD", "GitHub Actions", "Edge deployments"],
+        "peek": "Automated release gates saved the team ~4 hours each week on regression checks."
+      }
+    }
+  },
+  "projects": {
+    "badge": "Selected Work",
+    "title": "Projects",
+    "description": "Interfaces and digital systems built end-to-end — from exploratory prototyping to polished handoff — with a focus on realtime collaboration, design systems, and measurable product impact.",
+    "resume": "Resume",
+    "filters": {
+      "categories": {
+        "all": "All",
+        "front-end": "Front-end",
+        "full-stack": "Full-stack",
+        "design": "Design"
+      },
+      "tags": {
+        "button": "Tag filters",
+        "title": "Filter by tags",
+        "searchPlaceholder": "Search tags",
+        "clear": "Clear",
+        "done": "Done",
+        "empty": "No tags found. Try a different search."
+      },
+      "reset": "Reset",
+      "searchPlaceholder": "Search projects",
+      "clearFilters": "Clear filters"
+    },
+    "empty": {
+      "title": "No projects matched your filters",
+      "description": "Try adjusting the category, removing a tag, or clearing your search to discover more of the work.",
+      "action": "Clear filters"
+    },
+    "card": {
+      "view": "View Project",
+      "categoryLabel": {
+        "front-end": "Front-end",
+        "full-stack": "Full-stack",
+        "design": "Design"
+      }
+    },
+    "list": {
+      "neonNodes": {
+        "description": "Real-time graph editor with collaborative cursors and a reactive plugin system."
+      },
+      "pulseUi": {
+        "description": "Design system built on Nuxt UI with token-driven theming and charts."
+      },
+      "greenTrace": {
+        "description": "Sustainability insights dashboard with AI summaries and map layers."
+      },
+      "immersiveAtlas": {
+        "description": "Story-driven microsite blending 3D scenes, scroll choreography, and reactive sound design."
+      },
+      "opsynkControl": {
+        "description": "Operational analytics suite with live telemetry, incident notes, and SOC handoff automations."
+      },
+      "signalStudio": {
+        "description": "Design system playground featuring component deep-dives, motion guidelines, and theme toggles."
+      }
+    }
+  },
+  "contact": {
+    "badge": "Collaborations",
+    "headline": "Let's build a futuristic web experience",
+    "description": "I partner with founders and creative teams to ship immersive products, bold interfaces, and smooth flows. If the brief needs motion, storytelling, or thoughtful UX, I am in.",
+    "actions": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "projects": "View latest builds"
+    },
+    "form": {
+      "badge": "Contact",
+      "title": "Start something bold",
+      "description": "Share the vibe, timeline, and what you dream of building. I will reply with ideas and next steps.",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Ashley Cyber"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "hello{symbol}youremail.com"
+        },
+        "notes": {
+          "label": "Project notes",
+          "placeholder": "Drop a quick brief, moodboard, or wild idea..."
+        }
+      },
+      "response": "Response within 2 days",
+      "submit": "Send the vision"
+    }
+  },
+  "footer": {
+    "badge": "Future-forward studio",
+    "siteName": "CyberFemme Studio",
+    "headline": "Crafting experiences that shimmer with micro-interactions.",
+    "description": "Designing luminous, motion-rich interfaces that feel alive and thoughtful.",
+    "columns": {
+      "navigate": {
+        "title": "Navigate",
+        "items": {
+          "home": "Home",
+          "projects": "Projects",
+          "services": "Services",
+          "about": "About",
+          "contact": "Contact"
+        }
+      },
+      "expertise": {
+        "title": "Expertise",
+        "items": ["UI/UX Strategy", "Nuxt Engineering", "Motion Design", "Accessibility"]
+      }
+    },
+    "social": {
+      "visit": "Visit {label}"
+    },
+    "bottom": {
+      "crafted": "© {year} {site}. Crafted with Nuxt, Vue, and plenty of shimmer.",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+}
