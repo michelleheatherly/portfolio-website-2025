@@ -18,6 +18,9 @@ const { t } = useI18n()
   <!-- PROJECTS -->
   <ProjectsSection />
 
+  <!-- BLOG -->
+  <BlogSection />
+
   <!-- CONTACT -->
   <section id="contact" class="relative transition-colors duration-300">
     <UContainer class="py-24">

@@ -7,6 +7,7 @@ const navLinkDefs = [
   { key: 'education', to: '#education' },
   { key: 'skills', to: '#skills' },
   { key: 'projects', to: '#projects' },
+  { key: 'blog', to: '#blog' },
   { key: 'contact', to: '#contact' }
 ] as const
 

@@ -34,10 +34,23 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts'
   },
   app: {
+    baseURL: import.meta.env.BASE_URL || '/',
     head: {
       title: 'Dev Portfolio',
       meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }]
     }
+  },
+  runtimeConfig: {
+    public: {
+      feedUrl: import.meta.env.NUXT_PUBLIC_FEED_URL || 'https://example.com/feed.xml',
+      blogUrl: import.meta.env.NUXT_PUBLIC_BLOG_URL || 'https://example.com/blog'
+    },
+  },
+  nitro: {
+    prerender: {
+      routes: ['/', '/api/feed'],
+    },
+    preset: 'github_pages'
   },
   css: ['@/assets/css/main.css']
 })

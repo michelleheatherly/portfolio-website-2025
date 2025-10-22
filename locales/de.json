@@ -33,6 +33,7 @@
       "education": "Werdegang",
       "skills": "Skills",
       "projects": "Projekte",
+      "blog": "Blog",
       "contact": "Kontakt"
     }
   },
@@ -250,6 +251,32 @@
       "signalStudio": {
         "description": "Design-System-Playground mit Komponenten-Deep-Dives, Motion-Guidelines und Theme-Toggles."
       }
+    }
+  },
+  "blog": {
+    "badge": "Studio-Journal",
+    "title": "Frische Artikel & Build-Logs",
+    "description": "Notizen zu Craft, Prozess-Deep-Dives und wöchentlichen Learnings aus meinen aktuellen Projekten.",
+    "note": "Artikel stehen momentan nur auf Englisch zur Verfügung, während die Lokalisierung vorbereitet wird.",
+    "actions": {
+      "open": "Gesamten Feed öffnen",
+      "visit": "Blog besuchen"
+    }
+  },
+  "feed": {
+    "loading": "Neueste Beiträge werden geladen …",
+    "error": {
+      "title": "Der Feed konnte nicht geladen werden.",
+      "description": "Aktualisiere oder versuche es in Kürze erneut.",
+      "retry": "Erneut versuchen"
+    },
+    "empty": {
+      "title": "Noch keine Beiträge verfügbar",
+      "description": "Sobald neue Artikel live gehen, erscheinen sie hier."
+    },
+    "card": {
+      "readMore": "Beitrag lesen",
+      "unknownDate": "Datum folgt"
     }
   },
   "contact": {

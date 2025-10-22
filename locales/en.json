@@ -33,6 +33,7 @@
       "education": "Education",
       "skills": "Skills",
       "projects": "Projects",
+      "blog": "Blog",
       "contact": "Contact"
     }
   },
@@ -250,6 +251,32 @@
       "signalStudio": {
         "description": "Design system playground featuring component deep-dives, motion guidelines, and theme toggles."
       }
+    }
+  },
+  "blog": {
+    "badge": "Studio journal",
+    "title": "Latest writing & build logs",
+    "description": "Notes on craft, process deep dives, and weekly learnings from the projects I am shipping.",
+    "note": "Articles are currently available in English while localization is in progress.",
+    "actions": {
+      "open": "Open full feed",
+      "visit": "Visit blog"
+    }
+  },
+  "feed": {
+    "loading": "Fetching the latest posts…",
+    "error": {
+      "title": "We could not load the feed.",
+      "description": "Refresh to try again, or check back shortly.",
+      "retry": "Retry"
+    },
+    "empty": {
+      "title": "No posts to show yet",
+      "description": "Fresh writing will appear here once the next issue ships."
+    },
+    "card": {
+      "readMore": "Read post",
+      "unknownDate": "Date TBA"
     }
   },
   "contact": {
