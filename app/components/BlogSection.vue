@@ -1,9 +1,21 @@
 <script setup lang="ts">
-const { t } = useI18n({ useScope: 'global' })
+const { t, locale } = useI18n({ useScope: 'global' })
 
 const runtimeConfig = useRuntimeConfig()
 const feedUrl = computed(() => runtimeConfig.public.feedUrl || '')
-const blogUrl = computed(() => runtimeConfig.public.blogUrl || '')
+const rawBlogUrl = computed(() => runtimeConfig.public.blogUrl || '')
+const blogUrl = computed(() => {
+  const base = rawBlogUrl.value
+  if (!base)
+    return ''
+
+  if (locale.value?.startsWith('de')) {
+    const normalized = base.replace(/\/+$/, '')
+    return `${normalized}/de`
+  }
+
+  return base
+})
 
 const showFeedLink = computed(() => feedUrl.value && !feedUrl.value.includes('example.com'))
 const showBlogLink = computed(() => blogUrl.value && !blogUrl.value.includes('example.com'))
