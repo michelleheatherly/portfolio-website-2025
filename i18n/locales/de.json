@@ -257,7 +257,7 @@
     "badge": "Studio-Journal",
     "title": "Frische Artikel & Build-Logs",
     "description": "Notizen zu Craft, Prozess-Deep-Dives und wöchentlichen Learnings aus meinen aktuellen Projekten.",
-    "note": "Artikel stehen momentan nur auf Englisch zur Verfügung, während die Lokalisierung vorbereitet wird.",
+    "note": "Artikel sind derzeit auf Englisch und Deutsch verfügbar.",
     "actions": {
       "open": "Gesamten Feed öffnen",
       "visit": "Blog besuchen"

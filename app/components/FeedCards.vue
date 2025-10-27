@@ -108,7 +108,26 @@
 const { t, locale } = useI18n({ useScope: 'global' })
 const { data, pending, error, refresh } = useFeed()
 
-const items = computed(() => data.value?.items || [])
+type FeedCardItem = {
+  title: string
+  link: string
+  date?: string
+  summary?: string
+  lang?: string | null
+}
+
+const items = computed<FeedCardItem[]>(() => {
+  const allItems = (data.value?.items || []) as FeedCardItem[]
+  const activeLocale = locale.value?.startsWith('de') ? 'de' : 'en'
+
+  return allItems.filter((item) => {
+    const normalizedLang = item.lang?.toLowerCase()
+    if (!normalizedLang)
+      return activeLocale === 'en'
+
+    return normalizedLang.startsWith(activeLocale)
+  }).slice(0, 3)
+})
 const skeletonItems = computed(() => Array.from({ length: 3 }))
 
 function formatDate(iso?: string) {

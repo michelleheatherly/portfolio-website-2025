@@ -43,7 +43,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       feedUrl: import.meta.env.NUXT_PUBLIC_FEED_URL || 'https://example.com/feed.xml',
-      blogUrl: import.meta.env.NUXT_PUBLIC_BLOG_URL || 'https://example.com/blog'
+      blogUrl: import.meta.env.NUXT_PUBLIC_BLOG_URL || 'https://example.com/blog',
+      blogAltUrl: import.meta.env.NUXT_PUBLIC_BLOG_ALT_URL || 'https://example.github.io/blog'
     },
   },
   nitro: {

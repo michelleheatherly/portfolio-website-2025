@@ -257,7 +257,7 @@
     "badge": "Studio journal",
     "title": "Latest writing & build logs",
     "description": "Notes on craft, process deep dives, and weekly learnings from the projects I am shipping.",
-    "note": "Articles are currently available in English while localization is in progress.",
+    "note": "Articles are currently available in English and German.",
     "actions": {
       "open": "Open full feed",
       "visit": "Visit blog"

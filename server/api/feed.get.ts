@@ -5,6 +5,7 @@ type FeedItem = {
   link: string
   date: string
   summary: string
+  lang: string
 }
 
 function toText(val: any): string {
@@ -21,20 +22,55 @@ function toText(val: any): string {
   return String(val).trim()
 }
 
+function extractLang(source: any, fallback = ''): string {
+  return toText(
+    source?.lang ??
+      source?.['xml:lang'] ??
+      source?.['language'] ??
+      source?.['dc:language'] ??
+      fallback ??
+      ''
+  )
+}
+
+function withLocaleBlogPath(link: string, blogUrl: string, locale: string): string {
+  if (!link || !blogUrl || !locale) return link
+
+  const normalizedBlog = blogUrl.replace(/\/+$/, '')
+  if (!normalizedBlog) return link
+  if (!link.startsWith(normalizedBlog)) return link
+
+  const remainder = link.slice(normalizedBlog.length)
+  const remainderWithSlash =
+    remainder === '' ? '/' : remainder.startsWith('/') ? remainder : `/${remainder}`
+
+  if (
+    remainderWithSlash === `/${locale}` ||
+    remainderWithSlash.startsWith(`/${locale}/`)
+  ) {
+    return `${normalizedBlog}${remainderWithSlash}`
+  }
+
+  return `${normalizedBlog}/${locale}${remainderWithSlash}`
+}
+
 function normalize(xml: any): FeedItem[] {
   // RSS 2.0
   if (xml?.rss?.channel?.item) {
     const items = Array.isArray(xml.rss.channel.item) ? xml.rss.channel.item : [xml.rss.channel.item]
+    const channelLang = extractLang(xml?.rss?.channel)
     return items.map((it: any) => ({
       title: toText(it.title),
       link: it.link || it.guid || '#',
       date: it.pubDate ? new Date(it.pubDate).toISOString() : '',
-      summary: toText(it['content:encoded'] || it.description || '')
+      summary: toText(it['content:encoded'] || it.description || ''),
+      lang: extractLang(it, channelLang)
     }))
   }
   // Atom
   if (xml?.feed?.entry) {
     const entries = Array.isArray(xml.feed.entry) ? xml.feed.entry : [xml.feed.entry]
+    const feedLang = extractLang(xml?.feed)
     return entries.map((e: any) => ({
       title: toText(e.title),
       link:
@@ -42,7 +78,8 @@ function normalize(xml: any): FeedItem[] {
           ? e.link.find((l: any) => l.rel === 'alternate')?.href
           : e.link?.href) || '#',
       date: e.updated || e.published || '',
-      summary: toText(e.summary || e.content || '')
+      summary: toText(e.summary || e.content || ''),
+      lang: extractLang(e, feedLang)
     }))
   }
   return []
@@ -50,7 +87,9 @@ function normalize(xml: any): FeedItem[] {
 
 export default cachedEventHandler(
   defineEventHandler(async (event) => {
-    const feedUrl = useRuntimeConfig(event).public.feedUrl
+    const runtimeConfig = useRuntimeConfig(event).public
+    const feedUrl = runtimeConfig.feedUrl
+    const blogUrl = runtimeConfig.blogAltUrl
 
     const xmlText = await $fetch<string>(feedUrl, { responseType: 'text' })
 
@@ -60,11 +99,20 @@ export default cachedEventHandler(
     const items = normalize(xml)
       .filter(i => i.title && i.link)
       .sort((a, b) => (new Date(b.date).getTime() || 0) - (new Date(a.date).getTime() || 0))
-      .slice(0, 3)
-      .map(i => ({
-        ...i,
-        summary: i.summary.length > 220 ? i.summary.slice(0, 217).trimEnd() + '…' : i.summary
-      }))
+      .slice(0, 6)
+      .map(i => {
+        const normalizedLang = i.lang?.toLowerCase() || ''
+        const link =
+          normalizedLang.startsWith('de') && blogUrl
+            ? withLocaleBlogPath(i.link, blogUrl, 'de')
+            : i.link
+
+        return {
+          ...i,
+          link,
+          summary: i.summary.length > 220 ? i.summary.slice(0, 217).trimEnd() + '…' : i.summary
+        }
+      })
 
     return { items }
   }),
