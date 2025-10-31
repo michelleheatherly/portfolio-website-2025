@@ -66,6 +66,14 @@ const educationCategories = computed(() => {
     }
   })
 })
+
+const educationDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.34,
+  cards: 0.4
+}
 </script>
 
 <template>
@@ -81,15 +89,53 @@ const educationCategories = computed(() => {
 
     <UContainer class="relative py-24">
       <div class="space-y-12">
-        <div class="space-y-5 max-w-2xl">
-          <span class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-green">
+        <div
+          class="space-y-5 max-w-2xl"
+          v-motion
+          :initial="{ opacity: 0, y: 24 }"
+          :visibleOnce="{
+            opacity: 1,
+            y: 0,
+            transition: { delay: educationDelays.container, duration: 0.55, ease: 'easeOut' }
+          }"
+        >
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-green"
+            v-motion
+            :initial="{ opacity: 0, y: -10 }"
+            :visibleOnce="{
+              opacity: 1,
+              y: 0,
+              transition: { delay: educationDelays.badge, type: 'spring', stiffness: 140, damping: 20 }
+            }"
+          >
             <UIcon name="i-heroicons-academic-cap-20-solid" class="h-4 w-4" />
             {{ t('education.badge') }}
           </span>
-          <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300"
+            v-motion
+            :initial="{ opacity: 0, y: 20, scale: 0.96 }"
+            :visibleOnce="{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: { delay: educationDelays.heading, type: 'spring', stiffness: 110, damping: 24 }
+            }"
+          >
             {{ t('education.title') }}
           </h2>
-          <p class="text-base text-zinc-600 dark:text-white/70 transition-colors duration-300">
+          <p
+            class="text-base text-zinc-600 dark:text-white/70 transition-colors duration-300"
+            v-motion
+            :initial="{ opacity: 0, y: 24, blur: 10 }"
+            :visibleOnce="{
+              opacity: 1,
+              y: 0,
+              blur: 0,
+              transition: { delay: educationDelays.description, type: 'spring', stiffness: 95, damping: 26 }
+            }"
+          >
             {{ t('education.description') }}
           </p>
         </div>
@@ -104,7 +150,12 @@ const educationCategories = computed(() => {
             :visibleOnce="{
               opacity: 1,
               y: 0,
-              transition: { duration: 0.6, ease: 'easeOut', delay: index * 0.12 }
+              transition: {
+                delay: educationDelays.cards + index * 0.12,
+                type: 'spring',
+                stiffness: 105,
+                damping: 24
+              }
             }"
           >
             <div class="pointer-events-none absolute -top-24 right-0 h-48 w-48 rounded-full blur-3xl" :class="category.accent"></div>
