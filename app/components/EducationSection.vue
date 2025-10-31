@@ -83,7 +83,7 @@ const educationCategories = computed(() => {
       <div class="space-y-12">
         <div class="space-y-5 max-w-2xl">
           <span class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-green">
-            <UIcon name="i-heroicons-sparkles-20-solid" class="h-4 w-4" />
+            <UIcon name="i-heroicons-academic-cap-20-solid" class="h-4 w-4" />
             {{ t('education.badge') }}
           </span>
           <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300">

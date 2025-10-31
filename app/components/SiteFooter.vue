@@ -58,9 +58,9 @@ const socialLinks = [
     icon: 'i-simple-icons-github'
   },
   {
-    label: 'Dribbble',
-    href: 'https://dribbble.com/',
-    icon: 'i-simple-icons-dribbble'
+    label: 'GitLab',
+    href: 'https://gitlab.com/',
+    icon: 'i-simple-icons-gitlab'
   },
   {
     label: 'LinkedIn',
@@ -68,9 +68,9 @@ const socialLinks = [
     icon: 'i-simple-icons-linkedin'
   },
   {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/',
-    icon: 'i-simple-icons-instagram'
+    label: 'Blog',
+    href: 'https://www.michelle-heatherly.com/blog',
+    icon: 'i-heroicons-newspaper-20-solid'
   }
 ]
 

@@ -85,9 +85,14 @@ const skillSections = computed(() => {
   <section id="skills" class="relative transition-colors duration-300">
     <UContainer class="py-24">
       <div class="max-w-2xl space-y-4 mb-10">
-        <p class="text-sm uppercase tracking-widest text-cyber-purple/70 font-medium">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+                 text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
+                 dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+        >
+          <UIcon name="i-heroicons-wrench-screwdriver-20-solid" class="h-4 w-4" />
           {{ t('skills.badge') }}
-        </p>
+        </span>
         <h2 class="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
           {{ t('skills.title') }}
         </h2>

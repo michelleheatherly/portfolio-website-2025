@@ -12,17 +12,17 @@ const { t } = useI18n()
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.6 } }"
       >
         <div class="space-y-6">
-          <div
-            class="inline-flex items-center gap-2 rounded-full px-3 py-1 transition-colors duration-300
-                   border bg-black/5 border-black/10
-                   dark:bg-white/5 dark:border-white/10"
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+                   text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
+                   dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
             v-motion
             :initial="{ opacity: 0, y: -8 }"
             :enter="{ opacity: 1, y: 0, transition: { delay: 0.15, type: 'spring', stiffness: 150, damping: 18 } }"
           >
-            <span class="h-2 w-2 rounded-full bg-cyber-green animate-pulse"></span>
-            <span class="text-xs text-zinc-700 dark:text-white/70 transition-colors duration-300">{{ t('hero.availability') }}</span>
-          </div>
+            <UIcon name="i-heroicons-rocket-launch-20-solid" class="h-4 w-4" />
+            {{ t('hero.availability') }}
+          </span>
 
           <h1
             class="hero-headline text-4xl md:text-6xl font-extrabold leading-tight

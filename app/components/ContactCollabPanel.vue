@@ -14,9 +14,11 @@ const badgeText = computed(() => props.badge ?? t('contact.badge'))
   <div v-motion v-motion-pop-visible-once :hovered="{ scale: 1.01, transition: { duration: 0.35 } }" class="relative space-y-6">
     <span
       v-if="badgeText"
-      class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-600 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)] dark:border-white/10 dark:bg-white/10 dark:text-white/60"
+      class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+             text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
+             dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
     >
-      <span class="h-1.5 w-1.5 rounded-full bg-cyber-green animate-pulse"></span>
+      <UIcon name="i-heroicons-users-20-solid" class="h-4 w-4" />
       {{ badgeText }}
     </span>
 

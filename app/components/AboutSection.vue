@@ -60,15 +60,14 @@ const resetGlow = () => {
           />
 
           <div class="relative space-y-8">
-            <div
-            class="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/70 px-4 py-1
-                   text-sm font-medium text-zinc-700 shadow-sm backdrop-blur transition-all duration-500
-                   hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.8)]
-                   dark:border-white/10 dark:bg-white/10 dark:text-white/70"
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+                     text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
+                     dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
             >
-              <span class="inline-flex h-2 w-2 rounded-full bg-cyber-green animate-pulse" />
+              <UIcon name="i-heroicons-sparkles-20-solid" class="h-4 w-4" />
               {{ t('about.badge') }}
-            </div>
+            </span>
 
             <div class="space-y-4">
               <h2
