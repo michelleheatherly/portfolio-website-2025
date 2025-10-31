@@ -79,36 +79,92 @@ const skillSections = computed(() => {
     ...(localized?.[meta.id] ?? { title: '', blurb: '', highlights: [], peek: '' })
   }))
 })
+
+const skillDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.34,
+  cards: 0.38
+}
 </script>
 
 <template>
   <section id="skills" class="relative transition-colors duration-300">
     <UContainer class="py-24">
-      <div class="max-w-2xl space-y-4 mb-10">
+      <div
+        class="max-w-2xl space-y-4 mb-10"
+        v-motion
+        :initial="{ opacity: 0, y: 24 }"
+        :visibleOnce="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: skillDelays.container, duration: 0.5, ease: 'easeOut' }
+        }"
+      >
         <span
           class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
                  text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
                  dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+          v-motion
+          :initial="{ opacity: 0, y: -12 }"
+          :visibleOnce="{
+            opacity: 1,
+            y: 0,
+            transition: { delay: skillDelays.badge, type: 'spring', stiffness: 150, damping: 20 }
+          }"
         >
           <UIcon name="i-heroicons-wrench-screwdriver-20-solid" class="h-4 w-4" />
           {{ t('skills.badge') }}
         </span>
-        <h2 class="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
+        <h2
+          class="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white transition-colors duration-300"
+          v-motion
+          :initial="{ opacity: 0, y: 18, scale: 0.96 }"
+          :visibleOnce="{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { delay: skillDelays.heading, type: 'spring', stiffness: 110, damping: 24 }
+          }"
+        >
           {{ t('skills.title') }}
         </h2>
-        <p class="text-zinc-600 dark:text-zinc-300 transition-colors duration-300">
+        <p
+          class="text-zinc-600 dark:text-zinc-300 transition-colors duration-300"
+          v-motion
+          :initial="{ opacity: 0, y: 22, blur: 10 }"
+          :visibleOnce="{
+            opacity: 1,
+            y: 0,
+            blur: 0,
+            transition: { delay: skillDelays.description, type: 'spring', stiffness: 95, damping: 26 }
+          }"
+        >
           {{ t('skills.description') }}
         </p>
       </div>
 
       <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
         <UCard
-          v-for="section in skillSections"
+          v-for="(section, index) in skillSections"
           :key="section.title"
           class="group relative h-full overflow-hidden rounded-3xl border border-zinc-200/60 dark:border-zinc-800/80
                  bg-white/60 dark:bg-zinc-900/60 backdrop-blur transition-all duration-500
                  hover:-translate-y-1 hover:shadow-[0_22px_55px_-28px_rgba(165,180,252,0.55)] hover:border-cyber-purple/40"
-          v-motion-slide-visible-once-left
+          v-motion
+          :initial="{ opacity: 0, x: -42, scale: 0.94 }"
+          :visibleOnce="{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            transition: {
+              delay: skillDelays.cards + 0.08 * index,
+              type: 'spring',
+              stiffness: 120,
+              damping: 24
+            }
+          }"
         >
           <div
             class="pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-100"
