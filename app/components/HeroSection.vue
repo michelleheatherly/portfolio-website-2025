@@ -1,5 +1,14 @@
 <script setup lang="ts">
 const { t } = useI18n()
+
+const heroDelays = {
+  badge: 0.15,
+  heading: 0.3,
+  description: 0.42,
+  ctas: 0.55,
+  indicator: 0.7,
+  portrait: 0.35,
+}
 </script>
 
 <template>
@@ -8,17 +17,36 @@ const { t } = useI18n()
       <div
         class="grid lg:grid-cols-2 gap-10 items-center"
         v-motion
-        :initial="{ opacity: 0, y: 20 }"
-        :enter="{ opacity: 1, y: 0, transition: { duration: 0.6 } }"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut' } }"
       >
-        <div class="space-y-6">
+        <div
+          class="space-y-6"
+          v-motion
+          :initial="{ opacity: 0, y: 18, blur: 8 }"
+          :enter="{
+            opacity: 1,
+            y: 0,
+            blur: 0,
+            transition: {
+              delay: 0.1,
+              type: 'spring',
+              stiffness: 70,
+              damping: 26
+            }
+          }"
+        >
           <span
             class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
                    text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
                    dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
             v-motion
             :initial="{ opacity: 0, y: -8 }"
-            :enter="{ opacity: 1, y: 0, transition: { delay: 0.15, type: 'spring', stiffness: 150, damping: 18 } }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              transition: { delay: heroDelays.badge, type: 'spring', stiffness: 150, damping: 18 }
+            }"
           >
             <UIcon name="i-heroicons-rocket-launch-20-solid" class="h-4 w-4" />
             {{ t('hero.availability') }}
@@ -27,6 +55,19 @@ const { t } = useI18n()
           <h1
             class="hero-headline text-4xl md:text-6xl font-extrabold leading-tight
                    text-zinc-900 dark:text-white transition-colors duration-300"
+            v-motion
+            :initial="{ opacity: 0, y: 28, scale: 0.96 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                delay: heroDelays.heading,
+                type: 'spring',
+                stiffness: 85,
+                damping: 26
+              }
+            }"
           >
             {{ t('hero.headline.start') }}
             <span class="hero-headline__accent">
@@ -35,11 +76,41 @@ const { t } = useI18n()
             {{ t('hero.headline.end') }}
           </h1>
 
-          <p class="max-w-prose text-zinc-600 dark:text-white/70 transition-colors duration-300">
+          <p
+            class="max-w-prose text-zinc-600 dark:text-white/70 transition-colors duration-300"
+            v-motion
+            :initial="{ opacity: 0, y: 24, blur: 10 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              blur: 0,
+              transition: {
+                delay: heroDelays.description,
+                type: 'spring',
+                stiffness: 80,
+                damping: 28
+              }
+            }"
+          >
             {{ t('hero.description') }}
           </p>
 
-          <div class="flex flex-wrap gap-3">
+          <div
+            class="flex flex-wrap gap-3"
+            v-motion
+            :initial="{ opacity: 0, y: 20, scale: 0.95 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                delay: heroDelays.ctas,
+                type: 'spring',
+                stiffness: 95,
+                damping: 28
+              }
+            }"
+          >
             <UButton size="lg" to="#projects" class="group">
               <UIcon
                 name="i-heroicons-bolt-20-solid"
@@ -63,23 +134,47 @@ const { t } = useI18n()
             </UButton>
           </div>
 
-          <HeroScrollIndicator />
+          <div
+            v-motion
+            :initial="{ opacity: 0, y: 16, blur: 8 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              blur: 0,
+              transition: {
+                delay: heroDelays.indicator,
+                type: 'spring',
+                stiffness: 85,
+                damping: 26
+              }
+            }"
+          >
+            <HeroScrollIndicator />
+          </div>
         </div>
 
-        <UCard
-          class="rounded-3xl transition-colors duration-300"
+        <div
+          class="rounded-3xl overflow-hidden"
           v-motion
-          :initial="{ opacity: 0, scale: .95 }"
-          :enter="{ opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 16 } }"
+          :initial="{ opacity: 0, y: 28, scale: 0.94 }"
+          :enter="{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+              delay: heroDelays.portrait,
+              type: 'spring',
+              stiffness: 85,
+              damping: 26
+            }
+          }"
         >
-          <div class="p-6">
-            <img
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
-              :alt="t('hero.portraitAlt')"
-              class="rounded-2xl w-full aspect-[4/3] object-cover"
-            />
-          </div>
-        </UCard>
+          <img
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
+            :alt="t('hero.portraitAlt')"
+            class="w-full aspect-[4/3] object-cover"
+          />
+        </div>
       </div>
     </UContainer>
   </section>
