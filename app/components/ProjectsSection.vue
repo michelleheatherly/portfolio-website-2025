@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
-
 const categoryFilterMeta = [
   { key: 'all', value: 'all' },
   { key: 'front-end', value: 'front-end' },
@@ -104,9 +101,6 @@ const activeTags = ref<string[]>([])
 const tagMenuOpen = ref(false)
 const tagSearchQuery = ref('')
 
-const tagButtonRef = ref<HTMLElement | null>(null)
-const tagMenuRef = ref<HTMLElement | null>(null)
-
 const availableTags = computed(() => {
   const tags = new Set<string>()
   projects.value.forEach((project) => {
@@ -117,9 +111,7 @@ const availableTags = computed(() => {
 
 const filteredTagOptions = computed(() => {
   const query = tagSearchQuery.value.trim().toLowerCase()
-  if (query.length === 0) {
-    return availableTags.value
-  }
+  if (query.length === 0) return availableTags.value
   return availableTags.value.filter((tag) => tag.toLowerCase().includes(query))
 })
 
@@ -170,11 +162,7 @@ const clearTagFilters = () => {
 }
 
 const toggleTagMenu = () => {
-  if (tagMenuOpen.value) {
-    closeTagMenu()
-  } else {
-    tagMenuOpen.value = true
-  }
+  tagMenuOpen.value = !tagMenuOpen.value
 }
 
 const clearFilters = () => {
@@ -183,12 +171,6 @@ const clearFilters = () => {
   clearTagFilters()
   closeTagMenu()
 }
-
-onClickOutside(tagMenuRef, (event) => {
-  if (tagMenuOpen.value && !tagButtonRef.value?.contains(event.target as Node)) {
-    closeTagMenu()
-  }
-})
 </script>
 
 <template>
@@ -272,7 +254,7 @@ onClickOutside(tagMenuRef, (event) => {
           </UButton>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4 relative z-20">
           <div
             class="flex flex-wrap items-center gap-2"
             v-motion
@@ -284,30 +266,30 @@ onClickOutside(tagMenuRef, (event) => {
             }"
           >
             <button
-          v-for="(category, index) in categoryFilters"
-          :key="category.value"
-          type="button"
-          class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
-          :class="[
-            activeCategory === category.value
-              ? 'border-cyber-purple/60 bg-cyber-purple/15 text-cyber-purple dark:bg-cyber-purple/20'
-              : 'border-zinc-300/60 bg-white/70 text-zinc-600 hover:border-cyber-purple/40 hover:text-cyber-purple dark:border-zinc-700/60 dark:bg-white/5 dark:text-zinc-300'
-          ]"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :visibleOnce="{
-            opacity: 1,
-            y: 0,
-            transition: {
-              delay: projectDelays.filters + index * 0.05,
-              duration: 0.4,
-              ease: 'easeOut'
-            }
-          }"
-          @click="activeCategory = category.value"
-        >
-          {{ category.label }}
-        </button>
+              v-for="(category, index) in categoryFilters"
+              :key="category.value"
+              type="button"
+              class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
+              :class="[
+                activeCategory === category.value
+                  ? 'border-cyber-purple/60 bg-cyber-purple/15 text-cyber-purple dark:bg-cyber-purple/20'
+                  : 'border-zinc-300/60 bg-white/70 text-zinc-600 hover:border-cyber-purple/40 hover:text-cyber-purple dark:border-zinc-700/60 dark:bg-white/5 dark:text-zinc-300'
+              ]"
+              v-motion
+              :initial="{ opacity: 0, y: 16 }"
+              :visibleOnce="{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  delay: projectDelays.filters + index * 0.05,
+                  duration: 0.4,
+                  ease: 'easeOut'
+                }
+              }"
+              @click="activeCategory = category.value"
+            >
+              {{ category.label }}
+            </button>
           </div>
 
           <div
@@ -321,23 +303,15 @@ onClickOutside(tagMenuRef, (event) => {
             }"
           >
             <div class="flex w-full flex-wrap items-center gap-3 lg:w-auto">
-              <div
-                class="relative"
-                ref="tagButtonRef"
-                v-motion
-                :initial="{ opacity: 0, y: 28, scale: 0.95, blur: 8 }"
-                :visibleOnce="{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  blur: 0,
-                  transition: { delay: projectDelays.filters + 0.14, type: 'spring', stiffness: 120, damping: 24 }
-                }"
+              <UPopover
+                v-model:open="tagMenuOpen"
+                :content="{ side: 'bottom', align: 'start', sideOffset: 8, collisionPadding: 12 }"
+                arrow
               >
+                <!-- Trigger -->
                 <UButton
                   variant="soft"
                   class="group inline-flex items-center gap-3 rounded-full border border-zinc-200/70 bg-white/70 px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-green/50 hover:text-cyber-green hover:shadow-[0_18px_45px_-28px_rgba(34,197,94,0.45)] dark:border-zinc-700/70 dark:bg-white/10 dark:text-zinc-200"
-                  @click="toggleTagMenu"
                 >
                   <UIcon name="i-heroicons-tag-20-solid" class="h-5 w-5 text-zinc-400 group-hover:text-cyber-green" />
                   <span class="font-medium">{{ t('projects.filters.tags.button') }}</span>
@@ -352,19 +326,10 @@ onClickOutside(tagMenuRef, (event) => {
                     class="h-4 w-4 text-zinc-400 transition-transform duration-300 group-hover:text-cyber-green"
                   />
                 </UButton>
-                <transition
-                  enter-active-class="transition duration-200 ease-out"
-                  enter-from-class="translate-y-2 opacity-0"
-                  enter-to-class="translate-y-0 opacity-100"
-                  leave-active-class="transition duration-150 ease-in"
-                  leave-from-class="translate-y-0 opacity-100"
-                  leave-to-class="translate-y-2 opacity-0"
-                >
-                  <div
-                    v-if="tagMenuOpen"
-                    ref="tagMenuRef"
-                    class="absolute left-0 z-20 mt-2 w-80 overflow-hidden rounded-3xl border border-zinc-200/70 bg-white/95 shadow-[0_25px_70px_-40px_rgba(15,23,42,0.4)] backdrop-blur-lg dark:border-white/10 dark:bg-slate-900/90"
-                  >
+
+                <!-- Content -->
+                <template #content>
+                  <div class="z-[9999] w-80 overflow-hidden rounded-3xl border border-zinc-200/70 bg-white/95 p-0 shadow-[0_25px_70px_-40px_rgba(15,23,42,0.4)] backdrop-blur-lg dark:border-white/10 dark:bg-slate-900/90">
                     <div class="space-y-4 p-4">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">
@@ -375,23 +340,23 @@ onClickOutside(tagMenuRef, (event) => {
                             v-if="activeTags.length"
                             type="button"
                             class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
-                            @click="clearTagFilters"
+                            @click="activeTags = []"
                           >
                             {{ t('projects.filters.tags.clear') }}
                           </button>
                           <button
                             type="button"
                             class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
-                            @click="closeTagMenu"
+                            @click="tagMenuOpen = false; tagSearchQuery = ''"
                           >
                             {{ t('projects.filters.tags.done') }}
                           </button>
                         </div>
                       </div>
+
+                      <!-- Search -->
                       <label class="relative block">
-                        <span
-                          class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-zinc-400 dark:text-zinc-500"
-                        >
+                        <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-zinc-400 dark:text-zinc-500">
                           <UIcon name="i-heroicons-magnifying-glass-20-solid" class="h-4 w-4" />
                         </span>
                         <input
@@ -401,11 +366,10 @@ onClickOutside(tagMenuRef, (event) => {
                           class="w-full rounded-2xl border border-zinc-200/60 bg-white/80 py-2 pl-10 pr-3 text-sm text-zinc-700 transition focus:border-cyber-purple/50 focus:outline-none focus:ring-2 focus:ring-cyber-purple/30 dark:border-zinc-600/60 dark:bg-white/10 dark:text-white"
                         />
                       </label>
+
+                      <!-- Options -->
                       <div class="max-h-64 space-y-2 overflow-y-auto pr-1 pt-2">
-                        <p
-                          v-if="filteredTagOptions.length === 0"
-                          class="text-sm text-zinc-500 dark:text-zinc-400"
-                        >
+                        <p v-if="filteredTagOptions.length === 0" class="text-sm text-zinc-500 dark:text-zinc-400">
                           {{ t('projects.filters.tags.empty') }}
                         </p>
                         <button
@@ -418,7 +382,7 @@ onClickOutside(tagMenuRef, (event) => {
                               ? 'border-cyber-green/55 bg-cyber-green/15 text-cyber-green hover:border-cyber-green/70 hover:bg-cyber-green/25 dark:bg-cyber-green/20 dark:hover:bg-cyber-green/30'
                               : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-green/55 hover:bg-cyber-green/15 hover:text-cyber-green dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-green/20'
                           ]"
-                          @click="toggleTag(tag)"
+                          @click="activeTags = activeTags.includes(tag) ? activeTags.filter(t => t !== tag) : [...activeTags, tag]"
                         >
                           <span class="capitalize">{{ tag }}</span>
                           <UIcon
@@ -429,8 +393,8 @@ onClickOutside(tagMenuRef, (event) => {
                       </div>
                     </div>
                   </div>
-                </transition>
-              </div>
+                </template>
+              </UPopover>
 
               <button
                 v-if="hasActiveFilters"
