@@ -162,13 +162,9 @@ const educationDelays = {
             <div class="pointer-events-none absolute inset-x-12 top-10 h-28 bg-gradient-to-br blur-3xl" :class="category.gradient"></div>
 
             <div class="relative flex h-full flex-col gap-5 p-6">
-              <div class="flex items-start gap-4">
-                <div
-                  class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyber-purple/20 via-cyber-purple/10 to-cyber-green/20 text-cyber-green/90 shadow-inner"
-                >
-                  <UIcon :name="category.icon" class="h-6 w-6" />
-                </div>
-                <div class="space-y-2">
+              <div class="flex items-start gap-2 pl-2">
+                <UIcon :name="category.icon" class="-mt-0.5 h-10 w-10 text-cyber-green/90" />
+                <div class="space-y-1 pl-2">
                   <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
                     {{ category.label }}
                   </h3>
