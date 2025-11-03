@@ -53,7 +53,8 @@
   },
   "scrollIndicator": {
     "title": "Weiter scrollen",
-    "subtitle": "Unten wartet mehr Magie"
+    "subtitle": "Unten wartet mehr Magie",
+    "top": "Seitenanfang"
   },
   "about": {
     "badge": "Digitale Geschichten gestalten",

@@ -53,7 +53,8 @@
   },
   "scrollIndicator": {
     "title": "Scroll to explore",
-    "subtitle": "There's more magic below"
+    "subtitle": "There's more magic below",
+    "top": "Top"
   },
   "about": {
     "badge": "Crafting digital narratives",
