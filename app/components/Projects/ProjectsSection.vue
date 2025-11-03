@@ -287,7 +287,7 @@
             }
           }"
         >
-          <ProjectCard :project="p" />
+          <ProjectsCard :project="p" />
         </div>
       </div>
       <div

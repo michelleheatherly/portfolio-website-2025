@@ -145,7 +145,7 @@
             transition: { delay: blogDelays.feed, type: 'spring', stiffness: 110, damping: 26 }
           }"
         >
-          <FeedCards />
+          <BlogFeedCards />
         </div>
       </div>
     </UContainer>
