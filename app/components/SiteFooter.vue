@@ -213,6 +213,9 @@ if (import.meta.client) {
         </span>
       </div>
     </UContainer>
+    <ClientOnly>
+      <ScrollToTop :footer-visible="footerVisible" />
+    </ClientOnly>
   </footer>
 </template>
 
