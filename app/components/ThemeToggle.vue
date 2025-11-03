@@ -1,3 +1,43 @@
+<template>
+  <ClientOnly>
+    <UButton
+      :aria-label="ariaLabel"
+      color="neutral"
+      variant="ghost"
+      size="sm"
+      :class="[
+        'group/theme-toggle rounded-full',
+        quickMode ? 'transition-none duration-0' : 'transition-colors duration-300'
+      ]"
+      @click="onClick"
+    >
+      <UIcon
+        :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
+        :class="[
+          'h-5 w-5',
+          quickMode ? 'transition-none duration-0' : 'transition-transform duration-500 group-hover/theme-toggle:-translate-y-0.5 group-hover/theme-toggle:rotate-12'
+        ]"
+      />
+    </UButton>
+
+    <template #fallback>
+      <UButton
+        :aria-label="ariaLabel"
+        color="neutral"
+        variant="ghost"
+        size="sm"
+        class="group/theme-toggle rounded-full transition-none duration-0"
+        @click="switchTheme"
+      >
+        <UIcon
+          :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
+          class="h-5 w-5 transition-none duration-0"
+        />
+      </UButton>
+    </template>
+  </ClientOnly>
+</template>
+
 <script setup lang="ts">
 const colorMode = useColorMode()
 const { t } = useI18n()
@@ -65,46 +105,6 @@ function startViewTransition(event: MouseEvent) {
 
 const quickMode = computed(() => prefersReduced() || isSafari.value || !supportsViewTransition())
 </script>
-
-<template>
-  <ClientOnly>
-    <UButton
-      :aria-label="ariaLabel"
-      color="neutral"
-      variant="ghost"
-      size="sm"
-      :class="[
-        'group/theme-toggle rounded-full',
-        quickMode ? 'transition-none duration-0' : 'transition-colors duration-300'
-      ]"
-      @click="onClick"
-    >
-      <UIcon
-        :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
-        :class="[
-          'h-5 w-5',
-          quickMode ? 'transition-none duration-0' : 'transition-transform duration-500 group-hover/theme-toggle:-translate-y-0.5 group-hover/theme-toggle:rotate-12'
-        ]"
-      />
-    </UButton>
-
-    <template #fallback>
-      <UButton
-        :aria-label="ariaLabel"
-        color="neutral"
-        variant="ghost"
-        size="sm"
-        class="group/theme-toggle rounded-full transition-none duration-0"
-        @click="switchTheme"
-      >
-        <UIcon
-          :name="`i-lucide-${nextTheme === 'dark' ? 'sun' : 'moon'}`"
-          class="h-5 w-5 transition-none duration-0"
-        />
-      </UButton>
-    </template>
-  </ClientOnly>
-</template>
 
 <style>
 ::view-transition-old(root),

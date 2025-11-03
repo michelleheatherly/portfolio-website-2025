@@ -1,36 +1,3 @@
-<script setup lang="ts">
-const { t, locale } = useI18n({ useScope: 'global' })
-
-const runtimeConfig = useRuntimeConfig()
-const feedUrl = computed(() => runtimeConfig.public.feedUrl || '')
-const rawBlogUrl = computed(() => runtimeConfig.public.blogUrl || '')
-const blogUrl = computed(() => {
-  const base = rawBlogUrl.value
-  if (!base)
-    return ''
-
-  if (locale.value?.startsWith('de')) {
-    const normalized = base.replace(/\/+$/, '')
-    return `${normalized}/de`
-  }
-
-  return base
-})
-
-const showFeedLink = computed(() => feedUrl.value && !feedUrl.value.includes('example.com'))
-const showBlogLink = computed(() => blogUrl.value && !blogUrl.value.includes('example.com'))
-
-const blogDelays = {
-  container: 0.08,
-  badge: 0.16,
-  heading: 0.24,
-  description: 0.32,
-  note: 0.42,
-  buttons: 0.5,
-  feed: 0.28
-}
-</script>
-
 <template>
   <section id="blog" class="relative overflow-hidden transition-colors duration-300">
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10 dark:from-cyber-purple/15 dark:to-cyber-green/10" />
@@ -184,3 +151,36 @@ const blogDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+const { t, locale } = useI18n({ useScope: 'global' })
+
+const runtimeConfig = useRuntimeConfig()
+const feedUrl = computed(() => runtimeConfig.public.feedUrl || '')
+const rawBlogUrl = computed(() => runtimeConfig.public.blogUrl || '')
+const blogUrl = computed(() => {
+  const base = rawBlogUrl.value
+  if (!base)
+    return ''
+
+  if (locale.value?.startsWith('de')) {
+    const normalized = base.replace(/\/+$/, '')
+    return `${normalized}/de`
+  }
+
+  return base
+})
+
+const showFeedLink = computed(() => feedUrl.value && !feedUrl.value.includes('example.com'))
+const showBlogLink = computed(() => blogUrl.value && !blogUrl.value.includes('example.com'))
+
+const blogDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.32,
+  note: 0.42,
+  buttons: 0.5,
+  feed: 0.28
+}
+</script>

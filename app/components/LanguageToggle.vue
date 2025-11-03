@@ -1,3 +1,16 @@
+<template>
+  <UButton
+    color="neutral"
+    variant="ghost"
+    size="sm"
+    class="rounded-full font-semibold tracking-wide transition-colors duration-300"
+    :aria-label="buttonLabel"
+    @click="toggleLocale"
+  >
+    {{ buttonText }}
+  </UButton>
+</template>
+
 <script setup lang="ts">
 const { locale, setLocale, t } = useI18n()
 
@@ -20,15 +33,3 @@ async function toggleLocale() {
 }
 </script>
 
-<template>
-  <UButton
-    color="neutral"
-    variant="ghost"
-    size="sm"
-    class="rounded-full font-semibold tracking-wide transition-colors duration-300"
-    :aria-label="buttonLabel"
-    @click="toggleLocale"
-  >
-    {{ buttonText }}
-  </UButton>
-</template>

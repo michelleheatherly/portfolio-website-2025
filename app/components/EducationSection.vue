@@ -1,81 +1,3 @@
-<script setup lang="ts">
-type EducationEntry = {
-  title: string
-  org: string
-  period: string
-  highlight: string
-}
-
-type EducationCategoryContent = {
-  label: string
-  description: string
-  entries: EducationEntry[]
-}
-
-const educationCategoryMeta = [
-  {
-    id: 'college',
-    icon: 'i-heroicons-academic-cap-20-solid',
-    accent: 'bg-cyber-purple/30',
-    gradient: 'from-cyber-purple/40 via-cyber-purple/20 to-cyber-green/20'
-  },
-  {
-    id: 'certifications',
-    icon: 'i-heroicons-check-badge-20-solid',
-    accent: 'bg-cyber-green/30',
-    gradient: 'from-cyber-green/40 via-cyber-green/25 to-cyber-purple/20'
-  },
-  {
-    id: 'trainings',
-    icon: 'i-heroicons-light-bulb-20-solid',
-    accent: 'bg-cyber-purple/20',
-    gradient: 'from-cyber-purple/35 via-cyber-green/25 to-cyber-purple/15'
-  }
-] as const
-
-const { t, tm, rt } = useI18n()
-
-const resolveLocaleValue = (value: unknown): any => {
-  if (Array.isArray(value)) {
-    return value.map(resolveLocaleValue)
-  }
-
-  if (value && typeof value === 'object') {
-    if ('type' in value && 'loc' in value) {
-      return rt(value as any)
-    }
-
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
-    )
-  }
-
-  return value
-}
-
-const educationCategories = computed(() => {
-  const localized = resolveLocaleValue(tm('education.categories')) as Record<string, EducationCategoryContent> | undefined
-  return educationCategoryMeta.map((meta) => {
-    const content = localized?.[meta.id]
-
-    return {
-      ...meta,
-      label: content?.label ?? '',
-      description: content?.description ?? '',
-      entries: Array.isArray(content?.entries) ? content.entries : []
-    }
-  })
-})
-
-const educationDelays = {
-  container: 0.08,
-  badge: 0.16,
-  heading: 0.24,
-  description: 0.34,
-  cards: 0.4
-}
-</script>
-
 <template>
   <section
     id="education"
@@ -204,6 +126,84 @@ const educationDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+type EducationEntry = {
+  title: string
+  org: string
+  period: string
+  highlight: string
+}
+
+type EducationCategoryContent = {
+  label: string
+  description: string
+  entries: EducationEntry[]
+}
+
+const educationCategoryMeta = [
+  {
+    id: 'college',
+    icon: 'i-heroicons-academic-cap-20-solid',
+    accent: 'bg-cyber-purple/30',
+    gradient: 'from-cyber-purple/40 via-cyber-purple/20 to-cyber-green/20'
+  },
+  {
+    id: 'certifications',
+    icon: 'i-heroicons-check-badge-20-solid',
+    accent: 'bg-cyber-green/30',
+    gradient: 'from-cyber-green/40 via-cyber-green/25 to-cyber-purple/20'
+  },
+  {
+    id: 'trainings',
+    icon: 'i-heroicons-light-bulb-20-solid',
+    accent: 'bg-cyber-purple/20',
+    gradient: 'from-cyber-purple/35 via-cyber-green/25 to-cyber-purple/15'
+  }
+] as const
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const educationCategories = computed(() => {
+  const localized = resolveLocaleValue(tm('education.categories')) as Record<string, EducationCategoryContent> | undefined
+  return educationCategoryMeta.map((meta) => {
+    const content = localized?.[meta.id]
+
+    return {
+      ...meta,
+      label: content?.label ?? '',
+      description: content?.description ?? '',
+      entries: Array.isArray(content?.entries) ? content.entries : []
+    }
+  })
+})
+
+const educationDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.34,
+  cards: 0.4
+}
+</script>
 
 <style scoped>
 .timeline {

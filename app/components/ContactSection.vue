@@ -1,13 +1,3 @@
-<script setup lang="ts">
-const { t } = useI18n()
-
-const contactDelays = {
-  container: 0.12,
-  panel: 0.24,
-  form: 0.34
-}
-</script>
-
 <template>
   <section id="contact" class="relative transition-colors duration-300">
     <UContainer class="py-24">
@@ -74,3 +64,13 @@ const contactDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+const { t } = useI18n()
+
+const contactDelays = {
+  container: 0.12,
+  panel: 0.24,
+  form: 0.34
+}
+</script>

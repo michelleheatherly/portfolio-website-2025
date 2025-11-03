@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <div class="relative flex min-h-dvh flex-col">
     <ClientOnly>
@@ -16,3 +13,6 @@
     <SiteFooter />
   </div>
 </template>
+
+<script setup lang="ts">
+</script>

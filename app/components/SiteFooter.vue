@@ -1,112 +1,3 @@
-<script setup lang="ts">
-import { useIntersectionObserver } from '@vueuse/core'
-
-const footerRef = ref<HTMLElement | null>(null)
-const footerVisible = useState<boolean>('footer-visible', () => false)
-const FOOTER_VISIBILITY_RATIO = 0.6
-const currentYear = new Date().getFullYear()
-
-const navItemsMeta = [
-  { key: 'home', href: '#home' },
-  { key: 'projects', href: '#projects' },
-  { key: 'services', href: '#services' },
-  { key: 'about', href: '#about' },
-  { key: 'contact', href: '#contact' }
-] as const
-
-const { t, tm, rt } = useI18n()
-
-const resolveLocaleValue = (value: unknown): any => {
-  if (Array.isArray(value)) {
-    return value.map(resolveLocaleValue)
-  }
-
-  if (value && typeof value === 'object') {
-    if ('type' in value && 'loc' in value) {
-      return rt(value as any)
-    }
-
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
-    )
-  }
-
-  return value
-}
-
-const footerMessages = computed(() => resolveLocaleValue(tm('footer')))
-
-const siteName = computed(() => t('footer.siteName'))
-const siteDescription = computed(() => t('footer.description'))
-
-const primarySections = computed(() =>
-  navItemsMeta.map((item) => ({
-    label: t(`footer.columns.navigate.items.${item.key}`),
-    href: item.href
-  }))
-)
-
-const studioHighlights = computed(() => {
-  const highlights = footerMessages.value?.columns?.expertise?.items
-  return Array.isArray(highlights) ? highlights.map((item: unknown) => String(item)) : []
-})
-
-const socialLinks = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/',
-    icon: 'i-simple-icons-github'
-  },
-  {
-    label: 'GitLab',
-    href: 'https://gitlab.com/',
-    icon: 'i-simple-icons-gitlab'
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/',
-    icon: 'i-simple-icons-linkedin'
-  },
-  {
-    label: 'Blog',
-    href: 'https://www.michelle-heatherly.com/blog',
-    icon: 'i-heroicons-newspaper-20-solid'
-  }
-]
-
-const footerColumns = computed(() => [
-  {
-    title: t('footer.columns.navigate.title'),
-    links: primarySections.value,
-    type: 'links' as const
-  },
-  {
-    title: t('footer.columns.expertise.title'),
-    highlights: studioHighlights.value,
-    type: 'highlights' as const
-  }
-])
-
-if (import.meta.client) {
-  useIntersectionObserver(
-    footerRef,
-    ([entry]) => {
-      if (!entry) {
-        footerVisible.value = false
-        return
-      }
-
-      const ratio = entry.intersectionRatio ?? 0
-      footerVisible.value = entry.isIntersecting && ratio >= FOOTER_VISIBILITY_RATIO
-    },
-    {
-      threshold: Array.from({ length: 11 }, (_, index) => index / 10),
-      rootMargin: '0px 0px -40px 0px'
-    }
-  )
-}
-</script>
-
 <template>
   <footer
     ref="footerRef"
@@ -218,6 +109,116 @@ if (import.meta.client) {
     </ClientOnly>
   </footer>
 </template>
+
+<script setup lang="ts">
+import { useIntersectionObserver } from '@vueuse/core'
+
+const footerRef = ref<HTMLElement | null>(null)
+const footerVisible = useState<boolean>('footer-visible', () => false)
+const FOOTER_VISIBILITY_RATIO = 0.6
+const currentYear = new Date().getFullYear()
+
+const navItemsMeta = [
+  { key: 'home', href: '#home' },
+  { key: 'projects', href: '#projects' },
+  { key: 'services', href: '#services' },
+  { key: 'about', href: '#about' },
+  { key: 'contact', href: '#contact' }
+] as const
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const footerMessages = computed(() => resolveLocaleValue(tm('footer')))
+
+const siteName = computed(() => t('footer.siteName'))
+const siteDescription = computed(() => t('footer.description'))
+
+const primarySections = computed(() =>
+  navItemsMeta.map((item) => ({
+    label: t(`footer.columns.navigate.items.${item.key}`),
+    href: item.href
+  }))
+)
+
+const studioHighlights = computed(() => {
+  const highlights = footerMessages.value?.columns?.expertise?.items
+  return Array.isArray(highlights) ? highlights.map((item: unknown) => String(item)) : []
+})
+
+const socialLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/',
+    icon: 'i-simple-icons-github'
+  },
+  {
+    label: 'GitLab',
+    href: 'https://gitlab.com/',
+    icon: 'i-simple-icons-gitlab'
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/',
+    icon: 'i-simple-icons-linkedin'
+  },
+  {
+    label: 'Blog',
+    href: 'https://www.michelle-heatherly.com/blog',
+    icon: 'i-heroicons-newspaper-20-solid'
+  }
+]
+
+const footerColumns = computed(() => [
+  {
+    title: t('footer.columns.navigate.title'),
+    links: primarySections.value,
+    type: 'links' as const
+  },
+  {
+    title: t('footer.columns.expertise.title'),
+    highlights: studioHighlights.value,
+    type: 'highlights' as const
+  }
+])
+
+if (import.meta.client) {
+  useIntersectionObserver(
+    footerRef,
+    ([entry]) => {
+      if (!entry) {
+        footerVisible.value = false
+        return
+      }
+
+      const ratio = entry.intersectionRatio ?? 0
+      footerVisible.value = entry.isIntersecting && ratio >= FOOTER_VISIBILITY_RATIO
+    },
+    {
+      threshold: Array.from({ length: 11 }, (_, index) => index / 10),
+      rootMargin: '0px 0px -40px 0px'
+    }
+  )
+}
+</script>
+
 
 <style scoped>
 .animate-ping-slow {

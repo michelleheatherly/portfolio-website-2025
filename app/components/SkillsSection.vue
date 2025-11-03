@@ -1,94 +1,3 @@
-<script setup lang="ts">
-type SkillSectionContent = {
-  title: string
-  blurb: string
-  highlights: string[]
-  peek: string
-}
-
-const skillSectionMeta = [
-  {
-    id: 'frontend',
-    icon: 'i-heroicons-rocket-launch-20-solid',
-    accentGradient: 'from-cyber-purple/0 via-cyber-purple/20 to-cyber-purple/35',
-    accentGlow: 'bg-cyber-purple/30',
-    motif: 'bg-[radial-gradient(circle_at_top,rgba(165,180,252,0.22),transparent_60%)]'
-  },
-  {
-    id: 'designSystems',
-    icon: 'i-heroicons-swatch-20-solid',
-    accentGradient: 'from-cyan-400/0 via-cyan-400/20 to-cyan-400/35',
-    accentGlow: 'bg-cyan-400/30',
-    motif: 'bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.22),transparent_58%)]'
-  },
-  {
-    id: 'motion',
-    icon: 'i-heroicons-sparkles-20-solid',
-    accentGradient: 'from-emerald-400/0 via-emerald-400/20 to-emerald-400/35',
-    accentGlow: 'bg-emerald-400/30',
-    motif: 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.24),transparent_55%)]'
-  },
-  {
-    id: 'quality',
-    icon: 'i-heroicons-eye-dropper-20-solid',
-    accentGradient: 'from-amber-400/0 via-amber-400/20 to-amber-400/35',
-    accentGlow: 'bg-amber-400/30',
-    motif: 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.24),transparent_60%)]'
-  },
-  {
-    id: 'collaboration',
-    icon: 'i-heroicons-users-20-solid',
-    accentGradient: 'from-rose-400/0 via-rose-400/20 to-rose-400/35',
-    accentGlow: 'bg-rose-400/30',
-    motif: 'bg-[radial-gradient(circle_at_bottom_left,rgba(251,113,133,0.22),transparent_60%)]'
-  },
-  {
-    id: 'engineering',
-    icon: 'i-heroicons-cog-8-tooth-20-solid',
-    accentGradient: 'from-indigo-400/0 via-indigo-400/20 to-indigo-400/35',
-    accentGlow: 'bg-indigo-400/30',
-    motif: 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.22),transparent_58%)]'
-  }
-] as const
-
-const { t, tm, rt } = useI18n()
-
-const resolveLocaleValue = (value: unknown): any => {
-  if (Array.isArray(value)) {
-    return value.map(resolveLocaleValue)
-  }
-
-  if (value && typeof value === 'object') {
-    if ('type' in value && 'loc' in value) {
-      return rt(value as any)
-    }
-
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
-    )
-  }
-
-  return value
-}
-
-const skillSections = computed(() => {
-  const localized = resolveLocaleValue(tm('skills.sections')) as Record<string, SkillSectionContent> | undefined
-
-  return skillSectionMeta.map((meta) => ({
-    ...meta,
-    ...(localized?.[meta.id] ?? { title: '', blurb: '', highlights: [], peek: '' })
-  }))
-})
-
-const skillDelays = {
-  container: 0.08,
-  badge: 0.16,
-  heading: 0.24,
-  description: 0.34,
-  cards: 0.38
-}
-</script>
-
 <template>
   <section id="skills" class="relative transition-colors duration-300">
     <UContainer class="py-24">
@@ -232,3 +141,94 @@ const skillDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+type SkillSectionContent = {
+  title: string
+  blurb: string
+  highlights: string[]
+  peek: string
+}
+
+const skillSectionMeta = [
+  {
+    id: 'frontend',
+    icon: 'i-heroicons-rocket-launch-20-solid',
+    accentGradient: 'from-cyber-purple/0 via-cyber-purple/20 to-cyber-purple/35',
+    accentGlow: 'bg-cyber-purple/30',
+    motif: 'bg-[radial-gradient(circle_at_top,rgba(165,180,252,0.22),transparent_60%)]'
+  },
+  {
+    id: 'designSystems',
+    icon: 'i-heroicons-swatch-20-solid',
+    accentGradient: 'from-cyan-400/0 via-cyan-400/20 to-cyan-400/35',
+    accentGlow: 'bg-cyan-400/30',
+    motif: 'bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.22),transparent_58%)]'
+  },
+  {
+    id: 'motion',
+    icon: 'i-heroicons-sparkles-20-solid',
+    accentGradient: 'from-emerald-400/0 via-emerald-400/20 to-emerald-400/35',
+    accentGlow: 'bg-emerald-400/30',
+    motif: 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.24),transparent_55%)]'
+  },
+  {
+    id: 'quality',
+    icon: 'i-heroicons-eye-dropper-20-solid',
+    accentGradient: 'from-amber-400/0 via-amber-400/20 to-amber-400/35',
+    accentGlow: 'bg-amber-400/30',
+    motif: 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.24),transparent_60%)]'
+  },
+  {
+    id: 'collaboration',
+    icon: 'i-heroicons-users-20-solid',
+    accentGradient: 'from-rose-400/0 via-rose-400/20 to-rose-400/35',
+    accentGlow: 'bg-rose-400/30',
+    motif: 'bg-[radial-gradient(circle_at_bottom_left,rgba(251,113,133,0.22),transparent_60%)]'
+  },
+  {
+    id: 'engineering',
+    icon: 'i-heroicons-cog-8-tooth-20-solid',
+    accentGradient: 'from-indigo-400/0 via-indigo-400/20 to-indigo-400/35',
+    accentGlow: 'bg-indigo-400/30',
+    motif: 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.22),transparent_58%)]'
+  }
+] as const
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const skillSections = computed(() => {
+  const localized = resolveLocaleValue(tm('skills.sections')) as Record<string, SkillSectionContent> | undefined
+
+  return skillSectionMeta.map((meta) => ({
+    ...meta,
+    ...(localized?.[meta.id] ?? { title: '', blurb: '', highlights: [], peek: '' })
+  }))
+})
+
+const skillDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.34,
+  cards: 0.38
+}
+</script>

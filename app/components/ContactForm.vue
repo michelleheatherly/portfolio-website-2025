@@ -1,38 +1,3 @@
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-
-const formRef = ref<HTMLElement | null>(null)
-const spotlight = reactive({
-  x: 50,
-  y: 50,
-  active: false
-})
-
-const { t } = useI18n()
-
-const updateSpotlight = (event: PointerEvent) => {
-  if (!formRef.value) {
-    return
-  }
-
-  const rect = formRef.value.getBoundingClientRect()
-  const x = ((event.clientX - rect.left) / rect.width) * 100
-  const y = ((event.clientY - rect.top) / rect.height) * 100
-
-  spotlight.x = Math.min(100, Math.max(0, x))
-  spotlight.y = Math.min(100, Math.max(0, y))
-  spotlight.active = true
-}
-
-const resetSpotlight = () => {
-  spotlight.active = false
-}
-
-const fieldClasses =
-  'w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-base text-zinc-900 placeholder:text-zinc-400 backdrop-blur focus:outline-none focus:ring-2 focus:ring-cyber-purple/50 focus:border-transparent focus:shadow-[0_20px_45px_-28px_rgba(148,163,235,0.8)] transition-all duration-300 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/50';
-const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
-</script>
-
 <template>
   <form
     ref="formRef"
@@ -149,3 +114,36 @@ const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
     </div>
   </form>
 </template>
+
+<script setup lang="ts">
+const formRef = ref<HTMLElement | null>(null)
+const spotlight = reactive({
+  x: 50,
+  y: 50,
+  active: false
+})
+
+const { t } = useI18n()
+
+const updateSpotlight = (event: PointerEvent) => {
+  if (!formRef.value) {
+    return
+  }
+
+  const rect = formRef.value.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+
+  spotlight.x = Math.min(100, Math.max(0, x))
+  spotlight.y = Math.min(100, Math.max(0, y))
+  spotlight.active = true
+}
+
+const resetSpotlight = () => {
+  spotlight.active = false
+}
+
+const fieldClasses =
+  'w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-base text-zinc-900 placeholder:text-zinc-400 backdrop-blur focus:outline-none focus:ring-2 focus:ring-cyber-purple/50 focus:border-transparent focus:shadow-[0_20px_45px_-28px_rgba(148,163,235,0.8)] transition-all duration-300 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/50';
+const textareaClasses = fieldClasses + ' min-h-[160px] resize-none align-top';
+</script>

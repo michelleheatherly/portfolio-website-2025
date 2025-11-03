@@ -1,67 +1,3 @@
-<script setup lang="ts">
-import { useScroll, usePreferredReducedMotion, useWindowSize } from '@vueuse/core'
-
-const { y } = useScroll(window)
-const prefersReduced = usePreferredReducedMotion()
-const { height: viewportHeight } = useWindowSize()
-
-const k = computed(() => (prefersReduced.value === 'reduce' ? 0 : 1))
-
-const NEBULA_FALLBACK_SPAN = 1200
-const loopSpan = computed(() => {
-  const view = viewportHeight.value || 0
-  if (!view) {
-    return NEBULA_FALLBACK_SPAN
-  }
-  return Math.max(view * 1.5, NEBULA_FALLBACK_SPAN)
-})
-
-type LoopState = {
-  raw: number
-  base: number
-  span: number
-  offsets: number[]
-}
-
-const makeLoopState = (factor: number) =>
-  computed<LoopState>(() => {
-    if (k.value === 0) {
-      return { raw: 0, base: 0, span: 0, offsets: [0] }
-    }
-    const span = loopSpan.value
-    const raw = y.value * factor * k.value
-    if (!span || !Number.isFinite(span)) {
-      return { raw, base: raw, span: span || 0, offsets: [raw] }
-    }
-    const base = ((raw % span) + span) % span
-    return {
-      raw,
-      base,
-      span,
-      offsets: [base - span, base, base + span],
-    }
-  })
-
-const layer1Loop = makeLoopState(0.10)
-const layer2Loop = makeLoopState(0.20)
-const layer3Loop = makeLoopState(0.35)
-const layer4Loop = makeLoopState(0.50)
-
-const layer1Transform = computed(() =>
-  k.value === 0 ? 'translateY(0px)' : `translateY(${layer1Loop.value.base.toFixed(2)}px)`
-)
-const layer1BgPos = computed(() => {
-  if (k.value === 0) {
-    return 'center 50%'
-  }
-  const shift = (y.value * 0.08 * k.value).toFixed(2)
-  return `center calc(50% + ${shift}px)`
-})
-const layer2Offsets = computed(() => layer2Loop.value.offsets)
-const layer3Offsets = computed(() => layer3Loop.value.offsets)
-const layer4Offsets = computed(() => layer4Loop.value.offsets)
-</script>
-
 <template>
   <div
     class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none transition-colors duration-500 parallax-root"
@@ -170,6 +106,71 @@ const layer4Offsets = computed(() => layer4Loop.value.offsets)
     />
   </div>
 </template>
+
+<script setup lang="ts">
+import { useScroll, usePreferredReducedMotion, useWindowSize } from '@vueuse/core'
+
+const { y } = useScroll(window)
+const prefersReduced = usePreferredReducedMotion()
+const { height: viewportHeight } = useWindowSize()
+
+const k = computed(() => (prefersReduced.value === 'reduce' ? 0 : 1))
+
+const NEBULA_FALLBACK_SPAN = 1200
+const loopSpan = computed(() => {
+  const view = viewportHeight.value || 0
+  if (!view) {
+    return NEBULA_FALLBACK_SPAN
+  }
+  return Math.max(view * 1.5, NEBULA_FALLBACK_SPAN)
+})
+
+type LoopState = {
+  raw: number
+  base: number
+  span: number
+  offsets: number[]
+}
+
+const makeLoopState = (factor: number) =>
+  computed<LoopState>(() => {
+    if (k.value === 0) {
+      return { raw: 0, base: 0, span: 0, offsets: [0] }
+    }
+    const span = loopSpan.value
+    const raw = y.value * factor * k.value
+    if (!span || !Number.isFinite(span)) {
+      return { raw, base: raw, span: span || 0, offsets: [raw] }
+    }
+    const base = ((raw % span) + span) % span
+    return {
+      raw,
+      base,
+      span,
+      offsets: [base - span, base, base + span],
+    }
+  })
+
+const layer1Loop = makeLoopState(0.10)
+const layer2Loop = makeLoopState(0.20)
+const layer3Loop = makeLoopState(0.35)
+const layer4Loop = makeLoopState(0.50)
+
+const layer1Transform = computed(() =>
+  k.value === 0 ? 'translateY(0px)' : `translateY(${layer1Loop.value.base.toFixed(2)}px)`
+)
+const layer1BgPos = computed(() => {
+  if (k.value === 0) {
+    return 'center 50%'
+  }
+  const shift = (y.value * 0.08 * k.value).toFixed(2)
+  return `center calc(50% + ${shift}px)`
+})
+const layer2Offsets = computed(() => layer2Loop.value.offsets)
+const layer3Offsets = computed(() => layer3Loop.value.offsets)
+const layer4Offsets = computed(() => layer4Loop.value.offsets)
+</script>
+
 
 <style scoped>
 .parallax-root {

@@ -1,3 +1,83 @@
+<template>
+  <UCard
+    class="group relative h-full overflow-hidden rounded-2xl transition-all duration-300
+           border border-black/10 dark:border-white/10
+           bg-white/70 dark:bg-white/5 backdrop-blur-xl
+           hover:border-cyber-purple/30
+           focus-within:ring-2 focus-within:ring-cyber-purple/40"
+    v-motion
+    :initial="{ opacity: 0, y: 24, scale: 0.98 }"
+    :enter="{ opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 120, damping: 18 } }"
+    :hovered="hoveredMotion"
+    :pressed="pressedMotion"
+    :visibleOnce="true"
+    @pointermove="handlePointerMove"
+    @pointerleave="resetSpotlight"
+  >
+    <span
+      class="pointer-events-none absolute inset-px rounded-2xl
+             opacity-0 transition-opacity duration-500 group-hover:opacity-80"
+      :style="{ background: spotlightBackground }"
+    />
+
+    <span
+      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/0 via-cyber-purple/10 to-cyber-green/0
+             opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-soft-light"
+    />
+
+    <div class="relative">
+      <img
+        :src="project.image"
+        alt=""
+        class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
+      />
+      <span
+        class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 shadow-sm"
+        :class="categoryMeta.badgeClass"
+      >
+        <span class="h-1.5 w-1.5 rounded-full" :class="categoryMeta.dotClass" />
+        {{ categoryMeta.label }}
+      </span>
+    </div>
+
+    <div class="p-4 space-y-3">
+      <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
+        {{ project.title }}
+      </h3>
+
+      <p class="text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300">
+        {{ project.description }}
+      </p>
+
+      <div class="flex flex-wrap gap-2">
+        <UBadge
+          v-for="t in project.tags"
+          :key="t"
+          variant="soft"
+          class="text-xs border border-black/10 dark:border-white/10 transition-colors duration-300"
+          :ui="{ rounded: 'rounded-full' }"
+        >
+          {{ t }}
+        </UBadge>
+      </div>
+
+      <div class="pt-2">
+        <UButton
+          :to="project.link"
+          target="_blank"
+          class="group/button transition-colors duration-300"
+        >
+          <UIcon
+            name="i-heroicons-arrow-top-right-on-square-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
+          />
+          <span>{{ t('projects.card.view') }}</span>
+        </UButton>
+      </div>
+    </div>
+  </UCard>
+</template>
+
 <script setup lang="ts">
 import { usePreferredReducedMotion } from '@vueuse/core'
 
@@ -124,83 +204,3 @@ function resetSpotlight() {
   pointerY.value = 110
 }
 </script>
-
-<template>
-  <UCard
-    class="group relative h-full overflow-hidden rounded-2xl transition-all duration-300
-           border border-black/10 dark:border-white/10
-           bg-white/70 dark:bg-white/5 backdrop-blur-xl
-           hover:border-cyber-purple/30
-           focus-within:ring-2 focus-within:ring-cyber-purple/40"
-    v-motion
-    :initial="{ opacity: 0, y: 24, scale: 0.98 }"
-    :enter="{ opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 120, damping: 18 } }"
-    :hovered="hoveredMotion"
-    :pressed="pressedMotion"
-    :visibleOnce="true"
-    @pointermove="handlePointerMove"
-    @pointerleave="resetSpotlight"
-  >
-    <span
-      class="pointer-events-none absolute inset-px rounded-2xl
-             opacity-0 transition-opacity duration-500 group-hover:opacity-80"
-      :style="{ background: spotlightBackground }"
-    />
-
-    <span
-      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/0 via-cyber-purple/10 to-cyber-green/0
-             opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-soft-light"
-    />
-
-    <div class="relative">
-      <img
-        :src="project.image"
-        alt=""
-        class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
-      />
-      <span
-        class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 shadow-sm"
-        :class="categoryMeta.badgeClass"
-      >
-        <span class="h-1.5 w-1.5 rounded-full" :class="categoryMeta.dotClass" />
-        {{ categoryMeta.label }}
-      </span>
-    </div>
-
-    <div class="p-4 space-y-3">
-      <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
-        {{ project.title }}
-      </h3>
-
-      <p class="text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300">
-        {{ project.description }}
-      </p>
-
-      <div class="flex flex-wrap gap-2">
-        <UBadge
-          v-for="t in project.tags"
-          :key="t"
-          variant="soft"
-          class="text-xs border border-black/10 dark:border-white/10 transition-colors duration-300"
-          :ui="{ rounded: 'rounded-full' }"
-        >
-          {{ t }}
-        </UBadge>
-      </div>
-
-      <div class="pt-2">
-        <UButton
-          :to="project.link"
-          target="_blank"
-          class="group/button transition-colors duration-300"
-        >
-          <UIcon
-            name="i-heroicons-arrow-top-right-on-square-20-solid"
-            class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
-          />
-          <span>{{ t('projects.card.view') }}</span>
-        </UButton>
-      </div>
-    </div>
-  </UCard>
-</template>

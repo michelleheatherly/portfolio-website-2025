@@ -1,15 +1,3 @@
-<script setup lang="ts">
-const props = defineProps<{
-  badge?: string
-  headline: string
-  description: string
-}>()
-
-const { t } = useI18n()
-
-const badgeText = computed(() => props.badge ?? t('contact.badge'))
-</script>
-
 <template>
   <div v-motion v-motion-pop-visible-once :hovered="{ scale: 1.01, transition: { duration: 0.35 } }" class="relative space-y-6">
     <span
@@ -65,3 +53,15 @@ const badgeText = computed(() => props.badge ?? t('contact.badge'))
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps<{
+  badge?: string
+  headline: string
+  description: string
+}>()
+
+const { t } = useI18n()
+
+const badgeText = computed(() => props.badge ?? t('contact.badge'))
+</script>

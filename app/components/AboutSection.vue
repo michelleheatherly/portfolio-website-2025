@@ -1,52 +1,3 @@
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-
-const focusPanelRef = ref<HTMLElement | null>(null)
-const glow = reactive({
-  x: 50,
-  y: 50,
-  active: false
-})
-
-const { t, tm, rt, locale } = useI18n()
-
-const aboutBadges = computed(() => {
-  const raw = tm('about.badges')
-  if (!Array.isArray(raw))
-    return []
-
-  return raw.map((badge) => (typeof badge === 'string' ? badge : rt(badge)))
-})
-
-const updateGlow = (event: PointerEvent) => {
-  if (!focusPanelRef.value) {
-    return
-  }
-
-  const rect = focusPanelRef.value.getBoundingClientRect()
-  const x = ((event.clientX - rect.left) / rect.width) * 100
-  const y = ((event.clientY - rect.top) / rect.height) * 100
-
-  glow.x = Math.min(100, Math.max(0, x))
-  glow.y = Math.min(100, Math.max(0, y))
-  glow.active = true
-}
-
-const resetGlow = () => {
-  glow.active = false
-}
-
-const aboutDelays = {
-  container: 0.1,
-  badge: 0.16,
-  heading: 0.22,
-  description: 0.3,
-  cards: 0.36,
-  badges: 0.62,
-  portrait: 0.28
-}
-</script>
-
 <template>
   <section id="about" class="relative overflow-hidden transition-colors duration-300">
     <UContainer class="relative py-24">
@@ -353,3 +304,50 @@ const aboutDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+const focusPanelRef = ref<HTMLElement | null>(null)
+const glow = reactive({
+  x: 50,
+  y: 50,
+  active: false
+})
+
+const { t, tm, rt, locale } = useI18n()
+
+const aboutBadges = computed(() => {
+  const raw = tm('about.badges')
+  if (!Array.isArray(raw))
+    return []
+
+  return raw.map((badge) => (typeof badge === 'string' ? badge : rt(badge)))
+})
+
+const updateGlow = (event: PointerEvent) => {
+  if (!focusPanelRef.value) {
+    return
+  }
+
+  const rect = focusPanelRef.value.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+
+  glow.x = Math.min(100, Math.max(0, x))
+  glow.y = Math.min(100, Math.max(0, y))
+  glow.active = true
+}
+
+const resetGlow = () => {
+  glow.active = false
+}
+
+const aboutDelays = {
+  container: 0.1,
+  badge: 0.16,
+  heading: 0.22,
+  description: 0.3,
+  cards: 0.36,
+  badges: 0.62,
+  portrait: 0.28
+}
+</script>

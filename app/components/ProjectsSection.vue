@@ -1,178 +1,3 @@
-<script setup lang="ts">
-const categoryFilterMeta = [
-  { key: 'all', value: 'all' },
-  { key: 'front-end', value: 'front-end' },
-  { key: 'full-stack', value: 'full-stack' },
-  { key: 'design', value: 'design' }
-] as const
-
-type CategoryFilter = (typeof categoryFilterMeta)[number]['value']
-type ProjectCategory = Exclude<CategoryFilter, 'all'>
-
-const projectContentKeys = {
-  neonNodes: 'projects.list.neonNodes.description',
-  pulseUi: 'projects.list.pulseUi.description',
-  greenTrace: 'projects.list.greenTrace.description',
-  immersiveAtlas: 'projects.list.immersiveAtlas.description',
-  opsynkControl: 'projects.list.opsynkControl.description',
-  signalStudio: 'projects.list.signalStudio.description'
-} as const
-
-type Project = {
-  id: keyof typeof projectContentKeys
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  link: string
-  category: ProjectCategory
-}
-
-const projectMeta = [
-  {
-    id: 'neonNodes',
-    title: 'Neon Nodes',
-    image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Vue 3', 'WebRTC', 'Pinia'],
-    link: 'https://example.com/neon-nodes',
-    category: 'front-end'
-  },
-  {
-    id: 'pulseUi',
-    title: 'Pulse UI',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt UI', 'Design Tokens', 'D3'],
-    link: 'https://example.com/pulse-ui',
-    category: 'design'
-  },
-  {
-    id: 'greenTrace',
-    title: 'GreenTrace',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt', 'AI', 'Maps'],
-    link: 'https://example.com/greentrace',
-    category: 'full-stack'
-  },
-  {
-    id: 'immersiveAtlas',
-    title: 'Immersive Atlas',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
-    link: 'https://example.com/immersive-atlas',
-    category: 'front-end'
-  },
-  {
-    id: 'opsynkControl',
-    title: 'Opsynk Control',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
-    link: 'https://example.com/opsynk-control',
-    category: 'full-stack'
-  },
-  {
-    id: 'signalStudio',
-    title: 'Signal Studio',
-    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Design Systems', 'Nuxt UI', 'Docs'],
-    link: 'https://example.com/signal-studio',
-    category: 'design'
-  }
-] as const satisfies ReadonlyArray<Omit<Project, 'description'>>
-
-const { t } = useI18n()
-
-const categoryFilters = computed(() =>
-  categoryFilterMeta.map((filter) => ({
-    ...filter,
-    label: t(`projects.filters.categories.${filter.key}`)
-  }))
-)
-
-const projects = computed<Project[]>(() =>
-  projectMeta.map((project) => ({
-    ...project,
-    description: t(projectContentKeys[project.id])
-  }))
-)
-
-const searchQuery = ref('')
-const activeCategory = ref<CategoryFilter>('all')
-const activeTags = ref<string[]>([])
-const tagMenuOpen = ref(false)
-const tagSearchQuery = ref('')
-
-const availableTags = computed(() => {
-  const tags = new Set<string>()
-  projects.value.forEach((project) => {
-    project.tags.forEach((tag) => tags.add(tag))
-  })
-  return Array.from(tags).sort((a, b) => a.localeCompare(b))
-})
-
-const filteredTagOptions = computed(() => {
-  const query = tagSearchQuery.value.trim().toLowerCase()
-  if (query.length === 0) return availableTags.value
-  return availableTags.value.filter((tag) => tag.toLowerCase().includes(query))
-})
-
-const hasActiveFilters = computed(
-  () => activeCategory.value !== 'all' || activeTags.value.length > 0 || searchQuery.value.trim().length > 0
-)
-
-const projectDelays = {
-  container: 0.08,
-  badge: 0.16,
-  heading: 0.24,
-  description: 0.34,
-  cta: 0.42,
-  filters: 0.5,
-  search: 0.58,
-  grid: 0.66
-}
-
-const filteredProjects = computed(() => {
-  const query = searchQuery.value.trim().toLowerCase()
-
-  return projects.value.filter((project) => {
-    const matchesCategory = activeCategory.value === 'all' || project.category === activeCategory.value
-    const matchesTags =
-      activeTags.value.length === 0 || activeTags.value.every((tag) => project.tags.includes(tag))
-    const haystack = `${project.title} ${project.description} ${project.tags.join(' ')}`.toLowerCase()
-    const matchesQuery = query.length === 0 || haystack.includes(query)
-
-    return matchesCategory && matchesTags && matchesQuery
-  })
-})
-
-const toggleTag = (tag: string) => {
-  if (activeTags.value.includes(tag)) {
-    activeTags.value = activeTags.value.filter((t) => t !== tag)
-  } else {
-    activeTags.value = [...activeTags.value, tag]
-  }
-}
-
-const closeTagMenu = () => {
-  tagMenuOpen.value = false
-  tagSearchQuery.value = ''
-}
-
-const clearTagFilters = () => {
-  activeTags.value = []
-}
-
-const toggleTagMenu = () => {
-  tagMenuOpen.value = !tagMenuOpen.value
-}
-
-const clearFilters = () => {
-  searchQuery.value = ''
-  activeCategory.value = 'all'
-  clearTagFilters()
-  closeTagMenu()
-}
-</script>
-
 <template>
   <section id="projects" class="relative transition-colors duration-300">
     <UContainer class="py-24">
@@ -486,3 +311,166 @@ const clearFilters = () => {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+const categoryFilterMeta = [
+  { key: 'all', value: 'all' },
+  { key: 'front-end', value: 'front-end' },
+  { key: 'full-stack', value: 'full-stack' },
+  { key: 'design', value: 'design' }
+] as const
+
+type CategoryFilter = (typeof categoryFilterMeta)[number]['value']
+type ProjectCategory = Exclude<CategoryFilter, 'all'>
+
+const projectContentKeys = {
+  neonNodes: 'projects.list.neonNodes.description',
+  pulseUi: 'projects.list.pulseUi.description',
+  greenTrace: 'projects.list.greenTrace.description',
+  immersiveAtlas: 'projects.list.immersiveAtlas.description',
+  opsynkControl: 'projects.list.opsynkControl.description',
+  signalStudio: 'projects.list.signalStudio.description'
+} as const
+
+type Project = {
+  id: keyof typeof projectContentKeys
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  link: string
+  category: ProjectCategory
+}
+
+const projectMeta = [
+  {
+    id: 'neonNodes',
+    title: 'Neon Nodes',
+    image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Vue 3', 'WebRTC', 'Pinia'],
+    link: 'https://example.com/neon-nodes',
+    category: 'front-end'
+  },
+  {
+    id: 'pulseUi',
+    title: 'Pulse UI',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Nuxt UI', 'Design Tokens', 'D3'],
+    link: 'https://example.com/pulse-ui',
+    category: 'design'
+  },
+  {
+    id: 'greenTrace',
+    title: 'GreenTrace',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Nuxt', 'AI', 'Maps'],
+    link: 'https://example.com/greentrace',
+    category: 'full-stack'
+  },
+  {
+    id: 'immersiveAtlas',
+    title: 'Immersive Atlas',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
+    link: 'https://example.com/immersive-atlas',
+    category: 'front-end'
+  },
+  {
+    id: 'opsynkControl',
+    title: 'Opsynk Control',
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
+    link: 'https://example.com/opsynk-control',
+    category: 'full-stack'
+  },
+  {
+    id: 'signalStudio',
+    title: 'Signal Studio',
+    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
+    tags: ['Design Systems', 'Nuxt UI', 'Docs'],
+    link: 'https://example.com/signal-studio',
+    category: 'design'
+  }
+] as const satisfies ReadonlyArray<Omit<Project, 'description'>>
+
+const { t } = useI18n()
+
+const categoryFilters = computed(() =>
+  categoryFilterMeta.map((filter) => ({
+    ...filter,
+    label: t(`projects.filters.categories.${filter.key}`)
+  }))
+)
+
+const projects = computed<Project[]>(() =>
+  projectMeta.map((project) => ({
+    ...project,
+    description: t(projectContentKeys[project.id])
+  }))
+)
+
+const searchQuery = ref('')
+const activeCategory = ref<CategoryFilter>('all')
+const activeTags = ref<string[]>([])
+const tagMenuOpen = ref(false)
+const tagSearchQuery = ref('')
+
+const availableTags = computed(() => {
+  const tags = new Set<string>()
+  projects.value.forEach((project) => {
+    project.tags.forEach((tag) => tags.add(tag))
+  })
+  return Array.from(tags).sort((a, b) => a.localeCompare(b))
+})
+
+const filteredTagOptions = computed(() => {
+  const query = tagSearchQuery.value.trim().toLowerCase()
+  if (query.length === 0) return availableTags.value
+  return availableTags.value.filter((tag) => tag.toLowerCase().includes(query))
+})
+
+const hasActiveFilters = computed(
+  () => activeCategory.value !== 'all' || activeTags.value.length > 0 || searchQuery.value.trim().length > 0
+)
+
+const projectDelays = {
+  container: 0.08,
+  badge: 0.16,
+  heading: 0.24,
+  description: 0.34,
+  cta: 0.42,
+  filters: 0.5,
+  search: 0.58,
+  grid: 0.66
+}
+
+const filteredProjects = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+
+  return projects.value.filter((project) => {
+    const matchesCategory = activeCategory.value === 'all' || project.category === activeCategory.value
+    const matchesTags =
+      activeTags.value.length === 0 || activeTags.value.every((tag) => project.tags.includes(tag))
+    const haystack = `${project.title} ${project.description} ${project.tags.join(' ')}`.toLowerCase()
+    const matchesQuery = query.length === 0 || haystack.includes(query)
+
+    return matchesCategory && matchesTags && matchesQuery
+  })
+})
+
+const closeTagMenu = () => {
+  tagMenuOpen.value = false
+  tagSearchQuery.value = ''
+}
+
+const clearTagFilters = () => {
+  activeTags.value = []
+}
+
+const clearFilters = () => {
+  searchQuery.value = ''
+  activeCategory.value = 'all'
+  clearTagFilters()
+  closeTagMenu()
+}
+</script>

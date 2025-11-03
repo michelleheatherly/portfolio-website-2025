@@ -1,16 +1,3 @@
-<script setup lang="ts">
-const { t } = useI18n()
-
-const heroDelays = {
-  badge: 0.15,
-  heading: 0.3,
-  description: 0.42,
-  ctas: 0.55,
-  indicator: 0.7,
-  portrait: 0.35,
-}
-</script>
-
 <template>
   <section id="home" class="hero-section relative transition-colors duration-300">
     <UContainer class="py-28 md:py-36">
@@ -179,6 +166,19 @@ const heroDelays = {
     </UContainer>
   </section>
 </template>
+
+<script setup lang="ts">
+const { t } = useI18n()
+
+const heroDelays = {
+  badge: 0.15,
+  heading: 0.3,
+  description: 0.42,
+  ctas: 0.55,
+  indicator: 0.7,
+  portrait: 0.35,
+}
+</script>
 
 <style scoped>
 .hero-section .hero-headline {

@@ -1,3 +1,150 @@
+<template>
+  <header
+    class="sticky top-0 z-40 border-b transition-all duration-500 transform-gpu header-surface"
+    :class="[
+      headerSurfaceClasses,
+      shouldHideHeader ? '-translate-y-full opacity-0 pointer-events-none' : 'opacity-100'
+    ]"
+    :style="headerSurfaceStyles"
+  >
+    <UContainer class="flex items-center justify-between py-3">
+      <!-- Brand -->
+      <div
+        class="flex items-center gap-3"
+        v-motion
+        :initial="{ opacity: 0, y: -6 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 0.4 } }"
+      >
+        <UIcon name="i-ph-code-bold" class="h-6 w-6 text-cyber-green" />
+        <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
+          {{ brandLabel }}
+        </span>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:block">
+        <ul class="flex gap-6 items-center">
+          <li
+            v-for="(l, index) in navLinks"
+            :key="l.to"
+            v-motion
+            :initial="{ opacity: prefersReduced === 'reduce' ? 1 : 0, y: prefersReduced === 'reduce' ? 0 : -6 }"
+            :enter="navEnterVariant(index)"
+          >
+            <ULink
+              :to="l.to"
+              class="group relative text-sm transition-colors duration-300
+                     text-zinc-700 hover:text-zinc-900
+                     dark:text-white/80 dark:hover:text-white
+                     focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 rounded-md px-1"
+            >
+              {{ l.label }}
+              <!-- subtle underline accent -->
+              <span
+                class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black dark:bg-white/90 opacity-0 transition-all duration-300 ease-out
+                       group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
+              />
+            </ULink>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <LanguageToggle />
+        <ThemeToggle />
+        <UButton
+          class="group/menu md:hidden transition-colors duration-300"
+          variant="soft"
+          :aria-expanded="isMenuOpen"
+          :aria-controls="menuId"
+          :aria-label="menuButtonLabel"
+          @click="toggleMenu"
+        >
+          <UIcon
+            :name="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
+            class="h-5 w-5 transition-transform duration-500 group-hover/menu:-translate-y-0.5 group-hover/menu:rotate-12"
+          />
+        </UButton>
+      </div>
+    </UContainer>
+
+    <Teleport to="body">
+      <Transition name="menu-overlay">
+        <div
+          v-if="isMenuOpen"
+          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col md:hidden"
+          role="dialog"
+          aria-modal="true"
+          :aria-labelledby="`${menuId}-title`"
+          @click.self="closeMenu"
+        >
+          <UButton
+            class="absolute right-4 top-4 z-20 text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            color="neutral"
+            variant="ghost"
+            size="lg"
+            square
+            icon="i-heroicons-x-mark-20-solid"
+            :aria-label="t('nav.menu.close')"
+            type="button"
+            @click.stop="closeMenu"
+          />
+          <div
+            class="menu-ripple"
+            :class="{ 'menu-ripple--active': allowMenuRipple }"
+            :style="rippleStyle"
+          />
+          <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
+            <span
+              :id="`${menuId}-title`"
+              class="text-xs uppercase tracking-[0.5em] text-white/70"
+            >
+              {{ menuTitle }}
+            </span>
+            <div class="flex items-center justify-center gap-3">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
+            <nav :id="menuId">
+              <ul class="space-y-6">
+                <li
+                  v-for="(l, index) in navLinks"
+                  :key="l.to"
+                  v-motion
+                  :initial="prefersReduced === 'reduce' ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.96 }"
+                  :enter="mobileNavEnterVariant(index)"
+                >
+                  <ULink
+                    :to="l.to"
+                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-white/90 transition-all duration-300 ease-out
+                           hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
+                           focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
+                    @click="handleMobileNavigate"
+                  >
+                    <span
+                      class="pointer-events-none absolute inset-x-0 -bottom-8 -z-10 h-16 transform-gpu scale-95 rounded-full bg-cyber-purple/25 blur-[60px] opacity-0 transition-all duration-500 ease-out
+                             group-hover:opacity-80 group-hover:scale-110 group-focus-visible:opacity-80 group-focus-visible:scale-110"
+                    />
+                    {{ l.label }}
+                    <span
+                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-white opacity-0 transition-all duration-500 ease-out
+                             group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
+                    />
+                  </ULink>
+                </li>
+              </ul>
+            </nav>
+            <p class="text-sm text-white/60 max-w-xs">
+              {{ menuTagline }}
+            </p>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+  </header>
+</template>
+
 <script setup lang="ts">
 import { useWindowScroll, usePreferredReducedMotion, useEventListener } from '@vueuse/core'
 
@@ -153,153 +300,6 @@ onBeforeUnmount(() => {
   removeEscapeListener?.()
 })
 </script>
-
-<template>
-  <header
-    class="sticky top-0 z-40 border-b transition-all duration-500 transform-gpu header-surface"
-    :class="[
-      headerSurfaceClasses,
-      shouldHideHeader ? '-translate-y-full opacity-0 pointer-events-none' : 'opacity-100'
-    ]"
-    :style="headerSurfaceStyles"
-  >
-    <UContainer class="flex items-center justify-between py-3">
-      <!-- Brand -->
-      <div
-        class="flex items-center gap-3"
-        v-motion
-        :initial="{ opacity: 0, y: -6 }"
-        :enter="{ opacity: 1, y: 0, transition: { duration: 0.4 } }"
-      >
-        <UIcon name="i-ph-code-bold" class="h-6 w-6 text-cyber-green" />
-        <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
-          {{ brandLabel }}
-        </span>
-      </div>
-
-      <!-- Desktop nav -->
-      <nav class="hidden md:block">
-        <ul class="flex gap-6 items-center">
-          <li
-            v-for="(l, index) in navLinks"
-            :key="l.to"
-            v-motion
-            :initial="{ opacity: prefersReduced === 'reduce' ? 1 : 0, y: prefersReduced === 'reduce' ? 0 : -6 }"
-            :enter="navEnterVariant(index)"
-          >
-            <ULink
-              :to="l.to"
-              class="group relative text-sm transition-colors duration-300
-                     text-zinc-700 hover:text-zinc-900
-                     dark:text-white/80 dark:hover:text-white
-                     focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 rounded-md px-1"
-            >
-              {{ l.label }}
-              <!-- subtle underline accent -->
-              <span
-                class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black dark:bg-white/90 opacity-0 transition-all duration-300 ease-out
-                       group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
-              />
-            </ULink>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Actions -->
-      <div class="flex items-center gap-2">
-        <LanguageToggle />
-        <ThemeToggle />
-        <UButton
-          class="group/menu md:hidden transition-colors duration-300"
-          variant="soft"
-          :aria-expanded="isMenuOpen"
-          :aria-controls="menuId"
-          :aria-label="menuButtonLabel"
-          @click="toggleMenu"
-        >
-          <UIcon
-            :name="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
-            class="h-5 w-5 transition-transform duration-500 group-hover/menu:-translate-y-0.5 group-hover/menu:rotate-12"
-          />
-        </UButton>
-      </div>
-    </UContainer>
-
-    <Teleport to="body">
-      <Transition name="menu-overlay">
-        <div
-          v-if="isMenuOpen"
-          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col md:hidden"
-          role="dialog"
-          aria-modal="true"
-          :aria-labelledby="`${menuId}-title`"
-          @click.self="closeMenu"
-        >
-          <UButton
-            class="absolute right-4 top-4 z-20 text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            square
-            icon="i-heroicons-x-mark-20-solid"
-            :aria-label="t('nav.menu.close')"
-            type="button"
-            @click.stop="closeMenu"
-          />
-          <div
-            class="menu-ripple"
-            :class="{ 'menu-ripple--active': allowMenuRipple }"
-            :style="rippleStyle"
-          />
-          <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
-            <span
-              :id="`${menuId}-title`"
-              class="text-xs uppercase tracking-[0.5em] text-white/70"
-            >
-              {{ menuTitle }}
-            </span>
-            <div class="flex items-center justify-center gap-3">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div>
-            <nav :id="menuId">
-              <ul class="space-y-6">
-                <li
-                  v-for="(l, index) in navLinks"
-                  :key="l.to"
-                  v-motion
-                  :initial="prefersReduced === 'reduce' ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.96 }"
-                  :enter="mobileNavEnterVariant(index)"
-                >
-                  <ULink
-                    :to="l.to"
-                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-white/90 transition-all duration-300 ease-out
-                           hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
-                           focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
-                    @click="handleMobileNavigate"
-                  >
-                    <span
-                      class="pointer-events-none absolute inset-x-0 -bottom-8 -z-10 h-16 transform-gpu scale-95 rounded-full bg-cyber-purple/25 blur-[60px] opacity-0 transition-all duration-500 ease-out
-                             group-hover:opacity-80 group-hover:scale-110 group-focus-visible:opacity-80 group-focus-visible:scale-110"
-                    />
-                    {{ l.label }}
-                    <span
-                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-white opacity-0 transition-all duration-500 ease-out
-                             group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
-                    />
-                  </ULink>
-                </li>
-              </ul>
-            </nav>
-            <p class="text-sm text-white/60 max-w-xs">
-              {{ menuTagline }}
-            </p>
-          </div>
-        </div>
-      </Transition>
-    </Teleport>
-  </header>
-</template>
 
 <style scoped>
 .header-surface {

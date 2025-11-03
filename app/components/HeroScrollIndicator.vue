@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { usePreferredReducedMotion } from '@vueuse/core'
-
-const prefersReduced = usePreferredReducedMotion()
-const { t } = useI18n()
-</script>
-
 <template>
   <div
     class="flex text-sm text-zinc-500 dark:text-white/60 transition-colors duration-300"
@@ -32,6 +25,13 @@ const { t } = useI18n()
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+
+const prefersReduced = usePreferredReducedMotion()
+const { t } = useI18n()
+</script>
 
 <style scoped>
 .scroll-orb {
