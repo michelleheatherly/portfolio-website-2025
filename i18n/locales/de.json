@@ -20,7 +20,7 @@
     "switch": "Zum {mode}-Modus wechseln"
   },
   "nav": {
-    "brand": "Dein Name",
+    "brand": "Michelle Heatherly",
     "menu": {
       "open": "Menü",
       "close": "Menü schließen",
@@ -30,8 +30,8 @@
     "links": {
       "home": "Start",
       "about": "Profil",
-      "education": "Werdegang",
-      "skills": "Skills",
+      "education": "Ausbildung",
+      "skills": "Fähigkeiten",
       "projects": "Projekte",
       "blog": "Blog",
       "contact": "Kontakt"
