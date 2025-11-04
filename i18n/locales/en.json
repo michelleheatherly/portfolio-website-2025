@@ -57,7 +57,7 @@
     "top": "Top"
   },
   "about": {
-    "badge": "Crafting digital narratives",
+    "badge": "About",
     "heading": "Designer-engineer blending aesthetics with systems thinking.",
     "description": "I translate ambitious ideas into immersive digital experiences, obsessing over the synergy between interaction design, accessibility, and performance. Every project is a space to choreograph meaningful moments that feel effortless to the people using them.",
     "cards": {
@@ -87,7 +87,7 @@
     "portraitAlt": "Portrait in a creative workspace"
   },
   "education": {
-    "badge": "Learning Journey",
+    "badge": "Education",
     "title": "Education & Continuous Growth",
     "description": "A curated mix of formal study, industry certifications, and experimental labs that keep design, development, and storytelling aligned with the future of the web.",
     "categories": {
@@ -154,7 +154,7 @@
     }
   },
   "skills": {
-    "badge": "Capabilities",
+    "badge": "Skills",
     "title": "Crafting interfaces that balance polish, performance, and accessibility",
     "description": "Here’s what I lean on day-to-day to ship resilient products. The mix covers technical depth, interaction design, and the collaborative habits that keep teams shipping.",
     "sections": {
@@ -197,8 +197,8 @@
     }
   },
   "projects": {
-    "badge": "Selected Work",
-    "title": "Projects",
+    "badge": "Projects",
+    "title": "Selected Work",
     "description": "Interfaces and digital systems built end-to-end — from exploratory prototyping to polished handoff — with a focus on realtime collaboration, design systems, and measurable product impact.",
     "resume": "Resume",
     "filters": {
@@ -255,7 +255,7 @@
     }
   },
   "blog": {
-    "badge": "Studio journal",
+    "badge": "Blog",
     "title": "Latest writing & build logs",
     "description": "Notes on craft, process deep dives, and weekly learnings from the projects I am shipping.",
     "note": "Articles are currently available in English and German.",
@@ -281,7 +281,7 @@
     }
   },
   "contact": {
-    "badge": "Collaborations",
+    "badge": "Contact",
     "headline": "Let's build a futuristic web experience",
     "description": "I partner with founders and creative teams to ship immersive products, bold interfaces, and smooth flows. If the brief needs motion, storytelling, or thoughtful UX, I am in.",
     "actions": {
@@ -291,7 +291,7 @@
       "projects": "View latest builds"
     },
     "form": {
-      "badge": "Contact",
+      "badge": "Let's connect!",
       "title": "Start something bold",
       "description": "Share the vibe, timeline, and what you dream of building. I will reply with ideas and next steps.",
       "fields": {
@@ -313,31 +313,43 @@
     }
   },
   "footer": {
-    "badge": "Future-forward studio",
-    "siteName": "CyberFemme Studio",
-    "headline": "Crafting experiences that shimmer with micro-interactions.",
-    "description": "Designing luminous, motion-rich interfaces that feel alive and thoughtful.",
+    "badge": "Full-Stack Software Engineer",
+    "siteName": "Michelle Heatherly",
+    "headline": "Crafting software that is fast, accessible, and resilient.",
+    "description": "Everything thoughtfully built to support a better user experience.",
     "columns": {
       "navigate": {
-        "title": "Navigate",
+        "title": "Navigation",
         "items": {
           "home": "Home",
-          "projects": "Projects",
-          "services": "Services",
           "about": "About",
+          "education": "Education",
+          "skills": "Skills",
+          "projects": "Projects",
+          "blog": "Blog",
           "contact": "Contact"
         }
       },
       "expertise": {
         "title": "Expertise",
-        "items": ["UI/UX Strategy", "Nuxt Engineering", "Motion Design", "Accessibility"]
+        "items": [
+          "Software Engineering",
+          "Web & App Development",
+          "UI/UX Design",
+          "Accessibility",
+          "Integration",
+          "Cloud Computing",
+          "SecDevOps",
+          "Automation",
+          "AI/ML"
+        ]
       }
     },
     "social": {
       "visit": "Visit {label}"
     },
     "bottom": {
-      "crafted": "© {year} {site}. Crafted with Nuxt, Vue, and plenty of shimmer.",
+      "crafted": "© {year} {site}. Created with Nuxt, Vue, and lots of love.",
       "privacy": "Privacy",
       "terms": "Terms"
     }

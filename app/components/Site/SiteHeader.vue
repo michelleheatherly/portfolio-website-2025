@@ -15,9 +15,8 @@
         :initial="{ opacity: 0, y: -6 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.4 } }"
       >
-        <UIcon name="i-ph-code-bold" class="h-6 w-6 text-cyber-green" />
         <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
-          {{ brandLabel }}
+          <{{ brandLabel }} />
         </span>
       </div>
 

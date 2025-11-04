@@ -89,9 +89,6 @@
         class="relative z-10 mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-6 text-xs text-zinc-500 transition-colors duration-300 dark:text-white/40 sm:flex-row sm:justify-between"
       >
         <span class="flex items-center gap-2">
-          <span class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-white/40 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 dark:bg-white/10 dark:text-white/40">
-            {{ siteName.charAt(0) }}
-          </span>
           <span>{{ t('footer.bottom.crafted', { year: currentYear, site: siteName }) }}</span>
         </span>
         <span class="flex gap-2">
@@ -120,10 +117,13 @@ const currentYear = new Date().getFullYear()
 
 const navItemsMeta = [
   { key: 'home', href: '#home' },
-  { key: 'projects', href: '#projects' },
-  { key: 'services', href: '#services' },
   { key: 'about', href: '#about' },
+  { key: 'education', href: '#education' },
+  { key: 'skills', href: '#skills' },
+  { key: 'projects', href: '#projects' },
+  { key: 'blog', href: '#blog' },
   { key: 'contact', href: '#contact' }
+
 ] as const
 
 const { t, tm, rt } = useI18n()
