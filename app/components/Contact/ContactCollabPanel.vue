@@ -1,5 +1,5 @@
 <template>
-  <div v-motion v-motion-pop-visible-once :hovered="{ scale: 1.01, transition: { duration: 0.35 } }" class="relative space-y-6">
+  <div v-motion v-motion-pop-visible-once class="relative space-y-6">
     <span
       v-if="badgeText"
       class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
@@ -21,28 +21,46 @@
 
     <div class="grid gap-3 pt-2 sm:grid-cols-2">
       <slot name="actions">
-        <UButton to="mailto:you@example.com" variant="soft" class="group">
+        <UButton
+          to="mailto:you@example.com"
+          variant="soft"
+            class="group border border-zinc-200/60 bg-white/80 text-zinc-800 hover:bg-zinc-100 dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+        >
           <UIcon
             name="i-heroicons-envelope-20-solid"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
           <span>{{ t('contact.actions.email') }}</span>
         </UButton>
-        <UButton to="https://github.com/yourname" target="_blank" variant="soft" class="group">
+        <UButton
+          to="https://github.com/yourname"
+          target="_blank"
+          variant="soft"
+            class="group border border-zinc-200/60 bg-white/80 text-zinc-800 hover:bg-zinc-100 dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+        >
           <UIcon
             name="i-simple-icons-github"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
           <span>{{ t('contact.actions.github') }}</span>
         </UButton>
-        <UButton to="https://www.linkedin.com/in/yourname" target="_blank" variant="soft" class="group">
+        <UButton
+          to="https://www.linkedin.com/in/yourname"
+          target="_blank"
+          variant="soft"
+            class="group border border-zinc-200/60 bg-white/80 text-zinc-800 hover:bg-zinc-100 dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+        >
           <UIcon
             name="i-simple-icons-linkedin"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
           />
           <span>{{ t('contact.actions.linkedin') }}</span>
         </UButton>
-        <UButton to="#projects" variant="soft" class="group justify-start">
+        <UButton
+          to="#projects"
+          variant="soft"
+            class="group justify-start border border-zinc-200/60 bg-white/80 text-zinc-800 hover:bg-zinc-100 dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+        >
           <UIcon
             name="i-heroicons-bolt-20-solid"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"

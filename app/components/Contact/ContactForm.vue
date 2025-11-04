@@ -4,7 +4,6 @@
     class="group/contact relative overflow-hidden rounded-2xl border border-black/10 bg-white/95 p-6 shadow-[0_45px_85px_-45px_rgba(14,20,48,0.55)] backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-zinc-900/70 md:p-8"
     v-motion
     v-motion-pop-visible-once
-    :hovered="{ scale: 1.01, transition: { duration: 0.45 } }"
     @submit.prevent
     @pointermove="updateSpotlight"
     @pointerleave="resetSpotlight"

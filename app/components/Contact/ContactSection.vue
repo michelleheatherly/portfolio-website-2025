@@ -2,7 +2,7 @@
   <section id="contact" class="relative transition-colors duration-300">
     <UContainer class="py-24">
       <div
-        class="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-white/70 shadow-[0_35px_60px_-30px_rgba(15,23,42,0.35)] transition-colors duration-500 dark:border-white/10 dark:bg-white/5"
+        class="relative overflow-hidden"
         v-motion
         :initial="{ opacity: 0, y: 48, scale: 0.95 }"
         :visibleOnce="{
@@ -17,11 +17,8 @@
           }
         }"
       >
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10"></div>
-        <div class="pointer-events-none absolute -top-28 left-10 h-56 w-56 rounded-full bg-cyber-purple/15 blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-36 right-6 h-64 w-64 rounded-full bg-cyber-green/15 blur-[120px]"></div>
 
-        <div class="relative grid gap-10 p-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:p-12">
+  <div class="relative grid gap-10 px-0 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div
             v-motion
             :initial="{ opacity: 0, y: 28 }"
