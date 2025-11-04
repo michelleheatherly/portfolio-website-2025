@@ -293,7 +293,7 @@
           >
             <div class="relative overflow-hidden rounded-[2.75rem]">
               <img
-                src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?q=80&w=1200&auto=format&fit=crop"
+                src="~/assets/images/WerkIt-©LaurenRoberts2024-53.jpg"
                 :alt="t('about.portraitAlt')"
                 class="block h-auto w-full rounded-[2.75rem] object-cover transition-transform duration-700 group-hover:scale-105 lg:h-[34rem] lg:max-h-[34rem]"
               />

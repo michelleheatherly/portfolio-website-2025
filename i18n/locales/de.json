@@ -38,13 +38,13 @@
     }
   },
   "hero": {
-    "availability": "Für Freelance buchbar",
+    "availability": "Verfügbar für freiberufliche Tätigkeiten",
     "headline": {
-      "start": "Ich gestalte elegante Interfaces mit einem ",
-      "end": "-Vibe."
+      "start": "Full-Stack-Entwicklung mit ",
+      "end": "Note."
     },
-    "accent": "cyber-femme",
-    "description": "Ich bin Webentwicklerin mit Fokus auf Nuxt, Vue und lebendiges Motion Design. Lass uns schnelle, zugängliche und stilvolle Experiences erschaffen.",
+    "accent": "menschlicher",
+    "description": "Ich bin Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
     "cta": {
       "projects": "Projekte ansehen",
       "contact": "Kontakt"
@@ -53,7 +53,7 @@
   },
   "scrollIndicator": {
     "title": "Weiter scrollen",
-    "subtitle": "Unten wartet mehr Magie",
+    "subtitle": "Echte Entwicklerin, echte Erfahrung",
     "top": "Seitenanfang"
   },
   "about": {

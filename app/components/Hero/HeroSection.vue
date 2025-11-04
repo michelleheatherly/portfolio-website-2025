@@ -157,7 +157,7 @@
           }"
         >
           <img
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
+            src="~/assets/images/WerkIt-©LaurenRoberts2024-56.jpg"
             :alt="t('hero.portraitAlt')"
             class="w-full aspect-[4/3] object-cover"
           />

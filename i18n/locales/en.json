@@ -40,11 +40,11 @@
   "hero": {
     "availability": "Available for freelance",
     "headline": {
-      "start": "Building elegant interfaces with a ",
-      "end": " vibe."
+      "start": "Full-Stack development with a ",
+      "end": " touch."
     },
-    "accent": "cyber-femme",
-    "description": "I’m a web developer specializing in Nuxt, Vue, and delightful motion. Let’s craft fast, accessible, and stylish experiences.",
+    "accent": "human",
+    "description": "I’m a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
     "cta": {
       "projects": "See Projects",
       "contact": "Contact"
@@ -53,7 +53,7 @@
   },
   "scrollIndicator": {
     "title": "Scroll to explore",
-    "subtitle": "There's more magic below",
+    "subtitle": "Real developer, real experience",
     "top": "Top"
   },
   "about": {
