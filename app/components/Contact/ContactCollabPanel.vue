@@ -24,7 +24,7 @@
         <UButton
           to="mailto:you@example.com"
           variant="soft"
-            class="group border border-cyber-purple/30 bg-cyber-purple/15 text-cyber-purple transition-colors duration-300 hover:bg-cyber-purple/20 dark:border-cyber-purple/35 dark:bg-cyber-purple/25 dark:text-cyber-purple/90 dark:hover:bg-cyber-purple/35"
+          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
         >
           <UIcon
             name="i-heroicons-envelope-20-solid"
@@ -36,7 +36,7 @@
           to="https://github.com/yourname"
           target="_blank"
           variant="soft"
-            class="group border border-cyber-green/35 bg-cyber-green/15 text-cyber-green transition-colors duration-300 hover:bg-cyber-green/20 dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
         >
           <UIcon
             name="i-simple-icons-github"
@@ -48,7 +48,7 @@
           to="https://www.linkedin.com/in/yourname"
           target="_blank"
           variant="soft"
-            class="group border border-cyber-purple/30 bg-cyber-purple/15 text-cyber-purple transition-colors duration-300 hover:bg-cyber-purple/20 dark:border-cyber-purple/35 dark:bg-cyber-purple/25 dark:text-cyber-purple/90 dark:hover:bg-cyber-purple/35"
+          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
         >
           <UIcon
             name="i-simple-icons-linkedin"
@@ -59,7 +59,7 @@
         <UButton
           to="#projects"
           variant="soft"
-            class="group justify-start border border-cyber-green/35 bg-cyber-green/15 text-cyber-green transition-colors duration-300 hover:bg-cyber-green/20 dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
         >
           <UIcon
             name="i-heroicons-bolt-20-solid"
