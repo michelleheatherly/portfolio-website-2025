@@ -141,7 +141,7 @@
         </div>
 
         <div
-          class="rounded-3xl overflow-hidden"
+          class="group rounded-3xl overflow-hidden"
           v-motion
           :initial="{ opacity: 0, y: 28, scale: 0.94 }"
           :enter="{
@@ -159,7 +159,7 @@
           <img
             src="~/assets/images/WerkIt-©LaurenRoberts2024-56.jpg"
             :alt="t('hero.portraitAlt')"
-            class="w-full aspect-[4/3] object-cover"
+            class="block w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       </div>
