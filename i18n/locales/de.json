@@ -44,7 +44,7 @@
       "end": "Note."
     },
     "accent": "menschlicher",
-    "description": "Ich bin Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
+    "description": "Ich bin Michelle Heatherly, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
     "cta": {
       "projects": "Projekte ansehen",
       "contact": "Kontakt"
@@ -52,39 +52,39 @@
     "portraitAlt": "Porträt einer Entwicklerin"
   },
   "scrollIndicator": {
-    "title": "Weiter scrollen",
+    "title": "Weiter scrollen um mehr zu erfahren",
     "subtitle": "Echte Entwicklerin, echte Erfahrung",
     "top": "Seitenanfang"
   },
   "about": {
     "badge": "Profil",
-    "heading": "Designer-Engineer mit Gespür für Ästhetik und Systems Thinking.",
-    "description": "Ich übersetze ambitionierte Ideen in immersive digitale Experiences und optimiere die Verbindung aus Interaktionsdesign, Barrierefreiheit und Performance. Jedes Projekt wird zur Bühne für mühelose, bedeutsame Momente.",
+    "heading": "Mit Empathie gestalten, mit Sinn und Zweck bauen.",
+    "description": "Hallo, ich bin Michelle Heatherly. Ich bin Full-Stack-Softwareentwicklerin mit über 9 Jahren Berufserfahrung und einem Bachelor-Abschluss in Informatik. Meine Leidenschaft ist die Entwicklung digitaler Produkte, die Ästhetik, Zugänglichkeit und Leistung in Einklang bringen – und verbinde dabei digitales Design mit ingenieurwissenschaftlicher Präzision. Mein Ziel ist einfach: Erlebnisse zu schaffen, die mühelos zu bedienen sind und den Nutzern einen echten Mehrwert bieten.",
     "cards": {
       "superpower": {
-        "title": "Superpower",
-        "body": "Komponenten-Systeme entwerfen, die skalieren und dennoch Charakter behalten."
+        "title": "Supermacht",
+        "body": "Komplexe Ideen in klare, nutzbare Systeme umwandeln."
       },
       "approach": {
         "title": "Arbeitsweise",
-        "body": "Motion-first Storytelling, schnelles Prototyping und Releases mit messbarem Impact."
+        "body": "Hören Sie aufmerksam zu. Entwickeln Sie frühzeitig Prototypen. Verfeinern Sie gezielt."
       },
       "toolkit": {
-        "title": "Toolkit",
-        "body": "Nuxt · Vue · TypeScript · Tailwind · Framer Motion · Accessibility Audits."
+        "title": "Werkzeugsatz",
+        "body": "Python · Nuxt · Vue · JavaScript · HTML · CSS · PostgreSQL · MongoDB"
       },
       "focus": {
         "title": "Fokus",
-        "body": "Zero-to-one Launches, Design-System-Curation und Micro-Interactions."
+        "body": "Modulare Architektur, optimierte Leistung, und benutzerfreundliche Oberflächen."
       }
     },
     "badges": [
-      "Systems Thinking",
-      "Immersive UI",
-      "Accessibility",
-      "Performance"
+      "Systemdenken",
+      "Immersive Benutzeroberfläche",
+      "Barrierefreiheit",
+      "Leistung"
     ],
-    "portraitAlt": "Porträt in einem kreativen Workspace"
+    "portraitAlt": "Porträt"
   },
   "education": {
     "badge": "Ausbildung",

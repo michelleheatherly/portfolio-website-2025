@@ -44,7 +44,7 @@
       "end": " touch."
     },
     "accent": "human",
-    "description": "I’m a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
+    "description": "I'm Michelle Heatherly, a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
     "cta": {
       "projects": "See Projects",
       "contact": "Contact"
@@ -52,30 +52,30 @@
     "portraitAlt": "Developer portrait"
   },
   "scrollIndicator": {
-    "title": "Scroll to explore",
+    "title": "Scroll to learn more",
     "subtitle": "Real developer, real experience",
     "top": "Top"
   },
   "about": {
     "badge": "About",
-    "heading": "Designer-engineer blending aesthetics with systems thinking.",
-    "description": "I translate ambitious ideas into immersive digital experiences, obsessing over the synergy between interaction design, accessibility, and performance. Every project is a space to choreograph meaningful moments that feel effortless to the people using them.",
+    "heading": "Designing with empathy, building with purpose.",
+    "description": "Hi, I'm Michelle Heatherly. I'm a Full-Stack Software Engineer, with 9+ years of experience and a BA in Computer Science. My passion is creating digital products that balance aesthetics, accessibility, and performance— merging digital design with engineering discipline. My goal is simple: Create experiences that feel effortless to use and meaningful to the people using them.",
     "cards": {
       "superpower": {
         "title": "Superpower",
-        "body": "Designing component systems that scale while keeping their soul."
+        "body": "Turning complex ideas into clear, usable systems."
       },
       "approach": {
         "title": "Approach",
-        "body": "Motion-first storytelling, rapid prototyping, and shipping with measurable impact."
+        "body": "Listen deeply. Prototype early. Refine with intent."
       },
       "toolkit": {
         "title": "Toolkit",
-        "body": "Nuxt · Vue · TypeScript · Tailwind · Framer Motion · Accessibility audits."
+        "body": "Python · Nuxt · Vue · JavaScript · HTML · CSS · PostgreSQL · MongoDB"
       },
       "focus": {
         "title": "Focus",
-        "body": "Zero to one product launches, design system curation, and micro-interactions."
+        "body": "Modular architecture, optimized performance, and accessible user interfaces."
       }
     },
     "badges": [
@@ -84,7 +84,7 @@
       "Accessibility",
       "Performance"
     ],
-    "portraitAlt": "Portrait in a creative workspace"
+    "portraitAlt": "Portrait"
   },
   "education": {
     "badge": "Education",
