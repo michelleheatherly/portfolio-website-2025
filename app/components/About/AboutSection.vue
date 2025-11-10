@@ -3,7 +3,6 @@
     <UContainer class="relative py-24">
       <div class="grid items-start gap-12 lg:grid-cols-12">
         <div
-          ref="focusPanelRef"
           class="relative space-y-10 pb-6 sm:pb-8 lg:col-span-7"
           v-motion
           :initial="{ opacity: 0, y: 26 }"
@@ -17,20 +16,7 @@
               damping: 24
             }
           }"
-          @pointerenter="updateGlow"
-          @pointermove="updateGlow"
-          @pointerleave="resetGlow"
-          @pointercancel="resetGlow"
         >
-          <div
-            class="pointer-events-none absolute -inset-x-6 -top-6 -bottom-8 rounded-[3rem] opacity-0 transition-opacity duration-500
-                   sm:-inset-x-8 sm:-top-8 sm:-bottom-10 md:-inset-x-10 lg:-inset-x-12"
-            :class="{ 'opacity-100': glow.active }"
-            :style="{
-              background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(125, 211, 252, 0.22), transparent 72%)`
-            }"
-          />
-
           <div class="relative space-y-8">
             <span
               class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
@@ -134,7 +120,7 @@
                   opacity: 1,
                   scale: 1,
                   transition: {
-                    delay: aboutDelays.cards + 0.05,
+                    delay: aboutDelays.cards,
                     type: 'spring',
                     stiffness: 105,
                     damping: 26
@@ -166,7 +152,7 @@
                   opacity: 1,
                   scale: 1,
                   transition: {
-                    delay: aboutDelays.cards + 0.1,
+                    delay: aboutDelays.cards,
                     type: 'spring',
                     stiffness: 105,
                     damping: 26
@@ -198,7 +184,7 @@
                   opacity: 1,
                   scale: 1,
                   transition: {
-                    delay: aboutDelays.cards + 0.15,
+                    delay: aboutDelays.cards,
                     type: 'spring',
                     stiffness: 105,
                     damping: 26
@@ -306,14 +292,7 @@
 </template>
 
 <script setup lang="ts">
-const focusPanelRef = ref<HTMLElement | null>(null)
-const glow = reactive({
-  x: 50,
-  y: 50,
-  active: false
-})
-
-const { t, tm, rt, locale } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const aboutBadges = computed(() => {
   const raw = tm('about.badges')
@@ -323,30 +302,12 @@ const aboutBadges = computed(() => {
   return raw.map((badge) => (typeof badge === 'string' ? badge : rt(badge)))
 })
 
-const updateGlow = (event: PointerEvent) => {
-  if (!focusPanelRef.value) {
-    return
-  }
-
-  const rect = focusPanelRef.value.getBoundingClientRect()
-  const x = ((event.clientX - rect.left) / rect.width) * 100
-  const y = ((event.clientY - rect.top) / rect.height) * 100
-
-  glow.x = Math.min(100, Math.max(0, x))
-  glow.y = Math.min(100, Math.max(0, y))
-  glow.active = true
-}
-
-const resetGlow = () => {
-  glow.active = false
-}
-
 const aboutDelays = {
   container: 0.1,
   badge: 0.16,
   heading: 0.22,
   description: 0.3,
-  cards: 0.36,
+  cards: 0.24,
   badges: 0.62,
   portrait: 0.28
 }
