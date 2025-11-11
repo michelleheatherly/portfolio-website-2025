@@ -274,8 +274,8 @@
   },
   "blog": {
     "badge": "Blog",
-    "title": "Latest writing & build logs",
-    "description": "Notes on craft, process deep dives, and weekly learnings from the projects I am shipping.",
+    "title": "Latest Developments & Other Musings",
+    "description": "Personal reflections on the evolving tools, technologies, and philosophies shaping the web.",
     "note": "Articles are currently available in English and German.",
     "actions": {
       "open": "Open full feed",

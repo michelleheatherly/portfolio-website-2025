@@ -274,12 +274,12 @@
   },
   "blog": {
     "badge": "Blog",
-    "title": "Frische Artikel & Build-Logs",
-    "description": "Notizen zu Craft, Prozess-Deep-Dives und wöchentlichen Learnings aus meinen aktuellen Projekten.",
+    "title": "Neueste Entwicklungen & Weitere Gedanken",
+    "description": "Persönliche Reflexionen über die sich wandelnden Werkzeuge, Technologien und Denkweisen, die das Web prägen.",
     "note": "Artikel sind derzeit auf Englisch und Deutsch verfügbar.",
     "actions": {
       "open": "Gesamten Feed öffnen",
-      "visit": "Blog besuchen"
+      "visit": "Zum Blog"
     }
   },
   "feed": {
