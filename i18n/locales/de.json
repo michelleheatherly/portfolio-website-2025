@@ -44,7 +44,7 @@
       "end": "Note."
     },
     "accent": "menschlicher",
-    "description": "Ich bin Michelle Heatherly, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
+    "description": "Hallo! Ich bin Michelle Heatherly, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
     "cta": {
       "projects": "Projekte ansehen",
       "contact": "Kontakt"
@@ -59,7 +59,7 @@
   "about": {
     "badge": "Profil",
     "heading": "Mit Empathie gestalten, mit Sinn und Zweck bauen.",
-    "description": "Hallo, ich bin Michelle Heatherly. Ich bin Full-Stack-Softwareentwicklerin mit über 9 Jahren Berufserfahrung und einem Bachelor-Abschluss in Informatik. Meine Leidenschaft ist die Entwicklung digitaler Produkte, die Ästhetik, Zugänglichkeit und Leistung in Einklang bringen – und verbinde dabei digitales Design mit ingenieurwissenschaftlicher Präzision. Mein Ziel ist einfach: Erlebnisse zu schaffen, die mühelos zu bedienen sind und den Nutzern einen echten Mehrwert bieten.",
+    "description": "Ich bin Full-Stack-Softwareentwicklerin mit über 9 Jahren Berufserfahrung und einem Bachelor-Abschluss in Informatik. Meine Leidenschaft ist die Entwicklung digitaler Produkte, die Ästhetik, Zugänglichkeit und Leistung in Einklang bringen – und verbinde dabei digitales Design mit ingenieurwissenschaftlicher Präzision. Mein Ziel ist einfach: Erlebnisse zu schaffen, die mühelos zu bedienen sind und den Nutzern einen echten Mehrwert bieten.",
     "cards": {
       "superpower": {
         "title": "Supermacht",
@@ -89,7 +89,7 @@
   "education": {
     "badge": "Ausbildung",
     "title": "Ausbildung & kontinuierliches Wachstum",
-    "description": "Eine kuratierte Mischung aus Studium, Zertifizierungen und Experimentier-Labs, die Design, Entwicklung und Storytelling auf Zukunftskurs hält.",
+    "description": "Eine Mischung aus formaler Ausbildung, Branchenzertifizierungen und praktischer Erfahrung, die Design- und Entwicklungspraktiken im Einklang mit der Technologie hält und weiterentwickelt.",
     "categories": {
       "college": {
         "label": "Studium",

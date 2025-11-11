@@ -44,7 +44,7 @@
       "end": " touch."
     },
     "accent": "human",
-    "description": "I'm Michelle Heatherly, a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
+    "description": "Hi! I'm Michelle Heatherly, a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
     "cta": {
       "projects": "See Projects",
       "contact": "Contact"
@@ -59,7 +59,7 @@
   "about": {
     "badge": "About",
     "heading": "Designing with empathy, building with purpose.",
-    "description": "Hi, I'm Michelle Heatherly. I'm a Full-Stack Software Engineer, with 9+ years of experience and a BA in Computer Science. My passion is creating digital products that balance aesthetics, accessibility, and performance— merging digital design with engineering discipline. My goal is simple: Create experiences that feel effortless to use and meaningful to the people using them.",
+    "description": "I'm a Full-Stack Software Engineer with 9+ years of experience and a BA in Computer Science. My passion is creating digital products that balance aesthetics, accessibility, and performance— merging digital design with engineering discipline. My goal is simple: Create experiences that feel effortless to use and meaningful to the people using them.",
     "cards": {
       "superpower": {
         "title": "Superpower",
@@ -89,65 +89,83 @@
   "education": {
     "badge": "Education",
     "title": "Education & Continuous Growth",
-    "description": "A curated mix of formal study, industry certifications, and experimental labs that keep design, development, and storytelling aligned with the future of the web.",
+    "description": "A blend of formal education, industry certifications, and hands-on trainings that keep my design and development practice aligned and evolving with technology.",
     "categories": {
       "college": {
         "label": "College",
-        "description": "Formal study that grounded my approach to product thinking, research, and storytelling.",
+        "description": "Formal education that shaped my approach to problem-solving, development strategy, and communication.",
         "entries": [
           {
-            "title": "B.S. Interactive Media & UX",
-            "org": "Futurewave University",
-            "period": "2014-2018",
-            "highlight": "Studio-led program blending interface design, creative coding, and motion graphics with a capstone in immersive web."
+            "title": "B.A. Computer Science and German, Math Minor",
+            "org": "Wofford College",
+            "period": "2013-2017",
+            "highlight": "Formal study uniting computational logic, linguistic structure, and mathematical reasoning to shape a systems-based mindset."
           },
           {
-            "title": "Global Design Residency",
-            "org": "HyperIsland Stockholm",
-            "period": "Summer 2017",
-            "highlight": "Selected for a four-week residency exploring speculative futures, design sprints, and service prototyping."
+            "title": "Study Abroad in Freiburg, Germany",
+            "org": "IES",
+            "period": "Spring Semester 2017",
+            "highlight": "Expanded my perspective through immersive study, exploring culture, communication, and adaptability."
+          },
+          {
+            "title": "Study Abroad in Göttingen, Germany",
+            "org": "Goethe-Institut",
+            "period": "January 2015",
+            "highlight": "Deepened fluency and cultural understanding through intensive language study."
           }
         ]
       },
       "certifications": {
         "label": "Certifications",
-        "description": "Focused credentials that keep my practice accountable and standards driven.",
+        "description": "Recognized credentials that keep my craft aligned with modern industry practices.",
         "entries": [
           {
-            "title": "Certified Web Accessibility Specialist (CPACC)",
-            "org": "IAAP",
+            "title": "Azure AI Fundamentals",
+            "org": "Microsoft",
             "period": "2023",
-            "highlight": "Validated inclusive design practices and accessibility audits for complex web ecosystems."
+            "highlight": "Developed foundational knowledge of Machine Learning and AI concepts and how to integrate them responsibly within Azure's cloud-based solutions."
+          },
+           {
+            "title": "Azure Data Fundamentals",
+            "org": "Microsoft",
+            "period": "2023",
+            "highlight": "Strengthened my understanding of data modeling, processing, and analytics in Azure environments."
           },
           {
-            "title": "Design Systems Professional",
-            "org": "Figma Academy",
+            "title": "Azure Fundamentals",
+            "org": "Microsoft",
             "period": "2022",
-            "highlight": "Advanced component governance, token orchestration, and multi-brand theming workflows."
+            "highlight": "Built a solid foundation in cloud concepts, architecture, and service offerings within Azure."
+          },
+          {
+            "title": "Security+",
+            "org": "CompTIA",
+            "period": "2019",
+            "highlight": "Validated proficiency in core cybersecurity principles, risk management, and network security. Essential for building and maintaining secure digital environments."
           }
         ]
       },
       "trainings": {
         "label": "Additional Trainings",
-        "description": "Short-form labs, workshops, and experiments that keep the toolbox inventive.",
+        "description": "Workshops and bootcamps that deepen my understanding of scalability, reliability, and trust in digital systems.",
         "entries": [
           {
-            "title": "AI Storytelling for Product Teams",
-            "org": "Runway Research Lab",
-            "period": "2024",
-            "highlight": "Explored multi-modal narrative prototyping and prompt choreography for interactive experiences."
+            "title": "Developing on AWS",
+            "org": "Amazon",
+            "period": "2020",
+            "highlight": "Explored best practices for architecting and deploying performant, maintable cloud-native applications on AWS."
           },
           {
-            "title": "Design Sprint Facilitator",
-            "org": "AJ&Smart",
-            "period": "2021",
-            "highlight": "Certified to lead compressed discovery-to-prototype cycles with cross-functional startup teams."
+            "title": "Migrating to AWS",
+            "org": "Amazon",
+            "period": "2020",
+            "highlight": "Learned strategies for planning, executing, and validating large-scale cloud migrations."
           },
           {
-            "title": "Creative Coding Meetups",
-            "org": "SF Generative Collective",
-            "period": "2019-2020",
-            "highlight": "Monthly workshops on shaders, motion design, and WebGL art installations."
+            "title": "Certified Cloud Security Professional (CCSP)",
+            "org": "(ISC)2",
+            "period": "2018",
+            "highlight": "Strengthened my security-first mindset for building trustworthy products with this advanced bootcamp focused on cloud security architecture, risk management, and compliance."
           }
         ]
       }

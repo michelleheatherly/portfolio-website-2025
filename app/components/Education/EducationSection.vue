@@ -66,7 +66,7 @@
           <UCard
             v-for="(category, index) in educationCategories"
             :key="category.id"
-            class="group relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyber-green/30 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
+            class="group education-card relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyber-green/30 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
             v-motion
             :initial="{ opacity: 0, y: 40 }"
             :visibleOnce="{
@@ -84,9 +84,11 @@
             <div class="pointer-events-none absolute inset-x-12 top-10 h-28 bg-gradient-to-br blur-3xl" :class="category.gradient"></div>
 
             <div class="relative flex h-full flex-col gap-5 p-6">
-              <div class="flex items-start gap-2 pl-2">
-                <UIcon :name="category.icon" class="-mt-0.5 h-10 w-10 text-cyber-green/90" />
-                <div class="space-y-1 pl-2">
+              <div class="card-header">
+                <div class="card-header-icon">
+                  <UIcon :name="category.icon" class="h-10 w-10 text-cyber-green/90" />
+                </div>
+                <div class="space-y-1">
                   <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
                     {{ category.label }}
                   </h3>
@@ -100,23 +102,34 @@
                 <li
                   v-for="entry in category.entries"
                   :key="entry.title"
-                  class="timeline-item relative"
+                  class="timeline-item"
                 >
-                  <span class="timeline-bullet"></span>
-                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <p class="font-medium text-zinc-900 dark:text-white transition-colors duration-300">
+                  <div class="timeline-marker" aria-hidden="true">
+                    <span class="timeline-bullet"></span>
+                  </div>
+                  <div class="timeline-content">
+                    <p class="timeline-title font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
                       {{ entry.title }}
                     </p>
-                    <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyber-green">
+                    <p
+                      v-if="entry.period"
+                      class="timeline-period text-[11px] font-semibold uppercase tracking-[0.18em] text-cyber-green"
+                    >
                       {{ entry.period }}
-                    </span>
+                    </p>
+                    <p
+                      v-if="entry.org"
+                      class="timeline-org text-xs font-medium text-zinc-500 dark:text-white/60 transition-colors duration-300"
+                    >
+                      {{ entry.org }}
+                    </p>
+                    <p
+                      v-if="entry.highlight"
+                      class="timeline-description text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300"
+                    >
+                      {{ entry.highlight }}
+                    </p>
                   </div>
-                  <p class="text-sm text-zinc-500 dark:text-white/60 transition-colors duration-300">
-                    {{ entry.org }}
-                  </p>
-                  <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300">
-                    {{ entry.highlight }}
-                  </p>
                 </li>
               </ul>
             </div>
@@ -206,6 +219,24 @@ const educationDelays = {
 </script>
 
 <style scoped>
+.education-card {
+  --timeline-marker-width: 2.75rem;
+  --timeline-gap: 1.15rem;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: var(--timeline-marker-width) minmax(0, 1fr);
+  column-gap: var(--timeline-gap, 1.15rem);
+  align-items: flex-start;
+}
+
+.card-header-icon {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.1rem;
+}
+
 .timeline {
   position: relative;
   margin: 0;
@@ -216,22 +247,52 @@ const educationDelays = {
 .timeline::before {
   content: '';
   position: absolute;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  left: 1rem;
+  top: 1.05rem;
+  bottom: 0;
+  left: calc(var(--timeline-marker-width) / 2);
   width: 1px;
   background: var(--timeline-rail);
 }
 
+.timeline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--timeline-marker-width) / 2);
+  width: 0.65rem;
+  height: 0.65rem;
+  transform: translate(-50%, 50%);
+  border-radius: 9999px;
+  background: #179d68;
+  box-shadow: 0 0 0 6px rgba(23, 157, 104, 0.12);
+}
+
 .timeline-item {
   position: relative;
-  padding-left: 2.5rem;
+  display: grid;
+  grid-template-columns: var(--timeline-marker-width) minmax(0, 1fr);
+  column-gap: var(--timeline-gap, 1.15rem);
+  align-items: flex-start;
+}
+
+.timeline-marker {
+  position: relative;
+  width: var(--timeline-marker-width);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0.2rem;
+}
+
+.timeline-content {
+  min-width: 0;
+  padding-top: 0.15rem;
 }
 
 .timeline-bullet {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1.05rem;
+  left: 50%;
   display: inline-flex;
   width: 0.65rem;
   height: 0.65rem;
@@ -249,5 +310,19 @@ const educationDelays = {
 .timeline-item:hover .timeline-bullet {
   transform: translate(-50%, -50%) scale(1.08);
   box-shadow: 0 0 0 8px rgba(23, 157, 104, 0.22);
+}
+
+.timeline-content p {
+  margin: 0;
+  display: block;
+}
+
+.timeline-period,
+.timeline-org {
+  margin-top: 0.375rem;
+}
+
+.timeline-description {
+  margin-top: 0.85rem !important;
 }
 </style>
