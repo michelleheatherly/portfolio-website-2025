@@ -89,65 +89,83 @@
   "education": {
     "badge": "Ausbildung",
     "title": "Ausbildung & kontinuierliches Wachstum",
-    "description": "Eine Mischung aus formaler Ausbildung, Branchenzertifizierungen und praktischer Erfahrung, die Design- und Entwicklungspraktiken im Einklang mit der Technologie hält und weiterentwickelt.",
+    "description": "Eine Kombination aus formaler Ausbildung, branchenspezifischen Zertifizierungen und praxisnahen Schulungen, die meine Arbeit in Design und Entwicklung im Einklang mit der Technologie weiterentwickeln.",
     "categories": {
       "college": {
         "label": "Studium",
-        "description": "Fundierte Ausbildung, die Produktdenken, Research und Storytelling geprägt hat.",
+        "description": "Formale Ausbildung, die mein Denken in Bezug auf Problemlösung, Entwicklungsstrategie und Kommunikation geprägt hat.",
         "entries": [
           {
-            "title": "B.Sc. Interactive Media & UX",
-            "org": "Futurewave University",
-            "period": "2014–2018",
-            "highlight": "Studio-geführtes Programm zu Interface Design, Creative Coding und Motion Graphics mit Capstone im immersiven Web."
+            "title": "B.A. Informatik und Deutsch, Nebenfach Mathematik",
+            "org": "Wofford College",
+            "period": "2013–2017",
+            "highlight": "Formales Studium, das logisches Denken, Sprachstruktur und mathematische Argumentation miteinander verband und so ein systemorientiertes Denken förderte."
           },
           {
-            "title": "Global Design Residency",
-            "org": "HyperIsland Stockholm",
-            "period": "Sommer 2017",
-            "highlight": "Vierwöchige Residenz zu spekulativen Futures, Design Sprints und Service-Prototyping."
+            "title": "Auslandssemester in Freiburg, Deutschland",
+            "org": "IES Abroad",
+            "period": "Frühjahrssemester 2017",
+            "highlight": "Erweiterte meine Perspektive durch ein intensives Studium vor Ort – mit Fokus auf Kultur, Kommunikation und Anpassungsfähigkeit."
+          },
+          {
+            "title": "Sprachaufenthalt in Göttingen, Deutschland",
+            "org": "Goethe-Institut",
+            "period": "Januar 2015",
+            "highlight": "Vertiefte Sprachkenntnisse und kulturelles Verständnis durch ein intensives Sprachstudium."
           }
         ]
       },
       "certifications": {
         "label": "Zertifizierungen",
-        "description": "Gezielte Qualifikationen, die Qualität und Verantwortung sichern.",
+        "description": "Anerkannte Nachweise, die sicherstellen, dass meine Fähigkeiten dem aktuellen Stand der Technik entsprechen.",
         "entries": [
           {
-            "title": "Certified Web Accessibility Specialist (CPACC)",
-            "org": "IAAP",
+            "title": "Azure AI Fundamentals",
+            "org": "Microsoft",
             "period": "2023",
-            "highlight": "Inklusive Designpraktiken und Accessibility-Audits für komplexe Web-Ökosysteme verifiziert."
+            "highlight": "Grundlegendes Wissen über maschinelles Lernen und KI-Konzepte erworben und gelernt, diese verantwortungsvoll in Azure-Cloudlösungen zu integrieren."
           },
           {
-            "title": "Design Systems Professional",
-            "org": "Figma Academy",
+            "title": "Azure Data Fundamentals",
+            "org": "Microsoft",
+            "period": "2023",
+            "highlight": "Mein Verständnis für Datenmodellierung, -verarbeitung und -analyse in Azure-Umgebungen vertieft."
+          },
+          {
+            "title": "Azure Fundamentals",
+            "org": "Microsoft",
             "period": "2022",
-            "highlight": "Fortgeschrittene Komponenten-Governance, Token-Orchestrierung und Multi-Brand-Theming."
+            "highlight": "Fundierte Grundlagen zu Cloud-Konzepten, Architektur und Diensten innerhalb von Azure aufgebaut."
+          },
+          {
+            "title": "Security+",
+            "org": "CompTIA",
+            "period": "2019",
+            "highlight": "Kompetenz in den Grundlagen der Cybersicherheit, Risikomanagement und Netzwerksicherheit nachgewiesen – essenziell für den Aufbau sicherer digitaler Umgebungen."
           }
         ]
       },
       "trainings": {
-        "label": "Weitere Trainings",
-        "description": "Workshops, Labs und Experimente, die den Werkzeugkasten frisch halten.",
+        "label": "Zusätzliche Schulungen",
+        "description": "Workshops und Bootcamps, die mein Verständnis für Skalierbarkeit, Zuverlässigkeit und Vertrauen in digitale Systeme vertiefen.",
         "entries": [
           {
-            "title": "AI Storytelling for Product Teams",
-            "org": "Runway Research Lab",
-            "period": "2024",
-            "highlight": "Multimodale Narrative und Prompt-Choreografie für interaktive Experiences erkundet."
+            "title": "Entwicklung auf AWS",
+            "org": "Amazon",
+            "period": "2020",
+            "highlight": "Bewährte Vorgehensweisen für das Entwerfen und Bereitstellen performanter, wartbarer Cloud-nativer Anwendungen auf AWS kennengelernt."
           },
           {
-            "title": "Design Sprint Facilitator",
-            "org": "AJ&Smart",
-            "period": "2021",
-            "highlight": "Zertifiziert für komprimierte Discovery-bis-Prototype-Zyklen mit crossfunktionalen Teams."
+            "title": "Migration zu AWS",
+            "org": "Amazon",
+            "period": "2020",
+            "highlight": "Strategien für Planung, Durchführung und Überprüfung groß angelegter Cloud-Migrationen erlernt."
           },
           {
-            "title": "Creative Coding Meetups",
-            "org": "SF Generative Collective",
-            "period": "2019–2020",
-            "highlight": "Monatliche Workshops zu Shadern, Motion Design und WebGL-Installationen."
+            "title": "Certified Cloud Security Professional (CCSP)",
+            "org": "(ISC)2",
+            "period": "2018",
+            "highlight": "Mein sicherheitsorientiertes Denken mit diesem fortgeschrittenen Bootcamp geschärft – Fokus auf Cloud-Sicherheitsarchitektur, Risikomanagement und Compliance."
           }
         ]
       }
