@@ -300,34 +300,34 @@
   },
   "contact": {
     "badge": "Contact",
-    "headline": "Let's build a futuristic web experience",
-    "description": "I partner with founders and creative teams to ship immersive products, bold interfaces, and smooth flows. If the brief needs motion, storytelling, or thoughtful UX, I am in.",
+    "headline": "Let’s bring your ideas to life",
+    "description": "I design and develop modern web experiences that put people first. Whether you're refining an interface or building from scratch, I care about the details that make it work. Let's turn your idea into something real.",
     "actions": {
       "email": "Email",
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "projects": "View latest builds"
+      "projects": "View latest projects"
     },
     "form": {
       "badge": "Let's connect!",
-      "title": "Start something bold",
-      "description": "Share the vibe, timeline, and what you dream of building. I will reply with ideas and next steps.",
+      "title": "Start the conversation.",
+      "description": "Big or small, I'm interested in what you're creating. Send a few details, and I'll reply with thoughts on how we could make it happen.",
       "fields": {
         "name": {
           "label": "Name",
-          "placeholder": "Ashley Cyber"
+          "placeholder": "Kathryn Janeway"
         },
         "email": {
           "label": "Email",
-          "placeholder": "hello{symbol}youremail.com"
+          "placeholder": "cpt.janeway{symbol}starfleet.com"
         },
         "notes": {
-          "label": "Project notes",
-          "placeholder": "Drop a quick brief, moodboard, or wild idea..."
+          "label": "Message",
+          "placeholder": "Describe your idea—set phasers to 'create.'"
         }
       },
-      "response": "Response within 2 days",
-      "submit": "Send the vision"
+      "response": "",
+      "submit": "Send"
     }
   },
   "footer": {

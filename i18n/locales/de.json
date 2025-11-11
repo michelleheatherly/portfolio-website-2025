@@ -300,34 +300,34 @@
   },
   "contact": {
     "badge": "Kontakt",
-    "headline": "Lass uns ein futuristisches Web-Erlebnis bauen",
-    "description": "Ich arbeite mit Gründer:innen und Kreativ-Teams, um immersive Produkte, mutige Interfaces und reibungslose Flows zu shippen. Wenn der Brief Motion, Storytelling oder UX-Können braucht, bin ich dabei.",
+    "headline": "Lassen Sie uns Ihre Ideen zum Leben erwecken",
+    "description": "Ich gestalte und entwickle moderne Web-Erlebnisse, die den Menschen in den Mittelpunkt stellen. Ob Sie ein Interface verfeinern oder etwas komplett Neues aufbauen – mir sind die Details wichtig, die es zum Funktionieren bringen. Lassen Sie uns Ihre Idee Wirklichkeit werden lassen.",
     "actions": {
       "email": "E-Mail",
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "projects": "Neueste Builds ansehen"
+      "projects": "Neueste Projekte ansehen"
     },
     "form": {
-      "badge": "Lasst uns zusammenarbeiten!",
-      "title": "Starte etwas Boldes",
-      "description": "Erzähl vom Vibe, der Timeline und dem Traumprojekt. Ich antworte mit Ideen und Next Steps.",
+      "badge": "Lass uns in Kontakt treten!",
+      "title": "Starten wir das Gespräch.",
+      "description": "Ob groß oder klein – ich bin gespannt auf Ihr Projekt. Schreiben Sie mir ein paar Details, und ich melde mich mit Ideen, wie wir es umsetzen können.",
       "fields": {
         "name": {
           "label": "Name",
-          "placeholder": "Ashley Cyber"
+          "placeholder": "Kathryn Janeway"
         },
         "email": {
           "label": "E-Mail",
-          "placeholder": "hello{symbol}youremail.com"
+          "placeholder": "cpt.janeway{symbol}starfleet.com"
         },
         "notes": {
-          "label": "Projekt-Notizen",
-          "placeholder": "Teile kurz Briefing, Moodboard oder wilde Idee …"
+          "label": "Nachricht",
+          "placeholder": "Beschreiben Sie Ihre Idee – Phaser auf 'Kreativität' eingestellt."
         }
       },
-      "response": "Antwort innerhalb von 2 Tagen",
-      "submit": "Vision senden"
+      "response": "",
+      "submit": "Senden"
     }
   },
   "footer": {
