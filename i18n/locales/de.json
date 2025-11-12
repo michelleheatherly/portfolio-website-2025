@@ -32,7 +32,7 @@
       "about": "Profil",
       "education": "Ausbildung",
       "skills": "Fähigkeiten",
-      "projects": "Projekte",
+      "projects": "Portfolio",
       "blog": "Blog",
       "contact": "Kontakt"
     }
@@ -215,8 +215,8 @@
     }
   },
   "projects": {
-    "badge": "Projekte",
-    "title": "Ausgewählte Arbeiten",
+    "badge": "Portfolio",
+    "title": "Ausgewählte Projekte",
     "description": "Digitale Systeme von der Exploration bis zum finalen Handoff – mit Fokus auf Realtime-Collaboration, Design Systems und messbaren Produkt-Impact.",
     "resume": "Lebenslauf",
     "filters": {
@@ -227,7 +227,7 @@
         "design": "Design"
       },
       "tags": {
-        "button": "Tag-Filter",
+        "button": "Tags",
         "title": "Nach Tags filtern",
         "searchPlaceholder": "Tags durchsuchen",
         "clear": "Zurücksetzen",
@@ -343,7 +343,7 @@
           "about": "Profil",
           "education": "Ausbildung",
           "skills": "Fähigkeiten",
-          "projects": "Projekte",
+          "projects": "Portfolio",
           "blog": "Blog",
           "contact": "Kontakt"
         }

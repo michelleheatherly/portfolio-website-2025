@@ -32,7 +32,7 @@
       "about": "About",
       "education": "Education",
       "skills": "Skills",
-      "projects": "Projects",
+      "projects": "Portfolio",
       "blog": "Blog",
       "contact": "Contact"
     }
@@ -215,9 +215,9 @@
     }
   },
   "projects": {
-    "badge": "Projects",
-    "title": "Selected Work",
-    "description": "Interfaces and digital systems built end-to-end — from exploratory prototyping to polished handoff — with a focus on realtime collaboration, design systems, and measurable product impact.",
+    "badge": "Portfolio",
+    "title": "Selected Projects",
+    "description": "With nearly a decade of hands-on experience, I design and develop responsive websites and applications that merge design integrity with engineering reliability. These projects reflect my focus on building simple, scalable, and human-centered digital products.",
     "resume": "Resume",
     "filters": {
       "categories": {
@@ -227,7 +227,7 @@
         "design": "Design"
       },
       "tags": {
-        "button": "Tag filters",
+        "button": "Tags",
         "title": "Filter by tags",
         "searchPlaceholder": "Search tags",
         "clear": "Clear",
@@ -343,7 +343,7 @@
           "about": "About",
           "education": "Education",
           "skills": "Skills",
-          "projects": "Projects",
+          "projects": "Portfolio",
           "blog": "Blog",
           "contact": "Contact"
         }
