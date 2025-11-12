@@ -323,17 +323,8 @@ const categoryFilterMeta = [
 type CategoryFilter = (typeof categoryFilterMeta)[number]['value']
 type ProjectCategory = Exclude<CategoryFilter, 'all'>
 
-const projectContentKeys = {
-  neonNodes: 'projects.list.neonNodes.description',
-  pulseUi: 'projects.list.pulseUi.description',
-  greenTrace: 'projects.list.greenTrace.description',
-  immersiveAtlas: 'projects.list.immersiveAtlas.description',
-  opsynkControl: 'projects.list.opsynkControl.description',
-  signalStudio: 'projects.list.signalStudio.description'
-} as const
-
 type Project = {
-  id: keyof typeof projectContentKeys
+  id: string
   title: string
   description: string
   image: string
@@ -342,70 +333,96 @@ type Project = {
   category: ProjectCategory
 }
 
-const projectMeta = [
-  {
-    id: 'neonNodes',
-    title: 'Neon Nodes',
-    image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Vue 3', 'WebRTC', 'Pinia'],
-    link: 'https://example.com/neon-nodes',
-    category: 'front-end'
-  },
-  {
-    id: 'pulseUi',
-    title: 'Pulse UI',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt UI', 'Design Tokens', 'D3'],
-    link: 'https://example.com/pulse-ui',
-    category: 'design'
-  },
-  {
-    id: 'greenTrace',
-    title: 'GreenTrace',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt', 'AI', 'Maps'],
-    link: 'https://example.com/greentrace',
-    category: 'full-stack'
-  },
-  {
-    id: 'immersiveAtlas',
-    title: 'Immersive Atlas',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
-    link: 'https://example.com/immersive-atlas',
-    category: 'front-end'
-  },
-  {
-    id: 'opsynkControl',
-    title: 'Opsynk Control',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
-    link: 'https://example.com/opsynk-control',
-    category: 'full-stack'
-  },
-  {
-    id: 'signalStudio',
-    title: 'Signal Studio',
-    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Design Systems', 'Nuxt UI', 'Docs'],
-    link: 'https://example.com/signal-studio',
-    category: 'design'
-  }
-] as const satisfies ReadonlyArray<Omit<Project, 'description'>>
+type LocalizedProjectEntry = Partial<Project> & { id?: string }
 
-const { t } = useI18n()
+const projectCategoryValues = categoryFilterMeta
+  .map((filter) => filter.value)
+  .filter((value): value is ProjectCategory => value !== 'all')
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const isProjectCategory = (value: unknown): value is ProjectCategory =>
+  typeof value === 'string' && projectCategoryValues.includes(value as ProjectCategory)
+
+const normalizeProjectEntries = (value: unknown): LocalizedProjectEntry[] => {
+  if (!value) return []
+
+  if (Array.isArray(value)) {
+    return value as LocalizedProjectEntry[]
+  }
+
+  if (typeof value === 'object') {
+    return Object.entries(value as Record<string, unknown>).map(([id, entry]) => ({
+      id,
+      ...(entry as LocalizedProjectEntry)
+    }))
+  }
+
+  return []
+}
+
+const projects = computed<Project[]>(() => {
+  const localized = resolveLocaleValue(tm('projects.list'))
+  const entries = normalizeProjectEntries(localized)
+
+  return entries
+    .map((entry) => {
+      const id =
+        typeof entry.id === 'string' && entry.id.length > 0
+          ? entry.id
+          : typeof entry.title === 'string' && entry.title.length > 0
+            ? entry.title
+            : null
+      const title = typeof entry.title === 'string' && entry.title.length > 0 ? entry.title : null
+      const description =
+        typeof entry.description === 'string' && entry.description.length > 0 ? entry.description : null
+      const image = typeof entry.image === 'string' && entry.image.length > 0 ? entry.image : null
+      const link = typeof entry.link === 'string' && entry.link.length > 0 ? entry.link : null
+      const category = isProjectCategory(entry.category) ? entry.category : null
+
+      if (!id || !title || !description || !image || !link || !category) {
+        return null
+      }
+
+      const tags = Array.isArray(entry.tags)
+        ? entry.tags.filter((tag): tag is string => typeof tag === 'string' && tag.trim().length > 0)
+        : []
+
+      return {
+        id,
+        title,
+        description,
+        image,
+        link,
+        category,
+        tags
+      }
+    })
+    .filter((project): project is Project => Boolean(project))
+})
 
 const categoryFilters = computed(() =>
   categoryFilterMeta.map((filter) => ({
     ...filter,
     label: t(`projects.filters.categories.${filter.key}`)
-  }))
-)
-
-const projects = computed<Project[]>(() =>
-  projectMeta.map((project) => ({
-    ...project,
-    description: t(projectContentKeys[project.id])
   }))
 )
 

@@ -251,26 +251,62 @@
         "design": "Design"
       }
     },
-    "list": {
-      "neonNodes": {
-        "description": "Realtime-Graph-Editor mit kollaborativen Cursorn und reaktivem Plugin-System."
+    "list": [
+      {
+        "id": "neonNodes",
+        "title": "Neon Nodes",
+        "description": "Realtime-Graph-Editor mit kollaborativen Cursorn und reaktivem Plugin-System.",
+        "image": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Vue 3", "WebRTC", "Pinia"],
+        "link": "https://example.com/neon-nodes",
+        "category": "front-end"
       },
-      "pulseUi": {
-        "description": "Design-System auf Basis von Nuxt UI mit Token-Theming und Charting."
+      {
+        "id": "pulseUi",
+        "title": "Pulse UI",
+        "description": "Design-System auf Basis von Nuxt UI mit Token-Theming und Charting.",
+        "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Nuxt UI", "Design Tokens", "D3"],
+        "link": "https://example.com/pulse-ui",
+        "category": "design"
       },
-      "greenTrace": {
-        "description": "Dashboard für Nachhaltigkeits-Insights mit KI-Zusammenfassungen und Karten-Layern."
+      {
+        "id": "greenTrace",
+        "title": "GreenTrace",
+        "description": "Dashboard für Nachhaltigkeits-Insights mit KI-Zusammenfassungen und Karten-Layern.",
+        "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Nuxt", "KI", "Maps"],
+        "link": "https://example.com/greentrace",
+        "category": "full-stack"
       },
-      "immersiveAtlas": {
-        "description": "Story-getriebene Microsite mit 3D-Szenen, Scroll-Choreografie und Sound-Design."
+      {
+        "id": "immersiveAtlas",
+        "title": "Immersive Atlas",
+        "description": "Story-getriebene Microsite mit 3D-Szenen, Scroll-Choreografie und Sound-Design.",
+        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Three.js", "Nuxt 3", "Storytelling"],
+        "link": "https://example.com/immersive-atlas",
+        "category": "front-end"
       },
-      "opsynkControl": {
-        "description": "Analytics-Suite mit Live-Telemetrie, Incident-Notes und SOC-Handoff-Automation."
+      {
+        "id": "opsynkControl",
+        "title": "Opsynk Control",
+        "description": "Analytics-Suite mit Live-Telemetrie, Incident-Notes und SOC-Handoff-Automation.",
+        "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Nuxt 3", "Supabase", "Telemetry"],
+        "link": "https://example.com/opsynk-control",
+        "category": "full-stack"
       },
-      "signalStudio": {
-        "description": "Design-System-Playground mit Komponenten-Deep-Dives, Motion-Guidelines und Theme-Toggles."
+      {
+        "id": "signalStudio",
+        "title": "Signal Studio",
+        "description": "Design-System-Playground mit Komponenten-Deep-Dives, Motion-Guidelines und Theme-Toggles.",
+        "image": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop",
+        "tags": ["Design Systems", "Nuxt UI", "Docs"],
+        "link": "https://example.com/signal-studio",
+        "category": "design"
       }
-    }
+    ]
   },
   "blog": {
     "badge": "Blog",
