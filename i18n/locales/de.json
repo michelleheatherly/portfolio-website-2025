@@ -217,94 +217,94 @@
   "projects": {
     "badge": "Portfolio",
     "title": "Ausgewählte Projekte",
-    "description": "Digitale Systeme von der Exploration bis zum finalen Handoff – mit Fokus auf Realtime-Collaboration, Design Systems und messbaren Produkt-Impact.",
+    "description": "Mit fast einem Jahrzehnt praktischer Erfahrung gestalte und entwickle ich responsive Websites und Anwendungen, die Designqualität mit technischer Zuverlässigkeit verbinden. Diese Projekte zeigen meinen Fokus auf einfache, skalierbare und nutzerzentrierte digitale Produkte.",
     "resume": "Lebenslauf",
     "filters": {
       "categories": {
         "all": "Alle",
-        "front-end": "Front-end",
-        "full-stack": "Full-stack",
+        "front-end": "Front-End",
+        "full-stack": "Full-Stack",
         "design": "Design"
       },
       "tags": {
         "button": "Tags",
         "title": "Nach Tags filtern",
-        "searchPlaceholder": "Tags durchsuchen",
-        "clear": "Zurücksetzen",
+        "searchPlaceholder": "Tags suchen",
+        "clear": "Löschen",
         "done": "Fertig",
-        "empty": "Keine Tags gefunden. Bitte anders suchen."
+        "empty": "Keine Tags gefunden. Versuche eine andere Suche."
       },
       "reset": "Zurücksetzen",
       "searchPlaceholder": "Projekte durchsuchen",
-      "clearFilters": "Filter löschen"
+      "clearFilters": "Filter zurücksetzen"
     },
     "empty": {
-      "title": "Keine Projekte passen zu diesem Filter",
-      "description": "Passe Kategorie oder Tags an – oder lösche die Suche, um mehr Arbeiten zu entdecken.",
-      "action": "Filter löschen"
+      "title": "Keine Projekte entsprechen deinen Filtern",
+      "description": "Versuche, die Kategorie zu ändern, einen Tag zu entfernen oder die Suche zu leeren, um weitere Projekte zu entdecken.",
+      "action": "Filter zurücksetzen"
     },
     "card": {
       "view": "Projekt ansehen",
       "categoryLabel": {
-        "front-end": "Front-end",
-        "full-stack": "Full-stack",
+        "front-end": "Front-End",
+        "full-stack": "Full-Stack",
         "design": "Design"
       }
     },
     "list": [
       {
         "id": "neonNodes",
-        "title": "Neon Nodes",
-        "description": "Realtime-Graph-Editor mit kollaborativen Cursorn und reaktivem Plugin-System.",
-        "image": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Vue 3", "WebRTC", "Pinia"],
-        "link": "https://example.com/neon-nodes",
-        "category": "front-end"
+        "title": "Michelle Heatherly",
+        "description": "Diese Website! Meine persönliche Portfolioseite, um einige meiner Fähigkeiten als Softwareentwicklerin und Webdesignerin zu präsentieren.",
+        "image": "~/assets/images/new-website.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
+        "link": "#",
+        "category": "full-stack"
       },
       {
         "id": "pulseUi",
-        "title": "Pulse UI",
-        "description": "Design-System auf Basis von Nuxt UI mit Token-Theming und Charting.",
-        "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt UI", "Design Tokens", "D3"],
-        "link": "https://example.com/pulse-ui",
+        "title": "ParaTactical",
+        "description": "Die Unternehmenswebsite von ParaTactical – einem Ultraleicht- und Sportflugplatz in North Carolina.",
+        "image": "~/assets/images/paratactical.PNG",
+        "tags": ["JS", "CSS", "Squarespace", "Fotografie"],
+        "link": "https://www.paratactical.net/",
         "category": "design"
       },
       {
         "id": "greenTrace",
-        "title": "GreenTrace",
-        "description": "Dashboard für Nachhaltigkeits-Insights mit KI-Zusammenfassungen und Karten-Layern.",
-        "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt", "KI", "Maps"],
-        "link": "https://example.com/greentrace",
+        "title": "Luna",
+        "description": "Eine datenschutzfreundliche App zur Menstruationsgesundheit, die Frauen dabei unterstützt, ihre Zyklen einfach und sicher zu verfolgen.",
+        "image": "~/assets/images/luna.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://luna-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
       },
       {
         "id": "immersiveAtlas",
-        "title": "Immersive Atlas",
-        "description": "Story-getriebene Microsite mit 3D-Szenen, Scroll-Choreografie und Sound-Design.",
-        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Three.js", "Nuxt 3", "Storytelling"],
-        "link": "https://example.com/immersive-atlas",
+        "title": "Archivierte persönliche Website",
+        "description": "Die vorherige Version meiner Portfolioseite.",
+        "image": "~/assets/images/old-website.PNG",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Github"],
+        "link": "https://michelle-heatherly.com/",
         "category": "front-end"
       },
       {
         "id": "opsynkControl",
-        "title": "Opsynk Control",
-        "description": "Analytics-Suite mit Live-Telemetrie, Incident-Notes und SOC-Handoff-Automation.",
-        "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt 3", "Supabase", "Telemetry"],
-        "link": "https://example.com/opsynk-control",
+        "title": "Quizzi",
+        "description": "Eine Lernkarten-App zum Erstellen, Organisieren und Lernen – mit Unterstützung für Multiple-Choice- und Lückentextfragen.",
+        "image": "~/assets/images/quizzi.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://quizzi-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
       },
       {
         "id": "signalStudio",
-        "title": "Signal Studio",
-        "description": "Design-System-Playground mit Komponenten-Deep-Dives, Motion-Guidelines und Theme-Toggles.",
-        "image": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Design Systems", "Nuxt UI", "Docs"],
-        "link": "https://example.com/signal-studio",
-        "category": "design"
+        "title": "Kinsale Charters",
+        "description": "Die Unternehmenswebsite von Kinsale Charters – einem kleinen Angelcharter-Service in Virginia.",
+        "image": "~/assets/images/kinsale-charters.png",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Gitlab"],
+        "link": "https://kinsale-charters.com",
+        "category": "front-end"
       }
     ]
   },

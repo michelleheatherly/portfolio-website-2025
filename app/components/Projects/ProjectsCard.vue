@@ -27,7 +27,7 @@
 
     <div class="relative">
       <img
-        :src="project.image"
+        :src="projectImageSrc"
         alt=""
         class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
       />
@@ -94,6 +94,49 @@ const props = defineProps<{
 
 const project = computed(() => props.project)
 const { t } = useI18n()
+
+const localImageEntries = import.meta.glob('@/assets/images/**/*', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>
+
+const localImageMap = Object.fromEntries(
+  Object.entries(localImageEntries).map(([key, value]) => {
+    const normalizedKey = key
+      .replace(/^(\.\.\/)+/, '')
+      .replace(/^@\/?/, '')
+      .replace(/^~\//, '')
+      .replace(/^\/+/, '')
+    return [normalizedKey, value]
+  })
+)
+
+const projectImageSrc = computed(() => {
+  const source = project.value.image
+  if (!source) return ''
+
+  const isRemote = /^(https?:)?\/\//i.test(source) || source.startsWith('data:')
+  if (isRemote)
+    return source
+
+  const normalizedSource = source
+    .replace(/^~\//, '')
+    .replace(/^@\//, '')
+    .replace(/^\/+/, '')
+
+  const lookupCandidates = [
+    normalizedSource,
+    normalizedSource.startsWith('assets/') ? normalizedSource : `assets/${normalizedSource}`,
+    normalizedSource.replace(/^app\//, '')
+  ]
+
+  for (const candidate of lookupCandidates) {
+    const hit = localImageMap[candidate]
+    if (hit) return hit
+  }
+
+  return source
+})
 
 const prefersReduced = usePreferredReducedMotion()
 const pointerX = ref(50)

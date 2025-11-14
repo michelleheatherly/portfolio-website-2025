@@ -222,8 +222,8 @@
     "filters": {
       "categories": {
         "all": "All",
-        "front-end": "Front-end",
-        "full-stack": "Full-stack",
+        "front-end": "Front-End",
+        "full-stack": "Full-Stack",
         "design": "Design"
       },
       "tags": {
@@ -254,57 +254,57 @@
     "list": [
       {
         "id": "neonNodes",
-        "title": "Neon Nodes",
-        "description": "Real-time graph editor with collaborative cursors and a reactive plugin system.",
-        "image": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Vue 3", "WebRTC", "Pinia"],
-        "link": "https://example.com/neon-nodes",
-        "category": "front-end"
+        "title": "Michelle Heatherly",
+        "description": "This website! My personal portfolio website for showcasing some of my skills as a software engineer and web designer.",
+        "image": "~/assets/images/new-website.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
+        "link": "#",
+        "category": "full-stack"
       },
       {
         "id": "pulseUi",
-        "title": "Pulse UI",
-        "description": "Design system built on Nuxt UI with token-driven theming and charts.",
-        "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt UI", "Design Tokens", "D3"],
-        "link": "https://example.com/pulse-ui",
+        "title": "ParaTactical",
+        "description": "The business website for ParaTactical, a grass ultralight and light sport flying airfield in North Carolina.",
+        "image": "~/assets/images/paratactical.PNG",
+        "tags": ["JS", "CSS", "Squarespace", "Photography"],
+        "link": "https://www.paratactical.net/",
         "category": "design"
       },
       {
         "id": "greenTrace",
-        "title": "GreenTrace",
-        "description": "Sustainability insights dashboard with AI summaries and map layers.",
-        "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt", "AI", "Maps"],
-        "link": "https://example.com/greentrace",
+        "title": "Luna",
+        "description": "A privacy-first menstrual health app designed to help women track their cycles with ease and confidence.",
+        "image": "~/assets/images/luna.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://luna-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
       },
       {
         "id": "immersiveAtlas",
-        "title": "Immersive Atlas",
-        "description": "Story-driven microsite blending 3D scenes, scroll choreography, and reactive sound design.",
-        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Three.js", "Nuxt 3", "Storytelling"],
-        "link": "https://example.com/immersive-atlas",
+        "title": "Archived Personal Website",
+        "description": "The previous version of my portfolio website.",
+        "image": "~/assets/images/old-website.PNG",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Github"],
+        "link": "https://michelle-heatherly.com/",
         "category": "front-end"
       },
       {
         "id": "opsynkControl",
-        "title": "Opsynk Control",
-        "description": "Operational analytics suite with live telemetry, incident notes, and SOC handoff automations.",
-        "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Nuxt 3", "Supabase", "Telemetry"],
-        "link": "https://example.com/opsynk-control",
+        "title": "Quizzi",
+        "description": "A flashcard app for creating, organizing, and studying — with additional support for multiple choice and fill-in-the-blank questions.",
+        "image": "~/assets/images/quizzi.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://quizzi-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
       },
       {
         "id": "signalStudio",
-        "title": "Signal Studio",
-        "description": "Design system playground featuring component deep-dives, motion guidelines, and theme toggles.",
-        "image": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop",
-        "tags": ["Design Systems", "Nuxt UI", "Docs"],
-        "link": "https://example.com/signal-studio",
-        "category": "design"
+        "title": "Kinsale Charters",
+        "description": "The business website for Kinsale Charters, a small fishing charter service in Virginia.",
+        "image": "~/assets/images/kinsale-charters.png",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Gitlab"],
+        "link": "https://kinsale-charters.com",
+        "category": "front-end"
       }
     ]
   },

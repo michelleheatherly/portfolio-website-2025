@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: import.meta.env.BASE_URL || '/',
     head: {
-      title: 'Dev Portfolio',
+      title: 'Michelle Heatherly',
       meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }]
     }
   },
