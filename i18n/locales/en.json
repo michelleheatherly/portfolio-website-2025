@@ -173,44 +173,44 @@
   },
   "skills": {
     "badge": "Skills",
-    "title": "Crafting interfaces that balance polish, performance, and accessibility",
-    "description": "Here’s what I lean on day-to-day to ship resilient products. The mix covers technical depth, interaction design, and the collaborative habits that keep teams shipping.",
+    "title": "Tools and practices for building resilient digital experiences.",
+    "description": "This toolkit combines languages, frameworks, and workflows that power my day-to-day work. Together, they support performance, accessibility, and the collaborative momentum needed to deliver great products.",
     "sections": {
       "frontend": {
-        "title": "Product-Focused Frontend",
-        "blurb": "Nuxt-powered experiences that stay fast, inclusive, and easy to iterate on.",
-        "highlights": ["Nuxt 3", "Vue", "TypeScript"],
-        "peek": "Led a commerce redesign that shaved 38% off page weight while lifting conversions."
+        "title": "Front-End Development",
+        "blurb": "Programming languages and frameworks for user-facing interfaces.",
+        "highlights": ["Nuxt", "Vue", "React", "Angular", "JavaScript", "HTML", "CSS"],
+        "peek": "Built a Nuxt application for managing purchase orders with real-time editing controls and role-based access."
       },
       "designSystems": {
-        "title": "Design Systems & UI Kits",
-        "blurb": "Reusable UI that feels cohesive across devices without sacrificing personality.",
-        "highlights": ["Design tokens", "Storybook", "Responsive layouts"],
-        "peek": "Shipped a token-driven kit that powered 3 product squads with zero divergence."
+        "title": "Back-End & APIs",
+        "blurb": "Server-side frameworks, databases, and API integrations.",
+        "highlights": ["Python", "Java", "Flask", "NodeJS", "PostgreSQL", "NoSQL"],
+        "peek": "Created a Node API for generating custom, metadata-rich QR codes utilizing external services."
       },
       "motion": {
-        "title": "Motion & Micro-Interactions",
-        "blurb": "Thoughtful transitions that guide attention and make interfaces feel alive.",
-        "highlights": ["VueUse Motion", "GSAP basics", "CSS timelines"],
-        "peek": "Elevated onboarding completion to 92% with contextual nudges and micro-animations."
+        "title": "Design & Interaction",
+        "blurb": "Component libraries, frameworks, and tools for designing accessible, interactive interfaces.",
+        "highlights": ["Bootstrap", "Vuetify", "Tailwind", "Sass", "Responsive layouts"],
+        "peek": "Transformed a detailed Figma design system into a new polished, responsive company website built with Nuxt."
       },
       "quality": {
-        "title": "Accessibility & Quality",
-        "blurb": "Ship features that work for everyone with a tight feedback loop.",
-        "highlights": ["Semantic HTML", "Keyboard flows", "Vitest + Playwright"],
-        "peek": "Audited core flows to WCAG AA and automated a11y checks inside CI."
+        "title": "Testing & Performance",
+        "blurb": "Testing frameworks, accessibility audits, and performance monitoring.",
+        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "ES Lint" ],
+        "peek": "Updated unit tests in multiple legacy codebases for 100% code coverage."
       },
       "collaboration": {
-        "title": "Collaboration",
-        "blurb": "Partner with designers and product teams to launch user-facing outcomes.",
-        "highlights": ["Design handoff", "Docs & RFCs", "Mentorship"],
-        "peek": "Facilitated weekly design crits and sprint alignment across three squads."
+        "title": "Collaboration & DevOps",
+        "blurb": "Shared collaboration tools, version control, and deployment workflows.",
+        "highlights": ["Agile", "CI/CD", "GitHub", "Documentation", "LucidCharts"],
+        "peek": "Co-led DevOps efforts to create CI/CD pipelines supporting secure, automated multi-cloud deployments using agile scrum processes."
       },
       "engineering": {
-        "title": "Engineering Habits",
-        "blurb": "Maintainable codebases with modern tooling and DevOps awareness.",
-        "highlights": ["CI/CD", "GitHub Actions", "Edge deployments"],
-        "peek": "Automated release gates saved the team ~4 hours each week on regression checks."
+        "title": "Infrastructure & Cloud Platforms",
+        "blurb": "Hosting and infrastructure for modern applications.",
+        "highlights": ["Docker", "CloudFlare", "Linux", "Windows", "AWS", "Azure", "GCP"],
+        "peek": "Architected multiple cloud migration strategies prioritizing performance, cost, and resilience."
       }
     }
   },
