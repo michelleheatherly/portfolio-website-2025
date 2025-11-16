@@ -43,8 +43,8 @@
       "start": "Full-Stack development with a ",
       "end": " touch."
     },
-    "accent": "human",
-    "description": "Hi! I'm Michelle Heatherly, a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let’s craft something fast, accessible, and stylish with people in mind.",
+    "accent": "personal",
+    "description": "Hi! I'm Michelle, a software engineer specializing in Nuxt, Vue, Python, and seamless user experiences. Let's create something fast, accessible, and stylish.",
     "cta": {
       "projects": "See Projects",
       "contact": "Contact"
@@ -59,7 +59,7 @@
   "about": {
     "badge": "About",
     "heading": "Designing with empathy, building with purpose.",
-    "description": "I'm a Full-Stack Software Engineer with 9+ years of experience and a BA in Computer Science. My passion is creating digital products that balance aesthetics, accessibility, and performance— merging digital design with engineering discipline. My goal is simple: Create experiences that feel effortless to use and meaningful to the people using them.",
+    "description": "I'm a Full-Stack Software Engineer with 9+ years of experience and a background in Computer Science. My passion is building accessible, performant digital products that feel effortless to use and feel meaningful to the people that use them.",
     "cards": {
       "superpower": {
         "title": "Superpower",
@@ -89,17 +89,17 @@
   "education": {
     "badge": "Education",
     "title": "Education & Continuous Growth",
-    "description": "A blend of formal education, industry certifications, and hands-on trainings that keep my design and development practice aligned and evolving with technology.",
+    "description": "A blend of formal education, industry certifications, and hands-on trainings that keep me aligned and evolving with technology.",
     "categories": {
       "college": {
         "label": "College",
-        "description": "Formal education that shaped my approach to problem-solving, development strategy, and communication.",
+        "description": "Formal degrees & study abroad",
         "entries": [
           {
             "title": "B.A. Computer Science and German, Math Minor",
             "org": "Wofford College",
             "period": "2013-2017",
-            "highlight": "Formal study uniting computational logic, linguistic structure, and mathematical reasoning to shape a systems-based mindset."
+            "highlight": "United computational logic, linguistic structure, and mathematical reasoning to shape a systems-based mindset."
           },
           {
             "title": "Study Abroad in Freiburg, Germany",
@@ -117,7 +117,7 @@
       },
       "certifications": {
         "label": "Certifications",
-        "description": "Recognized credentials that keep my craft aligned with modern industry practices.",
+        "description": "Recognized industry credentials",
         "entries": [
           {
             "title": "Azure AI Fundamentals",
@@ -147,7 +147,7 @@
       },
       "trainings": {
         "label": "Additional Trainings",
-        "description": "Workshops and bootcamps that deepen my understanding of scalability, reliability, and trust in digital systems.",
+        "description": "Workshops and bootcamps",
         "entries": [
           {
             "title": "Developing on AWS",
@@ -173,12 +173,12 @@
   },
   "skills": {
     "badge": "Skills",
-    "title": "Tools and practices for building resilient digital experiences.",
-    "description": "This toolkit combines languages, frameworks, and workflows that power my day-to-day work. Together, they support performance, accessibility, and the collaborative momentum needed to deliver great products.",
+    "title": "Tools for building resilient digital experiences.",
+    "description": "A collection of languages, frameworks, and workflows that power my day-to-day work.",
     "sections": {
       "frontend": {
         "title": "Front-End Development",
-        "blurb": "Programming languages and frameworks for user-facing interfaces.",
+        "blurb": "Programming languages and frameworks for user interfaces.",
         "highlights": ["Nuxt", "Vue", "React", "Angular", "JavaScript", "HTML", "CSS"],
         "peek": "Built a Nuxt application for managing purchase orders with real-time editing controls and role-based access."
       },
@@ -217,7 +217,7 @@
   "projects": {
     "badge": "Portfolio",
     "title": "Selected Projects",
-    "description": "With nearly a decade of hands-on experience, I design and develop responsive websites and applications that merge design integrity with engineering reliability. These projects reflect my focus on building simple, scalable, and human-centered digital products.",
+    "description": "Here are a few projects demonstrating my approach to creating responsive, accessible products supported by well-structured, maintainable code.",
     "resume": "Resume",
     "filters": {
       "categories": {
@@ -336,8 +336,8 @@
   },
   "contact": {
     "badge": "Contact",
-    "headline": "Let’s bring your ideas to life",
-    "description": "I design and develop modern web experiences that put people first. Whether you're refining an interface or building from scratch, I care about the details that make it work. Let's turn your idea into something real.",
+    "headline": "Get in Touch",
+    "description": "I'm always open to new collaborations. If you're exploring a project, improving an interface, or need technical insight, feel free to reach out—I'd love to hear what you're working on!",
     "actions": {
       "email": "Email",
       "github": "GitHub",
@@ -369,8 +369,8 @@
   "footer": {
     "badge": "Full-Stack Software Engineer",
     "siteName": "Michelle Heatherly",
-    "headline": "Crafting software that is fast, accessible, and resilient.",
-    "description": "Everything thoughtfully built to support a better user experience.",
+    "headline": "Development with a personal touch.",
+    "description": "Everything thoughtfully built to support seamless user experiences.",
     "columns": {
       "navigate": {
         "title": "Navigation",
@@ -391,11 +391,7 @@
           "Web & App Development",
           "UI/UX Design",
           "Accessibility",
-          "Integration",
-          "Cloud Computing",
-          "SecDevOps",
-          "Automation",
-          "AI/ML"
+          "Cloud Computing"
         ]
       }
     },
@@ -403,7 +399,7 @@
       "visit": "Visit {label}"
     },
     "bottom": {
-      "crafted": "© {year} {site}. Created with Nuxt, Vue, and lots of love.",
+      "crafted": "© {year} {site}. Created with Nuxt, Vue, and love.",
       "privacy": "Privacy",
       "terms": "Terms"
     }

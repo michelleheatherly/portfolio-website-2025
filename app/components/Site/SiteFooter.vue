@@ -92,12 +92,12 @@
           <span>{{ t('footer.bottom.crafted', { year: currentYear, site: siteName }) }}</span>
         </span>
         <span class="flex items-center gap-2">
-          <NuxtLink href="#privacy" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">
+          <!-- <NuxtLink href="#privacy" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">
             {{ t('footer.bottom.privacy') }}
           </NuxtLink>
           <NuxtLink href="#terms" class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10">
             {{ t('footer.bottom.terms') }}
-          </NuxtLink>
+          </NuxtLink> -->
           <LanguageToggle class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10" />
           <ThemeToggle class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10" />
         </span>
@@ -190,14 +190,14 @@ const socialLinks = [
 
 const footerColumns = computed(() => [
   {
-    title: t('footer.columns.navigate.title'),
-    links: primarySections.value,
-    type: 'links' as const
-  },
-  {
     title: t('footer.columns.expertise.title'),
     highlights: studioHighlights.value,
     type: 'highlights' as const
+  },
+  {
+    title: t('footer.columns.navigate.title'),
+    links: primarySections.value,
+    type: 'links' as const
   }
 ])
 

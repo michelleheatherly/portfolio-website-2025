@@ -43,8 +43,8 @@
       "start": "Full-Stack-Entwicklung mit ",
       "end": "Note."
     },
-    "accent": "menschlicher",
-    "description": "Hallo! Ich bin Michelle Heatherly, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
+    "accent": "persönlicher",
+    "description": "Hallo! Ich bin Michelle, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns schnelle, zugängliche und stilvolle Anwendungen erschaffen, die den Nutzer in den Mittelpunkt stellen.",
     "cta": {
       "projects": "Projekte ansehen",
       "contact": "Kontakt"
@@ -391,11 +391,7 @@
           "Web & App Entwicklung",
           "UI/UX Design",
           "Barrierefreiheit",
-          "Integration",
-          "Cloud Computing",
-          "SecDevOps",
-          "Automatisierung",
-          "KI/ML"
+          "Cloud Computing"
         ]
       }
     },
@@ -403,7 +399,7 @@
       "visit": "{label} besuchen"
     },
     "bottom": {
-      "crafted": "© {year} {site}. Mit Nuxt, Vue und viel Liebe umgesetzt.",
+      "crafted": "© {year} {site}. Mit Nuxt, Vue und Liebe umgesetzt.",
       "privacy": "Datenschutz",
       "terms": "Impressum"
     }

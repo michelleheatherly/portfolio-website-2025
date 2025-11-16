@@ -123,12 +123,12 @@
                     >
                       {{ entry.org }}
                     </p>
-                    <p
+                    <!-- <p
                       v-if="entry.highlight"
                       class="timeline-description text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300"
                     >
                       {{ entry.highlight }}
-                    </p>
+                    </p> -->
                   </div>
                 </li>
               </ul>
