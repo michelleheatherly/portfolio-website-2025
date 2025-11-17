@@ -21,7 +21,7 @@
       </div>
 
       <!-- Desktop nav -->
-      <nav class="hidden md:block">
+      <nav class="hidden lg:block">
         <ul class="flex gap-6 items-center">
           <li
             v-for="(l, index) in navLinks"
@@ -53,7 +53,7 @@
         <LanguageToggle />
         <ThemeToggle />
         <UButton
-          class="group/menu md:hidden transition-colors duration-300"
+          class="group/menu lg:hidden transition-colors duration-300"
           variant="soft"
           :aria-expanded="isMenuOpen"
           :aria-controls="menuId"
@@ -72,7 +72,7 @@
       <Transition name="menu-overlay">
         <div
           v-if="isMenuOpen"
-          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col md:hidden"
+          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col lg:hidden"
           role="dialog"
           aria-modal="true"
           :aria-labelledby="`${menuId}-title`"
@@ -99,16 +99,6 @@
             :style="rippleStyle"
           />
           <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
-            <!-- <span
-              :id="`${menuId}-title`"
-              class="text-xs uppercase tracking-[0.5em] text-white/70"
-            >
-              {{ menuTitle }}
-            </span> -->
-            <!-- <div class="flex items-center justify-center gap-3">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div> -->
             <nav :id="menuId">
               <ul class="space-y-6">
                 <li
@@ -138,9 +128,6 @@
                 </li>
               </ul>
             </nav>
-            <!-- <p class="text-sm text-white/60 max-w-xs">
-              {{ menuTagline }}
-            </p> -->
              <div class="flex items-center justify-center gap-3">
               <LanguageToggle />
               <ThemeToggle />
@@ -186,8 +173,6 @@ const navLinks = computed(() =>
 )
 const brandLabel = computed(() => t('nav.brand'))
 const menuButtonLabel = computed(() => (isMenuOpen.value ? t('nav.menu.close') : t('nav.menu.open')))
-const menuTitle = computed(() => t('nav.menu.title'))
-const menuTagline = computed(() => t('nav.menu.tagline'))
 
 const glassProgress = computed(() => {
   if (isMenuOpen.value) {
