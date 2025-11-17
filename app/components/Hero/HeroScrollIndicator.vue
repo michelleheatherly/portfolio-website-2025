@@ -19,8 +19,7 @@
       </span>
 
       <div class="flex flex-col">
-        <span class="font-medium text-zinc-700 dark:text-white/80">{{ t('scrollIndicator.title') }}</span>
-        <span class="text-xs text-zinc-500 dark:text-white/60">{{ t('scrollIndicator.subtitle') }}</span>
+        <span class="text-sm font-medium text-zinc-500 dark:text-white/60">{{ t('scrollIndicator.title') }}</span>
       </div>
     </div>
   </div>

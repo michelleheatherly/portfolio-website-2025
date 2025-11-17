@@ -6,8 +6,8 @@
       variant="ghost"
       size="sm"
       :class="[
-        'group/theme-toggle rounded-full',
-        quickMode ? 'transition-none duration-0' : 'transition-colors duration-300'
+        'group/theme-toggle rounded-full border border-transparent hover:border-neutral-500/70',
+        quickMode ? 'transition-none duration-0' : 'transition duration-300'
       ]"
       @click="onClick"
     >
@@ -26,7 +26,7 @@
         color="neutral"
         variant="ghost"
         size="sm"
-        class="group/theme-toggle rounded-full transition-none duration-0"
+        class="group/theme-toggle rounded-full border border-transparent hover:border-neutral-500/70 transition-none duration-0"
         @click="switchTheme"
       >
         <UIcon

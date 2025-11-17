@@ -3,7 +3,7 @@
     color="neutral"
     variant="ghost"
     size="sm"
-    class="rounded-full font-semibold tracking-wide transition-colors duration-300"
+    class="rounded-full font-semibold tracking-wide border border-transparent hover:border-neutral-500/70 focus-visible:border-neutral-500/70 transition duration-300"
     :aria-label="buttonLabel"
     @click="toggleLocale"
   >
@@ -32,4 +32,3 @@ async function toggleLocale() {
   await setLocale(nextLocale.value)
 }
 </script>
-
