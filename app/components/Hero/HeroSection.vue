@@ -24,9 +24,10 @@
           }"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+            class="availability-pill inline-flex items-center rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
                    text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
                    dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+            :aria-label="t('hero.availability')"
             v-motion
             :initial="{ opacity: 0, y: -8 }"
             :enter="{
@@ -36,7 +37,9 @@
             }"
           >
             <UIcon name="i-heroicons-rocket-launch-20-solid" class="h-4 w-4" />
-            {{ t('hero.availability') }}
+            <span class="availability-pill__text" aria-hidden="true">
+              {{ t('hero.availability') }}
+            </span>
           </span>
 
           <h1
@@ -212,5 +215,30 @@ const heroDelays = {
   text-shadow:
     1px 1px 0 rgba(76, 29, 149, 0.38),
     4px 8px 22px rgba(34, 197, 94, 0.32);
+}
+
+.hero-section .availability-pill {
+  gap: 0;
+}
+
+.hero-section .availability-pill__text {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 0.35s ease,
+    opacity 0.35s ease,
+    margin-left 0.35s ease,
+    padding-left 0.35s ease;
+}
+
+.hero-section .availability-pill:hover .availability-pill__text {
+  max-width: 999px;
+  opacity: 1;
+  margin-left: 1.5rem;
+  padding-left: 0.25rem;
 }
 </style>

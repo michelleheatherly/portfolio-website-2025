@@ -78,33 +78,37 @@
           :aria-labelledby="`${menuId}-title`"
           @click.self="closeMenu"
         >
-          <UButton
-            class="absolute right-4 top-4 z-20 text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            square
-            icon="i-heroicons-x-mark-20-solid"
-            :aria-label="t('nav.menu.close')"
-            type="button"
-            @click.stop="closeMenu"
-          />
+          <div class="absolute inset-x-0 top-0 z-20">
+            <div class="mx-auto flex w-full max-w-7xl justify-end px-6 pt-3">
+              <UButton
+                class="text-black dark:text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                color="neutral"
+                variant="ghost"
+                size="lg"
+                square
+                icon="i-heroicons-x-mark-20-solid"
+                :aria-label="t('nav.menu.close')"
+                type="button"
+                @click.stop="closeMenu"
+              />
+            </div>
+          </div>
           <div
             class="menu-ripple"
             :class="{ 'menu-ripple--active': allowMenuRipple }"
             :style="rippleStyle"
           />
           <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
-            <span
+            <!-- <span
               :id="`${menuId}-title`"
               class="text-xs uppercase tracking-[0.5em] text-white/70"
             >
               {{ menuTitle }}
-            </span>
-            <div class="flex items-center justify-center gap-3">
+            </span> -->
+            <!-- <div class="flex items-center justify-center gap-3">
               <LanguageToggle />
               <ThemeToggle />
-            </div>
+            </div> -->
             <nav :id="menuId">
               <ul class="space-y-6">
                 <li
@@ -116,9 +120,9 @@
                 >
                   <ULink
                     :to="l.to"
-                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-white/90 transition-all duration-300 ease-out
-                           hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
-                           focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
+                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white/90 transition-all duration-300 ease-out
+                           hover:text-zinc-900 dark:hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
+                           focus-visible:text-zinc-900 dark:focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
                     @click="handleMobileNavigate"
                   >
                     <span
@@ -127,16 +131,20 @@
                     />
                     {{ l.label }}
                     <span
-                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-white opacity-0 transition-all duration-500 ease-out
-                             group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
+                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-zinc-900 transition-all duration-500 ease-out
+                             opacity-0 group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100 dark:bg-white"
                     />
                   </ULink>
                 </li>
               </ul>
             </nav>
-            <p class="text-sm text-white/60 max-w-xs">
+            <!-- <p class="text-sm text-white/60 max-w-xs">
               {{ menuTagline }}
-            </p>
+            </p> -->
+             <div class="flex items-center justify-center gap-3">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </Transition>
@@ -145,7 +153,11 @@
 </template>
 
 <script setup lang="ts">
-import { useWindowScroll, usePreferredReducedMotion, useEventListener } from '@vueuse/core'
+import {
+  useWindowScroll,
+  usePreferredReducedMotion,
+  useEventListener
+} from '@vueuse/core'
 
 const navLinkDefs = [
   { key: 'home', to: '#home' },
@@ -327,7 +339,8 @@ onBeforeUnmount(() => {
 }
 
 .menu-overlay-surface {
-  background-color: #159561;
+  background: var(--menu-overlay-bg);
+  transition: background 0.35s ease;
 }
 
 .menu-overlay-enter-from,
