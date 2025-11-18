@@ -1,8 +1,12 @@
 // app.config.ts (Nuxt UI theme overrides)
 export default defineAppConfig({
   ui: {
-    primary: 'violet',
-    gray: 'slate',
+    colors: {
+      primary: 'green',
+      secondary: 'purple',
+      success: 'green',
+      info: 'purple',
+    }
     card: {
       base: [
         // light surface

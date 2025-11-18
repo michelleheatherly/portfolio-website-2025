@@ -244,8 +244,8 @@
       "action": "Filter zurücksetzen"
     },
     "card": {
-      "view": "Projekt ansehen",
-      "code": "Code ansehen",
+      "view": "Besuchen",
+      "code": "Code",
       "categoryLabel": {
         "front-end": "Front-End",
         "full-stack": "Full-Stack",

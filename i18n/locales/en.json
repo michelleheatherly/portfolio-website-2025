@@ -245,8 +245,8 @@
       "action": "Clear filters"
     },
     "card": {
-      "view": "View Project",
-      "code": "View Code",
+      "view": "View",
+      "code": "Code",
       "categoryLabel": {
         "front-end": "Front-end",
         "full-stack": "Full-stack",

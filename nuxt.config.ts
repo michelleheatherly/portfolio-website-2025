@@ -15,8 +15,9 @@ export default defineNuxtConfig({
     fallback: 'dark'
   },
   ui: {
-    // Fine-tune theme tokens (Nuxt UI)
-    primary: 'violet',
+    theme: {
+      colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error'],
+    }
   },
   tailwindcss: {
     viewer: false
