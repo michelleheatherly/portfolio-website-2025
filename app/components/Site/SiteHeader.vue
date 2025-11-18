@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-40 border-b transition-all duration-500 transform-gpu header-surface"
+    class="sticky top-0 z-[90] border-b transition-all duration-500 transform-gpu header-surface"
     :class="[
       headerSurfaceClasses,
       shouldHideHeader ? '-translate-y-full opacity-0 pointer-events-none' : 'opacity-100'
@@ -38,7 +38,6 @@
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 rounded-md px-1"
             >
               {{ l.label }}
-              <!-- subtle underline accent -->
               <span
                 class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black dark:bg-white/90 opacity-0 transition-all duration-300 ease-out
                        group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
@@ -52,19 +51,26 @@
       <div class="flex items-center gap-2">
         <LanguageToggle />
         <ThemeToggle />
-        <UButton
-          class="group/menu lg:hidden transition-colors duration-300"
-          variant="soft"
+        <!-- Header menu toggle -->
+        <button
+          type="button"
+          class="menu-toggle menu-toggle--hoverable inline-flex items-center justify-center lg:hidden transition duration-300
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+                text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
+          :class="{
+            'menu-toggle--bg-open': isMenuOpen,
+            'menu-toggle--icon-open': iconOpenState,
+            'menu-toggle--closed': !isMenuOpen
+          }"
           :aria-expanded="isMenuOpen"
           :aria-controls="menuId"
           :aria-label="menuButtonLabel"
           @click="toggleMenu"
         >
-          <UIcon
-            :name="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
-            class="h-5 w-5 transition-transform duration-500 group-hover/menu:-translate-y-0.5 group-hover/menu:rotate-12"
-          />
-        </UButton>
+          <span class="menu-toggle__line" aria-hidden="true" />
+          <span class="menu-toggle__line" aria-hidden="true" />
+          <span class="menu-toggle__line" aria-hidden="true" />
+        </button>
       </div>
     </UContainer>
 
@@ -78,19 +84,24 @@
           :aria-labelledby="`${menuId}-title`"
           @click.self="closeMenu"
         >
-          <div class="absolute inset-x-0 top-0 z-20">
+          <div class="absolute inset-x-0 top-0 z-[95] pointer-events-none">
             <div class="mx-auto flex w-full max-w-7xl justify-end px-6 pt-3">
-              <UButton
-                class="text-black dark:text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                color="neutral"
-                variant="ghost"
-                size="lg"
-                square
-                icon="i-heroicons-x-mark-20-solid"
-                :aria-label="t('nav.menu.close')"
+              <button
                 type="button"
-                @click.stop="closeMenu"
-              />
+                class="menu-toggle menu-toggle--hoverable inline-flex items-center justify-center pointer-events-auto transition duration-300
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+                      text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
+                :class="{
+                  'menu-toggle--icon-open': iconOpenState,
+                  'menu-toggle--closed': !isMenuOpen
+                }"
+                  :aria-label="t('nav.menu.close')"
+                  @click.stop="closeMenu"
+                >
+                <span class="menu-toggle__line" aria-hidden="true" />
+                <span class="menu-toggle__line" aria-hidden="true" />
+                <span class="menu-toggle__line" aria-hidden="true" />
+              </button>
             </div>
           </div>
           <div
@@ -128,7 +139,7 @@
                 </li>
               </ul>
             </nav>
-             <div class="flex items-center justify-center gap-3">
+            <div class="flex items-center justify-center gap-3">
               <LanguageToggle />
               <ThemeToggle />
             </div>
@@ -145,6 +156,9 @@ import {
   usePreferredReducedMotion,
   useEventListener
 } from '@vueuse/core'
+import { ref, computed, watch, onBeforeUnmount } from 'vue'
+
+const { t } = useI18n()
 
 const navLinkDefs = [
   { key: 'home', to: '#home' },
@@ -158,12 +172,15 @@ const navLinkDefs = [
 
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()
-const { t } = useI18n()
 
 const footerVisible = useState<boolean>('footer-visible', () => false)
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false)       // controls overlay visibility
+const iconOpenState = ref(false)    // controls burger ↔ X animation
 const rippleOrigin = ref({ x: 0, y: 0 })
 const menuId = 'site-navigation'
+
+// store timeout id for delayed open
+let openTimeout: number | undefined
 
 const navLinks = computed(() =>
   navLinkDefs.map((link) => ({
@@ -250,28 +267,54 @@ const mobileNavEnterVariant = (index: number) =>
         }
       }
 
-function toggleMenu(event?: MouseEvent) {
-  const next = !isMenuOpen.value
+function openMenu(event?: MouseEvent) {
+  // animate burger → X immediately
+  iconOpenState.value = true
 
-  if (next && import.meta.client) {
+  if (import.meta.client) {
     if (event) {
       rippleOrigin.value = { x: event.clientX, y: event.clientY }
     } else {
       rippleOrigin.value = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
     }
-  }
 
-  isMenuOpen.value = next
+    // delay overlay so the icon animation is visible
+    if (openTimeout) {
+      clearTimeout(openTimeout)
+    }
+    openTimeout = window.setTimeout(() => {
+      isMenuOpen.value = true
+    }, prefersReduced.value === 'reduce' ? 0 : 160)
+  } else {
+    isMenuOpen.value = true
+  }
 }
 
 function closeMenu() {
+  // animate X → burger
+  iconOpenState.value = false
+
+  if (import.meta.client && openTimeout) {
+    clearTimeout(openTimeout)
+    openTimeout = undefined
+  }
+
   isMenuOpen.value = false
+}
+
+function toggleMenu(event?: MouseEvent) {
+  if (!isMenuOpen.value) {
+    openMenu(event)
+  } else {
+    closeMenu()
+  }
 }
 
 function handleMobileNavigate() {
   closeMenu()
 }
 
+// body scroll lock
 if (import.meta.client) {
   watch(isMenuOpen, (open) => {
     document.body.classList.toggle('overflow-hidden', open)
@@ -291,6 +334,9 @@ if (import.meta.client) {
 onBeforeUnmount(() => {
   if (import.meta.client) {
     document.body.classList.remove('overflow-hidden')
+    if (openTimeout) {
+      clearTimeout(openTimeout)
+    }
   }
 
   removeEscapeListener?.()
@@ -326,6 +372,95 @@ onBeforeUnmount(() => {
 .menu-overlay-surface {
   background: var(--menu-overlay-bg);
   transition: background 0.35s ease;
+}
+
+/* Base button: transparent when closed */
+.menu-toggle {
+  position: relative;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: currentColor;
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.25s ease;
+}
+
+.menu-toggle--hoverable {
+  transition: transform 0.3s ease;
+}
+.menu-toggle--hoverable:hover {
+  transform: translateY(-2px) rotate(6deg);
+}
+
+/* Closed state: lines brighten on hover (clickable hint) */
+.menu-toggle--closed:hover .menu-toggle__line {
+  opacity: 0.95;
+  mix-blend-mode: screen;  
+}
+
+/* Dark mode tweak for better visibility */
+.menu-toggle:hover .menu-toggle__line {
+  opacity: 0.9;
+  background-color: currentColor; /* ensures color shifts with text */
+}
+
+.menu-toggle__line {
+  position: absolute;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.7;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+/* staggered positions for burger */
+.menu-toggle__line:nth-child(1) {
+  top: 12px;
+}
+
+.menu-toggle__line:nth-child(2) {
+  top: 20px;
+}
+
+.menu-toggle__line:nth-child(3) {
+  top: 28px;
+}
+
+/* Icon state: burger → X when open */
+.menu-toggle--icon-open .menu-toggle__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle--icon-open .menu-toggle__line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle--icon-open .menu-toggle__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Slight visual feedback on hover (lines follow currentColor) */
+.menu-toggle:hover .menu-toggle__line {
+  opacity: 0.92;
+}
+
+@media (prefers-reduced-motion: reduce) {
+.menu-toggle__line,
+.menu-toggle--hoverable {
+    transition: none;
+  }
+.menu-toggle--hoverable:hover {
+    transform: none;
+  }
 }
 
 .menu-overlay-enter-from,
