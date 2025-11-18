@@ -94,7 +94,7 @@
         <UButton
           type="submit"
           size="lg"
-          class="group overflow-hidden cursor-pointer"
+          class="group overflow-hidden cursor-pointer w-max justify-center"
           v-motion
           :initial="{ y: 12, opacity: 0 }"
           :enter="{ y: 0, opacity: 1, transition: { delay: 0.3, duration: 0.5, ease: 'easeOut' } }"
