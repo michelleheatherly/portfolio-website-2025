@@ -315,7 +315,7 @@
     "badge": "Blog",
     "title": "Latest Developments & Other Musings",
     "description": "Personal reflections on the evolving tools, technologies, and philosophies shaping the web.",
-    "note": "Articles are currently available in English and German.",
+    "note": "Articles are available in English and German.",
     "actions": {
       "open": "Open full feed",
       "visit": "Visit blog"

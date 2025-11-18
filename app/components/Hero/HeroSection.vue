@@ -24,9 +24,8 @@
           }"
         >
           <span
-            class="availability-pill group cursor-pointer inline-flex items-center rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-                   text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-                   dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+            class="availability-pill group cursor-pointer inline-flex items-center rounded-full border px-4 py-1
+                   text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
             :aria-label="t('hero.availability')"
             v-motion
             :initial="{ opacity: 0, y: -8 }"
@@ -113,15 +112,14 @@
             </UButton>
             <UButton
               size="lg"
+              color="neutral"
               variant="soft"
               to="#contact"
-              class="group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
-                     hover:bg-cyber-green/20 hover:text-cyber-green
-                     dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+              class="group border transition-colors duration-300 bg-transparent"
             >
               <UIcon
                 name="i-heroicons-envelope-20-solid"
-                class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
               <span>{{ t('hero.cta.contact') }}</span>
             </UButton>

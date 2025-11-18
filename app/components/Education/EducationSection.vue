@@ -4,10 +4,10 @@
     class="relative overflow-hidden transition-colors duration-500"
   >
     <div
-      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10"
+      class="pointer-events-none absolute inset-0 bg-gradient-to-br via-transparent"
     ></div>
-    <div class="pointer-events-none absolute -top-32 right-24 h-64 w-64 rounded-full bg-cyber-purple/20 blur-[140px]"></div>
-    <div class="pointer-events-none absolute -bottom-24 left-16 h-72 w-72 rounded-full bg-cyber-green/15 blur-[160px]"></div>
+    <div class="pointer-events-none absolute -top-32 right-24 h-64 w-64 rounded-full blur-[140px]"></div>
+    <div class="pointer-events-none absolute -bottom-24 left-16 h-72 w-72 rounded-full blur-[160px]"></div>
 
     <UContainer class="relative py-24">
       <div class="space-y-12">
@@ -22,7 +22,7 @@
           }"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-green"
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs uppercase tracking-[0.28em]"
             v-motion
             :initial="{ opacity: 0, y: -10 }"
             :visibleOnce="{
@@ -66,7 +66,7 @@
           <UCard
             v-for="(category, index) in educationCategories"
             :key="category.id"
-            class="group education-card relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyber-green/30 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
+            class="group education-card relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
             v-motion
             :initial="{ opacity: 0, y: 40 }"
             :visibleOnce="{
@@ -86,7 +86,7 @@
             <div class="relative flex h-full flex-col gap-5 p-6">
               <div class="card-header">
                 <div class="card-header-icon">
-                  <UIcon :name="category.icon" class="h-10 w-10 text-cyber-green/90" />
+                  <UIcon :name="category.icon" class="h-10 w-10" />
                 </div>
                 <div class="space-y-1">
                   <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
@@ -113,7 +113,7 @@
                     </p>
                     <p
                       v-if="entry.period"
-                      class="timeline-period text-[11px] font-semibold uppercase tracking-[0.18em] text-cyber-green"
+                      class="timeline-period text-[11px] font-semibold uppercase tracking-[0.18em]"
                     >
                       {{ entry.period }}
                     </p>

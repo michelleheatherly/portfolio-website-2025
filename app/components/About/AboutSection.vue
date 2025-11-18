@@ -4,9 +4,8 @@
       <div class="space-y-12">
         <div class="flex justify-start">
           <span
-            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-                   text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-                   dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-1
+                   text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
             v-motion
             :initial="{ opacity: 0, y: -10 }"
             :visibleOnce="{
@@ -98,7 +97,7 @@
                     }
                   }"
                   class="group relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-white/80 p-5 transition-all duration-500
-                         shadow-sm hover:-translate-y-1 hover:border-cyber-green/40 hover:shadow-[0_35px_65px_-48px_rgba(16,185,129,0.55)]
+                         shadow-sm hover:-translate-y-1 hover:shadow-[0_35px_65px_-48px_rgba(16,185,129,0.55)]
                          dark:border-white/10 dark:bg-white/10"
                 >
                   <div
@@ -107,7 +106,7 @@
                     style="background: radial-gradient(120% 120% at 0% 0%, rgba(34,197,94,0.18), transparent 55%)"
                   ></div>
                   <div class="relative">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    <p class="text-xs font-semibold uppercase tracking-wide">
                       {{ t('about.cards.superpower.title') }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
@@ -130,7 +129,7 @@
                     }
                   }"
                   class="group relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-white/80 p-5 transition-all duration-500
-                         shadow-sm hover:-translate-y-1 hover:border-cyber-green/40 hover:shadow-[0_35px_65px_-48px_rgba(59,130,246,0.55)]
+                         shadow-sm hover:-translate-y-1 hover:shadow-[0_35px_65px_-48px_rgba(59,130,246,0.55)]
                          dark:border-white/10 dark:bg-white/10"
                 >
                   <div
@@ -139,7 +138,7 @@
                     style="background: radial-gradient(120% 120% at 90% 10%, rgba(59,130,246,0.2), transparent 55%)"
                   ></div>
                   <div class="relative">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    <p class="text-xs font-semibold uppercase tracking-wide">
                       {{ t('about.cards.approach.title') }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
@@ -162,7 +161,7 @@
                     }
                   }"
                   class="group relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-white/80 p-5 transition-all duration-500
-                         shadow-sm hover:-translate-y-1 hover:border-cyber-green/40 hover:shadow-[0_35px_65px_-48px_rgba(168,85,247,0.55)]
+                         shadow-sm hover:-translate-y-1 hover:shadow-[0_35px_65px_-48px_rgba(168,85,247,0.55)]
                          dark:border-white/10 dark:bg-white/10"
                 >
                   <div
@@ -171,7 +170,7 @@
                     style="background: radial-gradient(120% 120% at 10% 90%, rgba(168,85,247,0.2), transparent 55%)"
                   ></div>
                   <div class="relative">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    <p class="text-xs font-semibold uppercase tracking-wide">
                       {{ t('about.cards.toolkit.title') }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
@@ -194,7 +193,7 @@
                     }
                   }"
                   class="group relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-white/80 p-5 transition-all duration-500
-                         shadow-sm hover:-translate-y-1 hover:border-cyber-green/40 hover:shadow-[0_35px_65px_-48px_rgba(244,114,182,0.55)]
+                         shadow-sm hover:-translate-y-1 hover:shadow-[0_35px_65px_-48px_rgba(244,114,182,0.55)]
                          dark:border-white/10 dark:bg-white/10"
                 >
                   <div
@@ -203,7 +202,7 @@
                     style="background: radial-gradient(120% 120% at 90% 90%, rgba(236,72,153,0.18), transparent 55%)"
                   ></div>
                   <div class="relative">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-cyber-green">
+                    <p class="text-xs font-semibold uppercase tracking-wide">
                       {{ t('about.cards.focus.title') }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-600 transition-colors duration-300 dark:text-white/70">
@@ -226,9 +225,9 @@
                 <UBadge
                   v-for="(badge, index) in aboutBadges"
                   :key="badge"
-                  class="border border-cyber-green/30 bg-cyber-green/15 text-cyber-green transition-all duration-500
-                         hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)]
-                         dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90"
+                  class="border transition-all duration-500
+                         hover:-translate-y-1 hover:shadow-[0_18px_35px_-22px_rgba(129,140,248,0.65)] bg-transparent"
+                  color="neutral"
                   variant="soft"
                   v-motion
                   :initial="{ opacity: 0, y: 10 }"

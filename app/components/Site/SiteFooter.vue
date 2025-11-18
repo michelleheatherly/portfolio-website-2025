@@ -48,13 +48,13 @@
               v-for="link in socialLinks"
               :key="link.label"
               :aria-label="t('footer.social.visit', { label: link.label })"
-              class="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-black/10 bg-white/50 text-zinc-500 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-cyber-green/60 hover:bg-cyber-green/10 hover:text-cyber-green/90 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:border-cyber-green/60 dark:hover:bg-cyber-green/15 dark:hover:text-cyber-green"
+              class="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-black/10 bg-white/50 text-zinc-500 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-cyber-purple/60 hover:bg-cyber-purple/10 hover:text-cyber-purple/90 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:border-cyber-purple/60 dark:hover:bg-cyber-purple/15 dark:hover:text-cyber-purple"
               :href="link.href"
               target="_blank"
               rel="noreferrer"
             >
               <span
-                class="absolute inset-0 translate-y-full bg-gradient-to-br from-cyber-green/25 to-cyber-green/5 transition-transform duration-500 group-hover:translate-y-0"
+                class="absolute inset-0 translate-y-full bg-gradient-to-br from-cyber-purple/25 to-cyber-purple/5 transition-transform duration-500 group-hover:translate-y-0"
               />
               <UIcon
                 :name="link.icon"
@@ -82,9 +82,6 @@
               :key="column.title"
               class="relative flex flex-col gap-4 group/column"
             >
-              <span
-                class="pointer-events-none absolute left-0 top-3 h-[calc(100%-1.5rem)] w-px bg-gradient-to-b from-cyber-green/50 via-cyber-green/10 to-transparent opacity-60 transition-opacity duration-300 group-hover/column:opacity-90"
-              />
               <div class="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
                 <span
                   class="h-2 w-2 mt-1 animate-ping-slow rounded-full bg-[#4ade80] shadow-[0_0_12px_rgba(34,197,94,0.75)] transition-transform duration-300 group-hover/column:scale-125"
@@ -104,7 +101,7 @@
                       <li v-for="item in column.links" :key="item.label">
                         <NuxtLink
                           :href="item.href"
-                          class="group relative inline-flex items-center gap-2 rounded-full py-1 text-zinc-600 transition-colors duration-300 ease-out hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 dark:text-white/60 dark:hover:text-cyber-green"
+                          class="group relative inline-flex items-center gap-2 rounded-full py-1 text-zinc-600 transition-colors duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 dark:text-white/60"
                         >
                           <span
                             class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black opacity-0 transition-all duration-300 ease-out dark:bg-white/90
@@ -115,7 +112,7 @@
                           </span>
                           <UIcon
                             name="i-heroicons-arrow-up-right-16-solid"
-                            class="h-4 w-4 -translate-y-0.5 text-cyber-green opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                            class="h-4 w-4 -translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
                           />
                         </NuxtLink>
                       </li>

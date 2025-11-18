@@ -12,9 +12,8 @@
         }"
       >
         <span
-          class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-                 text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-                 dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+          class="inline-flex items-center gap-2 rounded-full border px-4 py-1
+                 text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
           v-motion
           :initial="{ opacity: 0, y: -12 }"
           :visibleOnce="{
@@ -98,11 +97,11 @@
                   >
                     <UIcon
                       :name="section.icon"
-                      class="h-6 w-6 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+                      class="h-6 w-6 text-cyber-purple transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
                     />
                   </span>
                   <span
-                    class="pointer-events-none absolute -right-1 -top-1 h-3 w-3 rounded-full bg-cyber-green/80 opacity-0 transition duration-500 group-hover:opacity-100 group-hover:animate-ping"
+                    class="pointer-events-none absolute -right-1 -top-1 h-3 w-3 rounded-full bg-cyber-purple/80 opacity-0 transition duration-500 group-hover:opacity-100 group-hover:animate-ping"
                   />
                 </div>
                 <div>
@@ -120,7 +119,7 @@
                   :key="highlight"
                   class="text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full border border-zinc-200/80 dark:border-zinc-800/80
                          text-zinc-600 dark:text-zinc-200 bg-white/70 dark:bg-zinc-900/70 transition-colors duration-300
-                         group-hover:border-cyber-purple/50 group-hover:text-cyber-purple"
+                         group-hover:border-cyber-purple/50"
                 >
                   {{ highlight }}
                 </span>

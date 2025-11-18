@@ -2,9 +2,8 @@
   <div v-motion v-motion-pop-visible-once class="relative space-y-6">
     <span
       v-if="badgeText"
-      class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-             text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-             dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+      class="inline-flex items-center gap-2 rounded-full border px-4 py-1
+             text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
     >
       <UIcon name="i-heroicons-users-20-solid" class="h-4 w-4" />
       {{ badgeText }}
@@ -24,7 +23,8 @@
         <UButton
           to="mailto:you@example.com"
           variant="soft"
-          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
+          color="neutral"
+          class="group rounded-lg border transition-colors duration-300 bg-transparent"
         >
           <UIcon
             name="i-heroicons-envelope-20-solid"
@@ -36,7 +36,8 @@
           to="https://github.com/yourname"
           target="_blank"
           variant="soft"
-          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
+          color="neutral"
+          class="group rounded-lg border transition-colors duration-300 bg-transparent"
         >
           <UIcon
             name="i-simple-icons-github"
@@ -48,7 +49,8 @@
           to="https://www.linkedin.com/in/yourname"
           target="_blank"
           variant="soft"
-          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
+          color="neutral"
+          class="group rounded-lg border transition-colors duration-300 bg-transparent"
         >
           <UIcon
             name="i-simple-icons-linkedin"
@@ -59,7 +61,8 @@
         <UButton
           to="#projects"
           variant="soft"
-          class="group rounded-lg border border-cyber-purple/30 bg-cyber-purple/10 text-cyber-purple hover:bg-cyber-purple/15 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 transition-colors duration-300"
+          color="neutral"
+          class="group rounded-lg border transition-colors duration-300 bg-transparent"
         >
           <UIcon
             name="i-heroicons-bolt-20-solid"

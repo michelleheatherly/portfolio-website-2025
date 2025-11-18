@@ -14,7 +14,7 @@
         <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div class="max-w-2xl space-y-4">
             <span
-              class="inline-flex items-center gap-2 rounded-full border border-cyber-purple/30 bg-cyber-purple/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-purple"
+              class="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs uppercase tracking-[0.28em]"
               v-motion
               :initial="{ opacity: 0, y: -12 }"
               :visibleOnce="{
@@ -66,16 +66,15 @@
             }"
           >
             <UButton
-              variant="soft"
+              color="neutral"
+              variant="outline"
               href="/resume.pdf"
               download
-              class="justify-center group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
-                    hover:bg-cyber-green/20 hover:text-cyber-green
-                    dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+              class="justify-center group border transition-colors duration-300 bg-transparent"
             >
               <UIcon
                 name="i-heroicons-arrow-down-tray-20-solid"
-                class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
               <span>{{ t('projects.resume') }}</span>
             </UButton>
@@ -181,14 +180,14 @@
                           <button
                             v-if="activeTags.length"
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
                             @click="activeTags = []"
                           >
                             {{ t('projects.filters.tags.clear') }}
                           </button>
                           <button
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
                             @click="tagMenuOpen = false; tagSearchQuery = ''"
                           >
                             {{ t('projects.filters.tags.done') }}
@@ -218,11 +217,11 @@
                           v-for="tag in filteredTagOptions"
                           :key="tag"
                           type="button"
-                          class="flex w-full cursor-pointer items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 hover:-translate-y-0.5"
+                          class="flex w-full cursor-pointer items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 hover:-translate-y-0.5"
                           :class="[
                             activeTags.includes(tag)
-                              ? 'border-cyber-green/55 bg-cyber-green/15 text-cyber-green hover:border-cyber-green/70 hover:bg-cyber-green/25 dark:bg-cyber-green/20 dark:hover:bg-cyber-green/30'
-                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-green/55 hover:bg-cyber-green/15 hover:text-cyber-green dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-green/20'
+                              ? 'border-cyber-purple/55 bg-cyber-purple/15 text-cyber-purple hover:border-cyber-purple/70 hover:bg-cyber-purple/25 dark:bg-cyber-purple/20 dark:hover:bg-cyber-purple/30'
+                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-purple/55 hover:bg-cyber-purple/15 hover:text-cyber-purple dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-purple/20'
                           ]"
                           @click="activeTags = activeTags.includes(tag) ? activeTags.filter(t => t !== tag) : [...activeTags, tag]"
                         >
@@ -240,7 +239,7 @@
               <button
                 v-if="hasActiveFilters"
                 type="button"
-                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-purple hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
                 v-motion
                 :initial="{ opacity: 0, y: 26, scale: 0.96, blur: 6 }"
                 :visibleOnce="{

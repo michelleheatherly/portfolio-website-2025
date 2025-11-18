@@ -1,9 +1,5 @@
 <template>
   <section id="blog" class="relative overflow-hidden transition-colors duration-300">
-    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/5 via-transparent to-cyber-green/10 dark:from-cyber-purple/15 dark:to-cyber-green/10" />
-    <div class="pointer-events-none absolute -top-24 left-10 h-64 w-64 rounded-full bg-cyber-purple/15 blur-[120px]" />
-    <div class="pointer-events-none absolute -bottom-32 right-8 h-60 w-60 rounded-full bg-cyber-green/15 blur-[120px]" />
-
     <UContainer class="relative py-24">
       <div class="grid items-start gap-14 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)]">
         <div
@@ -15,7 +11,7 @@
           :visibleOnce="isClient ? { opacity: 1, y: 0, transition: { delay: blogDelays.container, duration: 0.55, ease: 'easeOut' } } : false"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-full border border-cyber-purple/30 bg-cyber-purple/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-purple shadow-sm transition-colors duration-300"
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs uppercase tracking-[0.28em] shadow-sm transition-colors duration-300"
             v-motion
             :initial="isClient ? { opacity: 0, y: -12 } : { opacity: 1, y: 0 }"
             :visibleOnce="isClient ? { opacity: 1, y: 0, transition: { delay: blogDelays.badge, type: 'spring', stiffness: 150, damping: 20 } } : false"
@@ -51,7 +47,7 @@
             :visibleOnce="isClient ? { opacity: 1, y: 0, scale: 1, transition: { delay: blogDelays.note, type: 'spring', stiffness: 120, damping: 24 } } : false"
             class="flex items-start gap-3 rounded-2xl border border-black/10 bg-white/60 p-4 text-sm text-zinc-600 shadow-sm backdrop-blur transition-colors duration-300 dark:border-white/10 dark:bg-white/5 dark:text-white/70"
           >
-            <UIcon name="i-heroicons-language-20-solid" class="mt-1 h-5 w-5 shrink-0 text-cyber-green" />
+            <UIcon name="i-heroicons-language-20-solid" class="mt-1 h-5 w-5 shrink-0 text-cyber-purple" />
             <p>{{ t('blog.note') }}</p>
           </div>
 
@@ -69,7 +65,9 @@
               target="_blank"
               rel="noopener noreferrer"
               size="md"
-              class="group border border-cyber-green/35 bg-cyber-green/15 text-cyber-green transition-colors duration-300 hover:bg-cyber-green/20 dark:border-cyber-green/40 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+              class="group border transition-colors duration-300 bg-transparent"
+              variant="soft"
+              color="neutral"
               v-motion
               :initial="isClient ? { opacity: 0, y: 18, scale: 0.95 } : { opacity: 1, y: 0, scale: 1 }"
               :visibleOnce="isClient ? { opacity: 1, y: 0, scale: 1, transition: { delay: blogDelays.buttons + 0.02, type: 'spring', stiffness: 130, damping: 24 } } : false"
@@ -86,9 +84,10 @@
               :href="feedUrl"
               target="_blank"
               rel="noopener noreferrer"
-              variant="soft"
               size="md"
-              class="group border border-cyber-purple/30 bg-cyber-purple/15 text-cyber-purple transition-colors duration-300 hover:bg-cyber-purple/20 dark:border-cyber-purple/35 dark:bg-cyber-purple/25 dark:text-cyber-purple/90 dark:hover:bg-cyber-purple/35"
+              class="group border transition-colors duration-300 bg-transparent"
+              variant="soft"
+              color="neutral"
               v-motion
               :initial="isClient ? { opacity: 0, y: 18, scale: 0.95 } : { opacity: 1, y: 0, scale: 1 }"
               :visibleOnce="isClient ? { opacity: 1, y: 0, scale: 1, transition: { delay: blogDelays.buttons + 0.12, type: 'spring', stiffness: 130, damping: 24 } } : false"

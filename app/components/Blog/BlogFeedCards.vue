@@ -78,7 +78,7 @@
         />
         <div class="relative flex h-full flex-col gap-4">
           <div class="space-y-2">
-            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyber-green/80">
+            <p class="text-xs font-semibold uppercase tracking-[0.22em]">
               {{ formatDate(post.date) }}
             </p>
             <h3 class="text-lg font-semibold leading-tight text-zinc-900 transition-colors duration-300 dark:text-white">
@@ -104,7 +104,7 @@
             :href="post.link"
             target="_blank"
             rel="noopener noreferrer"
-            class="group/link mt-auto inline-flex items-center gap-2 pt-2 text-sm font-semibold text-cyber-green transition-colors duration-300 hover:text-cyber-green/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
+            class="group/link mt-auto inline-flex items-center gap-2 pt-2 text-sm font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
           >
             <span>{{ t('feed.card.readMore') }}</span>
             <UIcon
