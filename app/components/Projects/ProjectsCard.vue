@@ -26,11 +26,18 @@
     />
 
     <div class="relative">
-      <img
-        :src="projectImageSrc"
-        alt=""
-        class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
-      />
+      <a
+        :href="project.link"
+        target="_blank"
+        rel="noreferrer"
+        class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50"
+      >
+        <img
+          :src="projectImageSrc"
+          alt=""
+          class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
+        />
+      </a>
       <span
         class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 shadow-sm"
         :class="categoryMeta.badgeClass"
@@ -61,10 +68,12 @@
         </UBadge>
       </div>
 
-      <div class="pt-2">
+      <div class="pt-2 flex items-center justify-between gap-2">
         <UButton
+          color="success"
           :to="project.link"
           target="_blank"
+          rel="noreferrer"
           class="group/button transition-colors duration-300"
         >
           <UIcon
@@ -72,6 +81,19 @@
             class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
           />
           <span>{{ t('projects.card.view') }}</span>
+        </UButton>
+        <UButton
+          color="secondary"
+          :to="projectCodeHref"
+          target="_blank"
+          rel="noreferrer"
+          class="group/code flex items-center gap-2 transition-colors duration-300 bg-violet-400 hover:bg-violet-500"
+        >
+          <UIcon
+            name="i-heroicons-code-bracket-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover/code:-translate-y-0.5 group-hover/code:rotate-12"
+          />
+          <span>{{ t('projects.card.code') }}</span>
         </UButton>
       </div>
     </div>
@@ -88,12 +110,19 @@ const props = defineProps<{
     image: string
     tags: string[]
     link: string
+    codeLink?: string
     category: string
   }
 }>()
 
 const project = computed(() => props.project)
 const { t } = useI18n()
+
+const fallbackCodeHref = 'https://github.com/michelleheatherly'
+const projectCodeHref = computed(() => {
+  const source = project.value.codeLink?.trim()
+  return source && source.length > 0 ? source : fallbackCodeHref
+})
 
 const localImageEntries = import.meta.glob('@/assets/images/**/*', {
   eager: true,

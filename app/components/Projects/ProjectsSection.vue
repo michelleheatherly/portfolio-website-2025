@@ -97,7 +97,7 @@
               v-for="(category, index) in categoryFilters"
               :key="category.value"
               type="button"
-              class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
+              class="inline-flex cursor-pointer items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
               :class="[
                 activeCategory === category.value
                   ? 'border-cyber-purple/60 bg-cyber-purple/15 text-cyber-purple dark:bg-cyber-purple/20'
@@ -140,7 +140,7 @@
                 <UButton
                   color="gray"
                   variant="soft"
-                  class="group inline-flex items-center gap-3 rounded-full border px-4 py-1.5 text-sm font-medium
+                  class="group inline-flex cursor-pointer items-center gap-3 rounded-full border px-4 py-1.5 text-sm font-medium
                         transition-all duration-300
                         border-zinc-300/60 bg-white/70 text-zinc-600
                         hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]
@@ -181,14 +181,14 @@
                           <button
                             v-if="activeTags.length"
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                             @click="activeTags = []"
                           >
                             {{ t('projects.filters.tags.clear') }}
                           </button>
                           <button
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                             @click="tagMenuOpen = false; tagSearchQuery = ''"
                           >
                             {{ t('projects.filters.tags.done') }}
@@ -218,7 +218,7 @@
                           v-for="tag in filteredTagOptions"
                           :key="tag"
                           type="button"
-                          class="flex w-full items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 hover:-translate-y-0.5"
+                          class="flex w-full cursor-pointer items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 hover:-translate-y-0.5"
                           :class="[
                             activeTags.includes(tag)
                               ? 'border-cyber-green/55 bg-cyber-green/15 text-cyber-green hover:border-cyber-green/70 hover:bg-cyber-green/25 dark:bg-cyber-green/20 dark:hover:bg-cyber-green/30'
@@ -346,6 +346,7 @@ type Project = {
   image: string
   tags: string[]
   link: string
+  codeLink?: string
   category: ProjectCategory
 }
 
@@ -412,6 +413,8 @@ const projects = computed<Project[]>(() => {
         typeof entry.description === 'string' && entry.description.length > 0 ? entry.description : null
       const image = typeof entry.image === 'string' && entry.image.length > 0 ? entry.image : null
       const link = typeof entry.link === 'string' && entry.link.length > 0 ? entry.link : null
+      const codeLink =
+        typeof entry.codeLink === 'string' && entry.codeLink.length > 0 ? entry.codeLink : undefined
       const category = isProjectCategory(entry.category) ? entry.category : null
 
       if (!id || !title || !description || !image || !link || !category) {
@@ -428,6 +431,7 @@ const projects = computed<Project[]>(() => {
         description,
         image,
         link,
+        codeLink,
         category,
         tags
       }

@@ -245,6 +245,7 @@
     },
     "card": {
       "view": "Projekt ansehen",
+      "code": "Code ansehen",
       "categoryLabel": {
         "front-end": "Front-End",
         "full-stack": "Full-Stack",
@@ -259,6 +260,7 @@
         "image": "~/assets/images/new-website.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
         "link": "#",
+        "codeLink": "https://github.com/michelleheatherly/portfolio-website-2025",
         "category": "full-stack"
       },
       {

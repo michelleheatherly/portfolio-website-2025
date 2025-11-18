@@ -109,7 +109,7 @@
             "highlight": "Expanded my perspective through immersive study, exploring culture, communication, and adaptability."
           },
           {
-            "title": "Study Abroad in Göttingen, Germany",
+            "title": "Intensive German Course in Göttingen, Germany",
             "org": "Goethe-Institut",
             "period": "January 2015",
             "highlight": "Deepened fluency and cultural understanding through intensive language study."
@@ -246,6 +246,7 @@
     },
     "card": {
       "view": "View Project",
+      "code": "View Code",
       "categoryLabel": {
         "front-end": "Front-end",
         "full-stack": "Full-stack",
@@ -260,6 +261,7 @@
         "image": "~/assets/images/new-website.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
         "link": "#",
+        "codeLink": "https://github.com/michelleheatherly/portfolio-website-2025",
         "category": "full-stack"
       },
       {

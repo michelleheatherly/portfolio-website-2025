@@ -24,7 +24,7 @@
           }"
         >
           <span
-            class="availability-pill inline-flex items-center rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
+            class="availability-pill group cursor-pointer inline-flex items-center rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
                    text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
                    dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
             :aria-label="t('hero.availability')"
@@ -36,7 +36,10 @@
               transition: { delay: heroDelays.badge, type: 'spring', stiffness: 150, damping: 18 }
             }"
           >
-            <UIcon name="i-heroicons-rocket-launch-20-solid" class="h-4 w-4" />
+            <UIcon
+              name="i-heroicons-rocket-launch-20-solid"
+              class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+            />
             <span class="availability-pill__text" aria-hidden="true">
               {{ t('hero.availability') }}
             </span>

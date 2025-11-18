@@ -146,10 +146,10 @@
         </span>
         <span class="flex items-center gap-2">
           <LanguageToggle
-            class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10"
+            class="rounded-full px-3 py-1 text-zinc-500 transition hover:border-neutral-500/70 hover:bg-transparent hover:cursor-pointer"
           />
           <ThemeToggle
-            class="rounded-full px-3 py-1 text-zinc-500 transition hover:bg-white/30 hover:text-cyber-green dark:hover:bg-white/10"
+            class="rounded-full px-3 py-1 text-zinc-500 transition hover:border-neutral-500/70 hover:bg-transparent hover:cursor-pointer"
           />
         </span>
       </div>

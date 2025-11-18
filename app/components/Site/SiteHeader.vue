@@ -54,7 +54,7 @@
         <!-- Header menu toggle -->
         <button
           type="button"
-          class="menu-toggle menu-toggle--hoverable inline-flex items-center justify-center lg:hidden transition duration-300
+          class="menu-toggle menu-toggle--hoverable inline-flex cursor-pointer items-center justify-center lg:hidden transition duration-300
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
                 text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
           :class="{
@@ -88,7 +88,7 @@
             <div class="mx-auto flex w-full max-w-7xl justify-end px-6 pt-3">
               <button
                 type="button"
-                class="menu-toggle menu-toggle--hoverable inline-flex items-center justify-center pointer-events-auto transition duration-300
+                class="menu-toggle menu-toggle--hoverable inline-flex cursor-pointer items-center justify-center pointer-events-auto transition duration-300
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
                       text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
                 :class="{
