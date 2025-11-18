@@ -1,6 +1,6 @@
 <template>
-  <section id="home" class="hero-section relative transition-colors duration-300">
-    <UContainer class="py-28 md:py-36">
+    <section id="home" class="hero-section relative transition-colors duration-300">
+    <UContainer class="pt-16 pb-20 md:pt-20 md:pb-28 lg:py-36">
       <div
         class="grid lg:grid-cols-2 gap-10 items-center"
         v-motion
