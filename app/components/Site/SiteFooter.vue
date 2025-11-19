@@ -73,7 +73,7 @@
             alt="Celestial kitty illustration"
             loading="lazy"
             decoding="async"
-            class="h-40 w-auto object-contain sm:h-48 lg:h-56 self-start"
+            class="h-40 w-auto object-contain sm:h-48 lg:h-56 self-start floaty-kitty"
           />
 
           <div class="grid gap-8 w-full max-w-xs lg:max-w-sm">
@@ -283,6 +283,83 @@ if (import.meta.client) {
   100% {
     transform: scale(1.4);
     opacity: 0;
+  }
+}
+
+.floaty-kitty {
+  animation: floaty-kitty-bob 10s ease-in-out infinite;
+  transform-origin: center bottom;
+  will-change: transform;
+  position: relative;
+
+  /* Soft, diffused glow */
+  filter:
+    drop-shadow(0 0 10px rgba(155, 92, 255, 0.25))  /* cyber-purple */
+    drop-shadow(0 0 18px rgba(23, 157, 104, 0.18))  /* cyber-green */
+    drop-shadow(0 0 30px rgba(155, 92, 255, 0.15));
+
+  transition:
+    transform 300ms ease,
+    filter 300ms ease;
+}
+
+.floaty-kitty:hover {
+  animation-play-state: paused;
+  transform: translate3d(0, -6px, 0) rotate(4deg) scale(1.03);
+  filter:
+    drop-shadow(0 0 14px rgba(155, 92, 255, 0.32))
+    drop-shadow(0 0 24px rgba(23, 157, 104, 0.22))
+    drop-shadow(0 0 40px rgba(155, 92, 255, 0.20));
+}
+
+.floaty-kitty::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(155, 92, 255, 0.15) 0%,   /* cyber-purple */
+    rgba(23, 157, 104, 0.08) 40%,  /* cyber-green */
+    transparent 75%
+  );
+
+  filter: blur(20px);
+  transform: scale(1.3);
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+}
+
+.floaty-kitty:hover::after {
+  opacity: 0.75;
+}
+
+@keyframes floaty-kitty-bob {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  25% {
+    transform: translate3d(0, -8px, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0) rotate(3deg);
+  }
+  75% {
+    transform: translate3d(0, -10px, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .floaty-kitty {
+    animation: none;
+    transform: none;
+    filter: none;
   }
 }
 </style>
