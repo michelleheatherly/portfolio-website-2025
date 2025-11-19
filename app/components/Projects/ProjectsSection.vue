@@ -180,7 +180,7 @@
                           <button
                             v-if="activeTags.length"
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-green transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                             @click="activeTags = []"
                           >
                             {{ t('projects.filters.tags.clear') }}
@@ -239,7 +239,7 @@
               <button
                 v-if="hasActiveFilters"
                 type="button"
-                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-purple hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
+                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-bold text-cyber-green transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                 v-motion
                 :initial="{ opacity: 0, y: 26, scale: 0.96, blur: 6 }"
                 :visibleOnce="{
@@ -310,14 +310,18 @@
         class="rounded-[2.5rem] border border-dashed border-zinc-300/70 bg-white/60 py-16 text-center transition-colors duration-300 dark:border-zinc-700/60 dark:bg-white/5"
       >
         <div class="mx-auto max-w-md space-y-4 px-6">
-          <UIcon name="i-heroicons-face-frown-20-solid" class="mx-auto h-10 w-10 text-cyber-purple/70" />
+          <img
+            src="~/assets/images/sad-kitty.png"
+            alt="A sad kitty illustration"
+            class="mx-auto h-50 w-50 object-contain empty-state-kitty"
+          />
           <p class="text-lg font-semibold text-zinc-900 dark:text-white">
             {{ t('projects.empty.title') }}
           </p>
           <p class="text-sm text-zinc-600 dark:text-zinc-300">
             {{ t('projects.empty.description') }}
           </p>
-          <UButton variant="soft" class="mt-2" @click="clearFilters">
+          <UButton variant="solid" class="mt-2 cursor-pointer" @click="clearFilters">
             <UIcon name="i-heroicons-sparkles-20-solid" class="h-5 w-5" />
             <span>{{ t('projects.empty.action') }}</span>
           </UButton>
@@ -510,3 +514,78 @@ const clearFilters = () => {
   closeTagMenu()
 }
 </script>
+
+<style scoped>
+.empty-state-kitty {
+  animation: empty-kitty-bob 10s ease-in-out infinite;
+  transform-origin: center bottom;
+  will-change: transform;
+  position: relative;
+
+  filter:
+    drop-shadow(0 0 9px rgba(126, 78, 255, 0.25))
+    drop-shadow(0 0 16px rgba(16, 185, 129, 0.18))
+    drop-shadow(0 0 28px rgba(126, 78, 255, 0.2));
+
+  transition:
+    transform 300ms ease,
+    filter 300ms ease;
+}
+
+.empty-state-kitty:hover {
+  animation-play-state: paused;
+  transform: translate3d(0, -5px, 0) rotate(2deg) scale(1.02);
+  filter:
+    drop-shadow(0 0 14px rgba(126, 78, 255, 0.35))
+    drop-shadow(0 0 22px rgba(16, 185, 129, 0.25))
+    drop-shadow(0 0 36px rgba(126, 78, 255, 0.24));
+}
+
+.empty-state-kitty::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(126, 78, 255, 0.15) 0%,
+    rgba(16, 185, 129, 0.08) 40%,
+    transparent 75%
+  );
+
+  filter: blur(18px);
+  transform: scale(1.35);
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+}
+
+.empty-state-kitty:hover::after {
+  opacity: 0.75;
+}
+
+@keyframes empty-kitty-bob {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  25% {
+    transform: translate3d(0, -6px, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0) rotate(3deg);
+  }
+  75% {
+    transform: translate3d(0, -8px, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .empty-state-kitty {
+    animation: none;
+  }
+}
+</style>

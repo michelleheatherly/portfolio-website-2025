@@ -241,7 +241,7 @@
     },
     "empty": {
       "title": "No projects matched your filters",
-      "description": "Try adjusting the category, removing a tag, or clearing your search to discover more of the work.",
+      "description": "Try adjusting the category, removing a tag, or clearing your search to refine the results.",
       "action": "Clear filters"
     },
     "card": {
