@@ -14,48 +14,50 @@
         <div
           class="space-y-5 max-w-2xl"
           v-motion
-          :initial="{ opacity: 0, y: 24 }"
+          :initial="{ opacity: 0, y: 18 }"
           :visibleOnce="{
             opacity: 1,
             y: 0,
-            transition: { delay: educationDelays.container, duration: 0.55, ease: 'easeOut' }
+            transition: { delay: educationDelays.container, duration: 0.4, ease: 'easeOut' }
           }"
         >
           <span
             class="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs uppercase tracking-[0.28em]"
             v-motion
-            :initial="{ opacity: 0, y: -10 }"
+            :initial="{ opacity: 0, y: -8 }"
             :visibleOnce="{
               opacity: 1,
               y: 0,
-              transition: { delay: educationDelays.badge, type: 'spring', stiffness: 140, damping: 20 }
+              transition: { delay: educationDelays.badge, type: 'spring', stiffness: 155, damping: 20 }
             }"
           >
             <UIcon name="i-heroicons-academic-cap-20-solid" class="h-4 w-4" />
             {{ t('education.badge') }}
           </span>
+
           <h2
             class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white transition-colors duration-300"
             v-motion
-            :initial="{ opacity: 0, y: 20, scale: 0.96 }"
+            :initial="{ opacity: 0, y: 14, scale: 0.97 }"
             :visibleOnce="{
               opacity: 1,
               y: 0,
               scale: 1,
-              transition: { delay: educationDelays.heading, type: 'spring', stiffness: 110, damping: 24 }
+              transition: { delay: educationDelays.heading, type: 'spring', stiffness: 135, damping: 22 }
             }"
           >
             {{ t('education.title') }}
           </h2>
+
           <p
             class="text-base text-zinc-600 dark:text-white/70 transition-colors duration-300"
             v-motion
-            :initial="{ opacity: 0, y: 24, blur: 10 }"
+            :initial="{ opacity: 0, y: 16, blur: 6 }"
             :visibleOnce="{
               opacity: 1,
               y: 0,
               blur: 0,
-              transition: { delay: educationDelays.description, type: 'spring', stiffness: 95, damping: 26 }
+              transition: { delay: educationDelays.description, type: 'spring', stiffness: 120, damping: 24 }
             }"
           >
             {{ t('education.description') }}
@@ -66,22 +68,29 @@
           <UCard
             v-for="(category, index) in educationCategories"
             :key="category.id"
-            class="group education-card relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
+            class="group education-card relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white/80 backdrop-blur-xl transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-white/10"
             v-motion
-            :initial="{ opacity: 0, y: 40 }"
+            :initial="{ opacity: 0, y: 18, scale: 0.97 }"
             :visibleOnce="{
               opacity: 1,
               y: 0,
+              scale: 1,
               transition: {
-                delay: educationDelays.cards + index * 0.12,
+                delay: educationDelays.cards + index * 0.07,
                 type: 'spring',
-                stiffness: 105,
-                damping: 24
+                stiffness: 145,
+                damping: 20
               }
             }"
           >
-            <div class="pointer-events-none absolute -top-24 right-0 h-48 w-48 rounded-full blur-3xl" :class="category.accent"></div>
-            <div class="pointer-events-none absolute inset-x-12 top-10 h-28 bg-gradient-to-br blur-3xl" :class="category.gradient"></div>
+            <div
+              class="pointer-events-none absolute -top-24 right-0 h-48 w-48 rounded-full blur-3xl"
+              :class="category.accent"
+            ></div>
+            <div
+              class="pointer-events-none absolute inset-x-12 top-10 h-28 bg-gradient-to-br blur-3xl"
+              :class="category.gradient"
+            ></div>
 
             <div class="relative flex h-full flex-col gap-5 p-6">
               <div class="card-header">
@@ -123,12 +132,14 @@
                     >
                       {{ entry.org }}
                     </p>
-                    <!-- <p
+                    <!--
+                    <p
                       v-if="entry.highlight"
                       class="timeline-description text-sm leading-relaxed text-zinc-600 dark:text-white/70 transition-colors duration-300"
                     >
                       {{ entry.highlight }}
-                    </p> -->
+                    </p>
+                    -->
                   </div>
                 </li>
               </ul>
@@ -196,7 +207,10 @@ const resolveLocaleValue = (value: unknown): any => {
 }
 
 const educationCategories = computed(() => {
-  const localized = resolveLocaleValue(tm('education.categories')) as Record<string, EducationCategoryContent> | undefined
+  const localized = resolveLocaleValue(tm('education.categories')) as
+    | Record<string, EducationCategoryContent>
+    | undefined
+
   return educationCategoryMeta.map((meta) => {
     const content = localized?.[meta.id]
 
@@ -209,12 +223,13 @@ const educationCategories = computed(() => {
   })
 })
 
+// Tighter, more in-sync timings / snappier cards
 const educationDelays = {
-  container: 0.08,
-  badge: 0.16,
-  heading: 0.24,
-  description: 0.34,
-  cards: 0.4
+  container: 0.0,
+  badge: 0.04,
+  heading: 0.08,
+  description: 0.14,
+  cards: 0.18
 }
 </script>
 
