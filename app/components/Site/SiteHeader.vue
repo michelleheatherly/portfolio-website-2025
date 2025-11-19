@@ -95,20 +95,22 @@
                   'menu-toggle--icon-open': iconOpenState,
                   'menu-toggle--closed': !isMenuOpen
                 }"
-                  :aria-label="t('nav.menu.close')"
-                  @click.stop="closeMenu"
-                >
+                :aria-label="t('nav.menu.close')"
+                @click.stop="closeMenu"
+              >
                 <span class="menu-toggle__line" aria-hidden="true" />
                 <span class="menu-toggle__line" aria-hidden="true" />
                 <span class="menu-toggle__line" aria-hidden="true" />
               </button>
             </div>
           </div>
+
           <div
             class="menu-ripple"
             :class="{ 'menu-ripple--active': allowMenuRipple }"
             :style="rippleStyle"
           />
+
           <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
             <nav :id="menuId">
               <ul class="space-y-6">
@@ -116,7 +118,9 @@
                   v-for="(l, index) in navLinks"
                   :key="l.to"
                   v-motion
-                  :initial="prefersReduced === 'reduce' ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.96 }"
+                  :initial="prefersReduced === 'reduce'
+                    ? { opacity: 1, y: 0, scale: 1 }
+                    : { opacity: 0, y: 18, scale: 0.96 }"
                   :enter="mobileNavEnterVariant(index)"
                 >
                   <ULink
@@ -139,9 +143,32 @@
                 </li>
               </ul>
             </nav>
-            <div class="flex items-center justify-center gap-3">
-              <LanguageToggle />
-              <ThemeToggle />
+
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex items-center justify-center gap-4">
+                <NuxtLink
+                  v-for="link in socialLinks"
+                  :key="link.label"
+                  :aria-label="t('footer.social.visit', { label: link.label })"
+                  class="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-black/10 text-zinc-500 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-cyber-purple/60 hover:bg-cyber-purple/10 hover:text-cyber-purple/90 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-cyber-purple/60 dark:hover:bg-cyber-purple/15 dark:hover:text-cyber-purple"
+                  :href="link.href"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span
+                    class="absolute inset-0 translate-y-full bg-gradient-to-br from-cyber-purple/25 to-cyber-purple/5 transition-transform duration-500 group-hover:translate-y-0"
+                  />
+                  <UIcon
+                    :name="link.icon"
+                    class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-[-6deg]"
+                  />
+                </NuxtLink>
+              </div>
+
+              <div class="flex items-center justify-center gap-3">
+                <LanguageToggle />
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>
@@ -156,9 +183,8 @@ import {
   usePreferredReducedMotion,
   useEventListener
 } from '@vueuse/core'
-import { ref, computed, watch, onBeforeUnmount } from 'vue'
 
-const { t } = useI18n()
+const { t, rt } = useI18n()
 
 const navLinkDefs = [
   { key: 'home', to: '#home' },
@@ -169,6 +195,51 @@ const navLinkDefs = [
   { key: 'blog', to: '#blog' },
   { key: 'contact', to: '#contact' }
 ] as const
+
+// helper similar to footer for resolving locale-objects
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [
+        key,
+        resolveLocaleValue(val)
+      ])
+    )
+  }
+
+  return value
+}
+
+const socialLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/',
+    icon: 'i-simple-icons-github'
+  },
+  {
+    label: 'GitLab',
+    href: 'https://gitlab.com/',
+    icon: 'i-simple-icons-gitlab'
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/',
+    icon: 'i-simple-icons-linkedin'
+  },
+  {
+    label: 'Blog',
+    href: 'https://www.michelle-heatherly.com/blog',
+    icon: 'i-heroicons-newspaper-20-solid'
+  }
+]
 
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()
@@ -401,7 +472,7 @@ onBeforeUnmount(() => {
 /* Closed state: lines brighten on hover (clickable hint) */
 .menu-toggle--closed:hover .menu-toggle__line {
   opacity: 0.95;
-  mix-blend-mode: screen;  
+  mix-blend-mode: screen;
 }
 
 /* Dark mode tweak for better visibility */
@@ -454,11 +525,11 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-.menu-toggle__line,
-.menu-toggle--hoverable {
+  .menu-toggle__line,
+  .menu-toggle--hoverable {
     transition: none;
   }
-.menu-toggle--hoverable:hover {
+  .menu-toggle--hoverable:hover {
     transform: none;
   }
 }

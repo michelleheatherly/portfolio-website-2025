@@ -198,7 +198,7 @@
       "quality": {
         "title": "Testing & Performance",
         "blurb": "Testing frameworks, accessibility audits, and performance monitoring.",
-        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "ES Lint" ],
+        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "Lint" ],
         "peek": "Updated unit tests in multiple legacy codebases for 100% code coverage."
       },
       "collaboration": {

@@ -197,7 +197,7 @@
       "quality": {
         "title": "Tests & Performance",
         "blurb": "Test-Frameworks, Barrierefreiheitsanalysen und Performance-Monitoring.",
-        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "ES Lint"],
+        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "Lint"],
         "peek": "Aktualisierte Unit-Tests in mehreren Legacy-Codebasen für 100% Testabdeckung."
       },
       "collaboration": {
