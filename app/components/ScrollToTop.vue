@@ -12,8 +12,10 @@
           backdrop-blur-md
           bg-gradient-to-br from-[#a78bfa]/90 via-[#8b5cf6]/90 to-[#7c3aed]/90
           text-white/95
-          hover:shadow-[0_8px_28px_rgba(88,28,135,0.35)]
-          hover:brightness-105
+          hover:shadow-[0_12px_36px_rgba(88,28,135,0.4)]
+          hover:brightness-110
+          hover:scale-[1.03]
+          hover:-translate-y-[1px]
           active:scale-[0.98]
           transition-all duration-300
           dark:from-[#5b21b6]/90 dark:via-[#6d28d9]/90 dark:to-[#7c3aed]/90"
