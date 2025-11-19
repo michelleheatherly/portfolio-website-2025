@@ -171,7 +171,7 @@
 
                 <!-- Content -->
                 <template #content>
-                    <div class="space-y-4 p-4">
+                    <div class="space-y-4 p-4 dark:bg-zinc-900/90">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">
                           {{ t('projects.filters.tags.title') }}
