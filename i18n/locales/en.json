@@ -369,6 +369,25 @@
       "submit": "Send"
     }
   },
+  "error": {
+    "badge": "Something went wrong",
+    "heading": "Well, this is awkward.",
+    "description": {
+      "primary": "Our cat knocked something off the shelf.",
+      "secondary": "Try again, or head back home while we clean this up."
+    },
+    "actions": {
+      "retry": "Try again",
+      "home": "Go home"
+    },
+    "technical": {
+      "details": "Technical details",
+      "status": "Status code",
+      "message": "Message",
+      "stack": "Stack trace"
+    },
+    "imageAlt": "A confused cat illustration"
+  },
   "footer": {
     "badge": "Full-Stack Software Engineer",
     "siteName": "Michelle Heatherly",

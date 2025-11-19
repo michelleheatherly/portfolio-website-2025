@@ -368,6 +368,25 @@
       "submit": "Senden"
     }
   },
+  "error": {
+    "badge": "Etwas ist schiefgelaufen",
+    "heading": "Na, das ist unangenehm.",
+    "description": {
+      "primary": "Unsere Katze hat etwas vom Regal gewischt.",
+      "secondary": "Versuche es erneut oder kehre zurück zur Startseite, während wir das beseitigen."
+    },
+    "actions": {
+      "retry": "Erneut versuchen",
+      "home": "Zur Startseite"
+    },
+    "technical": {
+      "details": "Technische Details",
+      "status": "Statuscode",
+      "message": "Meldung",
+      "stack": "Stack-Trace"
+    },
+    "imageAlt": "Eine verwirrte Katzenillustration"
+  },
   "footer": {
     "badge": "Full-Stack-Softwareentwicklerin",
     "siteName": "Michelle Heatherly",
