@@ -350,6 +350,7 @@
       "badge": "Lass uns in Kontakt treten!",
       "title": "Starten wir das Gespräch.",
       "description": "Ob groß oder klein – ich bin gespannt auf Ihr Projekt. Schreiben Sie mir ein paar Details, und ich melde mich mit Ideen, wie wir es umsetzen können.",
+      "emailSubject": "Neue Nachricht über das Portfolio",
       "fields": {
         "name": {
           "label": "Name",
@@ -364,8 +365,11 @@
           "placeholder": "Beschreiben Sie Ihre Idee – Phaser auf 'Kreativität' eingestellt."
         }
       },
-      "response": "",
-      "submit": "Senden"
+      "response": "Status",
+      "success": "Nachricht gesendet – ich melde mich bald.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.",
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet…"
     }
   },
   "error": {

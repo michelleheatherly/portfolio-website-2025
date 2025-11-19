@@ -351,6 +351,7 @@
       "badge": "Let's connect!",
       "title": "Start the conversation.",
       "description": "Big or small, I'm interested in what you're creating. Send a few details, and I'll reply with thoughts on how we could make it happen.",
+      "emailSubject": "New message from the portfolio website",
       "fields": {
         "name": {
           "label": "Name",
@@ -365,8 +366,11 @@
           "placeholder": "Describe your idea—set phasers to 'create.'"
         }
       },
-      "response": "",
-      "submit": "Send"
+      "response": "Status",
+      "success": "Message sent—I'll be in touch soon.",
+      "error": "Something went wrong. Please try again in a moment.",
+      "submit": "Send message",
+      "submitting": "Sending…"
     }
   },
   "error": {
