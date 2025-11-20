@@ -214,28 +214,10 @@ const studioHighlights = computed(() => {
   return Array.isArray(highlights) ? highlights.map((item: unknown) => String(item)) : []
 })
 
-const socialLinks = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/',
-    icon: 'i-simple-icons-github'
-  },
-  {
-    label: 'GitLab',
-    href: 'https://gitlab.com/',
-    icon: 'i-simple-icons-gitlab'
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/',
-    icon: 'i-simple-icons-linkedin'
-  },
-  {
-    label: 'Blog',
-    href: 'https://www.michelle-heatherly.com/blog',
-    icon: 'i-heroicons-newspaper-20-solid'
-  }
-]
+const socialLinks = computed(() => {
+  const links = resolveLocaleValue(tm('social.links') ?? [])
+  return Array.isArray(links) ? links : []
+})
 
 const footerColumns = computed(() => [
   {
