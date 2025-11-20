@@ -40,24 +40,34 @@
   "social": {
     "links": [
       {
+        "key": "github",
         "label": "GitHub",
         "href": "https://github.com/michelleheatherly",
         "icon": "i-simple-icons-github"
       },
       {
+        "key": "gitlab",
         "label": "GitLab",
         "href": "https://gitlab.com/michelleheatherly",
         "icon": "i-simple-icons-gitlab"
       },
       {
+        "key": "linkedin",
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/rachael-michelle-heatherly/",
         "icon": "i-simple-icons-linkedin"
       },
       {
+        "key": "blog",
         "label": "Blog",
         "href": "https://www.michelle-heatherly.com/blog/de",
         "icon": "i-heroicons-newspaper-20-solid"
+      },
+      {
+        "key": "email",
+        "label": "E-Mail",
+        "href": "{'mailto:michelleheatherly218@outlook.com'}",
+        "icon": "i-heroicons-envelope-20-solid"
       }
     ]
   },
