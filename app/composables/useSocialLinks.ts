@@ -1,10 +1,6 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const SOCIAL_LINK_FALLBACKS: Record<string, string> = {
-  email: 'mailto:michelleheatherly218@outlook.com'
-}
-
 export type SocialLink = {
   key?: string
   label?: string
@@ -15,6 +11,10 @@ export type SocialLink = {
 
 export function useSocialLinks() {
   const { tm, rt } = useI18n()
+
+  const SOCIAL_LINK_FALLBACKS: Record<string, string> = {
+    email: useRuntimeConfig().public.email
+  }
 
   const resolveLocaleValue = (value: unknown): unknown => {
     if (Array.isArray(value)) {

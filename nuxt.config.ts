@@ -53,7 +53,8 @@ export default defineNuxtConfig({
       feedUrl: import.meta.env.NUXT_PUBLIC_FEED_URL || 'https://example.com/feed.xml',
       blogUrl: import.meta.env.NUXT_PUBLIC_BLOG_URL || 'https://example.com/blog',
       blogAltUrl: import.meta.env.NUXT_PUBLIC_BLOG_ALT_URL || 'https://example.github.io/blog',
-      contactApiKey: import.meta.env.NUXT_PUBLIC_CONTACT_API_KEY || ''
+      contactApiKey: import.meta.env.NUXT_PUBLIC_CONTACT_API_KEY || '',
+      email: import.meta.env.NUXT_PUBLIC_EMAIL || ''
     },
   },
   nitro: {
