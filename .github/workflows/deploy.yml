@@ -40,8 +40,6 @@ jobs:
           EOF
 
       - name: Build static site (nuxt generate)
-        env:
-          BASE_URL: /portfolio-website-2025/
         run: |
           npm run generate
 
