@@ -9,8 +9,10 @@
   >
     <UContainer class="flex items-center justify-between py-3">
       <!-- Brand -->
-      <div
-        class="flex items-center gap-3"
+      <NuxtLink
+        to="/"
+        class="flex items-center gap-3 focus-visible:outline-none"
+        @click="handleBrandClick"
         v-motion
         :initial="{ opacity: 0, y: -6 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.4 } }"
@@ -18,7 +20,7 @@
         <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
           <{{ brandLabel }} />
         </span>
-      </div>
+      </NuxtLink>
 
       <!-- Desktop nav -->
       <nav class="hidden lg:block">
@@ -366,6 +368,10 @@ function toggleMenu(event?: MouseEvent) {
 }
 
 function handleMobileNavigate() {
+  closeMenu()
+}
+
+function handleBrandClick() {
   closeMenu()
 }
 

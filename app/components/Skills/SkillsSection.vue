@@ -176,21 +176,21 @@ const skillSectionMeta = [
     motif: 'bg-[radial-gradient(circle_at_top,rgba(165,180,252,0.22),transparent_60%)]'
   },
   {
-    id: 'designSystems',
+    id: 'backend',
     icon: 'i-heroicons-swatch-20-solid',
     accentGradient: 'from-cyan-400/0 via-cyan-400/20 to-cyan-400/35',
     accentGlow: 'bg-cyan-400/30',
     motif: 'bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.22),transparent_58%)]'
   },
   {
-    id: 'motion',
+    id: 'design',
     icon: 'i-heroicons-sparkles-20-solid',
     accentGradient: 'from-emerald-400/0 via-emerald-400/20 to-emerald-400/35',
     accentGlow: 'bg-emerald-400/30',
     motif: 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.24),transparent_55%)]'
   },
   {
-    id: 'quality',
+    id: 'testing',
     icon: 'i-heroicons-eye-dropper-20-solid',
     accentGradient: 'from-amber-400/0 via-amber-400/20 to-amber-400/35',
     accentGlow: 'bg-amber-400/30',
@@ -204,7 +204,7 @@ const skillSectionMeta = [
     motif: 'bg-[radial-gradient(circle_at_bottom_left,rgba(251,113,133,0.22),transparent_60%)]'
   },
   {
-    id: 'engineering',
+    id: 'infrastructure',
     icon: 'i-heroicons-cog-8-tooth-20-solid',
     accentGradient: 'from-indigo-400/0 via-indigo-400/20 to-indigo-400/35',
     accentGlow: 'bg-indigo-400/30',

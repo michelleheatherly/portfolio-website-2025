@@ -205,19 +205,19 @@
         "highlights": ["Nuxt", "Vue", "React", "Angular", "JavaScript", "HTML", "CSS"],
         "peek": "Built a Nuxt application for managing purchase orders with real-time editing controls and role-based access."
       },
-      "designSystems": {
+      "backend": {
         "title": "Back-End & APIs",
         "blurb": "Server-side frameworks, databases, and API integrations.",
         "highlights": ["Python", "Java", "Flask", "NodeJS", "PostgreSQL", "NoSQL"],
         "peek": "Created a Node API for generating custom, metadata-rich QR codes utilizing external services."
       },
-      "motion": {
+      "design": {
         "title": "Design & Interaction",
         "blurb": "Component libraries, frameworks, and tools for designing accessible, interactive interfaces.",
         "highlights": ["Bootstrap", "Vuetify", "Tailwind", "Sass", "Responsive layouts"],
         "peek": "Transformed a detailed Figma design system into a new polished, responsive company website built with Nuxt."
       },
-      "quality": {
+      "testing": {
         "title": "Testing & Performance",
         "blurb": "Testing frameworks, accessibility audits, and performance monitoring.",
         "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "Lint" ],
@@ -229,7 +229,7 @@
         "highlights": ["Agile", "CI/CD", "GitHub", "Documentation", "LucidCharts"],
         "peek": "Co-led DevOps efforts to create CI/CD pipelines supporting secure, automated multi-cloud deployments using agile scrum processes."
       },
-      "engineering": {
+      "infrastructure": {
         "title": "Infrastructure & Cloud Platforms",
         "blurb": "Hosting and infrastructure for modern applications.",
         "highlights": ["Docker", "CloudFlare", "Linux", "Windows", "AWS", "Azure", "GCP"],
@@ -277,17 +277,16 @@
     },
     "list": [
       {
-        "id": "neonNodes",
+        "id": "newWebsite",
         "title": "Michelle Heatherly",
         "description": "This website! My personal portfolio website for showcasing some of my skills as a software engineer and web designer.",
         "image": "~/assets/images/new-website.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
         "link": "#",
-        "codeLink": "https://github.com/michelleheatherly/portfolio-website-2025",
         "category": "full-stack"
       },
       {
-        "id": "pulseUi",
+        "id": "paratactial",
         "title": "ParaTactical",
         "description": "The business website for ParaTactical, a grass ultralight and light sport flying airfield in North Carolina.",
         "image": "~/assets/images/paratactical.PNG",
@@ -296,7 +295,7 @@
         "category": "design"
       },
       {
-        "id": "greenTrace",
+        "id": "luna",
         "title": "Luna",
         "description": "A privacy-first menstrual health app designed to help women track their cycles with ease and confidence.",
         "image": "~/assets/images/luna.PNG",
@@ -305,7 +304,7 @@
         "category": "full-stack"
       },
       {
-        "id": "immersiveAtlas",
+        "id": "oldWebsite",
         "title": "Archived Personal Website",
         "description": "The previous version of my portfolio website.",
         "image": "~/assets/images/old-website.PNG",
@@ -314,7 +313,7 @@
         "category": "front-end"
       },
       {
-        "id": "opsynkControl",
+        "id": "quizzi",
         "title": "Quizzi",
         "description": "A flashcard app for creating, organizing, and studying — with additional support for multiple choice and fill-in-the-blank questions.",
         "image": "~/assets/images/quizzi.PNG",
@@ -323,7 +322,7 @@
         "category": "full-stack"
       },
       {
-        "id": "signalStudio",
+        "id": "kinsaleCharters",
         "title": "Kinsale Charters",
         "description": "The business website for Kinsale Charters, a small fishing charter service in Virginia.",
         "image": "~/assets/images/kinsale-charters.png",

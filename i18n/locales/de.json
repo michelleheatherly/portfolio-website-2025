@@ -205,19 +205,19 @@
         "highlights": ["Nuxt", "Vue", "React", "Angular", "JavaScript", "HTML", "CSS"],
         "peek": "Entwickelte eine Nuxt-Anwendung zur Verwaltung von Bestellungen mit Echtzeit-Bearbeitung und rollenbasiertem Zugriff."
       },
-      "designSystems": {
+      "backend": {
         "title": "Back-End & APIs",
         "blurb": "Serverseitige Frameworks, Datenbanken und API-Integrationen.",
         "highlights": ["Python", "Java", "Flask", "NodeJS", "PostgreSQL", "NoSQL"],
         "peek": "Erstellte eine Node-API zur Generierung benutzerdefinierter, metadatenreicher QR-Codes unter Einbindung externer Dienste."
       },
-      "motion": {
+      "design": {
         "title": "Design & Interaktion",
         "blurb": "Komponentenbibliotheken, Frameworks und Tools für barrierefreie, interaktive Interfaces.",
         "highlights": ["Bootstrap", "Vuetify", "Tailwind", "Sass", "Responsives Layout"],
         "peek": "Verwandelte ein detailliertes Figma-Designsystem in eine moderne, responsive Firmenwebsite auf Basis von Nuxt."
       },
-      "quality": {
+      "testing": {
         "title": "Tests & Performance",
         "blurb": "Test-Frameworks, Barrierefreiheitsanalysen und Performance-Monitoring.",
         "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "Lint"],
@@ -229,7 +229,7 @@
         "highlights": ["Agile", "CI/CD", "GitHub", "Dokumentation", "LucidCharts"],
         "peek": "Gemeinsam DevOps-Prozesse geleitet, inklusive CI/CD-Pipelines für sichere, automatisierte Multi-Cloud-Deployments mit agiler Scrum-Methodik."
       },
-      "engineering": {
+      "infrastructure": {
         "title": "Infrastruktur & Cloud-Plattformen",
         "blurb": "Hosting und Infrastruktur für moderne Anwendungen.",
         "highlights": ["Docker", "CloudFlare", "Linux", "Windows", "AWS", "Azure", "GCP"],
@@ -277,17 +277,16 @@
     },
     "list": [
       {
-        "id": "neonNodes",
+        "id": "newWebsite",
         "title": "Michelle Heatherly",
         "description": "Diese Website! Meine persönliche Portfolioseite, um einige meiner Fähigkeiten als Softwareentwicklerin und Webdesignerin zu präsentieren.",
         "image": "~/assets/images/new-website.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
         "link": "#",
-        "codeLink": "https://github.com/michelleheatherly/portfolio-website-2025",
         "category": "full-stack"
       },
       {
-        "id": "pulseUi",
+        "id": "paratactical",
         "title": "ParaTactical",
         "description": "Die Website von ParaTactical – einem Ultraleicht- und Sportflugplatz in North Carolina.",
         "image": "~/assets/images/paratactical.PNG",
@@ -296,7 +295,7 @@
         "category": "design"
       },
       {
-        "id": "greenTrace",
+        "id": "luna",
         "title": "Luna",
         "description": "Eine datenschutzfreundliche App zur Menstruationsgesundheit, die Frauen dabei unterstützt, ihre Zyklen einfach und sicher zu verfolgen.",
         "image": "~/assets/images/luna.PNG",
@@ -305,7 +304,7 @@
         "category": "full-stack"
       },
       {
-        "id": "immersiveAtlas",
+        "id": "oldWebsite",
         "title": "Archivierte persönliche Website",
         "description": "Die vorherige Version meiner Portfolioseite.",
         "image": "~/assets/images/old-website.PNG",
@@ -314,7 +313,7 @@
         "category": "front-end"
       },
       {
-        "id": "opsynkControl",
+        "id": "quizzi",
         "title": "Quizzi",
         "description": "Eine Lernkarten-App zum Erstellen, Organisieren und Lernen – mit Unterstützung für Multiple-Choice- und Lückentextfragen.",
         "image": "~/assets/images/quizzi.PNG",
@@ -323,7 +322,7 @@
         "category": "full-stack"
       },
       {
-        "id": "signalStudio",
+        "id": "kinsaleCharters",
         "title": "Kinsale Charters",
         "description": "Die Website von Kinsale Charters – einem kleinen Angelcharter-Service in Virginia.",
         "image": "~/assets/images/kinsale-charters.png",
