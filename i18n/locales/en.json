@@ -24,8 +24,7 @@
     "menu": {
       "open": "Menu",
       "close": "Close menu",
-      "title": "Navigate",
-      "tagline": "Curated projects, thoughtful motion, and a touch of neon romance."
+      "title": "Navigate"
     },
     "links": {
       "home": "Home",
@@ -87,7 +86,6 @@
   },
   "scrollIndicator": {
     "title": "Scroll to learn more",
-    "subtitle": "Real developer, real experience",
     "top": "Top"
   },
   "about": {
@@ -105,7 +103,7 @@
       },
       "toolkit": {
         "title": "Toolkit",
-        "body": "Python · Nuxt · Vue · JavaScript · HTML · CSS · PostgreSQL · MongoDB"
+        "body": "Python · Nuxt · Vue · JavaScript · HTML · CSS · PostgreSQL · NoSQL"
       },
       "focus": {
         "title": "Focus",
@@ -133,20 +131,17 @@
           {
             "title": "B.A. Computer Science and German, Math Minor",
             "org": "Wofford College",
-            "period": "2013-2017",
-            "highlight": "United computational logic, linguistic structure, and mathematical reasoning to shape a systems-based mindset."
+            "period": "2013-2017"
           },
           {
             "title": "Study Abroad in Freiburg, Germany",
             "org": "IES Abroad",
-            "period": "Spring Semester 2017",
-            "highlight": "Expanded my perspective through immersive study, exploring culture, communication, and adaptability."
+            "period": "Spring Semester 2017"
           },
           {
             "title": "Intensive German Course in Göttingen, Germany",
             "org": "Goethe-Institut",
-            "period": "January 2015",
-            "highlight": "Deepened fluency and cultural understanding through intensive language study."
+            "period": "January 2015"
           }
         ]
       },
@@ -157,26 +152,22 @@
           {
             "title": "Azure AI Fundamentals",
             "org": "Microsoft",
-            "period": "2023",
-            "highlight": "Developed foundational knowledge of Machine Learning and AI concepts and how to integrate them responsibly within Azure's cloud-based solutions."
+            "period": "2023"
           },
            {
             "title": "Azure Data Fundamentals",
             "org": "Microsoft",
-            "period": "2023",
-            "highlight": "Strengthened my understanding of data modeling, processing, and analytics in Azure environments."
+            "period": "2023"
           },
           {
             "title": "Azure Fundamentals",
             "org": "Microsoft",
-            "period": "2022",
-            "highlight": "Built a solid foundation in cloud concepts, architecture, and service offerings within Azure."
+            "period": "2022"
           },
           {
             "title": "Security+",
             "org": "CompTIA",
-            "period": "2019",
-            "highlight": "Validated proficiency in core cybersecurity principles, risk management, and network security. Essential for building and maintaining secure digital environments."
+            "period": "2019"
           }
         ]
       },
@@ -187,20 +178,17 @@
           {
             "title": "Developing on AWS",
             "org": "Amazon",
-            "period": "2020",
-            "highlight": "Explored best practices for architecting and deploying performant, maintable cloud-native applications on AWS."
+            "period": "2020"
           },
           {
             "title": "Migrating to AWS",
             "org": "Amazon",
-            "period": "2020",
-            "highlight": "Learned strategies for planning, executing, and validating large-scale cloud migrations."
+            "period": "2020"
           },
           {
             "title": "Certified Cloud Security Professional (CCSP)",
             "org": "(ISC)2",
-            "period": "2018",
-            "highlight": "Strengthened my security-first mindset for building trustworthy products with this advanced bootcamp focused on cloud security architecture, risk management, and compliance."
+            "period": "2018"
           }
         ]
       }
@@ -443,16 +431,6 @@
           "blog": "Blog",
           "contact": "Contact"
         }
-      },
-      "expertise": {
-        "title": "Expertise",
-        "items": [
-          "Software Engineering",
-          "Web & App Development",
-          "UI/UX Design",
-          "Accessibility",
-          "Cloud Computing"
-        ]
       }
     },
     "social": {

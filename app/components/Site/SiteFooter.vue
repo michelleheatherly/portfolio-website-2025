@@ -197,8 +197,6 @@ const resolveLocaleValue = (value: unknown): any => {
   return value
 }
 
-const footerMessages = computed(() => resolveLocaleValue(tm('footer')))
-
 const siteName = computed(() => t('footer.siteName'))
 const siteDescription = computed(() => t('footer.description'))
 
@@ -208,11 +206,6 @@ const primarySections = computed(() =>
     href: item.href
   }))
 )
-
-const studioHighlights = computed(() => {
-  const highlights = footerMessages.value?.columns?.expertise?.items
-  return Array.isArray(highlights) ? highlights.map((item: unknown) => String(item)) : []
-})
 
 const socialLinks = computed(() => {
   const links = resolveLocaleValue(tm('social.links') ?? [])
