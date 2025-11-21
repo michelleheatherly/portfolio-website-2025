@@ -14,7 +14,7 @@
         <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div class="max-w-2xl space-y-4">
             <span
-              class="inline-flex items-center gap-2 rounded-full border border-cyber-purple/30 bg-cyber-purple/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-cyber-purple"
+              class="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs uppercase tracking-[0.28em]"
               v-motion
               :initial="{ opacity: 0, y: -12 }"
               :visibleOnce="{
@@ -55,13 +55,7 @@
               </p>
             </div>
           </div>
-          <UButton
-            variant="soft"
-            to="/resume.pdf"
-            download
-            class="w-full md:w-auto justify-center group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
-                   hover:bg-cyber-green/20 hover:text-cyber-green
-                   dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+          <div
             v-motion
             :initial="{ opacity: 0, y: 18, scale: 0.95 }"
             :visibleOnce="{
@@ -71,12 +65,20 @@
               transition: { delay: projectDelays.cta, type: 'spring', stiffness: 120, damping: 24 }
             }"
           >
-            <UIcon
-              name="i-heroicons-arrow-down-tray-20-solid"
-              class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
-            />
-            <span>{{ t('projects.resume') }}</span>
-          </UButton>
+            <UButton
+              color="neutral"
+              variant="outline"
+              href="/resume.pdf"
+              download
+              class="justify-center group border transition-colors duration-300 bg-transparent"
+            >
+              <UIcon
+                name="i-heroicons-arrow-down-tray-20-solid"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+              />
+              <span>{{ t('projects.resume') }}</span>
+            </UButton>
+          </div>
         </div>
 
         <div class="space-y-4 relative z-20">
@@ -94,7 +96,7 @@
               v-for="(category, index) in categoryFilters"
               :key="category.value"
               type="button"
-              class="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
+              class="inline-flex cursor-pointer items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]"
               :class="[
                 activeCategory === category.value
                   ? 'border-cyber-purple/60 bg-cyber-purple/15 text-cyber-purple dark:bg-cyber-purple/20'
@@ -135,27 +137,41 @@
               >
                 <!-- Trigger -->
                 <UButton
+                  color="gray"
                   variant="soft"
-                  class="group inline-flex items-center gap-3 rounded-full border border-zinc-200/70 bg-white/70 px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-green/50 hover:text-cyber-green hover:shadow-[0_18px_45px_-28px_rgba(34,197,94,0.45)] dark:border-zinc-700/70 dark:bg-white/10 dark:text-zinc-200"
+                  class="group inline-flex cursor-pointer items-center gap-3 rounded-full border px-4 py-1.5 text-sm font-medium
+                        transition-all duration-300
+                        border-zinc-300/60 bg-white/70 text-zinc-600
+                        hover:-translate-y-0.5 hover:shadow-[0_14px_35px_-20px_rgba(99,102,241,0.6)]
+                        hover:border-cyber-purple/40 hover:text-cyber-purple
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50
+                        dark:border-zinc-700/60 dark:bg-white/5 dark:text-zinc-300 dark:hover:text-cyber-purple"
                 >
-                  <UIcon name="i-heroicons-tag-20-solid" class="h-5 w-5 text-zinc-400 group-hover:text-cyber-green" />
-                  <span class="font-medium">{{ t('projects.filters.tags.button') }}</span>
+                  <UIcon
+                    name="i-heroicons-tag-20-solid"
+                    class="h-5 w-5 text-zinc-400 group-hover:text-cyber-purple"
+                  />
+
+                  <span class="font-medium">
+                    {{ t('projects.filters.tags.button') }}
+                  </span>
+
                   <span
                     v-if="activeTags.length"
-                    class="inline-flex items-center justify-center rounded-full bg-cyber-green/15 px-2 text-xs font-semibold text-cyber-green transition-colors duration-300 dark:bg-cyber-green/20"
+                    class="inline-flex items-center justify-center rounded-full bg-cyber-purple/15 px-2 text-xs font-semibold text-cyber-purple transition-colors duration-300 dark:bg-cyber-purple/20"
                   >
                     {{ activeTags.length }}
                   </span>
+
                   <UIcon
                     :name="tagMenuOpen ? 'i-heroicons-chevron-up-20-solid' : 'i-heroicons-chevron-down-20-solid'"
-                    class="h-4 w-4 text-zinc-400 transition-transform duration-300 group-hover:text-cyber-green"
+                    class="h-4 w-4 text-zinc-400 transition-transform duration-300 group-hover:text-cyber-purple"
                   />
                 </UButton>
 
                 <!-- Content -->
                 <template #content>
-                  <div class="z-[9999] w-80 overflow-hidden rounded-3xl border border-zinc-200/70 bg-white/95 p-0 shadow-[0_25px_70px_-40px_rgba(15,23,42,0.4)] backdrop-blur-lg dark:border-white/10 dark:bg-slate-900/90">
-                    <div class="space-y-4 p-4">
+                    <div class="space-y-4 p-4 dark:bg-zinc-900/90">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">
                           {{ t('projects.filters.tags.title') }}
@@ -164,14 +180,14 @@
                           <button
                             v-if="activeTags.length"
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-green transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                             @click="activeTags = []"
                           >
                             {{ t('projects.filters.tags.clear') }}
                           </button>
                           <button
                             type="button"
-                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 cursor-pointer"
                             @click="tagMenuOpen = false; tagSearchQuery = ''"
                           >
                             {{ t('projects.filters.tags.done') }}
@@ -201,11 +217,11 @@
                           v-for="tag in filteredTagOptions"
                           :key="tag"
                           type="button"
-                          class="flex w-full items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 hover:-translate-y-0.5"
+                          class="flex w-full cursor-pointer items-center justify-between rounded-2xl border px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 hover:-translate-y-0.5"
                           :class="[
                             activeTags.includes(tag)
-                              ? 'border-cyber-green/55 bg-cyber-green/15 text-cyber-green hover:border-cyber-green/70 hover:bg-cyber-green/25 dark:bg-cyber-green/20 dark:hover:bg-cyber-green/30'
-                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-green/55 hover:bg-cyber-green/15 hover:text-cyber-green dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-green/20'
+                              ? 'border-cyber-purple/55 bg-cyber-purple/15 text-cyber-purple hover:border-cyber-purple/70 hover:bg-cyber-purple/25 dark:bg-cyber-purple/20 dark:hover:bg-cyber-purple/30'
+                              : 'border-transparent bg-zinc-100/80 text-zinc-600 hover:border-cyber-purple/55 hover:bg-cyber-purple/15 hover:text-cyber-purple dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-cyber-purple/20'
                           ]"
                           @click="activeTags = activeTags.includes(tag) ? activeTags.filter(t => t !== tag) : [...activeTags, tag]"
                         >
@@ -217,14 +233,13 @@
                         </button>
                       </div>
                     </div>
-                  </div>
                 </template>
               </UPopover>
 
               <button
                 v-if="hasActiveFilters"
                 type="button"
-                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-cyber-purple transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40"
+                class="ml-auto inline-flex items-center gap-2 rounded-full border border-transparent px-3.5 py-1.5 text-sm font-bold text-cyber-green transition-all duration-300 hover:-translate-y-0.5 hover:text-cyber-green hover:shadow-[0_16px_40px_-28px_rgba(59,130,246,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green/40 cursor-pointer"
                 v-motion
                 :initial="{ opacity: 0, y: 26, scale: 0.96, blur: 6 }"
                 :visibleOnce="{
@@ -295,14 +310,18 @@
         class="rounded-[2.5rem] border border-dashed border-zinc-300/70 bg-white/60 py-16 text-center transition-colors duration-300 dark:border-zinc-700/60 dark:bg-white/5"
       >
         <div class="mx-auto max-w-md space-y-4 px-6">
-          <UIcon name="i-heroicons-face-frown-20-solid" class="mx-auto h-10 w-10 text-cyber-purple/70" />
+          <img
+            src="~/assets/images/sad-kitty.png"
+            alt="A sad kitty illustration"
+            class="mx-auto h-50 w-50 object-contain empty-state-kitty"
+          />
           <p class="text-lg font-semibold text-zinc-900 dark:text-white">
             {{ t('projects.empty.title') }}
           </p>
           <p class="text-sm text-zinc-600 dark:text-zinc-300">
             {{ t('projects.empty.description') }}
           </p>
-          <UButton variant="soft" class="mt-2" @click="clearFilters">
+          <UButton variant="solid" class="mt-2 cursor-pointer" @click="clearFilters">
             <UIcon name="i-heroicons-sparkles-20-solid" class="h-5 w-5" />
             <span>{{ t('projects.empty.action') }}</span>
           </UButton>
@@ -323,89 +342,110 @@ const categoryFilterMeta = [
 type CategoryFilter = (typeof categoryFilterMeta)[number]['value']
 type ProjectCategory = Exclude<CategoryFilter, 'all'>
 
-const projectContentKeys = {
-  neonNodes: 'projects.list.neonNodes.description',
-  pulseUi: 'projects.list.pulseUi.description',
-  greenTrace: 'projects.list.greenTrace.description',
-  immersiveAtlas: 'projects.list.immersiveAtlas.description',
-  opsynkControl: 'projects.list.opsynkControl.description',
-  signalStudio: 'projects.list.signalStudio.description'
-} as const
-
 type Project = {
-  id: keyof typeof projectContentKeys
+  id: string
   title: string
   description: string
   image: string
   tags: string[]
   link: string
+  codeLink?: string
   category: ProjectCategory
 }
 
-const projectMeta = [
-  {
-    id: 'neonNodes',
-    title: 'Neon Nodes',
-    image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Vue 3', 'WebRTC', 'Pinia'],
-    link: 'https://example.com/neon-nodes',
-    category: 'front-end'
-  },
-  {
-    id: 'pulseUi',
-    title: 'Pulse UI',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt UI', 'Design Tokens', 'D3'],
-    link: 'https://example.com/pulse-ui',
-    category: 'design'
-  },
-  {
-    id: 'greenTrace',
-    title: 'GreenTrace',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt', 'AI', 'Maps'],
-    link: 'https://example.com/greentrace',
-    category: 'full-stack'
-  },
-  {
-    id: 'immersiveAtlas',
-    title: 'Immersive Atlas',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Three.js', 'Nuxt 3', 'Storytelling'],
-    link: 'https://example.com/immersive-atlas',
-    category: 'front-end'
-  },
-  {
-    id: 'opsynkControl',
-    title: 'Opsynk Control',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Nuxt 3', 'Supabase', 'Telemetry'],
-    link: 'https://example.com/opsynk-control',
-    category: 'full-stack'
-  },
-  {
-    id: 'signalStudio',
-    title: 'Signal Studio',
-    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Design Systems', 'Nuxt UI', 'Docs'],
-    link: 'https://example.com/signal-studio',
-    category: 'design'
-  }
-] as const satisfies ReadonlyArray<Omit<Project, 'description'>>
+type LocalizedProjectEntry = Partial<Project> & { id?: string }
 
-const { t } = useI18n()
+const projectCategoryValues = categoryFilterMeta
+  .map((filter) => filter.value)
+  .filter((value): value is ProjectCategory => value !== 'all')
+
+const { t, tm, rt } = useI18n()
+
+const resolveLocaleValue = (value: unknown): any => {
+  if (Array.isArray(value)) {
+    return value.map(resolveLocaleValue)
+  }
+
+  if (value && typeof value === 'object') {
+    if ('type' in value && 'loc' in value) {
+      return rt(value as any)
+    }
+
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
+    )
+  }
+
+  return value
+}
+
+const isProjectCategory = (value: unknown): value is ProjectCategory =>
+  typeof value === 'string' && projectCategoryValues.includes(value as ProjectCategory)
+
+const normalizeProjectEntries = (value: unknown): LocalizedProjectEntry[] => {
+  if (!value) return []
+
+  if (Array.isArray(value)) {
+    return value as LocalizedProjectEntry[]
+  }
+
+  if (typeof value === 'object') {
+    return Object.entries(value as Record<string, unknown>).map(([id, entry]) => ({
+      id,
+      ...(entry as LocalizedProjectEntry)
+    }))
+  }
+
+  return []
+}
+
+const projects = computed<Project[]>(() => {
+  const localized = resolveLocaleValue(tm('projects.list'))
+  const entries = normalizeProjectEntries(localized)
+
+  return entries
+    .map((entry) => {
+      const id =
+        typeof entry.id === 'string' && entry.id.length > 0
+          ? entry.id
+          : typeof entry.title === 'string' && entry.title.length > 0
+            ? entry.title
+            : null
+      const title = typeof entry.title === 'string' && entry.title.length > 0 ? entry.title : null
+      const description =
+        typeof entry.description === 'string' && entry.description.length > 0 ? entry.description : null
+      const image = typeof entry.image === 'string' && entry.image.length > 0 ? entry.image : null
+      const link = typeof entry.link === 'string' && entry.link.length > 0 ? entry.link : null
+      const codeLink =
+        typeof entry.codeLink === 'string' && entry.codeLink.length > 0 ? entry.codeLink : undefined
+      const category = isProjectCategory(entry.category) ? entry.category : null
+
+      if (!id || !title || !description || !image || !link || !category) {
+        return null
+      }
+
+      const tags = Array.isArray(entry.tags)
+        ? entry.tags.filter((tag): tag is string => typeof tag === 'string' && tag.trim().length > 0)
+        : []
+
+      return {
+        id,
+        title,
+        description,
+        image,
+        link,
+        codeLink,
+        category,
+        tags
+      }
+    })
+    .filter((project): project is Project => Boolean(project))
+})
 
 const categoryFilters = computed(() =>
   categoryFilterMeta.map((filter) => ({
     ...filter,
     label: t(`projects.filters.categories.${filter.key}`)
-  }))
-)
-
-const projects = computed<Project[]>(() =>
-  projectMeta.map((project) => ({
-    ...project,
-    description: t(projectContentKeys[project.id])
   }))
 )
 
@@ -474,3 +514,78 @@ const clearFilters = () => {
   closeTagMenu()
 }
 </script>
+
+<style scoped>
+.empty-state-kitty {
+  animation: empty-kitty-bob 10s ease-in-out infinite;
+  transform-origin: center bottom;
+  will-change: transform;
+  position: relative;
+
+  filter:
+    drop-shadow(0 0 9px rgba(126, 78, 255, 0.25))
+    drop-shadow(0 0 16px rgba(16, 185, 129, 0.18))
+    drop-shadow(0 0 28px rgba(126, 78, 255, 0.2));
+
+  transition:
+    transform 300ms ease,
+    filter 300ms ease;
+}
+
+.empty-state-kitty:hover {
+  animation-play-state: paused;
+  transform: translate3d(0, -5px, 0) rotate(2deg) scale(1.02);
+  filter:
+    drop-shadow(0 0 14px rgba(126, 78, 255, 0.35))
+    drop-shadow(0 0 22px rgba(16, 185, 129, 0.25))
+    drop-shadow(0 0 36px rgba(126, 78, 255, 0.24));
+}
+
+.empty-state-kitty::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(126, 78, 255, 0.15) 0%,
+    rgba(16, 185, 129, 0.08) 40%,
+    transparent 75%
+  );
+
+  filter: blur(18px);
+  transform: scale(1.35);
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+}
+
+.empty-state-kitty:hover::after {
+  opacity: 0.75;
+}
+
+@keyframes empty-kitty-bob {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  25% {
+    transform: translate3d(0, -6px, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0) rotate(3deg);
+  }
+  75% {
+    transform: translate3d(0, -8px, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .empty-state-kitty {
+    animation: none;
+  }
+}
+</style>

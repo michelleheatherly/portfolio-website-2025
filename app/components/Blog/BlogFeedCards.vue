@@ -1,6 +1,13 @@
 <template>
-  <div class="space-y-6">
-    <div v-if="pending" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+  <div
+    class="h-full space-y-6 pr-1"
+    :style="maxHeight ? { height: maxHeight + 'px' } : undefined"
+  >
+    <div
+      v-if="pending"
+      class="grid h-full gap-4 sm:grid-cols-2 lg:grid-cols-3 pt-2 -mt-2"
+      aria-live="polite"
+    >
       <span class="sr-only">{{ t('feed.loading') }}</span>
       <UCard
         v-for="(_, idx) in skeletonItems"
@@ -22,7 +29,7 @@
 
     <div
       v-else-if="error"
-      class="flex flex-col gap-3 rounded-2xl border border-rose-400/30 bg-rose-400/10 p-5 text-sm text-rose-600 shadow-sm transition-colors duration-300 dark:border-rose-300/20 dark:bg-rose-300/10 dark:text-rose-200"
+      class="flex h-full flex-col gap-3 overflow-y-auto rounded-2xl border border-rose-400/30 bg-rose-400/10 p-5 text-sm text-rose-600 shadow-sm transition-colors duration-300 dark:border-rose-300/20 dark:bg-rose-300/10 dark:text-rose-200"
     >
       <div class="flex items-start gap-3">
         <UIcon name="i-heroicons-exclamation-triangle-20-solid" class="mt-0.5 h-5 w-5 shrink-0" />
@@ -43,7 +50,7 @@
 
     <div
       v-else-if="!items.length"
-      class="rounded-2xl border border-black/10 bg-white/70 p-6 text-sm text-zinc-600 backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-white/5 dark:text-white/70"
+      class="h-full overflow-y-auto rounded-2xl border border-black/10 bg-white/70 p-6 text-sm text-zinc-600 backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-white/5 dark:text-white/70"
     >
       <p class="font-medium text-zinc-700 transition-colors duration-300 dark:text-white">
         {{ t('feed.empty.title') }}
@@ -53,18 +60,25 @@
       </p>
     </div>
 
-    <div v-else class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      v-else
+      class="grid h-full auto-rows-fr gap-5 overflow-y-auto pt-2 -mt-2 overscroll-contain"
+      :class="{
+        'sm:grid-cols-2': items.length >= 2,
+        'lg:grid-cols-3': items.length >= 3
+      }"
+    >
       <UCard
         v-for="post in items"
         :key="post.link"
-        class="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-black/10 bg-white/70 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-cyber-purple/30 hover:shadow-[0_28px_60px_-40px_rgba(124,58,237,0.55)] dark:border-white/10 dark:bg-white/[0.06] dark:hover:border-cyber-purple/40"
+        class="group relative flex h-full transform-gpu flex-col justify-between overflow-hidden rounded-2xl border border-black/10 bg-white/70 p-6 lg:p-7 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-cyber-purple/30 hover:shadow-[0_28px_60px_-40px_rgba(124,58,237,0.55)] dark:border-white/10 dark:bg-white/[0.06] dark:hover:border-cyber-purple/40"
       >
         <span
           class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-purple/0 via-cyber-purple/10 to-cyber-green/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
         <div class="relative flex h-full flex-col gap-4">
           <div class="space-y-2">
-            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyber-green/80">
+            <p class="text-xs font-semibold uppercase tracking-[0.22em]">
               {{ formatDate(post.date) }}
             </p>
             <h3 class="text-lg font-semibold leading-tight text-zinc-900 transition-colors duration-300 dark:text-white">
@@ -90,7 +104,7 @@
             :href="post.link"
             target="_blank"
             rel="noopener noreferrer"
-            class="group/link mt-auto inline-flex items-center gap-2 pt-2 text-sm font-semibold text-cyber-green transition-colors duration-300 hover:text-cyber-green/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
+            class="group/link mt-auto inline-flex items-center gap-2 pt-2 text-sm font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
           >
             <span>{{ t('feed.card.readMore') }}</span>
             <UIcon
@@ -105,6 +119,10 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{
+  maxHeight?: number | null
+}>()
+
 const { t, locale } = useI18n({ useScope: 'global' })
 const { data, pending, error, refresh } = useFeed()
 
@@ -120,20 +138,19 @@ const items = computed<FeedCardItem[]>(() => {
   const allItems = (data.value?.items || []) as FeedCardItem[]
   const activeLocale = locale.value?.startsWith('de') ? 'de' : 'en'
 
-  return allItems.filter((item) => {
-    const normalizedLang = item.lang?.toLowerCase()
-    if (!normalizedLang)
-      return activeLocale === 'en'
-
-    return normalizedLang.startsWith(activeLocale)
-  }).slice(0, 3)
+  return allItems
+    .filter((item) => {
+      const normalizedLang = item.lang?.toLowerCase()
+      if (!normalizedLang) return activeLocale === 'en'
+      return normalizedLang.startsWith(activeLocale)
+    })
+    .slice(0, 3)
 })
+
 const skeletonItems = computed(() => Array.from({ length: 3 }))
 
 function formatDate(iso?: string) {
-  if (!iso)
-    return t('feed.card.unknownDate')
-
+  if (!iso) return t('feed.card.unknownDate')
   try {
     return new Intl.DateTimeFormat(locale.value, {
       day: 'numeric',

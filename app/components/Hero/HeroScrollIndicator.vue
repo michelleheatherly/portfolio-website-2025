@@ -10,7 +10,7 @@
       :class="{ 'prefers-reduce': prefersReduced === 'reduce' }"
     >
       <span
-        class="scroll-orb relative flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/70 text-cyber-purple shadow-[0_16px_30px_-24px_rgba(99,102,241,0.7)] dark:border-white/20 dark:bg-white/10"
+        class="scroll-orb relative flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/70 shadow-[0_16px_30px_-24px_rgba(99,102,241,0.7)] dark:border-white/20 dark:bg-white/10"
       >
         <UIcon
           name="i-heroicons-arrow-down-20-solid"
@@ -19,8 +19,7 @@
       </span>
 
       <div class="flex flex-col">
-        <span class="font-medium text-zinc-700 dark:text-white/80">{{ t('scrollIndicator.title') }}</span>
-        <span class="text-xs text-zinc-500 dark:text-white/60">{{ t('scrollIndicator.subtitle') }}</span>
+        <span class="text-sm font-medium text-zinc-500 dark:text-white/60">{{ t('scrollIndicator.title') }}</span>
       </div>
     </div>
   </div>

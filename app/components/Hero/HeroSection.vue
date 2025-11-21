@@ -1,6 +1,6 @@
 <template>
-  <section id="home" class="hero-section relative transition-colors duration-300">
-    <UContainer class="py-28 md:py-36">
+    <section id="home" class="hero-section relative transition-colors duration-300">
+    <UContainer class="pt-16 pb-20 md:pt-20 md:pb-28 lg:py-36">
       <div
         class="grid lg:grid-cols-2 gap-10 items-center"
         v-motion
@@ -24,9 +24,9 @@
           }"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-                   text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-                   dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+            class="availability-pill group cursor-pointer inline-flex items-center rounded-full border px-4 py-1
+                   text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
+            :aria-label="t('hero.availability')"
             v-motion
             :initial="{ opacity: 0, y: -8 }"
             :enter="{
@@ -35,8 +35,13 @@
               transition: { delay: heroDelays.badge, type: 'spring', stiffness: 150, damping: 18 }
             }"
           >
-            <UIcon name="i-heroicons-rocket-launch-20-solid" class="h-4 w-4" />
-            {{ t('hero.availability') }}
+            <UIcon
+              name="i-heroicons-rocket-launch-20-solid"
+              class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+            />
+            <span class="availability-pill__text" aria-hidden="true">
+              {{ t('hero.availability') }}
+            </span>
           </span>
 
           <h1
@@ -107,15 +112,14 @@
             </UButton>
             <UButton
               size="lg"
+              color="neutral"
               variant="soft"
               to="#contact"
-              class="group border border-cyber-green/25 bg-cyber-green/15 text-cyber-green transition-colors duration-300
-                     hover:bg-cyber-green/20 hover:text-cyber-green
-                     dark:border-cyber-green/35 dark:bg-cyber-green/25 dark:text-cyber-green/90 dark:hover:bg-cyber-green/35"
+              class="group border transition-colors duration-300 bg-transparent"
             >
               <UIcon
                 name="i-heroicons-envelope-20-solid"
-                class="h-5 w-5 text-cyber-green transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+                class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
               />
               <span>{{ t('hero.cta.contact') }}</span>
             </UButton>
@@ -141,7 +145,7 @@
         </div>
 
         <div
-          class="rounded-3xl overflow-hidden"
+          class="group rounded-3xl overflow-hidden"
           v-motion
           :initial="{ opacity: 0, y: 28, scale: 0.94 }"
           :enter="{
@@ -157,9 +161,9 @@
           }"
         >
           <img
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
+            src="~/assets/images/WerkIt-©LaurenRoberts2024-56.jpg"
             :alt="t('hero.portraitAlt')"
-            class="w-full aspect-[4/3] object-cover"
+            class="block w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       </div>
@@ -212,5 +216,30 @@ const heroDelays = {
   text-shadow:
     1px 1px 0 rgba(76, 29, 149, 0.38),
     4px 8px 22px rgba(34, 197, 94, 0.32);
+}
+
+.hero-section .availability-pill {
+  gap: 0;
+}
+
+.hero-section .availability-pill__text {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 0.35s ease,
+    opacity 0.35s ease,
+    margin-left 0.35s ease,
+    padding-left 0.35s ease;
+}
+
+.hero-section .availability-pill:hover .availability-pill__text {
+  max-width: 999px;
+  opacity: 1;
+  margin-left: 1.5rem;
+  padding-left: 0.25rem;
 }
 </style>

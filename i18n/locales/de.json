@@ -24,244 +24,321 @@
     "menu": {
       "open": "Menü",
       "close": "Menü schließen",
-      "title": "Navigation",
-      "tagline": "Kuratiere Projekte, liebevolles Motion Design und eine Prise Neon-Romantik."
+      "title": "Navigation"
     },
     "links": {
       "home": "Start",
       "about": "Profil",
       "education": "Ausbildung",
       "skills": "Fähigkeiten",
-      "projects": "Projekte",
+      "projects": "Portfolio",
       "blog": "Blog",
       "contact": "Kontakt"
     }
   },
+  "social": {
+    "links": [
+      {
+        "key": "github",
+        "label": "GitHub",
+        "href": "https://github.com/michelleheatherly",
+        "icon": "i-simple-icons-github"
+      },
+      {
+        "key": "gitlab",
+        "label": "GitLab",
+        "href": "https://gitlab.com/michelleheatherly",
+        "icon": "i-simple-icons-gitlab"
+      },
+      {
+        "key": "linkedin",
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/rachael-michelle-heatherly/",
+        "icon": "i-simple-icons-linkedin"
+      },
+      {
+        "key": "blog",
+        "label": "Blog",
+        "href": "https://www.michelle-heatherly.com/blog/de",
+        "icon": "i-heroicons-newspaper-20-solid"
+      },
+      {
+        "key": "email",
+        "label": "E-Mail",
+        "icon": "i-heroicons-envelope-20-solid"
+      }
+    ]
+  },
   "hero": {
-    "availability": "Für Freelance buchbar",
+    "availability": "Freiberuflich verfügbar",
     "headline": {
-      "start": "Ich gestalte elegante Interfaces mit einem ",
-      "end": "-Vibe."
+      "start": "Full-Stack-Entwicklung mit ",
+      "end": "Note."
     },
-    "accent": "cyber-femme",
-    "description": "Ich bin Webentwicklerin mit Fokus auf Nuxt, Vue und lebendiges Motion Design. Lass uns schnelle, zugängliche und stilvolle Experiences erschaffen.",
+    "accent": "persönlicher",
+    "description": "Hallo! Ich bin Michelle, Softwareentwicklerin mit Fokus auf Nuxt, Vue, Python und nahtlose Benutzererlebnisse. Lass uns etwas Schnelles, Zugängliches und Stilvolles schaffen.",
     "cta": {
       "projects": "Projekte ansehen",
       "contact": "Kontakt"
     },
-    "portraitAlt": "Porträt einer Entwicklerin"
+    "portraitAlt": "Porträt der Entwicklerin"
   },
   "scrollIndicator": {
-    "title": "Weiter scrollen",
-    "subtitle": "Unten wartet mehr Magie",
+    "title": "Weiter scrollen, um mehr zu erfahren",
     "top": "Seitenanfang"
   },
   "about": {
-    "badge": "Digitale Geschichten gestalten",
-    "heading": "Designer-Engineer mit Gespür für Ästhetik und Systems Thinking.",
-    "description": "Ich übersetze ambitionierte Ideen in immersive digitale Experiences und optimiere die Verbindung aus Interaktionsdesign, Barrierefreiheit und Performance. Jedes Projekt wird zur Bühne für mühelose, bedeutsame Momente.",
+    "badge": "Profil",
+    "heading": "Mit Empathie gestalten, mit Ziel bauen.",
+    "description": "Ich bin Full-Stack-Softwareentwicklerin mit über 9 Jahren Erfahrung und einem Hintergrund in Informatik. Meine Leidenschaft ist es, barrierefreie und leistungsstarke digitale Produkte zu entwickeln, die sich mühelos bedienen lassen und für die Menschen einen echten Mehrwert bieten.",
     "cards": {
       "superpower": {
-        "title": "Superpower",
-        "body": "Komponenten-Systeme entwerfen, die skalieren und dennoch Charakter behalten."
+        "title": "Supermacht",
+        "body": "Komplexe Ideen in klare, nutzbare Systeme verwandeln."
       },
       "approach": {
-        "title": "Arbeitsweise",
-        "body": "Motion-first Storytelling, schnelles Prototyping und Releases mit messbarem Impact."
+        "title": "Vorgehensweise",
+        "body": "Zuhören. Früh prototypisieren. Zielgerichtet verfeinern."
       },
       "toolkit": {
-        "title": "Toolkit",
-        "body": "Nuxt · Vue · TypeScript · Tailwind · Framer Motion · Accessibility Audits."
+        "title": "Softwarewerkzeuge",
+        "body": "Python · Nuxt · Vue · JavaScript · HTML · CSS · PostgreSQL · NoSQL"
       },
       "focus": {
-        "title": "Fokus",
-        "body": "Zero-to-one Launches, Design-System-Curation und Micro-Interactions."
+        "title": "Schwerpunkt",
+        "body": "Modulare Architektur, optimierte Leistung, und barrierefreie Benutzeroberflächen."
       }
     },
     "badges": [
-      "Systems Thinking",
-      "Immersive UI",
-      "Accessibility",
-      "Performance"
+      "Systemisches Denken",
+      "Web & App-Entwicklung",
+      "UI/UX-Design",
+      "Barrierefreiheit",
+      "Cloud Computing"
     ],
-    "portraitAlt": "Porträt in einem kreativen Workspace"
+    "portraitAlt": "Porträt"
   },
   "education": {
-    "badge": "Lernreise",
-    "title": "Ausbildung & kontinuierliches Wachstum",
-    "description": "Eine kuratierte Mischung aus Studium, Zertifizierungen und Experimentier-Labs, die Design, Entwicklung und Storytelling auf Zukunftskurs hält.",
+    "badge": "Ausbildung",
+    "title": "Ausbildung & kontinuierliches Lernen",
+    "description": "Eine Kombination aus formaler Ausbildung, branchenspezifischen Zertifizierungen und berufliche Schulungen, die mir helfen, mit der Technologie Schritt zu halten und mich ständig weiterzuentwickeln.",
     "categories": {
       "college": {
         "label": "Studium",
-        "description": "Fundierte Ausbildung, die Produktdenken, Research und Storytelling geprägt hat.",
+        "description": "Abschlüsse & Auslandsaufenthalte",
         "entries": [
           {
-            "title": "B.Sc. Interactive Media & UX",
-            "org": "Futurewave University",
-            "period": "2014–2018",
-            "highlight": "Studio-geführtes Programm zu Interface Design, Creative Coding und Motion Graphics mit Capstone im immersiven Web."
+            "title": "B.A. Informatik und Germanistik, Nebenfach Mathematik",
+            "org": "Wofford College",
+            "period": "2013–2017"
           },
           {
-            "title": "Global Design Residency",
-            "org": "HyperIsland Stockholm",
-            "period": "Sommer 2017",
-            "highlight": "Vierwöchige Residenz zu spekulativen Futures, Design Sprints und Service-Prototyping."
+            "title": "Auslandssemester in Freiburg, Deutschland",
+            "org": "IES Abroad",
+            "period": "Frühjahrssemester 2017"
+          },
+          {
+            "title": "Deutsch Intensivkurs in Göttingen, Deutschland",
+            "org": "Goethe-Institut",
+            "period": "Januar 2015"
           }
         ]
       },
       "certifications": {
         "label": "Zertifizierungen",
-        "description": "Gezielte Qualifikationen, die Qualität und Verantwortung sichern.",
+        "description": "Anerkannte Nachweise",
         "entries": [
           {
-            "title": "Certified Web Accessibility Specialist (CPACC)",
-            "org": "IAAP",
-            "period": "2023",
-            "highlight": "Inklusive Designpraktiken und Accessibility-Audits für komplexe Web-Ökosysteme verifiziert."
+            "title": "Azure AI Fundamentals",
+            "org": "Microsoft",
+            "period": "2023"
           },
           {
-            "title": "Design Systems Professional",
-            "org": "Figma Academy",
-            "period": "2022",
-            "highlight": "Fortgeschrittene Komponenten-Governance, Token-Orchestrierung und Multi-Brand-Theming."
+            "title": "Azure Data Fundamentals",
+            "org": "Microsoft",
+            "period": "2023"
+          },
+          {
+            "title": "Azure Fundamentals",
+            "org": "Microsoft",
+            "period": "2022"
+          },
+          {
+            "title": "Security+",
+            "org": "CompTIA",
+            "period": "2019"
           }
         ]
       },
       "trainings": {
-        "label": "Weitere Trainings",
-        "description": "Workshops, Labs und Experimente, die den Werkzeugkasten frisch halten.",
+        "label": "Zusätzliche Schulungen",
+        "description": "Workshops und Bootcamps",
         "entries": [
           {
-            "title": "AI Storytelling for Product Teams",
-            "org": "Runway Research Lab",
-            "period": "2024",
-            "highlight": "Multimodale Narrative und Prompt-Choreografie für interaktive Experiences erkundet."
+            "title": "Entwicklung auf AWS",
+            "org": "Amazon",
+            "period": "2020"
           },
           {
-            "title": "Design Sprint Facilitator",
-            "org": "AJ&Smart",
-            "period": "2021",
-            "highlight": "Zertifiziert für komprimierte Discovery-bis-Prototype-Zyklen mit crossfunktionalen Teams."
+            "title": "Migration zu AWS",
+            "org": "Amazon",
+            "period": "2020"
           },
           {
-            "title": "Creative Coding Meetups",
-            "org": "SF Generative Collective",
-            "period": "2019–2020",
-            "highlight": "Monatliche Workshops zu Shadern, Motion Design und WebGL-Installationen."
+            "title": "Certified Cloud Security Professional (CCSP)",
+            "org": "(ISC)2",
+            "period": "2018"
           }
         ]
       }
     }
   },
   "skills": {
-    "badge": "Kompetenzen",
-    "title": "Interfaces mit Balance aus Finish, Performance und Accessibility",
-    "description": "Mein Daily Toolkit für belastbare Produkte: technologische Tiefe, Interaktionsdesign und kollaborative Rituale, die Teams in den Flow bringen.",
+    "badge": "Fähigkeiten",
+    "title": "Werkzeuge für belastbare digitale Erlebnisse.",
+    "description": "Eine Sammlung von Programmiersprachen, Frameworks und Workflows, die meine tägliche Arbeit antreiben.",
     "sections": {
       "frontend": {
-        "title": "Product-Focused Frontend",
-        "blurb": "Nuxt-Erlebnisse, die schnell, inklusiv und leicht iterierbar bleiben.",
-        "highlights": ["Nuxt 3", "Vue", "TypeScript"],
-        "peek": "Commerce-Redesign geleitet: 38 % weniger Datenvolumen bei höheren Conversions."
+        "title": "Front-End-Entwicklung",
+        "blurb": "Programmiersprachen und Frameworks für Benutzeroberflächen.",
+        "highlights": ["Nuxt", "Vue", "React", "Angular", "JavaScript", "HTML", "CSS"],
+        "peek": "Entwickelte eine Nuxt-Anwendung zur Verwaltung von Bestellungen mit Echtzeit-Bearbeitung und rollenbasiertem Zugriff."
       },
-      "designSystems": {
-        "title": "Design Systems & UI Kits",
-        "blurb": "Wiederverwendbare UI, die sich geräteübergreifend kohärent und charakterstark anfühlt.",
-        "highlights": ["Design Tokens", "Storybook", "Responsive Layouts"],
-        "peek": "Token-basiertes Kit gelauncht, das 3 Produktteams ohne Drift versorgt."
+      "backend": {
+        "title": "Back-End & APIs",
+        "blurb": "Serverseitige Frameworks, Datenbanken und API-Integrationen.",
+        "highlights": ["Python", "Java", "Flask", "NodeJS", "PostgreSQL", "NoSQL"],
+        "peek": "Erstellte eine Node-API zur Generierung benutzerdefinierter, metadatenreicher QR-Codes unter Einbindung externer Dienste."
       },
-      "motion": {
-        "title": "Motion & Micro-Interactions",
-        "blurb": "Feinfühlige Übergänge, die Aufmerksamkeit lenken und Interfaces lebendig machen.",
-        "highlights": ["VueUse Motion", "GSAP Basics", "CSS Timelines"],
-        "peek": "Onboarding-Abschluss auf 92 % gesteigert durch kontextuelle Nudges und Micro-Animationen."
+      "design": {
+        "title": "Design & Interaktion",
+        "blurb": "Komponentenbibliotheken, Frameworks und Tools für barrierefreie, interaktive Interfaces.",
+        "highlights": ["Bootstrap", "Vuetify", "Tailwind", "Sass", "Responsives Layout"],
+        "peek": "Verwandelte ein detailliertes Figma-Designsystem in eine moderne, responsive Firmenwebsite auf Basis von Nuxt."
       },
-      "quality": {
-        "title": "Accessibility & Quality",
-        "blurb": "Features für alle ausliefern – mit engem Feedback-Loop.",
-        "highlights": ["Semantisches HTML", "Keyboard-Flows", "Vitest + Playwright"],
-        "peek": "Kernflows auf WCAG AA geprüft und automatische A11y-Checks in die CI gebracht."
+      "testing": {
+        "title": "Tests & Performance",
+        "blurb": "Test-Frameworks, Barrierefreiheitsanalysen und Performance-Monitoring.",
+        "highlights": ["Grafana", "Prometheus", "Jasmine", "JUnit", "Lint"],
+        "peek": "Aktualisierte Unit-Tests in mehreren Legacy-Codebasen für 100% Testabdeckung."
       },
       "collaboration": {
-        "title": "Collaboration",
-        "blurb": "Mit Design- und Produktteams zusammen Ergebnisse launchen.",
-        "highlights": ["Design Handoff", "Docs & RFCs", "Mentoring"],
-        "peek": "Wöchentliche Design-Crits und Sprint-Alignment über drei Squads moderiert."
+        "title": "Zusammenarbeit & DevOps",
+        "blurb": "Tools zur Zusammenarbeit, Versionskontrolle und Deployment-Workflows.",
+        "highlights": ["Agile", "CI/CD", "GitHub", "Dokumentation", "LucidCharts"],
+        "peek": "Gemeinsam DevOps-Prozesse geleitet, inklusive CI/CD-Pipelines für sichere, automatisierte Multi-Cloud-Deployments mit agiler Scrum-Methodik."
       },
-      "engineering": {
-        "title": "Engineering Habits",
-        "blurb": "Wartbare Codebases mit modernem Tooling und DevOps-Blick.",
-        "highlights": ["CI/CD", "GitHub Actions", "Edge Deployments"],
-        "peek": "Release-Gates automatisiert und so ~4 Stunden Regression-Checks pro Woche gespart."
+      "infrastructure": {
+        "title": "Infrastruktur & Cloud-Plattformen",
+        "blurb": "Hosting und Infrastruktur für moderne Anwendungen.",
+        "highlights": ["Docker", "CloudFlare", "Linux", "Windows", "AWS", "Azure", "GCP"],
+        "peek": "Entwarf mehrere Cloud-Migrationsstrategien mit Fokus auf Performance, Kosten und Ausfallsicherheit."
       }
     }
   },
   "projects": {
-    "badge": "Ausgewählte Arbeiten",
-    "title": "Projekte",
-    "description": "Digitale Systeme von der Exploration bis zum finalen Handoff – mit Fokus auf Realtime-Collaboration, Design Systems und messbaren Produkt-Impact.",
+    "badge": "Portfolio",
+    "title": "Ausgewählte Projekte",
+    "description": "Hier findest du einige Projekte, die meinen Ansatz zeigen: responsive, barrierefreie Produkte mit sauber strukturierter und wartbarer Codebasis.",
     "resume": "Lebenslauf",
     "filters": {
       "categories": {
         "all": "Alle",
-        "front-end": "Front-end",
-        "full-stack": "Full-stack",
+        "front-end": "Front-End",
+        "full-stack": "Full-Stack",
         "design": "Design"
       },
       "tags": {
-        "button": "Tag-Filter",
+        "button": "Tags",
         "title": "Nach Tags filtern",
         "searchPlaceholder": "Tags durchsuchen",
-        "clear": "Zurücksetzen",
+        "clear": "Löschen",
         "done": "Fertig",
-        "empty": "Keine Tags gefunden. Bitte anders suchen."
+        "empty": "Keine Tags gefunden. Bitte einen anderen Suchbegriff versuchen."
       },
       "reset": "Zurücksetzen",
       "searchPlaceholder": "Projekte durchsuchen",
       "clearFilters": "Filter löschen"
     },
     "empty": {
-      "title": "Keine Projekte passen zu diesem Filter",
-      "description": "Passe Kategorie oder Tags an – oder lösche die Suche, um mehr Arbeiten zu entdecken.",
+      "title": "Keine Projekte entsprechen den Filtern",
+      "description": "Versuche, eine andere Kategorie zu wählen, einen Tag zu entfernen oder die Suche zurückzusetzen, um bessere Ergebnisse zu erhalten.",
       "action": "Filter löschen"
     },
     "card": {
-      "view": "Projekt ansehen",
+      "view": "Besuchen",
+      "code": "Code",
       "categoryLabel": {
-        "front-end": "Front-end",
-        "full-stack": "Full-stack",
+        "front-end": "Front-End",
+        "full-stack": "Full-Stack",
         "design": "Design"
       }
     },
-    "list": {
-      "neonNodes": {
-        "description": "Realtime-Graph-Editor mit kollaborativen Cursorn und reaktivem Plugin-System."
+    "list": [
+      {
+        "id": "newWebsite",
+        "title": "Michelle Heatherly",
+        "description": "Diese Website! Meine persönliche Portfolioseite, um einige meiner Fähigkeiten als Softwareentwicklerin und Webdesignerin zu präsentieren.",
+        "image": "~/assets/images/new-website.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
+        "link": "#",
+        "category": "full-stack"
       },
-      "pulseUi": {
-        "description": "Design-System auf Basis von Nuxt UI mit Token-Theming und Charting."
+      {
+        "id": "paratactical",
+        "title": "ParaTactical",
+        "description": "Die Website von ParaTactical – einem Ultraleicht- und Sportflugplatz in North Carolina.",
+        "image": "~/assets/images/paratactical.PNG",
+        "tags": ["JS", "CSS", "Squarespace", "Fotografie"],
+        "link": "https://www.paratactical.net/",
+        "category": "design"
       },
-      "greenTrace": {
-        "description": "Dashboard für Nachhaltigkeits-Insights mit KI-Zusammenfassungen und Karten-Layern."
+      {
+        "id": "luna",
+        "title": "Luna",
+        "description": "Eine datenschutzfreundliche App zur Menstruationsgesundheit, die Frauen dabei unterstützt, ihre Zyklen einfach und sicher zu verfolgen.",
+        "image": "~/assets/images/luna.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://luna-worker.michelleheatherly218.workers.dev",
+        "category": "full-stack"
       },
-      "immersiveAtlas": {
-        "description": "Story-getriebene Microsite mit 3D-Szenen, Scroll-Choreografie und Sound-Design."
+      {
+        "id": "oldWebsite",
+        "title": "Archivierte persönliche Website",
+        "description": "Die vorherige Version meiner Portfolioseite.",
+        "image": "~/assets/images/old-website.PNG",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Github"],
+        "link": "https://michelle-heatherly.com/",
+        "category": "front-end"
       },
-      "opsynkControl": {
-        "description": "Analytics-Suite mit Live-Telemetrie, Incident-Notes und SOC-Handoff-Automation."
+      {
+        "id": "quizzi",
+        "title": "Quizzi",
+        "description": "Eine Lernkarten-App zum Erstellen, Organisieren und Lernen – mit Unterstützung für Multiple-Choice- und Lückentextfragen.",
+        "image": "~/assets/images/quizzi.PNG",
+        "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
+        "link": "https://quizzi-worker.michelleheatherly218.workers.dev",
+        "category": "full-stack"
       },
-      "signalStudio": {
-        "description": "Design-System-Playground mit Komponenten-Deep-Dives, Motion-Guidelines und Theme-Toggles."
+      {
+        "id": "kinsaleCharters",
+        "title": "Kinsale Charters",
+        "description": "Die Website von Kinsale Charters – einem kleinen Angelcharter-Service in Virginia.",
+        "image": "~/assets/images/kinsale-charters.png",
+        "tags": ["JS", "CSS", "HTML", "Webpack", "Gitlab"],
+        "link": "https://kinsale-charters.com",
+        "category": "front-end"
       }
-    }
+    ]
   },
   "blog": {
-    "badge": "Studio-Journal",
-    "title": "Frische Artikel & Build-Logs",
-    "description": "Notizen zu Craft, Prozess-Deep-Dives und wöchentlichen Learnings aus meinen aktuellen Projekten.",
-    "note": "Artikel sind derzeit auf Englisch und Deutsch verfügbar.",
+    "badge": "Blog",
+    "title": "Neueste Entwicklungen & Weitere Gedanken",
+    "description": "Persönliche Reflexionen über die sich wandelnden Werkzeuge, Technologien und Denkweisen, die das Web prägen.",
+    "note": "Artikel sind auf Englisch und Deutsch verfügbar.",
     "actions": {
       "open": "Gesamten Feed öffnen",
-      "visit": "Blog besuchen"
+      "visit": "Zum Blog"
     }
   },
   "feed": {
@@ -281,63 +358,84 @@
     }
   },
   "contact": {
-    "badge": "Collabs",
-    "headline": "Lass uns ein futuristisches Web-Erlebnis bauen",
-    "description": "Ich arbeite mit Gründer:innen und Kreativ-Teams, um immersive Produkte, mutige Interfaces und reibungslose Flows zu shippen. Wenn der Brief Motion, Storytelling oder UX-Können braucht, bin ich dabei.",
+    "badge": "Kontakt",
+    "headline": "Melde dich gerne",
+    "description": "Ich bin immer offen für neue Zusammenarbeit. Wenn du ein Projekt planst, ein Interface verbessern möchtest oder technischen Rat brauchst – schreib mir! Ich bin gespannt, woran du arbeitest.",
     "actions": {
       "email": "E-Mail",
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "projects": "Neueste Builds ansehen"
+      "projects": "Neueste Projekte ansehen"
     },
     "form": {
-      "badge": "Kontakt",
-      "title": "Starte etwas Boldes",
-      "description": "Erzähl vom Vibe, der Timeline und dem Traumprojekt. Ich antworte mit Ideen und Next Steps.",
+      "badge": "Lass uns verbinden!",
+      "title": "Starten wir das Gespräch.",
+      "description": "Egal ob groß oder klein – ich bin gespannt auf Ihr Projekt. Schreiben Sie mir ein paar Details, und ich melde mich mit Ideen, wie wir es gemeinsam umsetzen können.",
+      "emailSubject": "Neue Nachricht über das Portfolio",
       "fields": {
         "name": {
           "label": "Name",
-          "placeholder": "Ashley Cyber"
+          "placeholder": "Kathryn Janeway"
         },
         "email": {
           "label": "E-Mail",
-          "placeholder": "hello{symbol}youremail.com"
+          "placeholder": "cpt.janeway{symbol}starfleet.com"
         },
         "notes": {
-          "label": "Projekt-Notizen",
-          "placeholder": "Teile kurz Briefing, Moodboard oder wilde Idee …"
+          "label": "Nachricht",
+          "placeholder": "Beschreiben Sie Ihre Idee – Phaser auf 'Kreativität' eingestellt."
         }
       },
-      "response": "Antwort innerhalb von 2 Tagen",
-      "submit": "Vision senden"
+      "response": "Status",
+      "success": "Nachricht gesendet – ich melde mich bald.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es in einem Moment erneut.",
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet…"
     }
   },
+  "error": {
+    "badge": "Da ist etwas schiefgelaufen.",
+    "heading": "Uff, das ist jetzt peinlich.",
+    "description": {
+      "primary": "Unsere Katze hat wohl etwas vom Regal geworfen.",
+      "secondary": "Versuch's nochmal oder geh zurück zur Startseite, während wir das aufräumen."
+    },
+    "actions": {
+      "retry": "Erneut versuchen",
+      "home": "Zur Startseite"
+    },
+    "technical": {
+      "details": "Technische Details",
+      "status": "Statuscode",
+      "message": "Fehlermeldung",
+      "stack": "Stack-Trace"
+    },
+    "imageAlt": "Illustration einer verwirrten Katze"
+  },
   "footer": {
-    "badge": "Studio für morgen",
-    "siteName": "CyberFemme Studio",
-    "headline": "Erlebnisse gestalten, die mit Micro-Interactions glänzen.",
-    "description": "Lichtdurchflutete, bewegte Interfaces, die lebendig und durchdacht wirken.",
+    "badge": "Full-Stack-Softwareentwicklerin",
+    "siteName": "Michelle Heatherly",
+    "headline": "Entwicklung mit persönlicher Note.",
+    "description": "Alles durchdacht entwickelt für nahtlose Benutzererlebnisse.",
     "columns": {
       "navigate": {
-        "title": "Navigation",
+        "title": "Lenkung",
         "items": {
           "home": "Start",
-          "projects": "Projekte",
-          "services": "Services",
           "about": "Profil",
+          "education": "Ausbildung",
+          "skills": "Fähigkeiten",
+          "projects": "Portfolio",
+          "blog": "Blog",
           "contact": "Kontakt"
         }
-      },
-      "expertise": {
-        "title": "Expertise",
-        "items": ["UI/UX Strategie", "Nuxt Engineering", "Motion Design", "Accessibility"]
       }
     },
     "social": {
       "visit": "{label} besuchen"
     },
     "bottom": {
-      "crafted": "© {year} {site}. Mit Nuxt, Vue und einer guten Portion Glanz umgesetzt.",
+      "crafted": "© {year} {site}. Mit Nuxt, Vue und Liebe umgesetzt.",
       "privacy": "Datenschutz",
       "terms": "Impressum"
     }

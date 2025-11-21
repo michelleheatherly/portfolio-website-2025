@@ -5,6 +5,9 @@
            bg-white/70 dark:bg-white/5 backdrop-blur-xl
            hover:border-cyber-purple/30
            focus-within:ring-2 focus-within:ring-cyber-purple/40"
+    :ui="{
+      body: 'relative flex h-full flex-col p-0'
+    }"
     v-motion
     :initial="{ opacity: 0, y: 24, scale: 0.98 }"
     :enter="{ opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 120, damping: 18 } }"
@@ -14,6 +17,7 @@
     @pointermove="handlePointerMove"
     @pointerleave="resetSpotlight"
   >
+    <!-- Spotlight overlay -->
     <span
       class="pointer-events-none absolute inset-px rounded-2xl
              opacity-0 transition-opacity duration-500 group-hover:opacity-80"
@@ -25,12 +29,21 @@
              opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-soft-light"
     />
 
+    <!-- Image + category badge -->
     <div class="relative">
-      <img
-        :src="project.image"
-        alt=""
-        class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
-      />
+      <a
+        :href="project.link"
+        target="_blank"
+        rel="noreferrer"
+        class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50"
+      >
+        <img
+          :src="projectImageSrc"
+          alt=""
+          class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
+        />
+      </a>
+
       <span
         class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 shadow-sm"
         :class="categoryMeta.badgeClass"
@@ -40,7 +53,8 @@
       </span>
     </div>
 
-    <div class="p-4 space-y-3">
+    <!-- Content + actions (body is flex h-full because of :ui) -->
+    <div class="flex flex-1 flex-col p-4 space-y-3">
       <h3 class="text-lg font-semibold text-zinc-900 dark:text-white transition-colors duration-300">
         {{ project.title }}
       </h3>
@@ -53,6 +67,7 @@
         <UBadge
           v-for="t in project.tags"
           :key="t"
+          :color="$colorMode.value === 'dark' ? 'primary' : 'secondary'"
           variant="soft"
           class="text-xs border border-black/10 dark:border-white/10 transition-colors duration-300"
           :ui="{ rounded: 'rounded-full' }"
@@ -61,10 +76,13 @@
         </UBadge>
       </div>
 
-      <div class="pt-2">
+      <!-- Actions row pinned to the bottom of the card body -->
+      <div class="pt-2 mt-auto flex items-center justify-between gap-2">
         <UButton
+          color="success"
           :to="project.link"
           target="_blank"
+          rel="noreferrer"
           class="group/button transition-colors duration-300"
         >
           <UIcon
@@ -72,6 +90,21 @@
             class="h-5 w-5 transition-transform duration-500 group-hover/button:-translate-y-0.5 group-hover/button:rotate-12"
           />
           <span>{{ t('projects.card.view') }}</span>
+        </UButton>
+
+        <UButton
+          v-if="projectCodeHref"
+          color="secondary"
+          :to="projectCodeHref"
+          target="_blank"
+          rel="noreferrer"
+          class="group/code flex items-center gap-2 transition-colors duration-300"
+        >
+          <UIcon
+            name="i-heroicons-code-bracket-20-solid"
+            class="h-5 w-5 transition-transform duration-500 group-hover/code:-translate-y-0.5 group-hover/code:rotate-12"
+          />
+          <span>{{ t('projects.card.code') }}</span>
         </UButton>
       </div>
     </div>
@@ -88,6 +121,7 @@ const props = defineProps<{
     image: string
     tags: string[]
     link: string
+    codeLink?: string
     category: string
   }
 }>()
@@ -95,13 +129,62 @@ const props = defineProps<{
 const project = computed(() => props.project)
 const { t } = useI18n()
 
+// Only show code button when a real codeLink exists
+const projectCodeHref = computed(() => {
+  const source = project.value.codeLink?.trim()
+  return source && source.length > 0 ? source : ''
+})
+
+const localImageEntries = import.meta.glob('@/assets/images/**/*', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>
+
+const localImageMap = Object.fromEntries(
+  Object.entries(localImageEntries).map(([key, value]) => {
+    const normalizedKey = key
+      .replace(/^(\.\.\/)+/, '')
+      .replace(/^@\/?/, '')
+      .replace(/^~\//, '')
+      .replace(/^\/+/, '')
+    return [normalizedKey, value]
+  })
+)
+
+const projectImageSrc = computed(() => {
+  const source = project.value.image
+  if (!source) return ''
+
+  const isRemote = /^(https?:)?\/\//i.test(source) || source.startsWith('data:')
+  if (isRemote) return source
+
+  const normalizedSource = source
+    .replace(/^~\//, '')
+    .replace(/^@\//, '')
+    .replace(/^\/+/, '')
+
+  const lookupCandidates = [
+    normalizedSource,
+    normalizedSource.startsWith('assets/') ? normalizedSource : `assets/${normalizedSource}`,
+    normalizedSource.replace(/^app\//, '')
+  ]
+
+  for (const candidate of lookupCandidates) {
+    const hit = localImageMap[candidate]
+    if (hit) return hit
+  }
+
+  return source
+})
+
 const prefersReduced = usePreferredReducedMotion()
 const pointerX = ref(50)
 const pointerY = ref(110)
 
 const spotlightBackground = computed(() => {
-  if (prefersReduced.value === 'reduce')
+  if (prefersReduced.value === 'reduce') {
     return 'radial-gradient(160px circle at 50% 120%, rgba(139, 92, 246, 0.12), transparent 66%)'
+  }
 
   return `radial-gradient(220px circle at ${pointerX.value}% ${pointerY.value}%,
     rgba(139, 92, 246, 0.35),
@@ -188,8 +271,7 @@ const categoryMeta = computed(() => {
 })
 
 function handlePointerMove(event: PointerEvent) {
-  if (prefersReduced.value === 'reduce')
-    return
+  if (prefersReduced.value === 'reduce') return
 
   const target = event.currentTarget as HTMLElement
   const rect = target.getBoundingClientRect()

@@ -1,6 +1,24 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #00c850;
+  --color-secondary: #9b5cff;
+
+  --color-cyber-bg: #0c0a10;
+  --color-cyber-glass: rgba(255, 255, 255, 0.06);
+  --color-cyber-line: rgba(255, 255, 255, 0.08);
+  --color-cyber-purple: #9b5cff;
+  --color-cyber-green: #179D68;
+
+  --backdrop-blur-xl: 20px;
+
+  --shadow-glass: 0 8px 40px rgba(0, 0, 0, 0.35),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 html, body, #__nuxt { height: 100%; }
 html { scroll-behavior: smooth; }
 ::-webkit-scrollbar { width: 10px; }
@@ -25,6 +43,7 @@ html { scroll-behavior: smooth; }
   --facet-primary-shadow: rgba(91, 72, 255, 0.42);
   --facet-secondary-shadow: rgba(16, 185, 129, 0.4);
   --timeline-rail: rgba(24, 24, 27, 0.12);
+  --menu-overlay-bg: linear-gradient(135deg, #efe6ff 0%, #d0ffe0 65%, #d8fbff 100%);
 }
 .dark:root {
   --page-bg: #0c0a10;               /* dark */
@@ -45,6 +64,15 @@ html { scroll-behavior: smooth; }
   --facet-primary-shadow: rgba(99, 102, 241, 0.35);
   --facet-secondary-shadow: rgba(16, 185, 129, 0.32);
   --timeline-rail: rgba(255, 255, 255, 0.12);
+  --menu-overlay-bg: linear-gradient(
+    135deg,
+    #040411 0%,
+    #120f39 35%,
+    #2d1f6b 54%,
+    #19234b 73%,
+    #101229 91%,
+    #03040a 100%
+  );
 }
 
 

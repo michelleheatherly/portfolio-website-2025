@@ -1,10 +1,9 @@
 <template>
-  <div v-motion v-motion-pop-visible-once :hovered="{ scale: 1.01, transition: { duration: 0.35 } }" class="relative space-y-6">
+  <div v-motion v-motion-pop-visible-once class="relative space-y-6">
     <span
       v-if="badgeText"
-      class="inline-flex items-center gap-2 rounded-full border border-cyber-green/30 bg-cyber-green/10 px-4 py-1
-             text-xs font-semibold uppercase tracking-[0.28em] text-cyber-green transition-colors duration-300
-             dark:border-cyber-green/40 dark:bg-cyber-green/20 dark:text-cyber-green/90"
+      class="inline-flex items-center gap-2 rounded-full border px-4 py-1
+             text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300"
     >
       <UIcon name="i-heroicons-users-20-solid" class="h-4 w-4" />
       {{ badgeText }}
@@ -21,28 +20,28 @@
 
     <div class="grid gap-3 pt-2 sm:grid-cols-2">
       <slot name="actions">
-        <UButton to="mailto:you@example.com" variant="soft" class="group">
-          <UIcon
-            name="i-heroicons-envelope-20-solid"
-            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
-          />
-          <span>{{ t('contact.actions.email') }}</span>
-        </UButton>
-        <UButton to="https://github.com/yourname" target="_blank" variant="soft" class="group">
-          <UIcon
-            name="i-simple-icons-github"
-            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
-          />
-          <span>{{ t('contact.actions.github') }}</span>
-        </UButton>
-        <UButton to="https://www.linkedin.com/in/yourname" target="_blank" variant="soft" class="group">
-          <UIcon
-            name="i-simple-icons-linkedin"
-            class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
-          />
-          <span>{{ t('contact.actions.linkedin') }}</span>
-        </UButton>
-        <UButton to="#projects" variant="soft" class="group justify-start">
+        <template v-for="link in contactActions" :key="link.label">
+          <UButton
+            :to="link.href"
+            :target="link.target"
+            :rel="link.target ? 'noreferrer' : undefined"
+            variant="soft"
+            color="neutral"
+            class="group rounded-lg border transition-colors duration-300 bg-transparent"
+          >
+            <UIcon
+              :name="link.icon"
+              class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
+            />
+            <span>{{ link.label }}</span>
+          </UButton>
+        </template>
+        <UButton
+          to="#projects"
+          variant="soft"
+          color="neutral"
+          class="group rounded-lg border transition-colors duration-300 bg-transparent"
+        >
           <UIcon
             name="i-heroicons-bolt-20-solid"
             class="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-12"
@@ -64,4 +63,28 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const badgeText = computed(() => props.badge ?? t('contact.badge'))
+
+const socialLinks = useSocialLinks()
+
+const CONTACT_ORDER = ['email', 'github', 'linkedin'] as const
+
+const contactActions = computed(() => {
+  const linksByKey = new Map<string, Record<string, unknown>>()
+  socialLinks.value.forEach((link) => {
+    const key = String((link as Record<string, unknown>).key ?? '').toLowerCase()
+    if (key) {
+      linksByKey.set(key, link as Record<string, unknown>)
+    }
+  })
+
+  return CONTACT_ORDER.map((key) => linksByKey.get(key)).filter(Boolean).map((link) => {
+    const href = String(link.href ?? '')
+    return {
+      label: String(link.label ?? ''),
+      icon: String(link.icon ?? ''),
+      href,
+      target: href.startsWith('http') ? '_blank' : undefined
+    }
+  })
+})
 </script>

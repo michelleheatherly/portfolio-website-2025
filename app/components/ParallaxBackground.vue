@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none transition-colors duration-500 parallax-root"
+    class="pointer-events-none fixed inset-0 -z-10 min-h-screen overflow-hidden select-none transition-colors duration-500 parallax-root"
     aria-hidden="true"
   >
     <!-- Conic gradient wash -->
@@ -13,7 +13,7 @@
 
     <!-- Nebula starfield -->
     <div
-      class="absolute -top-[120vh] -bottom-[80vh] -left-24 -right-24 opacity-90 dark:opacity-10
+      class="absolute -top-[150vh] -bottom-[100vh] -left-24 -right-24 opacity-90 dark:opacity-10
              transition-opacity duration-500 will-change-transform mix-blend-multiply dark:mix-blend-screen parallax-nebula"
       :style="{
         transform: layer1Transform,

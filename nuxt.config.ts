@@ -15,8 +15,9 @@ export default defineNuxtConfig({
     fallback: 'dark'
   },
   ui: {
-    // Fine-tune theme tokens (Nuxt UI)
-    primary: 'violet',
+    theme: {
+      colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error'],
+    }
   },
   tailwindcss: {
     viewer: false
@@ -36,15 +37,23 @@ export default defineNuxtConfig({
   app: {
     baseURL: import.meta.env.BASE_URL || '/',
     head: {
-      title: 'Dev Portfolio',
-      meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }]
+      title: 'Michelle Heatherly',
+      meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
     }
   },
   runtimeConfig: {
     public: {
       feedUrl: import.meta.env.NUXT_PUBLIC_FEED_URL || 'https://example.com/feed.xml',
       blogUrl: import.meta.env.NUXT_PUBLIC_BLOG_URL || 'https://example.com/blog',
-      blogAltUrl: import.meta.env.NUXT_PUBLIC_BLOG_ALT_URL || 'https://example.github.io/blog'
+      blogAltUrl: import.meta.env.NUXT_PUBLIC_BLOG_ALT_URL || 'https://example.github.io/blog',
+      contactApiKey: import.meta.env.NUXT_PUBLIC_CONTACT_API_KEY || ''
     },
   },
   nitro: {

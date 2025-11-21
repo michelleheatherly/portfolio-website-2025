@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-40 border-b transition-all duration-500 transform-gpu header-surface"
+    class="sticky top-0 z-[90] border-b transition-all duration-500 transform-gpu header-surface"
     :class="[
       headerSurfaceClasses,
       shouldHideHeader ? '-translate-y-full opacity-0 pointer-events-none' : 'opacity-100'
@@ -9,20 +9,21 @@
   >
     <UContainer class="flex items-center justify-between py-3">
       <!-- Brand -->
-      <div
-        class="flex items-center gap-3"
+      <NuxtLink
+        to="/"
+        class="flex items-center gap-3 focus-visible:outline-none"
+        @click="handleBrandClick"
         v-motion
         :initial="{ opacity: 0, y: -6 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 0.4 } }"
       >
-        <UIcon name="i-ph-code-bold" class="h-6 w-6 text-cyber-green" />
         <span class="font-semibold tracking-wide text-zinc-900 dark:text-white transition-colors duration-300">
-          {{ brandLabel }}
+          <{{ brandLabel }} />
         </span>
-      </div>
+      </NuxtLink>
 
       <!-- Desktop nav -->
-      <nav class="hidden md:block">
+      <nav class="hidden lg:block">
         <ul class="flex gap-6 items-center">
           <li
             v-for="(l, index) in navLinks"
@@ -39,7 +40,6 @@
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/40 rounded-md px-1"
             >
               {{ l.label }}
-              <!-- subtle underline accent -->
               <span
                 class="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-black dark:bg-white/90 opacity-0 transition-all duration-300 ease-out
                        group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
@@ -53,19 +53,26 @@
       <div class="flex items-center gap-2">
         <LanguageToggle />
         <ThemeToggle />
-        <UButton
-          class="group/menu md:hidden transition-colors duration-300"
-          variant="soft"
+        <!-- Header menu toggle -->
+        <button
+          type="button"
+          class="menu-toggle menu-toggle--hoverable inline-flex cursor-pointer items-center justify-center lg:hidden transition duration-300
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+                text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
+          :class="{
+            'menu-toggle--bg-open': isMenuOpen,
+            'menu-toggle--icon-open': iconOpenState,
+            'menu-toggle--closed': !isMenuOpen
+          }"
           :aria-expanded="isMenuOpen"
           :aria-controls="menuId"
           :aria-label="menuButtonLabel"
           @click="toggleMenu"
         >
-          <UIcon
-            :name="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"
-            class="h-5 w-5 transition-transform duration-500 group-hover/menu:-translate-y-0.5 group-hover/menu:rotate-12"
-          />
-        </UButton>
+          <span class="menu-toggle__line" aria-hidden="true" />
+          <span class="menu-toggle__line" aria-hidden="true" />
+          <span class="menu-toggle__line" aria-hidden="true" />
+        </button>
       </div>
     </UContainer>
 
@@ -73,53 +80,56 @@
       <Transition name="menu-overlay">
         <div
           v-if="isMenuOpen"
-          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col md:hidden"
+          class="menu-overlay-surface fixed inset-0 z-[80] flex flex-col lg:hidden"
           role="dialog"
           aria-modal="true"
           :aria-labelledby="`${menuId}-title`"
           @click.self="closeMenu"
         >
-          <UButton
-            class="absolute right-4 top-4 z-20 text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            square
-            icon="i-heroicons-x-mark-20-solid"
-            :aria-label="t('nav.menu.close')"
-            type="button"
-            @click.stop="closeMenu"
-          />
+          <div class="absolute inset-x-0 top-0 z-[95] pointer-events-none">
+            <div class="mx-auto flex w-full max-w-7xl justify-end px-6 pt-3">
+              <button
+                type="button"
+                class="menu-toggle menu-toggle--hoverable inline-flex cursor-pointer items-center justify-center pointer-events-auto transition duration-300
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+                      text-zinc-800 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white"
+                :class="{
+                  'menu-toggle--icon-open': iconOpenState,
+                  'menu-toggle--closed': !isMenuOpen
+                }"
+                :aria-label="t('nav.menu.close')"
+                @click.stop="closeMenu"
+              >
+                <span class="menu-toggle__line" aria-hidden="true" />
+                <span class="menu-toggle__line" aria-hidden="true" />
+                <span class="menu-toggle__line" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
           <div
             class="menu-ripple"
             :class="{ 'menu-ripple--active': allowMenuRipple }"
             :style="rippleStyle"
           />
+
           <div class="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-8 text-center">
-            <span
-              :id="`${menuId}-title`"
-              class="text-xs uppercase tracking-[0.5em] text-white/70"
-            >
-              {{ menuTitle }}
-            </span>
-            <div class="flex items-center justify-center gap-3">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div>
             <nav :id="menuId">
               <ul class="space-y-6">
                 <li
                   v-for="(l, index) in navLinks"
                   :key="l.to"
                   v-motion
-                  :initial="prefersReduced === 'reduce' ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.96 }"
+                  :initial="prefersReduced === 'reduce'
+                    ? { opacity: 1, y: 0, scale: 1 }
+                    : { opacity: 0, y: 18, scale: 0.96 }"
                   :enter="mobileNavEnterVariant(index)"
                 >
                   <ULink
                     :to="l.to"
-                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-white/90 transition-all duration-300 ease-out
-                           hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
-                           focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
+                    class="group menu-link relative inline-block transform-gpu text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white/90 transition-all duration-300 ease-out
+                           hover:text-zinc-900 dark:hover:text-white hover:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)]
+                           focus-visible:text-zinc-900 dark:focus-visible:text-white focus-visible:drop-shadow-[0_0_25px_rgba(43,245,160,0.45)] focus-visible:ring-2 focus-visible:ring-cyber-purple/50 focus-visible:outline-none"
                     @click="handleMobileNavigate"
                   >
                     <span
@@ -128,16 +138,40 @@
                     />
                     {{ l.label }}
                     <span
-                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-white opacity-0 transition-all duration-500 ease-out
-                             group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100"
+                      class="pointer-events-none absolute -bottom-2 left-0 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-zinc-900 transition-all duration-500 ease-out
+                             opacity-0 group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100 dark:bg-white"
                     />
                   </ULink>
                 </li>
               </ul>
             </nav>
-            <p class="text-sm text-white/60 max-w-xs">
-              {{ menuTagline }}
-            </p>
+
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex items-center justify-center gap-4">
+                <NuxtLink
+                  v-for="link in socialLinks"
+                  :key="link.label"
+                  :aria-label="t('footer.social.visit', { label: link.label })"
+                  class="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-black/10 text-zinc-500 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-cyber-purple/60 hover:bg-cyber-purple/10 hover:text-cyber-purple/90 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-cyber-purple/60 dark:hover:bg-cyber-purple/15 dark:hover:text-cyber-purple"
+                  :href="link.href"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span
+                    class="absolute inset-0 translate-y-full bg-gradient-to-br from-cyber-purple/25 to-cyber-purple/5 transition-transform duration-500 group-hover:translate-y-0"
+                  />
+                  <UIcon
+                    :name="link.icon"
+                    class="h-5 w-5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-[-6deg]"
+                  />
+                </NuxtLink>
+              </div>
+
+              <div class="flex items-center justify-center gap-3">
+                <LanguageToggle />
+                <ThemeToggle />
+              </div>
+            </div>
           </div>
         </div>
       </Transition>
@@ -146,7 +180,14 @@
 </template>
 
 <script setup lang="ts">
-import { useWindowScroll, usePreferredReducedMotion, useEventListener } from '@vueuse/core'
+import {
+  useWindowScroll,
+  usePreferredReducedMotion,
+  useWindowSize,
+  useEventListener
+} from '@vueuse/core'
+
+const { t } = useI18n()
 
 const navLinkDefs = [
   { key: 'home', to: '#home' },
@@ -158,14 +199,21 @@ const navLinkDefs = [
   { key: 'contact', to: '#contact' }
 ] as const
 
+// helper similar to footer for resolving locale-objects
+const socialLinks = useSocialLinks()
+
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()
-const { t } = useI18n()
+const { width } = useWindowSize()
 
 const footerVisible = useState<boolean>('footer-visible', () => false)
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false)       // controls overlay visibility
+const iconOpenState = ref(false)    // controls burger ↔ X animation
 const rippleOrigin = ref({ x: 0, y: 0 })
 const menuId = 'site-navigation'
+
+// store timeout id for delayed open
+let openTimeout: number | undefined
 
 const navLinks = computed(() =>
   navLinkDefs.map((link) => ({
@@ -175,8 +223,6 @@ const navLinks = computed(() =>
 )
 const brandLabel = computed(() => t('nav.brand'))
 const menuButtonLabel = computed(() => (isMenuOpen.value ? t('nav.menu.close') : t('nav.menu.open')))
-const menuTitle = computed(() => t('nav.menu.title'))
-const menuTagline = computed(() => t('nav.menu.tagline'))
 
 const glassProgress = computed(() => {
   if (isMenuOpen.value) {
@@ -254,31 +300,69 @@ const mobileNavEnterVariant = (index: number) =>
         }
       }
 
-function toggleMenu(event?: MouseEvent) {
-  const next = !isMenuOpen.value
+function openMenu(event?: MouseEvent) {
+  // animate burger → X immediately
+  iconOpenState.value = true
 
-  if (next && import.meta.client) {
+  if (import.meta.client) {
     if (event) {
       rippleOrigin.value = { x: event.clientX, y: event.clientY }
     } else {
       rippleOrigin.value = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
     }
-  }
 
-  isMenuOpen.value = next
+    // delay overlay so the icon animation is visible
+    if (openTimeout) {
+      clearTimeout(openTimeout)
+    }
+    openTimeout = window.setTimeout(() => {
+      isMenuOpen.value = true
+    }, prefersReduced.value === 'reduce' ? 0 : 160)
+  } else {
+    isMenuOpen.value = true
+  }
 }
 
 function closeMenu() {
+  // animate X → burger
+  iconOpenState.value = false
+
+  if (import.meta.client && openTimeout) {
+    clearTimeout(openTimeout)
+    openTimeout = undefined
+  }
+
   isMenuOpen.value = false
+}
+
+function toggleMenu(event?: MouseEvent) {
+  if (!isMenuOpen.value) {
+    openMenu(event)
+  } else {
+    closeMenu()
+  }
 }
 
 function handleMobileNavigate() {
   closeMenu()
 }
 
+function handleBrandClick() {
+  closeMenu()
+}
+
+// body scroll lock
 if (import.meta.client) {
   watch(isMenuOpen, (open) => {
     document.body.classList.toggle('overflow-hidden', open)
+  })
+
+  const LG_BREAKPOINT = 1024
+
+  watch(width, (value) => {
+    if (isMenuOpen.value && value >= LG_BREAKPOINT) {
+      closeMenu()
+    }
   })
 }
 
@@ -295,6 +379,9 @@ if (import.meta.client) {
 onBeforeUnmount(() => {
   if (import.meta.client) {
     document.body.classList.remove('overflow-hidden')
+    if (openTimeout) {
+      clearTimeout(openTimeout)
+    }
   }
 
   removeEscapeListener?.()
@@ -328,7 +415,97 @@ onBeforeUnmount(() => {
 }
 
 .menu-overlay-surface {
-  background-color: #159561;
+  background: var(--menu-overlay-bg);
+  transition: background 0.35s ease;
+}
+
+/* Base button: transparent when closed */
+.menu-toggle {
+  position: relative;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: currentColor;
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.25s ease;
+}
+
+.menu-toggle--hoverable {
+  transition: transform 0.3s ease;
+}
+.menu-toggle--hoverable:hover {
+  transform: translateY(-2px) rotate(6deg);
+}
+
+/* Closed state: lines brighten on hover (clickable hint) */
+.menu-toggle--closed:hover .menu-toggle__line {
+  opacity: 0.95;
+  mix-blend-mode: screen;
+}
+
+/* Dark mode tweak for better visibility */
+.menu-toggle:hover .menu-toggle__line {
+  opacity: 0.9;
+  background-color: currentColor; /* ensures color shifts with text */
+}
+
+.menu-toggle__line {
+  position: absolute;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.7;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+/* staggered positions for burger */
+.menu-toggle__line:nth-child(1) {
+  top: 12px;
+}
+
+.menu-toggle__line:nth-child(2) {
+  top: 20px;
+}
+
+.menu-toggle__line:nth-child(3) {
+  top: 28px;
+}
+
+/* Icon state: burger → X when open */
+.menu-toggle--icon-open .menu-toggle__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle--icon-open .menu-toggle__line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle--icon-open .menu-toggle__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Slight visual feedback on hover (lines follow currentColor) */
+.menu-toggle:hover .menu-toggle__line {
+  opacity: 0.92;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle__line,
+  .menu-toggle--hoverable {
+    transition: none;
+  }
+  .menu-toggle--hoverable:hover {
+    transform: none;
+  }
 }
 
 .menu-overlay-enter-from,
