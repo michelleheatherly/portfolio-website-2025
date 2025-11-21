@@ -181,6 +181,7 @@
 import {
   useWindowScroll,
   usePreferredReducedMotion,
+  useWindowSize,
   useEventListener
 } from '@vueuse/core'
 
@@ -225,6 +226,7 @@ const socialLinks = computed(() => {
 
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()
+const { width } = useWindowSize()
 
 const footerVisible = useState<boolean>('footer-visible', () => false)
 const isMenuOpen = ref(false)       // controls overlay visibility
@@ -371,6 +373,14 @@ function handleMobileNavigate() {
 if (import.meta.client) {
   watch(isMenuOpen, (open) => {
     document.body.classList.toggle('overflow-hidden', open)
+  })
+
+  const LG_BREAKPOINT = 1024
+
+  watch(width, (value) => {
+    if (isMenuOpen.value && value >= LG_BREAKPOINT) {
+      closeMenu()
+    }
   })
 }
 
