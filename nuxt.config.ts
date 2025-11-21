@@ -35,7 +35,7 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts'
   },
   app: {
-    baseURL: import.meta.env.BASE_URL || '/',
+    baseURL: import.meta.env.NUXT_APP_BASE_URL || '/',
     head: {
       title: 'Michelle Heatherly',
       meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
@@ -60,6 +60,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ['/', '/api/feed'],
+      failOnError: false,
+      ignore: ['/portfolio-website-2025/_nuxt/**', '/_nuxt/**'],
     },
     preset: 'github_pages'
   },
