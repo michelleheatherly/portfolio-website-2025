@@ -65,7 +65,6 @@
       {
         "key": "email",
         "label": "E-Mail",
-        "href": "{'mailto:michelleheatherly218@outlook.com'}",
         "icon": "i-heroicons-envelope-20-solid"
       }
     ]

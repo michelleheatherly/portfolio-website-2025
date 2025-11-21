@@ -187,7 +187,7 @@ import {
   useEventListener
 } from '@vueuse/core'
 
-const { t, tm, rt } = useI18n()
+const { t } = useI18n()
 
 const navLinkDefs = [
   { key: 'home', to: '#home' },
@@ -200,31 +200,7 @@ const navLinkDefs = [
 ] as const
 
 // helper similar to footer for resolving locale-objects
-const resolveLocaleValue = (value: unknown): any => {
-  if (Array.isArray(value)) {
-    return value.map(resolveLocaleValue)
-  }
-
-  if (value && typeof value === 'object') {
-    if ('type' in value && 'loc' in value) {
-      return rt(value as any)
-    }
-
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, val]) => [
-        key,
-        resolveLocaleValue(val)
-      ])
-    )
-  }
-
-  return value
-}
-
-const socialLinks = computed(() => {
-  const links = resolveLocaleValue(tm('social.links') ?? [])
-  return Array.isArray(links) ? links : []
-})
+const socialLinks = useSocialLinks()
 
 const prefersReduced = usePreferredReducedMotion()
 const { y } = useWindowScroll()

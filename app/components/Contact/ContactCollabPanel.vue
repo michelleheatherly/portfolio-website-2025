@@ -60,32 +60,11 @@ const props = defineProps<{
   description: string
 }>()
 
-const { t, tm, rt } = useI18n()
-
-const resolveLocaleValue = (value: unknown): any => {
-  if (Array.isArray(value)) {
-    return value.map(resolveLocaleValue)
-  }
-
-  if (value && typeof value === 'object') {
-    if ('type' in value && 'loc' in value) {
-      return rt(value as any)
-    }
-
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, val]) => [key, resolveLocaleValue(val)])
-    )
-  }
-
-  return value
-}
+const { t } = useI18n()
 
 const badgeText = computed(() => props.badge ?? t('contact.badge'))
 
-const socialLinks = computed(() => {
-  const links = resolveLocaleValue(tm('social.links') ?? [])
-  return Array.isArray(links) ? links : []
-})
+const socialLinks = useSocialLinks()
 
 const CONTACT_ORDER = ['email', 'github', 'linkedin'] as const
 
