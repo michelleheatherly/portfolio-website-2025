@@ -293,11 +293,15 @@
               }"
             >
               <div class="relative overflow-hidden rounded-[2.75rem]">
-                <img
-                  src="~/assets/images/WerkIt-©LaurenRoberts2024-53.jpg"
+                 <NuxtImg 
+                  src="/WerkIt-©LaurenRoberts2024-53.jpg"
+                  width="569"
+                  height="850"
                   :alt="t('about.portraitAlt')"
                   class="block h-auto w-full rounded-[2.75rem] object-cover transition-transform duration-700 group-hover:scale-105 lg:h-[34rem] lg:max-h-[34rem]"
-                />
+                  format="webp"
+                  loading="lazy"
+                  />
               </div>
             </div>
           </div>

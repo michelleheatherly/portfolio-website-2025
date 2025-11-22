@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
+    '@nuxt/image',
     '@nuxt/ui',           // Nuxt UI (Tailwind + UI components)
     '@nuxtjs/color-mode', // Dark/light mode
     '@vueuse/nuxt',       // VueUse core
@@ -57,13 +58,19 @@ export default defineNuxtConfig({
       email: import.meta.env.NUXT_PUBLIC_EMAIL || ''
     },
   },
+  ssr: true,
   nitro: {
     prerender: {
       routes: ['/', '/api/feed'],
+      crawlLinks: false,
       failOnError: false,
       ignore: ['/portfolio-website-2025/_nuxt/**', '/_nuxt/**'],
     },
     preset: 'github_pages'
   },
-  css: ['@/assets/css/main.css']
+  routeRules: {
+    '/': { prerender: true },
+  },
+  css: ['@/assets/css/main.css'],
+  image: {}
 })

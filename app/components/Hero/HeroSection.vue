@@ -160,11 +160,15 @@
             }
           }"
         >
-          <img
-            src="~/assets/images/WerkIt-©LaurenRoberts2024-56.jpg"
+          <NuxtImg 
+            src="/WerkIt-©LaurenRoberts2024-56.jpg"
+            width="870"
+            height="580"
             :alt="t('hero.portraitAlt')"
             class="block w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+            format="webp"
+            loading="lazy"
+            />
         </div>
       </div>
     </UContainer>

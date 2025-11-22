@@ -68,13 +68,16 @@
           class="relative z-10 grid gap-6 items-start lg:grid-cols-[auto_minmax(0,1fr)] 
                 lg:gap-8 lg:pl-4 xl:pl-8"
         >
-          <img
-            src="~/assets/images/celestial-kitty.png"
-            alt="Celestial kitty illustration"
-            loading="lazy"
-            decoding="async"
-            class="h-40 w-auto object-contain sm:h-48 lg:h-56 self-start floaty-kitty"
-          />
+           <NuxtImg 
+              src="/celestial-kitty.png"
+              width="400"
+              height="400"
+              alt="Celestial kitty illustration"
+              class="h-40 w-auto object-contain sm:h-48 lg:h-56 self-start floaty-kitty"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
 
           <div class="grid gap-8 w-full max-w-xs lg:max-w-sm">
             <div
