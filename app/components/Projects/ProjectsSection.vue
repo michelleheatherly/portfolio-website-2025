@@ -310,11 +310,15 @@
         class="rounded-[2.5rem] border border-dashed border-zinc-300/70 bg-white/60 py-16 text-center transition-colors duration-300 dark:border-zinc-700/60 dark:bg-white/5"
       >
         <div class="mx-auto max-w-md space-y-4 px-6">
-          <img
-            src="~/assets/images/sad-kitty.png"
-            alt="A sad kitty illustration"
-            class="mx-auto h-50 w-50 object-contain empty-state-kitty"
-          />
+          <NuxtImg 
+              src="/sad-kitty.png"
+              width="250"
+              height="250"
+              alt="A sad kitty illustration"
+              class="mx-auto h-50 w-50 object-contain empty-state-kitty"
+              format="webp"
+              loading="lazy"
+            />
           <p class="text-lg font-semibold text-zinc-900 dark:text-white">
             {{ t('projects.empty.title') }}
           </p>

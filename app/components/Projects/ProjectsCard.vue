@@ -37,11 +37,15 @@
         rel="noreferrer"
         class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple/50"
       >
-        <img
-          :src="projectImageSrc"
-          alt=""
-          class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
-        />
+        <NuxtImg
+              :src="projectImageSrc"
+              alt="Project image"
+              width="1030"
+              height="560"
+              class="h-44 w-full object-cover rounded-t-2xl transition-all duration-500 ease-out group-hover:scale-105"
+              format="webp"
+              loading="lazy"
+          />
       </a>
 
       <span

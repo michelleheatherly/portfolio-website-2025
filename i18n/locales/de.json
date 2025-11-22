@@ -279,7 +279,7 @@
         "id": "newWebsite",
         "title": "Michelle Heatherly",
         "description": "Diese Website! Meine persönliche Portfolioseite, um einige meiner Fähigkeiten als Softwareentwicklerin und Webdesignerin zu präsentieren.",
-        "image": "~/assets/images/new-website.PNG",
+        "image": "/new-website.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "i18n", "Github"],
         "link": "#",
         "category": "full-stack"
@@ -288,7 +288,7 @@
         "id": "paratactical",
         "title": "ParaTactical",
         "description": "Die Website von ParaTactical – einem Ultraleicht- und Sportflugplatz in North Carolina.",
-        "image": "~/assets/images/paratactical.PNG",
+        "image": "/paratactical.PNG",
         "tags": ["JS", "CSS", "Squarespace", "Fotografie"],
         "link": "https://www.paratactical.net/",
         "category": "design"
@@ -297,7 +297,7 @@
         "id": "luna",
         "title": "Luna",
         "description": "Eine datenschutzfreundliche App zur Menstruationsgesundheit, die Frauen dabei unterstützt, ihre Zyklen einfach und sicher zu verfolgen.",
-        "image": "~/assets/images/luna.PNG",
+        "image": "/luna.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
         "link": "https://luna-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
@@ -306,7 +306,7 @@
         "id": "oldWebsite",
         "title": "Archivierte persönliche Website",
         "description": "Die vorherige Version meiner Portfolioseite.",
-        "image": "~/assets/images/old-website.PNG",
+        "image": "/old-website.PNG",
         "tags": ["JS", "CSS", "HTML", "Webpack", "Github"],
         "link": "https://michelle-heatherly.com/",
         "category": "front-end"
@@ -315,7 +315,7 @@
         "id": "quizzi",
         "title": "Quizzi",
         "description": "Eine Lernkarten-App zum Erstellen, Organisieren und Lernen – mit Unterstützung für Multiple-Choice- und Lückentextfragen.",
-        "image": "~/assets/images/quizzi.PNG",
+        "image": "/quizzi.PNG",
         "tags": ["Nuxt", "Vue", "Tailwind", "IndexedDB"],
         "link": "https://quizzi-worker.michelleheatherly218.workers.dev",
         "category": "full-stack"
@@ -324,7 +324,7 @@
         "id": "kinsaleCharters",
         "title": "Kinsale Charters",
         "description": "Die Website von Kinsale Charters – einem kleinen Angelcharter-Service in Virginia.",
-        "image": "~/assets/images/kinsale-charters.png",
+        "image": "/kinsale-charters.png",
         "tags": ["JS", "CSS", "HTML", "Webpack", "Gitlab"],
         "link": "https://kinsale-charters.com",
         "category": "front-end"

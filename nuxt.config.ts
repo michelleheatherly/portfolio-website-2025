@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
+    '@nuxt/image',
     '@nuxt/ui',           // Nuxt UI (Tailwind + UI components)
     '@nuxtjs/color-mode', // Dark/light mode
     '@vueuse/nuxt',       // VueUse core
@@ -70,5 +71,6 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
   },
-  css: ['@/assets/css/main.css']
+  css: ['@/assets/css/main.css'],
+  image: {}
 })

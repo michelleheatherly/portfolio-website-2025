@@ -108,17 +108,25 @@
             class="flex flex-col items-center gap-2"
             aria-live="polite"
           >
-            <img
+            <NuxtImg
               v-if="status === 'success'"
-              src="~/assets/images/starfleet-kitty.png"
+              src="/starfleet-kitty.png"
+              width="512"
+              height="768"
               alt="Starfleet kitty celebrating success"
               class="contact-kitty h-75 w-75 object-contain"
+              format="webp"
+              loading="lazy"
             />
-            <img
+            <NuxtImg
               v-else
-              src="~/assets/images/starfleet-kitty-error.png"
+              src="/starfleet-kitty-error.png"
+              width="512"
+              height="768"
               alt="Starfleet kitty looking concerned"
               class="contact-kitty h-75 w-75 object-contain"
+              format="webp"
+              loading="lazy"
             />
             <p
               :class="[

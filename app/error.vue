@@ -27,10 +27,14 @@
           }"
         >
           <div class="flex flex-col items-center gap-4">
-            <img
-              src="~/assets/images/confused-kitty.png"
+             <NuxtImg 
+              src="/confused-kitty.png"
+              width="250"
+              height="250"
               :alt="t('error.imageAlt')"
               class="mx-auto h-40 w-40 object-contain error-kitty"
+              format="webp"
+              loading="lazy"
             />
 
             <div class="space-y-3">
